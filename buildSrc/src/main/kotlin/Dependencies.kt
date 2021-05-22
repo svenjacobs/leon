@@ -1,5 +1,3 @@
-package com.svenjacobs.app.leon.buildSrc
-
 object Versions {
     const val compose = "1.0.0-beta07"
 }
