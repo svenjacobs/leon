@@ -1,4 +1,3 @@
-* Test URLs (Custom Tabs)
 * Edit parameters
 * Manually (de)select parameters per shared text
 * Share history
