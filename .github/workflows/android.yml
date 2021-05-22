@@ -1,0 +1,47 @@
+name: Android
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # We require all history to be fetched for version code calculation
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Import GPG key for git-secret
+        run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch --yes
+
+      - name: Install git-secret
+        run: sudo apt-get install git-secret
+
+      - name: Decrypt secrets
+        run: git secret reveal -f
+
+      - name: Build and test app
+        run: ./gradlew build
+
+      - name: Deploy alpha version
+        if: github.ref == 'refs/heads/develop'
+        run: ./gradlew publishReleaseBundle --track alpha --release-status completed
+
+      - name: Prepare release version
+        if: github.ref == 'refs/heads/main'
+        run: ./gradlew publishReleaseBundle --track production --release-status draft
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Android artifacts
+          path: |
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/bundle/**/*.aab

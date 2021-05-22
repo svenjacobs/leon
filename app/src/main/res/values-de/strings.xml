@@ -1,0 +1,16 @@
+<resources>
+    <string name="screen_home">Start</string>
+    <string name="screen_settings">Einstellungen</string>
+    <string name="scaffold_title">Léon – Der URL Cleaner (Beta)</string>
+    <string name="share">Teilen</string>
+    <string name="verify">Überprüfen</string>
+    <string name="how_to_title">Anleitung</string>
+    <string name="how_to_text">Wähle die App \"URL Cleaner\" beim Teilen von Text aus. Klicke anschließend in dieser App auf \"Teilen\", um den Text an die Ziel-App zu schicken.</string>
+    <plurals name="statistics_parameters">
+        <item quantity="one">%1$d Parameter entfernt</item>
+        <item quantity="other">%1$d Parameter entfernt</item>
+    </plurals>
+    <string name="parameters">Parameter</string>
+    <string name="licenses">Lizenzen</string>
+    <string name="parameters_description">Hier kannst Du Parameter an oder ausschalten, die entfernt werden sollen.</string>
+</resources>

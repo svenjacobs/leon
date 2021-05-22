@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/nightPrimaryColor</item>
+        <item name="colorPrimaryVariant">@color/nightPrimaryDarkColor</item>
+        <item name="colorOnPrimary">@color/nightPrimaryTextColor</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+</resources>

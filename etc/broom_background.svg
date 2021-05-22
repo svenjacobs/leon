@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" data-name="Layer 1" height="24"
+    id="Layer_1" viewBox="0 0 24 24" width="24" version="1.1" sodipodi:docname="broom.svg"
+    inkscape:version="1.0.2 (e86c8708, 2021-01-15)">
+    <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1"
+        objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0"
+        inkscape:pageshadow="2" inkscape:window-width="1349" inkscape:window-height="1029"
+        id="namedview837" showgrid="false" inkscape:zoom="27.833333" inkscape:cx="12"
+        inkscape:cy="12" inkscape:window-x="1309" inkscape:window-y="417"
+        inkscape:window-maximized="0" inkscape:current-layer="Layer_1" />
+    <metadata id="metadata846">
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title />
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs id="defs844" />
+    <path id="path835"
+        d="M 20.529297 2.5 A 0.99989 0.99989 0 0 0 19.792969 2.7929688 L 12.892578 9.6933594 L 14.306641 11.107422 L 21.207031 4.2070312 A 0.99989 0.99989 0 0 0 21.207031 2.7929688 A 0.99989 0.99989 0 0 0 20.529297 2.5 z M 10.714844 10.28125 A 1.612 1.612 0 0 0 10.009766 10.451172 L 9.25 10.832031 C 10.50134 12.261301 11.945925 13.682679 13.359375 15.068359 L 13.408203 15.115234 L 13.830078 14.271484 A 1.612 1.612 0 0 0 13.527344 12.410156 L 11.871094 10.753906 A 1.612 1.612 0 0 0 10.714844 10.28125 z M 7.9101562 11.568359 L 7.6914062 11.689453 L 7.6816406 11.693359 A 6.87365 6.87365 0 0 1 2.796875 12.351562 A 0.65315 0.65315 0 0 0 2.0019531 13.042969 A 9.82176 9.82176 0 0 0 4.78125 19.173828 A 12.3232 12.3232 0 0 0 8.9589844 17.396484 A 14.79974 14.79974 0 0 1 6.5097656 20.591797 A 12.05327 12.05327 0 0 0 8.6953125 21.765625 A 0.64246 0.64246 0 0 0 8.9394531 21.8125 A 0.65283 0.65283 0 0 0 9.4121094 21.611328 A 17.80072 17.80072 0 0 0 12.626953 16.724609 L 12.712891 16.537109 C 12.576761 16.403329 12.448057 16.275575 12.310547 16.140625 C 10.794187 14.654625 9.2476863 13.125369 7.9101562 11.568359 z "
+        style="fill:#000000;fill-opacity:0.05;stroke:none" />
+</svg>

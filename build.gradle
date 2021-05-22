@@ -1,0 +1,52 @@
+import com.svenjacobs.app.leon.buildSrc.Libs
+
+buildscript {
+    repositories {
+        google()
+        // TODO: remove ASAP
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath Libs.Android.plugin
+        classpath Libs.JetBrains.Kotlin.plugin
+        classpath Libs.Google.Hilt.plugin
+        classpath Libs.PascalWelsch.GitVersioner.plugin
+        classpath Libs.MikePenz.AboutLibraries.plugin
+    }
+}
+
+plugins {
+    id 'com.github.ben-manes.versions' version '0.38.0'
+}
+
+apply plugin: 'com.pascalwelsch.gitversioner'
+
+allprojects {
+    repositories {
+        google()
+        // TODO: remove ASAP
+        jcenter()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+tasks.named('dependencyUpdates').configure {
+    def isNonStable = { String version ->
+        def unstableKeywords = ['rc', 'alpha', 'beta', '-m']
+        return unstableKeywords.any { keyword -> version.toLowerCase().contains(keyword) }
+    }
+
+    rejectVersionIf {
+        isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
+    }
+}
+
+gitVersioner {
+    baseBranch 'develop'
+}
