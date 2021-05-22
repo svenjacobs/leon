@@ -66,6 +66,10 @@ object Libs {
         object Startup {
             const val runtime = "androidx.startup:startup-runtime:1.0.0"
         }
+
+        object DataStore {
+            const val preferences = "androidx.datastore:datastore-preferences:1.0.0-beta01"
+        }
     }
 
     object Google {
