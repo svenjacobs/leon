@@ -9,9 +9,13 @@ advertising frameworks. Léon does not collect any data about you.
 
 The benefits of removing tracking parameters are:
 
-* Protects your and the recipient's privacy
-* Improves readability of links
-* Saves characters (in Tweets for example)
+- Protects your and the recipient's privacy
+- Improves readability of links
+- Saves characters (in Tweets for example)
+
+## Installation
+
+- [Google Play Store](https://play.google.com/store/apps/details?id=com.svenjacobs.app.leon) 
 
 ## How to use
 
