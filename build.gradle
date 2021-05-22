@@ -3,8 +3,6 @@ import com.svenjacobs.app.leon.buildSrc.Libs
 buildscript {
     repositories {
         google()
-        // TODO: remove ASAP
-        jcenter()
         mavenCentral()
     }
 
@@ -23,8 +21,6 @@ plugins {
 allprojects {
     repositories {
         google()
-        // TODO: remove ASAP
-        jcenter()
         mavenCentral()
     }
 }
