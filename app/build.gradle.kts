@@ -1,3 +1,4 @@
+import com.adarshr.gradle.testlogger.theme.ThemeType.STANDARD
 import java.util.*
 
 plugins {
@@ -7,6 +8,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("com.github.triplet.play") version "3.4.0-agp7.0"
     id("com.mikepenz.aboutlibraries.plugin")
+    id("com.adarshr.test-logger") version "3.0.0"
 }
 
 // Lower version codes depleted due to testing release process
@@ -88,16 +90,22 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
-}
 
-tasks.withType<Test>() {
-    useJUnitPlatform()
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 play {
     serviceAccountCredentials.set(rootProject.file("google-play-service-account.json"))
     defaultToAppBundles.set(true)
     releaseName.set(baseVersionName)
+}
+
+testlogger {
+    theme = STANDARD
 }
 
 dependencies {
