@@ -128,6 +128,7 @@ dependencies {
     implementation(Libs.AndroidX.Startup.runtime)
     implementation(Libs.AndroidX.Lifecycle.runtimeKtx)
     implementation(Libs.AndroidX.Lifecycle.viewModelKtx)
+    implementation(Libs.AndroidX.DataStore.preferences)
     implementation(Libs.JetBrains.KotlinX.Coroutines.android)
     implementation(Libs.Google.Hilt.android)
     implementation(Libs.AndroidX.Hilt.navigation)
