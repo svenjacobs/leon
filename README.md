@@ -17,3 +17,9 @@ When sharing a link, select **URL Cleaner** as the receiving application. Then f
 Cleaner share the cleaned URL to the actual target application.
 
 <img src="./app/src/main/res/drawable-nodpi/howto_pixel_5.webp" width="250" />
+
+## Issues & feedback
+
+The app is currently in public beta phase. Please report
+[bugs](https://github.com/svenjacobs/leon/issues) or 
+give [feedback](https://github.com/svenjacobs/leon/discussions).
