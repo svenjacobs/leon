@@ -1,5 +1,3 @@
-package com.svenjacobs.app.leon.buildSrc
-
 val versionCode by lazy {
     var currentBranch = execute("git", "branch", "--show-current")
     if (currentBranch != "main" && currentBranch != "develop")
