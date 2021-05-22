@@ -116,13 +116,6 @@ object Libs {
         }
     }
 
-    object PascalWelsch {
-
-        object GitVersioner {
-            const val plugin = "com.pascalwelsch.gitversioner:gitversioner:0.5.0"
-        }
-    }
-
     object MikePenz {
 
         object AboutLibraries {

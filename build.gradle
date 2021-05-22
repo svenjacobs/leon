@@ -12,7 +12,6 @@ buildscript {
         classpath Libs.Android.plugin
         classpath Libs.JetBrains.Kotlin.plugin
         classpath Libs.Google.Hilt.plugin
-        classpath Libs.PascalWelsch.GitVersioner.plugin
         classpath Libs.MikePenz.AboutLibraries.plugin
     }
 }
@@ -20,8 +19,6 @@ buildscript {
 plugins {
     id 'com.github.ben-manes.versions' version '0.38.0'
 }
-
-apply plugin: 'com.pascalwelsch.gitversioner'
 
 allprojects {
     repositories {
@@ -45,8 +42,4 @@ tasks.named('dependencyUpdates').configure {
     rejectVersionIf {
         isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
     }
-}
-
-gitVersioner {
-    baseBranch 'develop'
 }
