@@ -62,9 +62,15 @@ android {
     }
 
     signingConfigs {
+        val signingFile = rootProject.file("signing.properties")
+        if (!signingFile.exists()) {
+            logger.warn("No signing properties found. Release signing not possible.")
+            return@signingConfigs
+        }
+
         create("release") {
             val props = Properties()
-            rootProject.file("signing.properties").inputStream().use { props.load(it) }
+            signingFile.inputStream().use { props.load(it) }
 
             storeFile = rootProject.file("upload-keystore.jks")
             storePassword = props.getProperty("storePassword")
@@ -84,7 +90,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 
