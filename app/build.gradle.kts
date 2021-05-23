@@ -21,8 +21,9 @@ import java.util.*
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
+    kotlin("android")
+    kotlin("kapt")
+    kotlin("plugin.parcelize")
     id("dagger.hilt.android.plugin")
     id("com.github.triplet.play") version "3.4.0-agp7.0"
     id("com.mikepenz.aboutlibraries.plugin")
