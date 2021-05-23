@@ -20,6 +20,7 @@ package com.svenjacobs.app.leon.services
 
 import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.QueryParameterSanitizer
+import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.services.SanitizerStrategy.Result
 import javax.inject.Inject
 
@@ -54,5 +55,22 @@ class QueryParameterSanitizerStrategy @Inject constructor() :
                 artifactsRemoved = 0,
             )
         }
+    }
+}
+
+class RegexSanitizerStrategy @Inject constructor() :
+    SanitizerStrategy<RegexSanitizer> {
+
+    override fun sanitize(
+        sanitizer: RegexSanitizer,
+        input: String,
+    ): Result {
+        val regex = Regex(sanitizer.regex)
+        val count = regex.findAll(input).count()
+
+        return Result(
+            output = regex.replace(input, ""),
+            artifactsRemoved = count,
+        )
     }
 }

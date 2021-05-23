@@ -20,6 +20,7 @@ package com.svenjacobs.app.leon.repository.db.mapper
 
 import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.QueryParameterSanitizer
+import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.repository.db.model.DbSanitizer
 import com.svenjacobs.app.leon.repository.db.model.DbSanitizer.Type
 import javax.inject.Inject
@@ -38,6 +39,16 @@ class DbSanitizerMapper @Inject constructor() {
                     isDefault = sanitizer.isDefault,
                     isEnabled = sanitizer.isEnabled,
                 )
+            is RegexSanitizer ->
+                DbSanitizer(
+                    uid = sanitizer.uid,
+                    type = Type.REGEX,
+                    name = sanitizer.name,
+                    data = mapOf(KEY_REGEX to sanitizer.regex),
+                    description = sanitizer.description,
+                    isDefault = sanitizer.isDefault,
+                    isEnabled = sanitizer.isEnabled,
+                )
         }
 
     fun mapFromDb(dbSanitizer: DbSanitizer): Sanitizer =
@@ -50,9 +61,18 @@ class DbSanitizerMapper @Inject constructor() {
                 isDefault = dbSanitizer.isDefault,
                 isEnabled = dbSanitizer.isEnabled,
             )
+            Type.REGEX -> RegexSanitizer(
+                regex = dbSanitizer.data.getValue(KEY_REGEX),
+                uid = dbSanitizer.uid,
+                name = dbSanitizer.name,
+                description = dbSanitizer.description,
+                isDefault = dbSanitizer.isDefault,
+                isEnabled = dbSanitizer.isEnabled,
+            )
         }
 
     private companion object {
         private const val KEY_PARAMETER_NAME = "parameterName"
+        private const val KEY_REGEX = "regex"
     }
 }

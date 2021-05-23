@@ -24,6 +24,7 @@ import javax.inject.Inject
 
 class SanitizerStrategyExecutor @Inject constructor(
     private val queryParameterSanitizerStrategy: QueryParameterSanitizerStrategy,
+    private val regexSanitizerStrategy: RegexSanitizerStrategy,
 ) {
 
     fun sanitize(
@@ -34,6 +35,10 @@ class SanitizerStrategyExecutor @Inject constructor(
             is QueryParameterSanitizer -> queryParameterSanitizerStrategy.sanitize(
                 sanitizer,
                 input
+            )
+            is Sanitizer.RegexSanitizer -> regexSanitizerStrategy.sanitize(
+                sanitizer,
+                input,
             )
         }
 }
