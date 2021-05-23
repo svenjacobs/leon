@@ -1,0 +1,1 @@
+Removes tracking & other redundant parameters from web links for sharing
