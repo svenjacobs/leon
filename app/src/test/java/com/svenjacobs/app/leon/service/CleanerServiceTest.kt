@@ -21,6 +21,7 @@ package com.svenjacobs.app.leon.service
 import com.svenjacobs.app.lean.repository.CleanerRepositoryFake
 import com.svenjacobs.app.leon.services.CleanerService
 import com.svenjacobs.app.leon.services.QueryParameterSanitizerStrategy
+import com.svenjacobs.app.leon.services.RegexSanitizerStrategy
 import com.svenjacobs.app.leon.services.SanitizerStrategyExecutor
 import com.svenjacobs.app.leon.services.model.CleaningResult
 import io.kotest.core.spec.style.ShouldSpec
@@ -32,7 +33,8 @@ import io.kotest.matchers.types.beInstanceOf
 class CleanerServiceTest : ShouldSpec({
 
     val executor = SanitizerStrategyExecutor(
-        QueryParameterSanitizerStrategy()
+        QueryParameterSanitizerStrategy(),
+        RegexSanitizerStrategy(),
     )
 
     val service = CleanerService(
@@ -43,10 +45,11 @@ class CleanerServiceTest : ShouldSpec({
     context("clean()") {
 
         should("remove tracking parameters") {
-            val result = service.clean("https://www.some.site/?utm_source=source&utm_medium=medium")
+            val result =
+                service.clean("https://www.some.site/?utm_source=source&utm_medium=medium&ga_source=ga_source&ga_medium=ga_medium")
             result should beInstanceOf<CleaningResult.Success>()
             (result as CleaningResult.Success).cleanedText should be("https://www.some.site/")
-            result.cleanedParametersCount should be(2)
+            result.cleanedParametersCount should be(4)
             result.urls should haveSize(1)
             result.urls.first() should be("https://www.some.site/")
         }

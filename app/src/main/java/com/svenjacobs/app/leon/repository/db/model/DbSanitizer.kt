@@ -36,5 +36,5 @@ data class DbSanitizer(
     val isDefault: Boolean = false,
     val isEnabled: Boolean = true,
 ) {
-    enum class Type { QUERY_PARAMETER }
+    enum class Type { QUERY_PARAMETER, REGEX }
 }

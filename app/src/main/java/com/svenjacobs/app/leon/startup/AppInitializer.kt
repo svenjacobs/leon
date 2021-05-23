@@ -41,14 +41,19 @@ class AppInitializer : Initializer<Unit> {
         val cleanerRepository: CleanerRepository
 
         val dataStoreManager: DataStoreManager
+
+        val migrations: Migrations
     }
 
     override fun create(context: Context) {
         val entryPoint = EntryPoints.get(context, AppInitializerEntryPoint::class.java)
-        val repository = entryPoint.cleanerRepository
+        val migrations = entryPoint.migrations
         val dataStoreManager = entryPoint.dataStoreManager
+        val repository = entryPoint.cleanerRepository
 
         runBlocking {
+            migrations.migrate()
+
             dataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
 
             Defaults.SANITIZERS.forEach { sanitizer ->
