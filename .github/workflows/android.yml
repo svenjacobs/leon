@@ -11,8 +11,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # We require all history to be fetched for version code calculation
 
       - uses: actions/setup-java@v2
         with:
@@ -31,13 +29,14 @@ jobs:
       - name: Build and test app
         run: ./gradlew build
 
-      - name: Deploy alpha version
+      - name: Deploy beta version
         if: github.ref == 'refs/heads/develop'
-        run: ./gradlew publishReleaseBundle --track alpha --release-status completed
+        run: ./gradlew publishReleaseBundle --track beta --release-status completed
 
-      - name: Prepare release version
+      # Assumes that commits to main are always merged from develop
+      - name: Promote beta to release
         if: github.ref == 'refs/heads/main'
-        run: ./gradlew publishReleaseBundle --track production --release-status draft
+        run: ./gradlew promoteArtifact --from-track beta --promote-track production --release-status completed
 
       - uses: actions/upload-artifact@v2
         with:

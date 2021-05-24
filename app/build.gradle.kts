@@ -30,11 +30,6 @@ plugins {
     id("com.adarshr.test-logger") version "3.0.0"
 }
 
-// Lower version codes depleted due to testing release process
-val appVersionCode = versionCode + 200
-val baseVersionName = "0.2.0"
-val appVersionName = "$baseVersionName.$appVersionCode"
-
 android {
     compileSdk = 30
     buildToolsVersion = "30.0.3"
@@ -43,8 +38,8 @@ android {
         applicationId = "com.svenjacobs.app.leon"
         minSdk = 21
         targetSdk = 30
-        versionCode = appVersionCode
-        versionName = appVersionName
+        versionCode = 223
+        versionName = "0.3.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -126,7 +121,6 @@ android {
 play {
     serviceAccountCredentials.set(rootProject.file("google-play-service-account.json"))
     defaultToAppBundles.set(true)
-    releaseName.set(baseVersionName)
 }
 
 testlogger {
