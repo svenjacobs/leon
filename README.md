@@ -1,4 +1,4 @@
-![example workflow](https://github.com/svenjacobs/leon/actions/workflows/android.yml/badge.svg)
+![Build status](https://github.com/svenjacobs/leon/actions/workflows/android.yml/badge.svg?branch=main)
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
 parameters from a URL before sharing. Its usage is simple, integrating into Android's standard
