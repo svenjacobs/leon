@@ -64,7 +64,7 @@ fun MainScreen(
     }
 
     fun onVerifyButtonClick(result: CleaningResult.Success) {
-        val intent = viewModel.buildCustomTabIntent()
+        val intent = viewModel.buildCustomTabIntent(context)
         intent.launchUrl(context, Uri.parse(result.urls.first()))
     }
 
