@@ -17,13 +17,13 @@
  */
 
 object Versions {
-    const val compose = "1.0.0-beta07"
+    const val compose = "1.0.0-beta08"
 }
 
 object Libs {
 
     object Android {
-        const val plugin = "com.android.tools.build:gradle:7.0.0-beta02"
+        const val plugin = "com.android.tools.build:gradle:7.0.0-beta03"
     }
 
     object AndroidX {
@@ -37,7 +37,7 @@ object Libs {
         }
 
         object Activity {
-            private const val version = "1.3.0-alpha08"
+            private const val version = "1.3.0-beta01"
 
             const val ktx = "androidx.activity:activity-ktx:$version"
             const val compose = "androidx.activity:activity-compose:$version"
@@ -55,7 +55,7 @@ object Libs {
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             const val viewModelCompose =
-                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha05"
+                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha06"
         }
 
         object ConstraintLayout {
@@ -70,7 +70,7 @@ object Libs {
         }
 
         object Navigation {
-            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha01"
+            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha02"
         }
 
         object Browser {
@@ -97,7 +97,7 @@ object Libs {
         }
 
         object Hilt {
-            private const val version = "2.35.1"
+            private const val version = "2.36"
 
             const val plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
             const val android = "com.google.dagger:hilt-android:$version"
@@ -108,7 +108,7 @@ object Libs {
     object JetBrains {
 
         object Kotlin {
-            private const val version = "1.4.32"
+            private const val version = "1.5.10"
 
             const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
             const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
@@ -139,7 +139,7 @@ object Libs {
     object MikePenz {
 
         object AboutLibraries {
-            private const val version = "8.8.6"
+            private const val version = "8.9.0"
 
             const val plugin = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$version"
             const val ui = "com.mikepenz:aboutlibraries:$version"
