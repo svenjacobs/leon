@@ -52,5 +52,11 @@ sealed class Sanitizer(
 
         override fun withEnabled(isEnabled: Boolean) =
             copy(isEnabled = isEnabled)
+
+        companion object {
+
+            fun regexForParameterPrefix(prefix: String): String =
+                "[?&](?:$prefix)_[^=]*=.[^&]*"
+        }
     }
 }
