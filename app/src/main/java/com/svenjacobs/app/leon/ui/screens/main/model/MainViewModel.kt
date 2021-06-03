@@ -29,7 +29,6 @@ import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.services.CleanerService
 import com.svenjacobs.app.leon.services.model.CleaningResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -37,7 +36,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val cleanerService: CleanerService,
 ) : ViewModel() {
 
@@ -62,7 +60,7 @@ class MainViewModel @Inject constructor(
         return Intent.createChooser(target, null)
     }
 
-    fun buildCustomTabIntent(): CustomTabsIntent {
+    fun buildCustomTabIntent(context: Context): CustomTabsIntent {
         val toolbarColorLight = ContextCompat.getColor(context, R.color.primaryColor)
         val toolbarColorDark = ContextCompat.getColor(context, R.color.nightPrimaryColor)
 
