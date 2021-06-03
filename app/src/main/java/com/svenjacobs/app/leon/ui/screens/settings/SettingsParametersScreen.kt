@@ -83,7 +83,7 @@ private fun Item(
         modifier = Modifier.padding(16.dp)
     ) {
         Text(
-            sanitizer.name,
+            sanitizer.description ?: sanitizer.name,
             modifier = Modifier.weight(2F),
         )
         Switch(

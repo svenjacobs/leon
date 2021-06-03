@@ -1,1 +1,1 @@
-First beta release
+Add Facebook query parameters

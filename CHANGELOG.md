@@ -1,3 +1,9 @@
+## Version 0.4.0
+
+_2021-06-03_
+
+- Add Facebook query parameters
+
 ## Version 0.3.0
 
 _2021-05-24_
