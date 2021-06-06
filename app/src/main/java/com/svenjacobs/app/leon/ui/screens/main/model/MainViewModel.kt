@@ -42,12 +42,19 @@ class MainViewModel @Inject constructor(
     private val _result = MutableStateFlow<CleaningResult>(CleaningResult.Failure)
     val result = _result.asStateFlow()
 
+    private val _isBackVisible = MutableStateFlow(false)
+    val isBackVisible = _isBackVisible.asStateFlow()
+
     fun setText(text: String?) {
         if (text == null && result.value is CleaningResult.Success) return
 
         viewModelScope.launch {
             _result.value = cleanerService.clean(text)
         }
+    }
+
+    fun setIsBackVisible(isBackVisible: Boolean) {
+        _isBackVisible.value = isBackVisible
     }
 
     fun buildIntent(text: String): Intent {
