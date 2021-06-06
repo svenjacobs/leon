@@ -25,7 +25,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -37,6 +39,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -74,7 +78,7 @@ fun MainScreen(
         Screen.Settings
     )
 
-    var isBackVisible by remember { mutableStateOf(false) }
+    val isBackVisible by viewModel.isBackVisible.collectAsState()
 
     AppTheme {
         Scaffold(
@@ -88,18 +92,20 @@ fun MainScreen(
             bottomBar = {
                 BottomNavigation {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentRoute =
-                        navBackStackEntry?.destination?.route ?: Screen.Home.route
+                    val currentDestination = navBackStackEntry?.destination
 
                     bottomNavItems.forEach { screen ->
                         BottomNavigationItem(
                             icon = { Icon(screen.icon, contentDescription = null) },
                             label = { Text(stringResource(screen.resourceId)) },
-                            selected = currentRoute == screen.route,
+                            selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
                                 navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.startDestinationId)
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
                                     launchSingleTop = true
+                                    restoreState = true
                                 }
                             },
                         )
@@ -122,7 +128,7 @@ fun MainScreen(
                         startDestination = Screen.Home.route,
                     ) {
                         composable(Screen.Home.route) {
-                            isBackVisible = false
+                            viewModel.setIsBackVisible(false)
                             HomeScreen(
                                 result = result,
                                 onShareButtonClick = ::onShareButtonClick,
@@ -131,7 +137,7 @@ fun MainScreen(
                         }
 
                         composable(Screen.Settings.route) { navBackStackEntry ->
-                            isBackVisible = false
+                            viewModel.setIsBackVisible(false)
                             SettingsScreen(
                                 viewModel = navViewModel(navBackStackEntry),
                                 navController = navController,
@@ -139,7 +145,7 @@ fun MainScreen(
                         }
 
                         composable(Screen.SettingsParameters.route) { navBackStackEntry ->
-                            isBackVisible = true
+                            viewModel.setIsBackVisible(true)
                             SettingsParametersScreen(
                                 viewModel = navViewModel(navBackStackEntry),
                             )

@@ -1,3 +1,9 @@
+## Version 0.4.1
+
+_2021-06-06_
+
+- Fix back navigation icon not visible in preferences
+
 ## Version 0.4.0
 
 _2021-06-03_
