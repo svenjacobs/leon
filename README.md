@@ -15,6 +15,7 @@ The benefits of removing tracking parameters are:
 
 ## Installation
 
+- [F-Droid](https://www.f-droid.org/packages/com.svenjacobs.app.leon/)
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.svenjacobs.app.leon)
 
 ## How to use
