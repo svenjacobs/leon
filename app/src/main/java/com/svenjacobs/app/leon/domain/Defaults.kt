@@ -25,22 +25,29 @@ object Defaults {
 
     val SANITIZERS = listOf(
         RegexSanitizer(
-            regex = regexForParameterPrefix("wt"),
+            parameterRegex = regexForParameterPrefix("wt"),
             name = "wt_*",
             description = "Webtrekk (wt_*)",
             isDefault = true,
         ),
         RegexSanitizer(
-            regex = regexForParameterPrefix("ga|utm"),
+            parameterRegex = regexForParameterPrefix("ga|utm"),
             name = "ga_* & utm_*",
             description = "Google Analytics (ga_*, utm_*)",
             isDefault = true,
         ),
         RegexSanitizer(
-            regex = regexForParameterPrefix("fb"),
+            parameterRegex = regexForParameterPrefix("fb"),
             name = "fb_*",
             description = "Facebook (fb_*)",
             isDefault = true,
         ),
+        RegexSanitizer(
+            domainRegex = "amazon\\..+\\/dp\\/[0-9A-Z]+",
+            parameterRegex = "(?:ref=[^?&]+)|(?:[?&][^=]+=.[^&]*)",
+            name = "amazon",
+            description = "Amazon",
+            isDefault = true,
+        )
     )
 }

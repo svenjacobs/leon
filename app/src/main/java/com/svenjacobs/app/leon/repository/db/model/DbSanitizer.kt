@@ -31,7 +31,7 @@ data class DbSanitizer(
     val uid: Int = 0,
     val type: Type,
     val name: String,
-    val data: Map<String, String> = emptyMap(),
+    val data: Map<String, String?> = emptyMap(),
     val description: String? = null,
     val isDefault: Boolean = false,
     val isEnabled: Boolean = true,

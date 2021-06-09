@@ -65,11 +65,22 @@ class RegexSanitizerStrategy @Inject constructor() :
         sanitizer: RegexSanitizer,
         input: String,
     ): Result {
-        val regex = Regex(sanitizer.regex)
-        val count = regex.findAll(input).count()
+        if (sanitizer.domainRegex != null) {
+            val domainRegex = Regex(sanitizer.domainRegex)
+
+            if (!domainRegex.containsMatchIn(input)) {
+                return Result(
+                    output = input,
+                    artifactsRemoved = 0,
+                )
+            }
+        }
+
+        val parameterRegex = Regex(sanitizer.parameterRegex)
+        val count = parameterRegex.findAll(input).count()
 
         return Result(
-            output = regex.replace(input, ""),
+            output = parameterRegex.replace(input, ""),
             artifactsRemoved = count,
         )
     }

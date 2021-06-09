@@ -42,7 +42,8 @@ sealed class Sanitizer(
     }
 
     data class RegexSanitizer(
-        val regex: String,
+        val domainRegex: String? = null,
+        val parameterRegex: String,
         override val uid: Int = 0,
         override val name: String,
         override val description: String? = null,

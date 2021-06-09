@@ -44,7 +44,10 @@ class DbSanitizerMapper @Inject constructor() {
                     uid = sanitizer.uid,
                     type = Type.REGEX,
                     name = sanitizer.name,
-                    data = mapOf(KEY_REGEX to sanitizer.regex),
+                    data = mapOf(
+                        KEY_DOMAIN_REGEX to sanitizer.domainRegex,
+                        KEY_PARAMETER_REGEX to sanitizer.parameterRegex,
+                    ),
                     description = sanitizer.description,
                     isDefault = sanitizer.isDefault,
                     isEnabled = sanitizer.isEnabled,
@@ -54,7 +57,7 @@ class DbSanitizerMapper @Inject constructor() {
     fun mapFromDb(dbSanitizer: DbSanitizer): Sanitizer =
         when (dbSanitizer.type) {
             Type.QUERY_PARAMETER -> QueryParameterSanitizer(
-                parameterName = dbSanitizer.data.getValue(KEY_PARAMETER_NAME),
+                parameterName = dbSanitizer.data.requireValue(KEY_PARAMETER_NAME),
                 uid = dbSanitizer.uid,
                 name = dbSanitizer.name,
                 description = dbSanitizer.description,
@@ -62,7 +65,8 @@ class DbSanitizerMapper @Inject constructor() {
                 isEnabled = dbSanitizer.isEnabled,
             )
             Type.REGEX -> RegexSanitizer(
-                regex = dbSanitizer.data.getValue(KEY_REGEX),
+                domainRegex = dbSanitizer.data[KEY_DOMAIN_REGEX],
+                parameterRegex = dbSanitizer.data.requireValue(KEY_PARAMETER_REGEX),
                 uid = dbSanitizer.uid,
                 name = dbSanitizer.name,
                 description = dbSanitizer.description,
@@ -71,8 +75,12 @@ class DbSanitizerMapper @Inject constructor() {
             )
         }
 
+    private fun Map<String, String?>.requireValue(key: String): String =
+        get(key) ?: throw IllegalArgumentException("Mandatory value for key $key missing")
+
     private companion object {
         private const val KEY_PARAMETER_NAME = "parameterName"
-        private const val KEY_REGEX = "regex"
+        private const val KEY_PARAMETER_REGEX = "parameterRegex"
+        private const val KEY_DOMAIN_REGEX = "domainRegex"
     }
 }
