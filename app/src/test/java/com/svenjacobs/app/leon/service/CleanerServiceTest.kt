@@ -74,5 +74,13 @@ class CleanerServiceTest : ShouldSpec({
             result.urls[0] should be("https://www.some.site/")
             result.urls[1] should be("https://www.some2.site")
         }
+
+        should("clean Amazon URLs") {
+            val result =
+                service.clean("https://smile.amazon.de/Goodstoworld-Herren-T-Shirt-Gr-Shark/dp/B07Q5KYJ9G/ref=sr_1_22?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Nyan+cat&qid=1623259976&sr=8-22")
+            result should beInstanceOf<CleaningResult.Success>()
+            (result as CleaningResult.Success).cleanedText should be("https://smile.amazon.de/Goodstoworld-Herren-T-Shirt-Gr-Shark/dp/B07Q5KYJ9G/")
+            result.cleanedParametersCount should be(6)
+        }
     }
 })

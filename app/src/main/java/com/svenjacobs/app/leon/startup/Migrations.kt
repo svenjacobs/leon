@@ -32,8 +32,8 @@ class Migrations @Inject constructor(
     suspend fun migrate() {
         val prevVersionCode = dataStoreManager.versionCode.first()
 
-        if (prevVersionCode <= VERSION_0_3_0) {
-            Timber.d("Performing migration from version <= 0.3.0")
+        if (prevVersionCode <= VERSION_0_4_1) {
+            Timber.d("Performing migration from version <= 0.4.1")
 
             // Removing all default sanitizers because they have changed
             cleanerRepository.getSanitizers().first().forEach { sanitizer ->
@@ -45,6 +45,6 @@ class Migrations @Inject constructor(
     }
 
     private companion object {
-        private const val VERSION_0_3_0 = 223
+        private const val VERSION_0_4_1 = 225
     }
 }
