@@ -31,14 +31,14 @@ class Converters @Inject constructor(
     private val moshi: Moshi,
 ) {
 
-    private val adapter by lazy { moshi.adapter<Map<String, String>>() }
+    private val adapter by lazy { moshi.adapter<Map<String, String?>>() }
 
     @TypeConverter
-    fun toMap(value: String): Map<String, String> =
+    fun toMap(value: String): Map<String, String?> =
         adapter.fromJson(value) ?: throw IllegalArgumentException()
 
     @TypeConverter
-    fun fromMap(value: Map<String, String>): String =
+    fun fromMap(value: Map<String, String?>): String =
         adapter.toJson(value)
 
     @TypeConverter
