@@ -19,27 +19,27 @@
 package com.svenjacobs.app.leon.domain
 
 import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer
-import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForParameterPrefix
+import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForParameter
 
 object Defaults {
 
     val SANITIZERS = listOf(
         RegexSanitizer(
-            parameterRegex = regexForParameterPrefix("wt"),
+            parameterRegex = regexForParameter("wt_"),
             name = "wt_*",
             description = "Webtrekk (wt_*)",
             isDefault = true,
         ),
         RegexSanitizer(
-            parameterRegex = regexForParameterPrefix("ga|utm"),
+            parameterRegex = regexForParameter("ga_|utm_"),
             name = "ga_* & utm_*",
             description = "Google Analytics (ga_*, utm_*)",
             isDefault = true,
         ),
         RegexSanitizer(
-            parameterRegex = regexForParameterPrefix("fb"),
+            parameterRegex = regexForParameter("fb_|fbclid"),
             name = "fb_*",
-            description = "Facebook (fb_*)",
+            description = "Facebook (fb_*, fbclid)",
             isDefault = true,
         ),
         RegexSanitizer(
