@@ -96,8 +96,13 @@ fun MainScreen(
 
                     bottomNavItems.forEach { screen ->
                         BottomNavigationItem(
-                            icon = { Icon(screen.icon, contentDescription = null) },
-                            label = { Text(stringResource(screen.resourceId)) },
+                            icon = {
+                                Icon(
+                                    imageVector = screen.icon,
+                                    contentDescription = stringResource(screen.iconContentDescription),
+                                )
+                            },
+                            label = { Text(stringResource(screen.label)) },
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
                                 navController.navigate(screen.route) {
@@ -160,7 +165,10 @@ fun MainScreen(
 @Composable
 private fun NavigationIcon(navController: NavController) {
     IconButton(onClick = { navController.popBackStack() }) {
-        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+        Icon(
+            Icons.Filled.ArrowBack,
+            contentDescription = stringResource(R.string.a11y_back_navigation),
+        )
     }
 }
 

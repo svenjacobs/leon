@@ -28,10 +28,27 @@ import com.svenjacobs.app.leon.R
 sealed class Screen(
     val route: String,
     val icon: ImageVector,
-    @StringRes val resourceId: Int,
+    @StringRes val label: Int,
+    @StringRes val iconContentDescription: Int,
 ) {
-    object Home : Screen("home", Icons.Filled.Home, R.string.screen_home)
-    object Settings : Screen("settings", Icons.Filled.Settings, R.string.screen_settings)
-    object SettingsParameters :
-        Screen("settings_parameters", Icons.Filled.Settings, R.string.screen_settings)
+    object Home : Screen(
+        route = "home",
+        icon = Icons.Filled.Home,
+        label = R.string.screen_home,
+        iconContentDescription = R.string.screen_home,
+    )
+
+    object Settings : Screen(
+        route = "settings",
+        icon = Icons.Filled.Settings,
+        label = R.string.screen_settings,
+        iconContentDescription = R.string.screen_settings,
+    )
+
+    object SettingsParameters : Screen(
+        route = "settings_parameters",
+        icon = Icons.Filled.Settings,
+        label = R.string.screen_settings,
+        iconContentDescription = R.string.screen_settings,
+    )
 }
