@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.ui.theme.primaryColor
 
@@ -78,7 +79,7 @@ fun BroomIcon(
     Image(
         modifier = modifier.scale(scale),
         painter = painterResource(R.drawable.ic_broom),
-        contentDescription = null,
+        contentDescription = stringResource(R.string.a11y_broom_icon),
         colorFilter = ColorFilter.tint(color),
     )
 }

@@ -161,13 +161,13 @@ private fun FailureBody() {
                         .height(300.dp)
                         .padding(end = 16.dp),
                     painter = painterResource(R.drawable.howto_pixel_5),
-                    contentDescription = null
+                    contentDescription = stringResource(R.string.a11y_howto)
                 )
 
                 Text(
                     modifier = Modifier,
                     textAlign = TextAlign.Justify,
-                    text = stringResource(id = R.string.how_to_text)
+                    text = stringResource(R.string.how_to_text)
                 )
             }
         }
