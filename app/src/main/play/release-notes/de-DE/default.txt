@@ -1,1 +1,3 @@
-Bugfixes
+Reiniger für Amazon-Domains hinzugefügt.
+Facebook-Reiniger um "fbclid" Parameter ergänzt.
+Barrierefreiheit verbessert.
