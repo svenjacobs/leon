@@ -1,3 +1,13 @@
+## Version 0.5.0
+
+_2021-06-13_
+
+- Add sanitizer for Amazon domains (#18)
+- Add `fbclid` parameter to Facebook sanitizer (#20)
+- Improve accessibility of app (#17)
+
+Thanks to @adeekshith and @jimcarst for their feedback!
+
 ## Version 0.4.1
 
 _2021-06-06_
