@@ -56,8 +56,8 @@ sealed class Sanitizer(
 
         companion object {
 
-            fun regexForParameterPrefix(prefix: String): String =
-                "[?&](?:$prefix)_[^=]*=.[^&]*"
+            fun regexForParameter(parameter: String): String =
+                "[?&](?:$parameter)[^=]*=.[^&]*"
         }
     }
 }
