@@ -25,7 +25,7 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.parcelize")
     id("dagger.hilt.android.plugin")
-    id("com.github.triplet.play") version "3.4.0-agp7.0"
+    id("com.github.triplet.play") version "3.6.0"
     id("com.mikepenz.aboutlibraries.plugin")
     id("com.adarshr.test-logger") version "3.0.0"
 }

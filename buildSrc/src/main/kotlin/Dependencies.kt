@@ -17,27 +17,27 @@
  */
 
 object Versions {
-    const val compose = "1.0.0-beta08"
+    const val compose = "1.0.1"
 }
 
 object Libs {
 
     object Android {
-        const val plugin = "com.android.tools.build:gradle:7.0.0-beta03"
+        const val plugin = "com.android.tools.build:gradle:7.0.0"
     }
 
     object AndroidX {
 
         object Core {
-            const val ktx = "androidx.core:core-ktx:1.5.0"
+            const val ktx = "androidx.core:core-ktx:1.6.0"
         }
 
         object AppCompat {
-            const val appcompat = "androidx.appcompat:appcompat:1.3.0"
+            const val appcompat = "androidx.appcompat:appcompat:1.3.1"
         }
 
         object Activity {
-            private const val version = "1.3.0-beta01"
+            private const val version = "1.3.1"
 
             const val ktx = "androidx.activity:activity-ktx:$version"
             const val compose = "androidx.activity:activity-compose:$version"
@@ -55,11 +55,11 @@ object Libs {
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             const val viewModelCompose =
-                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha06"
+                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
         }
 
         object ConstraintLayout {
-            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha07"
+            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
         }
 
         object Room {
@@ -70,7 +70,7 @@ object Libs {
         }
 
         object Navigation {
-            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha02"
+            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha06"
         }
 
         object Browser {
@@ -82,22 +82,22 @@ object Libs {
         }
 
         object Startup {
-            const val runtime = "androidx.startup:startup-runtime:1.0.0"
+            const val runtime = "androidx.startup:startup-runtime:1.1.0"
         }
 
         object DataStore {
-            const val preferences = "androidx.datastore:datastore-preferences:1.0.0-beta01"
+            const val preferences = "androidx.datastore:datastore-preferences:1.0.0"
         }
     }
 
     object Google {
 
         object Material {
-            const val material = "com.google.android.material:material:1.3.0"
+            const val material = "com.google.android.material:material:1.4.0"
         }
 
         object Hilt {
-            private const val version = "2.36"
+            private const val version = "2.38.1"
 
             const val plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
             const val android = "com.google.dagger:hilt-android:$version"
@@ -108,7 +108,7 @@ object Libs {
     object JetBrains {
 
         object Kotlin {
-            private const val version = "1.5.10"
+            private const val version = "1.5.21"
 
             const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
             const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
@@ -117,7 +117,7 @@ object Libs {
         object KotlinX {
 
             object Coroutines {
-                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
+                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
             }
         }
     }
@@ -132,14 +132,14 @@ object Libs {
     object JakeWharton {
 
         object Timber {
-            const val timber = "com.jakewharton.timber:timber:4.7.1"
+            const val timber = "com.jakewharton.timber:timber:5.0.1"
         }
     }
 
     object MikePenz {
 
         object AboutLibraries {
-            private const val version = "8.9.0"
+            private const val version = "8.9.1"
 
             const val plugin = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$version"
             const val ui = "com.mikepenz:aboutlibraries:$version"
@@ -149,14 +149,14 @@ object Libs {
     object Test {
 
         object Kotest {
-            private const val version = "4.6.0"
+            private const val version = "4.6.1"
 
             const val runnerJunit5 = "io.kotest:kotest-runner-junit5:$version"
             const val assertionsCore = "io.kotest:kotest-assertions-core:$version"
         }
 
         object MockK {
-            const val mockk = "io.mockk:mockk:1.11.0"
+            const val mockk = "io.mockk:mockk:1.12.0"
         }
     }
 }
