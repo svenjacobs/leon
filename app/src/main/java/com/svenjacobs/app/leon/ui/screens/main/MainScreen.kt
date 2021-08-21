@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,6 +55,7 @@ import com.svenjacobs.app.leon.ui.screens.main.model.Screen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsParametersScreen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
+
 
 @Composable
 fun MainScreen(
@@ -85,7 +87,10 @@ fun MainScreen(
             topBar = {
                 TopAppBar(
                     backgroundColor = MaterialTheme.colors.primary,
-                    title = { Text(text = stringResource(R.string.scaffold_title)) },
+                    title = { Text(text = stringResource(R.string.scaffold_title),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    ) },
                     navigationIcon = if (isBackVisible) ({ NavigationIcon(navController) }) else null
                 )
             },
