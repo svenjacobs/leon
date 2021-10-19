@@ -17,13 +17,13 @@
  */
 
 object Versions {
-    const val compose = "1.0.1"
+    const val compose = "1.0.4"
 }
 
 object Libs {
 
     object Android {
-        const val plugin = "com.android.tools.build:gradle:7.0.0"
+        const val plugin = "com.android.tools.build:gradle:7.0.3"
     }
 
     object AndroidX {
@@ -55,11 +55,11 @@ object Libs {
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             const val viewModelCompose =
-                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+                "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-rc01"
         }
 
         object ConstraintLayout {
-            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
         }
 
         object Room {
@@ -70,7 +70,7 @@ object Libs {
         }
 
         object Navigation {
-            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha06"
+            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha10"
         }
 
         object Browser {
@@ -97,7 +97,7 @@ object Libs {
         }
 
         object Hilt {
-            private const val version = "2.38.1"
+            private const val version = "2.39.1"
 
             const val plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
             const val android = "com.google.dagger:hilt-android:$version"
@@ -108,7 +108,7 @@ object Libs {
     object JetBrains {
 
         object Kotlin {
-            private const val version = "1.5.21"
+            private const val version = "1.5.31"
 
             const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
             const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
@@ -117,7 +117,7 @@ object Libs {
         object KotlinX {
 
             object Coroutines {
-                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
             }
         }
     }
@@ -139,7 +139,7 @@ object Libs {
     object MikePenz {
 
         object AboutLibraries {
-            private const val version = "8.9.1"
+            private const val version = "8.9.3"
 
             const val plugin = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$version"
             const val ui = "com.mikepenz:aboutlibraries:$version"
@@ -149,7 +149,7 @@ object Libs {
     object Test {
 
         object Kotest {
-            private const val version = "4.6.1"
+            private const val version = "4.6.3"
 
             const val runnerJunit5 = "io.kotest:kotest-runner-junit5:$version"
             const val assertionsCore = "io.kotest:kotest-assertions-core:$version"

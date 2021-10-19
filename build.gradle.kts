@@ -50,7 +50,9 @@ tasks.create<Delete>("clean") {
 tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
 
     fun isNonStable(version: String) =
-        listOf("alpha", "beta", "rc", "eap", "-m").any { version.toLowerCase().contains(it) }
+        listOf("alpha", "beta", "rc", "eap", "-m", ".m", "-a").any {
+            version.toLowerCase().contains(it)
+        }
 
     rejectVersionIf {
         isNonStable(candidate.version) && !isNonStable(currentVersion)
