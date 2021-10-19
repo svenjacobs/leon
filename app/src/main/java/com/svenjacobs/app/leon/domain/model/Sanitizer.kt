@@ -18,6 +18,14 @@
 
 package com.svenjacobs.app.leon.domain.model
 
+import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForParameter
+import com.svenjacobs.app.leon.services.QueryParameterSanitizerStrategy
+import com.svenjacobs.app.leon.services.RegexSanitizerStrategy
+import com.svenjacobs.app.leon.services.SanitizerStrategy
+
+/**
+ * @see SanitizerStrategy
+ */
 sealed class Sanitizer(
     open val uid: Int,
     open val name: String,
@@ -28,6 +36,13 @@ sealed class Sanitizer(
 
     abstract fun withEnabled(isEnabled: Boolean): Sanitizer
 
+    /**
+     * Simple [Sanitizer] which just removes a single parameter declared via [parameterName]
+     *
+     * @param parameterName Name of parameter to be removed
+     *
+     * @see QueryParameterSanitizerStrategy
+     */
     data class QueryParameterSanitizer(
         val parameterName: String,
         override val uid: Int = 0,
@@ -41,6 +56,17 @@ sealed class Sanitizer(
             copy(isEnabled = isEnabled)
     }
 
+    /**
+     * Regex-based [Sanitizer] which removes parts from URLs based on a regex declared via [parameterRegex]
+     *
+     * Additionally [domainRegex] can be used to apply this sanitizer only to domains matching
+     * this regex, if specified.
+     *
+     * @param domainRegex Optional regex which should match desired domain(s)
+     * @param parameterRegex Regex of parameter, see [regexForParameter]
+     *
+     * @see RegexSanitizerStrategy
+     */
     data class RegexSanitizer(
         val domainRegex: String? = null,
         val parameterRegex: String,
@@ -56,6 +82,14 @@ sealed class Sanitizer(
 
         companion object {
 
+            /**
+             * Returns a regex string which matches a certain parameter prefix
+             *
+             * For example `regexForParameter("abc_")` returns a regex string which matches
+             * `?abc_x=`, `&abc_y=`, `&abc_zzz=` et cetera.
+             *
+             * @param parameter Parameter prefix
+             */
             fun regexForParameter(parameter: String): String =
                 "[?&](?:$parameter)[^=]*=.[^&]*"
         }

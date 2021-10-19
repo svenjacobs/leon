@@ -18,11 +18,16 @@
 
 package com.svenjacobs.app.leon.domain
 
+import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForParameter
+import com.svenjacobs.app.leon.startup.AppInitializer
 
 object Defaults {
 
+    /**
+     * List of default [Sanitizer] which are installed during first app start. See [AppInitializer].
+     */
     val SANITIZERS = listOf(
         RegexSanitizer(
             parameterRegex = regexForParameter("wt_"),

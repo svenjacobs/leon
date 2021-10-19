@@ -31,6 +31,9 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
+/**
+ * Performs (initial) initialization of app.
+ */
 @Suppress("unused")
 class AppInitializer : Initializer<Unit> {
 
