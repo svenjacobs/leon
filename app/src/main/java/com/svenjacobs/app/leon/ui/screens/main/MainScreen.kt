@@ -56,7 +56,6 @@ import com.svenjacobs.app.leon.ui.screens.settings.SettingsParametersScreen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
-
 @Composable
 fun MainScreen(
     context: Context,
