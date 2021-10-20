@@ -78,7 +78,7 @@ object Libs {
         }
 
         object Hilt {
-            const val navigation = "androidx.hilt:hilt-navigation:1.0.0"
+            const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
         }
 
         object Startup {
@@ -91,6 +91,12 @@ object Libs {
     }
 
     object Google {
+
+        object Accompanist {
+            private const val version = "0.20.0"
+
+            const val insets = "com.google.accompanist:accompanist-insets:$version"
+        }
 
         object Material {
             const val material = "com.google.android.material:material:1.4.0"
@@ -139,7 +145,7 @@ object Libs {
     object MikePenz {
 
         object AboutLibraries {
-            private const val version = "8.9.3"
+            private const val version = "8.9.4"
 
             const val plugin = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$version"
             const val ui = "com.mikepenz:aboutlibraries:$version"

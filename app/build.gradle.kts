@@ -141,6 +141,8 @@ dependencies {
     implementation(Libs.AndroidX.Compose.uiTooling)
     implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.AndroidX.Navigation.compose)
+    implementation(Libs.AndroidX.Hilt.navigationCompose)
+    implementation(Libs.Google.Accompanist.insets)
     //endregion
 
     implementation(Libs.AndroidX.Startup.runtime)
@@ -149,7 +151,6 @@ dependencies {
     implementation(Libs.AndroidX.DataStore.preferences)
     implementation(Libs.JetBrains.KotlinX.Coroutines.android)
     implementation(Libs.Google.Hilt.android)
-    implementation(Libs.AndroidX.Hilt.navigation)
     implementation(Libs.AndroidX.Room.ktx)
     implementation(Libs.AndroidX.Browser.browser)
     implementation(Libs.JakeWharton.Timber.timber)

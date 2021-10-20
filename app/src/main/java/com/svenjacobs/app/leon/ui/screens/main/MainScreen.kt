@@ -21,6 +21,7 @@ package com.svenjacobs.app.leon.ui.screens.main
 import android.content.Context
 import android.net.Uri
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -30,22 +31,23 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.hilt.navigation.HiltViewModelFactory
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.services.model.CleaningResult
@@ -74,95 +76,122 @@ fun MainScreen(
     }
 
     val navController = rememberNavController()
+    val isBackVisible by viewModel.isBackVisible.collectAsState()
+
+    AppTheme {
+        ProvideWindowInsets {
+            Scaffold(
+                topBar = { MyTopAppBar(isBackVisible, navController) },
+                bottomBar = { MyBottomBar(navController) },
+                content = { padding ->
+                    Box(
+                        modifier = Modifier.padding(
+                            start = padding.calculateStartPadding(layoutDirection = LocalLayoutDirection.current),
+                            top = padding.calculateTopPadding(),
+                            end = padding.calculateEndPadding(layoutDirection = LocalLayoutDirection.current),
+                            bottom = padding.calculateBottomPadding(),
+                        )
+                    ) {
+                        BackgroundImage()
+
+                        NavHost(
+                            navController = navController,
+                            startDestination = Screen.Home.route,
+                        ) {
+                            composable(Screen.Home.route) {
+                                viewModel.setIsBackVisible(false)
+                                HomeScreen(
+                                    result = result,
+                                    onShareButtonClick = ::onShareButtonClick,
+                                    onVerifyButtonClick = ::onVerifyButtonClick,
+                                )
+                            }
+
+                            composable(Screen.Settings.route) {
+                                viewModel.setIsBackVisible(false)
+                                SettingsScreen(
+                                    viewModel = hiltViewModel(),
+                                    navController = navController,
+                                )
+                            }
+
+                            composable(Screen.SettingsParameters.route) {
+                                viewModel.setIsBackVisible(true)
+                                SettingsParametersScreen(
+                                    viewModel = hiltViewModel(),
+                                )
+                            }
+                        }
+                    }
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun MyTopAppBar(
+    isBackVisible: Boolean,
+    navController: NavHostController
+) {
+    Box(modifier = Modifier.background(color = MaterialTheme.colors.primary)) {
+        TopAppBar(
+            modifier = Modifier.statusBarsPadding(),
+            elevation = 0.dp,
+            backgroundColor = MaterialTheme.colors.primary,
+            title = {
+                Text(
+                    text = stringResource(R.string.scaffold_title),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
+                )
+            },
+            navigationIcon = if (isBackVisible) ({ NavigationIcon(navController) }) else null
+        )
+    }
+}
+
+@Composable
+private fun MyBottomBar(
+    navController: NavHostController
+) {
     val bottomNavItems = listOf(
         Screen.Home,
         Screen.Settings
     )
 
-    val isBackVisible by viewModel.isBackVisible.collectAsState()
+    Box(
+        modifier = Modifier.background(color = MaterialTheme.colors.primary)
+    ) {
+        BottomNavigation(
+            modifier = Modifier.navigationBarsPadding(),
+            elevation = 0.dp,
+        ) {
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentDestination = navBackStackEntry?.destination
 
-    AppTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    backgroundColor = MaterialTheme.colors.primary,
-                    title = { Text(text = stringResource(R.string.scaffold_title),
-                        overflow = TextOverflow.Ellipsis,
-                        maxLines = 1
-                    ) },
-                    navigationIcon = if (isBackVisible) ({ NavigationIcon(navController) }) else null
-                )
-            },
-            bottomBar = {
-                BottomNavigation {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentDestination = navBackStackEntry?.destination
-
-                    bottomNavItems.forEach { screen ->
-                        BottomNavigationItem(
-                            icon = {
-                                Icon(
-                                    imageVector = screen.icon,
-                                    contentDescription = stringResource(screen.iconContentDescription),
-                                )
-                            },
-                            label = { Text(stringResource(screen.label)) },
-                            selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                            onClick = {
-                                navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            },
+            bottomNavItems.forEach { screen ->
+                BottomNavigationItem(
+                    icon = {
+                        Icon(
+                            imageVector = screen.icon,
+                            contentDescription = stringResource(screen.iconContentDescription),
                         )
-                    }
-                }
-            },
-            content = { padding ->
-                Box(
-                    modifier = Modifier.padding(
-                        start = padding.calculateStartPadding(layoutDirection = LocalLayoutDirection.current),
-                        top = padding.calculateTopPadding(),
-                        end = padding.calculateEndPadding(layoutDirection = LocalLayoutDirection.current),
-                        bottom = padding.calculateBottomPadding(),
-                    )
-                ) {
-                    BackgroundImage()
-
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.Home.route,
-                    ) {
-                        composable(Screen.Home.route) {
-                            viewModel.setIsBackVisible(false)
-                            HomeScreen(
-                                result = result,
-                                onShareButtonClick = ::onShareButtonClick,
-                                onVerifyButtonClick = ::onVerifyButtonClick,
-                            )
+                    },
+                    label = { Text(stringResource(screen.label)) },
+                    selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                    onClick = {
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-
-                        composable(Screen.Settings.route) { navBackStackEntry ->
-                            viewModel.setIsBackVisible(false)
-                            SettingsScreen(
-                                viewModel = navViewModel(navBackStackEntry),
-                                navController = navController,
-                            )
-                        }
-
-                        composable(Screen.SettingsParameters.route) { navBackStackEntry ->
-                            viewModel.setIsBackVisible(true)
-                            SettingsParametersScreen(
-                                viewModel = navViewModel(navBackStackEntry),
-                            )
-                        }
-                    }
-                }
-            },
-        )
+                    },
+                )
+            }
+        }
     }
 }
 
@@ -175,12 +204,6 @@ private fun NavigationIcon(navController: NavController) {
         )
     }
 }
-
-@Composable
-private inline fun <reified T : ViewModel> navViewModel(navBackStackEntry: NavBackStackEntry): T =
-    viewModel(
-        factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
-    )
 
 @Composable
 private fun BackgroundImage() {

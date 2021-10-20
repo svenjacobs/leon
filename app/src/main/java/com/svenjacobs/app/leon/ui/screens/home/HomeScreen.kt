@@ -140,7 +140,6 @@ private fun SuccessBody(
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 private fun FailureBody() {
     Card(
@@ -176,7 +175,7 @@ private fun FailureBody() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewSuccess() {
+private fun SuccessBodyPreview() {
     SuccessBody(
         result = CleaningResult.Success(
             originalText = "http://www.some.url?tracking=true",
@@ -187,4 +186,10 @@ private fun PreviewSuccess() {
         onShareButtonClick = {},
         onVerifyButtonClick = {},
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FailureBodyPreview() {
+    FailureBody()
 }

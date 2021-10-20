@@ -26,6 +26,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsServiceConnection
+import androidx.core.view.WindowCompat
 import com.svenjacobs.app.leon.ui.screens.main.MainScreen
 import com.svenjacobs.app.leon.ui.screens.main.model.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         onIntent(intent)
 
