@@ -61,6 +61,13 @@ object Defaults {
             name = "twitter",
             description = "Twitter",
             isDefault = true,
-        )
+        ),
+        RegexSanitizer(
+            domainRegex = "spotify\\.com",
+            parameterRegex = regexForParameter("si|dl_branch"),
+            name = "spotify",
+            description = "Spotify",
+            isDefault = true,
+        ),
     )
 }
