@@ -1,3 +1,14 @@
+## Version 0.6.0
+
+_2021-10-20_
+
+- Fix display of title for large fonts (PR #30, thanks @yuhuitech)
+- Add sanitizers for
+    - Twitter
+    - Spotify
+    - Netflix
+- Minor UI improvements
+
 ## Version 0.5.0
 
 _2021-06-13_

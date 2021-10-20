@@ -1,3 +1,2 @@
-Add sanitizer for Amazon domains.
-Add "fbclid" parameter to Facebook sanitizer.
-Improve accessibility of app.
+Add sanitizers for Twitter, Spotify and Netflix.
+Minor bugfixes and UI improvements.

@@ -1,3 +1,2 @@
-Reiniger für Amazon-Domains hinzugefügt.
-Facebook-Reiniger um "fbclid" Parameter ergänzt.
-Barrierefreiheit verbessert.
+Reiniger für Twitter, Spotify und Netflix hinzugefügt.
+Kleinere Bugfixes und UI-Verbesserungen.
