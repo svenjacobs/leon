@@ -69,5 +69,12 @@ object Defaults {
             description = "Spotify",
             isDefault = true,
         ),
+        RegexSanitizer(
+            domainRegex = "netflix\\.com",
+            parameterRegex = regexForParameter("s|t|trkid|vlang|clip"),
+            name = "netflix",
+            description = "Netflix",
+            isDefault = true,
+        ),
     )
 }
