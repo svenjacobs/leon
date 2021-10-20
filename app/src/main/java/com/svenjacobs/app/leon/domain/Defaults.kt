@@ -21,6 +21,7 @@ package com.svenjacobs.app.leon.domain
 import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForParameter
+import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForWildcardParameter
 import com.svenjacobs.app.leon.startup.AppInitializer
 
 object Defaults {
@@ -30,19 +31,19 @@ object Defaults {
      */
     val SANITIZERS = listOf(
         RegexSanitizer(
-            parameterRegex = regexForParameter("wt_"),
+            parameterRegex = regexForWildcardParameter("wt_"),
             name = "wt_*",
             description = "Webtrekk (wt_*)",
             isDefault = true,
         ),
         RegexSanitizer(
-            parameterRegex = regexForParameter("ga_|utm_"),
+            parameterRegex = regexForWildcardParameter("ga_|utm_"),
             name = "ga_* & utm_*",
             description = "Google Analytics (ga_*, utm_*)",
             isDefault = true,
         ),
         RegexSanitizer(
-            parameterRegex = regexForParameter("fb_|fbclid"),
+            parameterRegex = regexForWildcardParameter("fb_|fbclid"),
             name = "fb_*",
             description = "Facebook (fb_*, fbclid)",
             isDefault = true,
@@ -52,6 +53,13 @@ object Defaults {
             parameterRegex = "(?:ref=[^?&]+)|(?:[?&][^=]+=.[^&]*)",
             name = "amazon",
             description = "Amazon",
+            isDefault = true,
+        ),
+        RegexSanitizer(
+            domainRegex = "twitter\\.com",
+            parameterRegex = regexForParameter("s"),
+            name = "twitter",
+            description = "Twitter",
             isDefault = true,
         )
     )

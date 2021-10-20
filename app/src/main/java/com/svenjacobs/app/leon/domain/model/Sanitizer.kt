@@ -18,7 +18,7 @@
 
 package com.svenjacobs.app.leon.domain.model
 
-import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForParameter
+import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.regexForWildcardParameter
 import com.svenjacobs.app.leon.services.QueryParameterSanitizerStrategy
 import com.svenjacobs.app.leon.services.RegexSanitizerStrategy
 import com.svenjacobs.app.leon.services.SanitizerStrategy
@@ -63,7 +63,7 @@ sealed class Sanitizer(
      * this regex, if specified.
      *
      * @param domainRegex Optional regex which should match desired domain(s)
-     * @param parameterRegex Regex of parameter, see [regexForParameter]
+     * @param parameterRegex Regex of parameter, see [regexForWildcardParameter]
      *
      * @see RegexSanitizerStrategy
      */
@@ -83,14 +83,25 @@ sealed class Sanitizer(
         companion object {
 
             /**
-             * Returns a regex string which matches a certain parameter prefix
+             * Returns a regex string which matches a certain parameter
              *
-             * For example `regexForParameter("abc_")` returns a regex string which matches
-             * `?abc_x=`, `&abc_y=`, `&abc_zzz=` et cetera.
+             * For example `regexForParameter("abc")` returns a regex string which matches
+             * `?abc=` or `&abc=`.
              *
              * @param parameter Parameter prefix
              */
             fun regexForParameter(parameter: String): String =
+                "[?&](?:$parameter)=.[^&]*"
+
+            /**
+             * Returns a regex string which matches a certain parameter prefix
+             *
+             * For example `regexForWildcardParameter("abc_")` returns a regex string which matches
+             * `?abc_x=`, `&abc_y=`, `&abc_zzz=` et cetera.
+             *
+             * @param parameter Parameter prefix
+             */
+            fun regexForWildcardParameter(parameter: String): String =
                 "[?&](?:$parameter)[^=]*=.[^&]*"
         }
     }
