@@ -16,21 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.lean.repository
+package com.svenjacobs.app.leon.repository
 
 import com.svenjacobs.app.leon.domain.Defaults
 import com.svenjacobs.app.leon.domain.model.Sanitizer
-import com.svenjacobs.app.leon.repository.CleanerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class CleanerRepositoryFake : CleanerRepository {
 
     override fun getSanitizers(): Flow<List<Sanitizer>> =
-        flowOf(Defaults.SANITIZERS)
+        flowOf(Defaults.Sanitizers)
 
     override suspend fun getSanitizerByName(name: String): Sanitizer? =
-        Defaults.SANITIZERS.find { it.name == name }
+        Defaults.Sanitizers.find { it.name == name }
 
     override suspend fun addSanitizer(
         sanitizer: Sanitizer,

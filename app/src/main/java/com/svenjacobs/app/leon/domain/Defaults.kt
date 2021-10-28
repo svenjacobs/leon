@@ -26,55 +26,69 @@ import com.svenjacobs.app.leon.startup.AppInitializer
 
 object Defaults {
 
+    internal val Webtrekk = RegexSanitizer(
+        parameterRegex = regexForWildcardParameter("wt_"),
+        name = "wt_*",
+        description = "Webtrekk (wt_*)",
+        isDefault = true,
+    )
+
+    internal val GoogleAnalytics = RegexSanitizer(
+        parameterRegex = regexForWildcardParameter("ga_|utm_"),
+        name = "ga_* & utm_*",
+        description = "Google Analytics (ga_*, utm_*)",
+        isDefault = true,
+    )
+
+    internal val Facebook = RegexSanitizer(
+        parameterRegex = regexForWildcardParameter("fb_|fbclid"),
+        name = "fb_*",
+        description = "Facebook (fb_*, fbclid)",
+        isDefault = true,
+    )
+
+    internal val Amazon = RegexSanitizer(
+        domainRegex = "amazon\\..+\\/dp\\/[0-9A-Z]+",
+        parameterRegex = "(?:ref=[^?&]+)|(?:[?&][^=]+=.[^&]*)",
+        name = "amazon",
+        description = "Amazon",
+        isDefault = true,
+    )
+
+    internal val Twitter = RegexSanitizer(
+        domainRegex = "twitter\\.com",
+        parameterRegex = regexForParameter("s|t"),
+        name = "twitter",
+        description = "Twitter",
+        isDefault = true,
+    )
+
+    internal val Spotify = RegexSanitizer(
+        domainRegex = "spotify\\.com",
+        parameterRegex = regexForParameter("si|dl_branch"),
+        name = "spotify",
+        description = "Spotify",
+        isDefault = true,
+    )
+
+    internal val Netflix = RegexSanitizer(
+        domainRegex = "netflix\\.com",
+        parameterRegex = regexForParameter("s|t|trkid|vlang|clip"),
+        name = "netflix",
+        description = "Netflix",
+        isDefault = true,
+    )
+
     /**
      * List of default [Sanitizer] which are installed during first app start. See [AppInitializer].
      */
-    val SANITIZERS = listOf(
-        RegexSanitizer(
-            parameterRegex = regexForWildcardParameter("wt_"),
-            name = "wt_*",
-            description = "Webtrekk (wt_*)",
-            isDefault = true,
-        ),
-        RegexSanitizer(
-            parameterRegex = regexForWildcardParameter("ga_|utm_"),
-            name = "ga_* & utm_*",
-            description = "Google Analytics (ga_*, utm_*)",
-            isDefault = true,
-        ),
-        RegexSanitizer(
-            parameterRegex = regexForWildcardParameter("fb_|fbclid"),
-            name = "fb_*",
-            description = "Facebook (fb_*, fbclid)",
-            isDefault = true,
-        ),
-        RegexSanitizer(
-            domainRegex = "amazon\\..+\\/dp\\/[0-9A-Z]+",
-            parameterRegex = "(?:ref=[^?&]+)|(?:[?&][^=]+=.[^&]*)",
-            name = "amazon",
-            description = "Amazon",
-            isDefault = true,
-        ),
-        RegexSanitizer(
-            domainRegex = "twitter\\.com",
-            parameterRegex = regexForParameter("s|t"),
-            name = "twitter",
-            description = "Twitter",
-            isDefault = true,
-        ),
-        RegexSanitizer(
-            domainRegex = "spotify\\.com",
-            parameterRegex = regexForParameter("si|dl_branch"),
-            name = "spotify",
-            description = "Spotify",
-            isDefault = true,
-        ),
-        RegexSanitizer(
-            domainRegex = "netflix\\.com",
-            parameterRegex = regexForParameter("s|t|trkid|vlang|clip"),
-            name = "netflix",
-            description = "Netflix",
-            isDefault = true,
-        ),
+    val Sanitizers = listOf(
+        Webtrekk,
+        GoogleAnalytics,
+        Facebook,
+        Amazon,
+        Twitter,
+        Spotify,
+        Netflix,
     )
 }
