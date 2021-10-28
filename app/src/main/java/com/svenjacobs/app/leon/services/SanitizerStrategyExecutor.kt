@@ -22,6 +22,11 @@ import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.domain.model.Sanitizer.QueryParameterSanitizer
 import javax.inject.Inject
 
+/**
+ * Executes corresponding [SanitizerStrategy] for given [Sanitizer]
+ *
+ * @see SanitizerStrategy
+ */
 class SanitizerStrategyExecutor @Inject constructor(
     private val queryParameterSanitizerStrategy: QueryParameterSanitizerStrategy,
     private val regexSanitizerStrategy: RegexSanitizerStrategy,

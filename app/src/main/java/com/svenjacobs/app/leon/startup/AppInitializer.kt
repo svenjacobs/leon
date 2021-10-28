@@ -70,7 +70,7 @@ class AppInitializer : Initializer<Unit> {
 
             dataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
 
-            Defaults.SANITIZERS.forEach { sanitizer ->
+            Defaults.Sanitizers.forEach { sanitizer ->
                 val exists = repository.getSanitizerByName(sanitizer.name) != null
 
                 if (exists) {

@@ -24,13 +24,21 @@ import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.services.SanitizerStrategy.Result
 import javax.inject.Inject
 
-interface SanitizerStrategy<T : Sanitizer> {
+/**
+ * A strategy of how a specific sanitizer is applied
+ *
+ * @see SanitizerStrategyExecutor
+ */
+interface SanitizerStrategy<in T : Sanitizer> {
 
     data class Result(
         val output: String,
         val artifactsRemoved: Int,
     )
 
+    /**
+     * Applies sanitizer strategy to given input string and returns cleaning result
+     */
     fun sanitize(
         sanitizer: T,
         input: String

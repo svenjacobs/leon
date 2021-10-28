@@ -18,12 +18,10 @@
 
 package com.svenjacobs.app.leon.service
 
-import com.svenjacobs.app.lean.repository.CleanerRepositoryFake
+import com.svenjacobs.app.leon.repository.CleanerRepositoryFake
 import com.svenjacobs.app.leon.services.CleanerService
-import com.svenjacobs.app.leon.services.QueryParameterSanitizerStrategy
-import com.svenjacobs.app.leon.services.RegexSanitizerStrategy
-import com.svenjacobs.app.leon.services.SanitizerStrategyExecutor
 import com.svenjacobs.app.leon.services.model.CleaningResult
+import com.svenjacobs.app.leon.test.MOCK_SANITIZER_STRATEGY_EXECUTOR
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.be
 import io.kotest.matchers.collections.haveSize
@@ -32,14 +30,9 @@ import io.kotest.matchers.types.beInstanceOf
 
 class CleanerServiceTest : ShouldSpec({
 
-    val executor = SanitizerStrategyExecutor(
-        QueryParameterSanitizerStrategy(),
-        RegexSanitizerStrategy(),
-    )
-
     val service = CleanerService(
         repository = CleanerRepositoryFake(),
-        sanitizerStrategyExecutor = executor,
+        sanitizerStrategyExecutor = MOCK_SANITIZER_STRATEGY_EXECUTOR,
     )
 
     context("clean()") {

@@ -24,6 +24,8 @@ import com.svenjacobs.app.leon.services.RegexSanitizerStrategy
 import com.svenjacobs.app.leon.services.SanitizerStrategy
 
 /**
+ * Entity which describes a Sanitizer
+ *
  * @see SanitizerStrategy
  */
 sealed class Sanitizer(
