@@ -57,7 +57,7 @@ object Defaults {
         ),
         RegexSanitizer(
             domainRegex = "twitter\\.com",
-            parameterRegex = regexForParameter("s"),
+            parameterRegex = regexForParameter("s|t"),
             name = "twitter",
             description = "Twitter",
             isDefault = true,
