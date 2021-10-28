@@ -27,14 +27,12 @@ import com.svenjacobs.app.leon.services.SanitizerStrategy
  * @see SanitizerStrategy
  */
 sealed class Sanitizer(
-    open val uid: Int,
+    open val uid: Long,
     open val name: String,
     open val description: String?,
     open val isDefault: Boolean,
     open val isEnabled: Boolean,
 ) {
-
-    abstract fun withEnabled(isEnabled: Boolean): Sanitizer
 
     /**
      * Simple [Sanitizer] which just removes a single parameter declared via [parameterName]
@@ -45,16 +43,12 @@ sealed class Sanitizer(
      */
     data class QueryParameterSanitizer(
         val parameterName: String,
-        override val uid: Int = 0,
+        override val uid: Long = 0,
         override val name: String,
         override val description: String? = null,
         override val isDefault: Boolean = false,
         override val isEnabled: Boolean = true,
-    ) : Sanitizer(uid, name, description, isDefault, isEnabled) {
-
-        override fun withEnabled(isEnabled: Boolean) =
-            copy(isEnabled = isEnabled)
-    }
+    ) : Sanitizer(uid, name, description, isDefault, isEnabled)
 
     /**
      * Regex-based [Sanitizer] which removes parts from URLs based on a regex declared via [parameterRegex]
@@ -70,15 +64,12 @@ sealed class Sanitizer(
     data class RegexSanitizer(
         val domainRegex: String? = null,
         val parameterRegex: String,
-        override val uid: Int = 0,
+        override val uid: Long = 0,
         override val name: String,
         override val description: String? = null,
         override val isDefault: Boolean = false,
         override val isEnabled: Boolean = true,
     ) : Sanitizer(uid, name, description, isDefault, isEnabled) {
-
-        override fun withEnabled(isEnabled: Boolean) =
-            copy(isEnabled = isEnabled)
 
         companion object {
 

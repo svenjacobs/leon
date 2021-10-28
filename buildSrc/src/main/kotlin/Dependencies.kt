@@ -63,7 +63,7 @@ object Libs {
         }
 
         object Room {
-            private const val version = "2.3.0"
+            private const val version = "2.4.0-beta01"
 
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
@@ -149,6 +149,15 @@ object Libs {
 
             const val plugin = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$version"
             const val ui = "com.mikepenz:aboutlibraries:$version"
+        }
+    }
+
+    object Facebook {
+
+        object Stetho {
+            private const val version = "1.6.0"
+
+            const val stetho = "com.facebook.stetho:stetho:$version"
         }
     }
 

@@ -23,13 +23,14 @@ import androidx.startup.Initializer
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.datastore.DataStoreManager
 import com.svenjacobs.app.leon.domain.Defaults
+import com.svenjacobs.app.leon.inject.ApplicationCoroutineScope
 import com.svenjacobs.app.leon.repository.CleanerRepository
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.runBlocking
-import timber.log.Timber
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
  * Performs (initial) initialization of app.
@@ -46,15 +47,25 @@ class AppInitializer : Initializer<Unit> {
         val dataStoreManager: DataStoreManager
 
         val migrations: Migrations
+
+        @get:ApplicationCoroutineScope
+        val coroutineScope: CoroutineScope
+
+        val stethoHelper: StethoHelper
     }
 
     override fun create(context: Context) {
         val entryPoint = EntryPoints.get(context, AppInitializerEntryPoint::class.java)
+
         val migrations = entryPoint.migrations
         val dataStoreManager = entryPoint.dataStoreManager
         val repository = entryPoint.cleanerRepository
+        val stethoHelper = entryPoint.stethoHelper
+        val coroutineScope = entryPoint.coroutineScope
 
-        runBlocking {
+        stethoHelper.initialize(context)
+
+        coroutineScope.launch {
             migrations.migrate()
 
             dataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
@@ -62,11 +73,16 @@ class AppInitializer : Initializer<Unit> {
             Defaults.SANITIZERS.forEach { sanitizer ->
                 val exists = repository.getSanitizerByName(sanitizer.name) != null
 
-                if (!exists) {
-                    Timber.d("Inserting default \"${sanitizer.name}\"")
-                    repository.addSanitizer(sanitizer)
+                if (exists) {
+                    repository.updateSanitizer(
+                        sanitizer,
+                        withConfig = false,
+                    )
                 } else {
-                    Timber.d("Not inserting \"${sanitizer.name}\" because it already exists")
+                    repository.addSanitizer(
+                        sanitizer,
+                        withConfig = false,
+                    )
                 }
             }
         }

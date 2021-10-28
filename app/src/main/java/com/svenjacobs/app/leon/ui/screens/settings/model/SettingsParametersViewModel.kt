@@ -23,6 +23,10 @@ import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.repository.CleanerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,17 +35,31 @@ class SettingsParametersViewModel @Inject constructor(
     private val cleanerRepository: CleanerRepository,
 ) : ViewModel() {
 
-    val sanitizers
-        get() = cleanerRepository.getSanitizers()
+    private val _sanitizers = MutableStateFlow<List<Sanitizer>>(emptyList())
+
+    /**
+     * Unfortunately it seems that Room observable queries don't work with database views.
+     * So we have to fake it here by manually updating the [StateFlow].
+     */
+    private fun updateSanitizers() {
+        viewModelScope.launch {
+            _sanitizers.value = cleanerRepository.getSanitizers().first()
+        }
+    }
+
+    val sanitizers: StateFlow<List<Sanitizer>>
+        get() {
+            updateSanitizers()
+            return _sanitizers.asStateFlow()
+        }
 
     fun setEnabled(
         sanitizer: Sanitizer,
         enabled: Boolean,
     ) {
         viewModelScope.launch {
-            cleanerRepository.updateSanitizer(
-                sanitizer.withEnabled(enabled)
-            )
+            cleanerRepository.setSanitizerEnabled(sanitizer, enabled)
+            updateSanitizers()
         }
     }
 }

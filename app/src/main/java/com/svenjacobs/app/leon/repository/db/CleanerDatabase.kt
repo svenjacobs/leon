@@ -18,15 +18,42 @@
 
 package com.svenjacobs.app.leon.repository.db
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
+import androidx.room.migration.AutoMigrationSpec
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerConfigDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerViewDao
 import com.svenjacobs.app.leon.repository.db.model.DbSanitizer
-import com.svenjacobs.app.leon.repository.db.model.DbSanitizerDao
+import com.svenjacobs.app.leon.repository.db.model.DbSanitizerConfig
+import com.svenjacobs.app.leon.repository.db.model.DbSanitizerView
 
-@Database(entities = [DbSanitizer::class], version = 1)
+@Database(
+    entities = [
+        DbSanitizer::class,
+        DbSanitizerConfig::class,
+    ],
+    views = [DbSanitizerView::class],
+    version = 2,
+    autoMigrations = [
+        AutoMigration(
+            from = 1,
+            to = 2,
+            spec = CleanerDatabase.AutoMigration::class
+        ),
+    ]
+)
 @TypeConverters(Converters::class)
 abstract class CleanerDatabase : RoomDatabase() {
 
+    @DeleteColumn(
+        tableName = "sanitizers",
+        columnName = "isEnabled",
+    )
+    class AutoMigration : AutoMigrationSpec
+
     abstract fun sanitizerDao(): DbSanitizerDao
+
+    abstract fun sanitizerConfigDao(): DbSanitizerConfigDao
+
+    abstract fun sanitizerViewDao(): DbSanitizerViewDao
 }
