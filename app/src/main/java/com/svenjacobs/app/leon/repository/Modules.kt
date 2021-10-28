@@ -23,7 +23,9 @@ import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.svenjacobs.app.leon.repository.db.CleanerDatabase
 import com.svenjacobs.app.leon.repository.db.Converters
-import com.svenjacobs.app.leon.repository.db.model.DbSanitizerDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerConfigDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerViewDao
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -59,8 +61,16 @@ object RepositoryModule {
             .build()
 
     @Provides
-    fun provideParameterDao(database: CleanerDatabase): DbSanitizerDao =
+    fun provideSanitizerDao(database: CleanerDatabase): DbSanitizerDao =
         database.sanitizerDao()
+
+    @Provides
+    fun provideSanitizerConfigDao(database: CleanerDatabase): DbSanitizerConfigDao =
+        database.sanitizerConfigDao()
+
+    @Provides
+    fun provideSanitizerViewDao(database: CleanerDatabase): DbSanitizerViewDao =
+        database.sanitizerViewDao()
 
     private const val DB_NAME = "leon"
 }

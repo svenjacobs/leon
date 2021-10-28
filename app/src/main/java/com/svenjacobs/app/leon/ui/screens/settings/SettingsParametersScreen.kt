@@ -40,7 +40,7 @@ import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsParametersViewM
 fun SettingsParametersScreen(
     viewModel: SettingsParametersViewModel,
 ) {
-    val sanitizers by viewModel.sanitizers.collectAsState(initial = emptyList())
+    val sanitizers by viewModel.sanitizers.collectAsState()
 
     Card(
         modifier = Modifier.padding(16.dp)

@@ -32,19 +32,28 @@ class CleanerRepositoryFake : CleanerRepository {
     override suspend fun getSanitizerByName(name: String): Sanitizer? =
         Defaults.SANITIZERS.find { it.name == name }
 
-    override suspend fun addSanitizer(sanitizer: Sanitizer) {
+    override suspend fun addSanitizer(
+        sanitizer: Sanitizer,
+        withConfig: Boolean,
+    ) {
         throw NotImplementedError()
     }
 
-    override suspend fun addSanitizers(sanitizers: List<Sanitizer>) {
-        throw NotImplementedError()
-    }
-
-    override suspend fun updateSanitizer(sanitizer: Sanitizer) {
+    override suspend fun updateSanitizer(
+        sanitizer: Sanitizer,
+        withConfig: Boolean,
+    ) {
         throw NotImplementedError()
     }
 
     override suspend fun deleteSanitizer(sanitizer: Sanitizer) {
+        throw NotImplementedError()
+    }
+
+    override suspend fun setSanitizerEnabled(
+        sanitizer: Sanitizer,
+        enabled: Boolean,
+    ) {
         throw NotImplementedError()
     }
 }

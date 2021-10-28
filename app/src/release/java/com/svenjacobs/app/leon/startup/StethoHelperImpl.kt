@@ -16,30 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.repository.db.model
+package com.svenjacobs.app.leon.startup
 
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import android.content.Context
+import javax.inject.Inject
 
-/**
- * Database entity of a sanitizer
- *
- * @see DbSanitizerConfig
- * @see DbSanitizerView
- */
-@Entity(
-    tableName = "sanitizers",
-    indices = [Index(value = ["name"], unique = true)],
-)
-data class DbSanitizer(
-    @PrimaryKey(autoGenerate = true)
-    val uid: Long = 0,
-    val type: Type,
-    val name: String,
-    val data: Map<String, String?> = emptyMap(),
-    val description: String? = null,
-    val isDefault: Boolean = false,
-) {
-    enum class Type { QUERY_PARAMETER, REGEX }
+class StethoHelperImpl @Inject constructor() : StethoHelper {
+
+    /**
+     * Nothing to do because there is no Stetho dependency in release build variant :)
+     */
+    override fun initialize(context: Context) {
+    }
 }

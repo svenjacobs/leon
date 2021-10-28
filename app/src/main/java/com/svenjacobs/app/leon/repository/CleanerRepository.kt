@@ -19,8 +19,10 @@
 package com.svenjacobs.app.leon.repository
 
 import com.svenjacobs.app.leon.domain.model.Sanitizer
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerConfigDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerDao
+import com.svenjacobs.app.leon.repository.db.dao.DbSanitizerViewDao
 import com.svenjacobs.app.leon.repository.db.mapper.DbSanitizerMapper
-import com.svenjacobs.app.leon.repository.db.model.DbSanitizerDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -31,41 +33,77 @@ interface CleanerRepository {
 
     suspend fun getSanitizerByName(name: String): Sanitizer?
 
-    suspend fun addSanitizer(sanitizer: Sanitizer)
+    suspend fun addSanitizer(
+        sanitizer: Sanitizer,
+        withConfig: Boolean = true,
+    )
 
-    suspend fun addSanitizers(sanitizers: List<Sanitizer>)
-
-    suspend fun updateSanitizer(sanitizer: Sanitizer)
+    suspend fun updateSanitizer(
+        sanitizer: Sanitizer,
+        withConfig: Boolean = true,
+    )
 
     suspend fun deleteSanitizer(sanitizer: Sanitizer)
+
+    suspend fun setSanitizerEnabled(
+        sanitizer: Sanitizer,
+        enabled: Boolean,
+    )
 }
 
 class CleanerRepositoryImpl @Inject constructor(
-    private val dao: DbSanitizerDao,
+    private val sanitizerDao: DbSanitizerDao,
+    private val sanitizerConfigDao: DbSanitizerConfigDao,
+    private val sanitizerViewDao: DbSanitizerViewDao,
     private val mapper: DbSanitizerMapper,
 ) : CleanerRepository {
 
     override fun getSanitizers() =
-        dao.getAll().map { it.map(mapper::mapFromDb) }
+        sanitizerViewDao.getAll().map { it.map(mapper::mapFromDb) }
 
     override suspend fun getSanitizerByName(name: String) =
-        dao.getByName(name)?.let {
+        sanitizerViewDao.getByName(name)?.let {
             mapper.mapFromDb(it)
         }
 
-    override suspend fun addSanitizer(sanitizer: Sanitizer) {
-        dao.insert(mapper.mapToDb(sanitizer))
+    override suspend fun addSanitizer(
+        sanitizer: Sanitizer,
+        withConfig: Boolean,
+    ) {
+        val (dbSanitizer, dbConfig) = mapper.mapToDb(sanitizer)
+
+        val uid = sanitizerDao.insert(dbSanitizer)
+
+        if (withConfig) {
+            sanitizerConfigDao.insert(dbConfig.copy(uid = uid))
+        }
     }
 
-    override suspend fun addSanitizers(sanitizers: List<Sanitizer>) {
-        dao.insertAll(sanitizers.map(mapper::mapToDb))
-    }
+    override suspend fun updateSanitizer(
+        sanitizer: Sanitizer,
+        withConfig: Boolean,
+    ) {
+        val (dbSanitizer, dbConfig) = mapper.mapToDb(sanitizer)
 
-    override suspend fun updateSanitizer(sanitizer: Sanitizer) {
-        dao.update(mapper.mapToDb(sanitizer))
+        sanitizerDao.update(dbSanitizer)
+
+        if (withConfig) {
+            sanitizerConfigDao.update(dbConfig)
+        }
     }
 
     override suspend fun deleteSanitizer(sanitizer: Sanitizer) {
-        dao.delete(mapper.mapToDb(sanitizer))
+        val (dbSanitizer, _) = mapper.mapToDb(sanitizer)
+
+        sanitizerDao.delete(dbSanitizer)
+    }
+
+    override suspend fun setSanitizerEnabled(
+        sanitizer: Sanitizer,
+        enabled: Boolean,
+    ) {
+        val (_, dbConfig) = mapper.mapToDb(sanitizer)
+
+        sanitizerConfigDao.insert(dbConfig.copy(isEnabled = enabled))
     }
 }

@@ -18,28 +18,23 @@
 
 package com.svenjacobs.app.leon.repository.db.model
 
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.DatabaseView
 
 /**
- * Database entity of a sanitizer
+ * A view which joins [DbSanitizer] and [DbSanitizerConfig]
  *
+ * @see DbSanitizer
  * @see DbSanitizerConfig
- * @see DbSanitizerView
  */
-@Entity(
-    tableName = "sanitizers",
-    indices = [Index(value = ["name"], unique = true)],
+@DatabaseView(
+    "SELECT sanitizers.uid AS uid, sanitizers.type AS type, sanitizers.name AS name, sanitizers.data AS data, sanitizers.description AS description, sanitizers.isDefault, sanitizer_configs.isEnabled AS isEnabled FROM sanitizers LEFT OUTER JOIN sanitizer_configs ON sanitizers.uid = sanitizer_configs.uid"
 )
-data class DbSanitizer(
-    @PrimaryKey(autoGenerate = true)
-    val uid: Long = 0,
-    val type: Type,
+data class DbSanitizerView(
+    val uid: Long,
+    val type: DbSanitizer.Type,
     val name: String,
-    val data: Map<String, String?> = emptyMap(),
-    val description: String? = null,
-    val isDefault: Boolean = false,
-) {
-    enum class Type { QUERY_PARAMETER, REGEX }
-}
+    val data: Map<String, String?>,
+    val description: String?,
+    val isDefault: Boolean,
+    val isEnabled: Boolean?,
+)

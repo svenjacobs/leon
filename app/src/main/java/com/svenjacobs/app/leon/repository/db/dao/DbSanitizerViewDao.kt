@@ -16,30 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.repository.db.model
+package com.svenjacobs.app.leon.repository.db.dao
 
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.Dao
+import androidx.room.Query
+import com.svenjacobs.app.leon.repository.db.model.DbSanitizerView
+import kotlinx.coroutines.flow.Flow
 
-/**
- * Database entity of a sanitizer
- *
- * @see DbSanitizerConfig
- * @see DbSanitizerView
- */
-@Entity(
-    tableName = "sanitizers",
-    indices = [Index(value = ["name"], unique = true)],
-)
-data class DbSanitizer(
-    @PrimaryKey(autoGenerate = true)
-    val uid: Long = 0,
-    val type: Type,
-    val name: String,
-    val data: Map<String, String?> = emptyMap(),
-    val description: String? = null,
-    val isDefault: Boolean = false,
-) {
-    enum class Type { QUERY_PARAMETER, REGEX }
+@Dao
+interface DbSanitizerViewDao {
+
+    @Query("SELECT * FROM DbSanitizerView")
+    fun getAll(): Flow<List<DbSanitizerView>>
+
+    @Query("SELECT * FROM DbSanitizerView WHERE name = :name")
+    suspend fun getByName(name: String): DbSanitizerView?
 }

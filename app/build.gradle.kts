@@ -157,6 +157,8 @@ dependencies {
     implementation(Libs.Square.Moshi.moshi)
     implementation(Libs.MikePenz.AboutLibraries.ui)
 
+    debugImplementation(Libs.Facebook.Stetho.stetho)
+
     kapt(Libs.Google.Hilt.androidCompiler)
     kapt(Libs.AndroidX.Room.compiler)
 

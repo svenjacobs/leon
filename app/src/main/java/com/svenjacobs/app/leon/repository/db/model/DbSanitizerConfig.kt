@@ -18,27 +18,30 @@
 
 package com.svenjacobs.app.leon.repository.db.model
 
-import androidx.room.*
-import kotlinx.coroutines.flow.Flow
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
-@Dao
-interface DbSanitizerDao {
-
-    @Query("SELECT * from sanitizers")
-    fun getAll(): Flow<List<DbSanitizer>>
-
-    @Query("SELECT * from sanitizers WHERE name = :name")
-    suspend fun getByName(name: String): DbSanitizer?
-
-    @Update
-    suspend fun update(parameter: DbSanitizer)
-
-    @Insert
-    suspend fun insert(parameter: DbSanitizer)
-
-    @Insert
-    suspend fun insertAll(parameters: List<DbSanitizer>)
-
-    @Delete
-    suspend fun delete(parameter: DbSanitizer)
-}
+/**
+ * Database entity for user specific configuration of sanitizer
+ *
+ * Is separated from [DbSanitizer] so that updates to default sanitizers don't overwrite/change
+ * user configuration.
+ *
+ * @see DbSanitizer
+ * @see DbSanitizerView
+ */
+@Entity(
+    tableName = "sanitizer_configs",
+    foreignKeys = [ForeignKey(
+        entity = DbSanitizer::class,
+        parentColumns = arrayOf("uid"),
+        childColumns = arrayOf("uid"),
+        onDelete = ForeignKey.CASCADE,
+    )],
+)
+data class DbSanitizerConfig(
+    @PrimaryKey
+    val uid: Long,
+    val isEnabled: Boolean,
+)
