@@ -1,2 +1,1 @@
-Reiniger für Twitter, Spotify und Netflix hinzugefügt.
-Kleinere Bugfixes und UI-Verbesserungen.
+Twitter-Reiniger um "t" Parameter erweitert.

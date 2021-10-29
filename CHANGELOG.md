@@ -1,3 +1,9 @@
+## Version 0.7.0
+
+_2021-10-29_
+
+- Add `t` parameter to Twitter sanitizer.
+
 ## Version 0.6.0
 
 _2021-10-20_

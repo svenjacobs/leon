@@ -1,2 +1,1 @@
-Add sanitizers for Twitter, Spotify and Netflix.
-Minor bugfixes and UI improvements.
+Added "t" parameter to Twitter sanitizer.
