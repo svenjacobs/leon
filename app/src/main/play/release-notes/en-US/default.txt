@@ -1,1 +1,1 @@
-Added "t" parameter to Twitter sanitizer.
+Fix: don't remove anchors from URLs

@@ -1,1 +1,1 @@
-Twitter-Reiniger um "t" Parameter erweitert.
+Bugfix: Ankerparameter sollten nicht aus URLs entfernt werden

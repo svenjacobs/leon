@@ -1,3 +1,10 @@
+## Version 0.7.1
+
+_2022-04-10_
+
+- Fix: don't remove anchors from URLs ([#41](https://github.com/svenjacobs/leon/issues/41), thanks
+  @slootsky)
+
 ## Version 0.7.0
 
 _2021-10-29_
