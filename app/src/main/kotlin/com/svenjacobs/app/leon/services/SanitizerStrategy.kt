@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ class QueryParameterSanitizerStrategy @Inject constructor() :
         sanitizer: QueryParameterSanitizer,
         input: String,
     ): Result {
-        val regex = Regex("[?&]${sanitizer.name}=.[^&]*")
+        val regex = Regex("[?&]${sanitizer.name}=.[^&#]*")
         return when (regex.containsMatchIn(input)) {
             true -> Result(
                 output = regex.replace(input, ""),

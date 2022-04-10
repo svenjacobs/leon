@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +55,14 @@ class CleanerServiceTest : ShouldSpec({
             result.cleanedParametersCount should be(2)
             result.urls should haveSize(1)
             result.urls.first() should be("https://www.some.site/?page=1&q=query")
+        }
+
+        should("keep anchor tags after cleaned parameters") {
+            val result =
+                service.clean("https://www.some.site/?utm_source=source&utm_medium=medium#anchor")
+            result should beInstanceOf<CleaningResult.Success>()
+            (result as CleaningResult.Success).cleanedText should be("https://www.some.site/#anchor")
+            result.urls.first() should be("https://www.some.site/#anchor")
         }
 
         should("clean multiple URLs in text") {

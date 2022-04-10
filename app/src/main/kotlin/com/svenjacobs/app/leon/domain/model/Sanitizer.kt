@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,7 +84,7 @@ sealed class Sanitizer(
              * @param parameter Parameter prefix
              */
             fun regexForParameter(parameter: String): String =
-                "[?&](?:$parameter)=.[^&]*"
+                "[?&](?:$parameter)=.[^&#]*"
 
             /**
              * Returns a regex string which matches a certain parameter prefix
@@ -95,7 +95,7 @@ sealed class Sanitizer(
              * @param parameter Parameter prefix
              */
             fun regexForWildcardParameter(parameter: String): String =
-                "[?&](?:$parameter)[^=]*=.[^&]*"
+                "[?&](?:$parameter)[^=]*=.[^&#]*"
         }
     }
 }
