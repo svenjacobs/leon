@@ -1,0 +1,65 @@
+[versions]
+android-gradle-plugin = "7.1.3"
+androidx-activity = "1.4.0"
+androidx-compose = "1.1.1"
+androidx-lifecycle = "2.4.1"
+androidx-room = "2.4.2"
+google-accompanist = "0.23.1"
+google-hilt = "2.41"
+kotest = "5.2.2"
+kotlin = "1.6.10"
+kotlinx-coroutines = "1.6.0"
+mikepenz-aboutlibraries = "10.1.0"
+mockk = "1.12.3"
+
+[libraries]
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+androidx-appcompat = "androidx.appcompat:appcompat:1.4.1"
+androidx-browser = "androidx.browser:browser:1.4.0"
+androidx-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "androidx-compose" }
+androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
+androidx-constraintlayout-compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
+androidx-core-ktx = "androidx.core:core-ktx:1.7.0"
+androidx-datastore-preferences = "androidx.datastore:datastore-preferences:1.0.0"
+androidx-hilt-navigation-compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-navigation-compose = "androidx.navigation:navigation-compose:2.4.2"
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-startup-runtime = "androidx.startup:startup-runtime:1.1.1"
+facebook-stetho = "com.facebook.stetho:stetho:1.6.0"
+google-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "google-accompanist" }
+google-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "google-hilt" }
+google-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "google-hilt" }
+google-hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "google-hilt" }
+jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-framework-api-jvm = { module = "io.kotest:kotest-framework-api-jvm", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
+mikepenz-aboutlibraries-ui = { module = "com.mikepenz:aboutlibraries", version.ref = "mikepenz-aboutlibraries" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-agent-jvm = { module = "io.mockk:mockk-agent-jvm", version.ref = "mockk" } # See https://github.com/mockk/mockk/issues/605
+square-moshi = "com.squareup.moshi:moshi:1.13.0"
+
+[bundles]
+androidx-compose = [
+    "androidx-compose-compiler",
+    "androidx-compose-material",
+    "androidx-compose-ui",
+    "androidx-compose-ui-tooling",
+]
+
+[plugins]
+ben-manes-versions = "com.github.ben-manes.versions:0.42.0"
+triplet-play = "com.github.triplet.play:3.7.0"
+adarshr-test-logger = "com.adarshr.test-logger:3.2.0"

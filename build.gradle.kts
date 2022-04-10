@@ -25,10 +25,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(Libs.Android.plugin)
-        classpath(Libs.JetBrains.Kotlin.plugin)
-        classpath(Libs.Google.Hilt.plugin)
-        classpath(Libs.MikePenz.AboutLibraries.plugin)
+        classpath(libs.android.gradle.plugin)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.google.hilt.android.gradle.plugin)
+        classpath(libs.mikepenz.aboutlibraries.gradle.plugin)
     }
 }
 

@@ -25,9 +25,9 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.parcelize")
     id("dagger.hilt.android.plugin")
-    id("com.github.triplet.play") version "3.7.0"
     id("com.mikepenz.aboutlibraries.plugin")
-    id("com.adarshr.test-logger") version "3.2.0"
+    alias(libs.plugins.triplet.play)
+    alias(libs.plugins.adarshr.test.logger)
 }
 
 android {
@@ -107,7 +107,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.get()
     }
 
     testOptions {
@@ -127,42 +127,40 @@ testlogger {
 }
 
 dependencies {
-    implementation(Libs.JetBrains.Kotlin.stdlib)
-    implementation(Libs.AndroidX.Core.ktx)
-    implementation(Libs.AndroidX.AppCompat.appcompat)
-    implementation(Libs.AndroidX.Activity.ktx)
-    implementation(Libs.Google.Material.material)
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity.ktx)
 
     //region Compose
-    implementation(Libs.AndroidX.Activity.compose)
-    implementation(Libs.AndroidX.Lifecycle.viewModelCompose)
-    implementation(Libs.AndroidX.ConstraintLayout.compose)
-    implementation(Libs.AndroidX.Compose.ui)
-    implementation(Libs.AndroidX.Compose.uiTooling)
-    implementation(Libs.AndroidX.Compose.material)
-    implementation(Libs.AndroidX.Navigation.compose)
-    implementation(Libs.AndroidX.Hilt.navigationCompose)
-    implementation(Libs.Google.Accompanist.insets)
+    implementation(libs.bundles.androidx.compose)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.google.accompanist.insets)
     //endregion
 
-    implementation(Libs.AndroidX.Startup.runtime)
-    implementation(Libs.AndroidX.Lifecycle.runtimeKtx)
-    implementation(Libs.AndroidX.Lifecycle.viewModelKtx)
-    implementation(Libs.AndroidX.DataStore.preferences)
-    implementation(Libs.JetBrains.KotlinX.Coroutines.android)
-    implementation(Libs.Google.Hilt.android)
-    implementation(Libs.AndroidX.Room.ktx)
-    implementation(Libs.AndroidX.Browser.browser)
-    implementation(Libs.JakeWharton.Timber.timber)
-    implementation(Libs.Square.Moshi.moshi)
-    implementation(Libs.MikePenz.AboutLibraries.ui)
+    implementation(libs.androidx.startup.runtime)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.google.hilt.android)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.browser)
+    implementation(libs.jakewharton.timber)
+    implementation(libs.square.moshi)
+    implementation(libs.mikepenz.aboutlibraries.ui)
 
-    debugImplementation(Libs.Facebook.Stetho.stetho)
+    debugImplementation(libs.facebook.stetho)
 
-    kapt(Libs.Google.Hilt.androidCompiler)
-    kapt(Libs.AndroidX.Room.compiler)
+    kapt(libs.google.hilt.android.compiler)
+    kapt(libs.androidx.room.compiler)
 
-    testImplementation(Libs.Test.Kotest.runnerJunit5)
-    testImplementation(Libs.Test.Kotest.assertionsCore)
-    testImplementation(Libs.Test.MockK.mockk)
+    testImplementation(libs.kotest.runner.junit5)
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockk.agent.jvm)
 }
