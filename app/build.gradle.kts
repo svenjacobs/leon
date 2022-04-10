@@ -31,13 +31,13 @@ plugins {
 }
 
 android {
-    compileSdk = 31
-    buildToolsVersion = "31.0.0"
+    compileSdk = 32
+    buildToolsVersion = "32.0.0"
 
     defaultConfig {
         applicationId = "com.svenjacobs.app.leon"
         minSdk = 21
-        targetSdk = 31
+        targetSdk = 32
         versionCode = 229
         versionName = "0.7.0"
 
