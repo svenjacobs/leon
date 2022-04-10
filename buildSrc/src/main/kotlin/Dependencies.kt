@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,27 +17,27 @@
  */
 
 object Versions {
-    const val compose = "1.0.4"
+    const val compose = "1.1.1"
 }
 
 object Libs {
 
     object Android {
-        const val plugin = "com.android.tools.build:gradle:7.0.3"
+        const val plugin = "com.android.tools.build:gradle:7.1.3"
     }
 
     object AndroidX {
 
         object Core {
-            const val ktx = "androidx.core:core-ktx:1.6.0"
+            const val ktx = "androidx.core:core-ktx:1.7.0"
         }
 
         object AppCompat {
-            const val appcompat = "androidx.appcompat:appcompat:1.3.1"
+            const val appcompat = "androidx.appcompat:appcompat:1.4.1"
         }
 
         object Activity {
-            private const val version = "1.3.1"
+            private const val version = "1.4.0"
 
             const val ktx = "androidx.activity:activity-ktx:$version"
             const val compose = "androidx.activity:activity-compose:$version"
@@ -50,39 +50,38 @@ object Libs {
         }
 
         object Lifecycle {
-            private const val version = "2.3.1"
+            private const val version = "2.4.1"
 
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-            const val viewModelCompose =
-                "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-rc01"
+            const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
         }
 
         object ConstraintLayout {
-            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
+            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
         }
 
         object Room {
-            private const val version = "2.4.0-beta01"
+            private const val version = "2.4.2"
 
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
 
         object Navigation {
-            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha10"
+            const val compose = "androidx.navigation:navigation-compose:2.4.2"
         }
 
         object Browser {
-            const val browser = "androidx.browser:browser:1.3.0"
+            const val browser = "androidx.browser:browser:1.4.0"
         }
 
         object Hilt {
-            const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+            const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
         }
 
         object Startup {
-            const val runtime = "androidx.startup:startup-runtime:1.1.0"
+            const val runtime = "androidx.startup:startup-runtime:1.1.1"
         }
 
         object DataStore {
@@ -93,7 +92,7 @@ object Libs {
     object Google {
 
         object Accompanist {
-            private const val version = "0.20.0"
+            private const val version = "0.23.1"
 
             const val insets = "com.google.accompanist:accompanist-insets:$version"
         }
@@ -103,7 +102,7 @@ object Libs {
         }
 
         object Hilt {
-            private const val version = "2.39.1"
+            private const val version = "2.41"
 
             const val plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
             const val android = "com.google.dagger:hilt-android:$version"
@@ -114,7 +113,7 @@ object Libs {
     object JetBrains {
 
         object Kotlin {
-            private const val version = "1.5.31"
+            private const val version = "1.6.10"
 
             const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
             const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
@@ -123,7 +122,7 @@ object Libs {
         object KotlinX {
 
             object Coroutines {
-                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
             }
         }
     }
@@ -131,7 +130,7 @@ object Libs {
     object Square {
 
         object Moshi {
-            const val moshi = "com.squareup.moshi:moshi:1.12.0"
+            const val moshi = "com.squareup.moshi:moshi:1.13.0"
         }
     }
 
@@ -145,7 +144,7 @@ object Libs {
     object MikePenz {
 
         object AboutLibraries {
-            private const val version = "8.9.4"
+            private const val version = "10.1.0"
 
             const val plugin = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$version"
             const val ui = "com.mikepenz:aboutlibraries:$version"
@@ -164,14 +163,14 @@ object Libs {
     object Test {
 
         object Kotest {
-            private const val version = "4.6.3"
+            private const val version = "5.2.2"
 
             const val runnerJunit5 = "io.kotest:kotest-runner-junit5:$version"
             const val assertionsCore = "io.kotest:kotest-assertions-core:$version"
         }
 
         object MockK {
-            const val mockk = "io.mockk:mockk:1.12.0"
+            const val mockk = "io.mockk:mockk:1.12.3"
         }
     }
 }

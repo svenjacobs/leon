@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.parcelize")
     id("dagger.hilt.android.plugin")
-    id("com.github.triplet.play") version "3.6.0"
+    id("com.github.triplet.play") version "3.7.0"
     id("com.mikepenz.aboutlibraries.plugin")
-    id("com.adarshr.test-logger") version "3.0.0"
+    id("com.adarshr.test-logger") version "3.2.0"
 }
 
 android {
