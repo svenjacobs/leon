@@ -1,1 +1,1 @@
-Bugfix: Ankerparameter sollten nicht aus URLs entfernt werden
+Reiniger für Flipkart hinzugefügt

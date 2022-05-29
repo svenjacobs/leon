@@ -1,1 +1,1 @@
-Fix: don't remove anchors from URLs
+Add sanitizer for Flipkart

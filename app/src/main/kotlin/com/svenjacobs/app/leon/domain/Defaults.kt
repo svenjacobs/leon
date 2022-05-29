@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,14 @@ import com.svenjacobs.app.leon.domain.model.Sanitizer.RegexSanitizer.Companion.r
 import com.svenjacobs.app.leon.startup.AppInitializer
 
 object Defaults {
+
+    /**
+     * This regex matches all parameters of a URL, so everything starting at "?".
+     *
+     * Parameters are matched individually instead of just removing everything starting at "?" to
+     * be able to get a count of removed parameters from the regex result.
+     */
+    private const val ALL_PARAMETERS_REGEX = "(?:\\?|&)[^=]+=[^&]*"
 
     internal val Webtrekk = RegexSanitizer(
         parameterRegex = regexForWildcardParameter("wt_"),
@@ -79,6 +87,14 @@ object Defaults {
         isDefault = true,
     )
 
+    internal val Flipkart = RegexSanitizer(
+        domainRegex = "flipkart\\.com",
+        parameterRegex = ALL_PARAMETERS_REGEX,
+        name = "flipkart",
+        description = "Flipkart",
+        isDefault = true,
+    )
+
     /**
      * List of default [Sanitizer] which are installed during first app start. See [AppInitializer].
      */
@@ -90,5 +106,6 @@ object Defaults {
         Twitter,
         Spotify,
         Netflix,
+        Flipkart,
     )
 }

@@ -1,3 +1,9 @@
+## Version 0.8.0
+
+_2022-05-29_
+
+- Add sanitizer for Flipkart
+
 ## Version 0.7.1
 
 _2022-04-10_
@@ -17,9 +23,9 @@ _2021-10-20_
 
 - Fix display of title for large fonts (PR #30, thanks @yuhuitech)
 - Add sanitizers for
-    - Twitter
-    - Spotify
-    - Netflix
+  - Twitter
+  - Spotify
+  - Netflix
 - Minor UI improvements
 
 ## Version 0.5.0
