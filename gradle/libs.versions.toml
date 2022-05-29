@@ -1,13 +1,13 @@
 [versions]
 android-gradle-plugin = "7.2.1"
 androidx-activity = "1.4.0"
-androidx-compose = "1.1.1"
+androidx-compose = "1.2.0-beta02"
 androidx-lifecycle = "2.4.1"
 androidx-room = "2.4.2"
-google-accompanist = "0.23.1"
+google-accompanist = "0.24.9-beta"
 google-hilt = "2.42"
 kotest = "5.3.0"
-kotlin = "1.6.10"
+kotlin = "1.6.21"
 kotlinx-coroutines = "1.6.2"
 mikepenz-aboutlibraries = "10.3.0"
 mockk = "1.12.4"
@@ -34,7 +34,6 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
 androidx-startup-runtime = "androidx.startup:startup-runtime:1.1.1"
 facebook-stetho = "com.facebook.stetho:stetho:1.6.0"
-google-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "google-accompanist" }
 google-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "google-hilt" }
 google-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "google-hilt" }
 google-hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "google-hilt" }

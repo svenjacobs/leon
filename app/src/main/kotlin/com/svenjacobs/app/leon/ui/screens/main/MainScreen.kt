@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,9 +45,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.services.model.CleaningResult
@@ -79,53 +76,51 @@ fun MainScreen(
     val isBackVisible by viewModel.isBackVisible.collectAsState()
 
     AppTheme {
-        ProvideWindowInsets {
-            Scaffold(
-                topBar = { MyTopAppBar(isBackVisible, navController) },
-                bottomBar = { MyBottomBar(navController) },
-                content = { padding ->
-                    Box(
-                        modifier = Modifier.padding(
-                            start = padding.calculateStartPadding(layoutDirection = LocalLayoutDirection.current),
-                            top = padding.calculateTopPadding(),
-                            end = padding.calculateEndPadding(layoutDirection = LocalLayoutDirection.current),
-                            bottom = padding.calculateBottomPadding(),
-                        )
+        Scaffold(
+            topBar = { MyTopAppBar(isBackVisible, navController) },
+            bottomBar = { MyBottomBar(navController) },
+            content = { padding ->
+                Box(
+                    modifier = Modifier.padding(
+                        start = padding.calculateStartPadding(layoutDirection = LocalLayoutDirection.current),
+                        top = padding.calculateTopPadding(),
+                        end = padding.calculateEndPadding(layoutDirection = LocalLayoutDirection.current),
+                        bottom = padding.calculateBottomPadding(),
+                    )
+                ) {
+                    BackgroundImage()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.Home.route,
                     ) {
-                        BackgroundImage()
+                        composable(Screen.Home.route) {
+                            viewModel.setIsBackVisible(false)
+                            HomeScreen(
+                                result = result,
+                                onShareButtonClick = ::onShareButtonClick,
+                                onVerifyButtonClick = ::onVerifyButtonClick,
+                            )
+                        }
 
-                        NavHost(
-                            navController = navController,
-                            startDestination = Screen.Home.route,
-                        ) {
-                            composable(Screen.Home.route) {
-                                viewModel.setIsBackVisible(false)
-                                HomeScreen(
-                                    result = result,
-                                    onShareButtonClick = ::onShareButtonClick,
-                                    onVerifyButtonClick = ::onVerifyButtonClick,
-                                )
-                            }
+                        composable(Screen.Settings.route) {
+                            viewModel.setIsBackVisible(false)
+                            SettingsScreen(
+                                viewModel = hiltViewModel(),
+                                navController = navController,
+                            )
+                        }
 
-                            composable(Screen.Settings.route) {
-                                viewModel.setIsBackVisible(false)
-                                SettingsScreen(
-                                    viewModel = hiltViewModel(),
-                                    navController = navController,
-                                )
-                            }
-
-                            composable(Screen.SettingsParameters.route) {
-                                viewModel.setIsBackVisible(true)
-                                SettingsParametersScreen(
-                                    viewModel = hiltViewModel(),
-                                )
-                            }
+                        composable(Screen.SettingsParameters.route) {
+                            viewModel.setIsBackVisible(true)
+                            SettingsParametersScreen(
+                                viewModel = hiltViewModel(),
+                            )
                         }
                     }
-                },
-            )
-        }
+                }
+            },
+        )
     }
 }
 

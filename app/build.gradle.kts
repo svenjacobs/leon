@@ -139,7 +139,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.google.accompanist.insets)
     //endregion
 
     implementation(libs.androidx.startup.runtime)
