@@ -1,3 +1,10 @@
+## Version 0.9.0
+
+_2022-06-05_
+
+- Add "copy to clipboard" functionality
+- Material You design
+
 ## Version 0.8.0
 
 _2022-05-29_
