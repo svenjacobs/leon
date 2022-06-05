@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.services.model.CleaningResult
+import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen(
@@ -84,12 +82,13 @@ private fun Statistics(result: CleaningResult.Success) {
         CounterText(
             result.cleanedParametersCount,
             pluralsRes = R.plurals.statistics_parameters,
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.headlineSmall,
         )
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun SuccessBody(
     result: CleaningResult.Success,
     onShareButtonClick: (CleaningResult.Success) -> Unit,
@@ -120,7 +119,6 @@ private fun SuccessBody(
                     ) {
                         Text(
                             text = stringResource(R.string.share),
-                            style = MaterialTheme.typography.button,
                         )
                     }
                     TextButton(
@@ -131,7 +129,6 @@ private fun SuccessBody(
                     ) {
                         Text(
                             text = stringResource(R.string.verify),
-                            style = MaterialTheme.typography.button,
                         )
                     }
                 }
@@ -141,6 +138,7 @@ private fun SuccessBody(
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun FailureBody() {
     Card(
         modifier = Modifier.fillMaxWidth()
@@ -151,7 +149,7 @@ private fun FailureBody() {
             Text(
                 modifier = Modifier.padding(bottom = 8.dp),
                 text = stringResource(R.string.how_to_title),
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.headlineSmall,
             )
 
             Row {
@@ -176,20 +174,24 @@ private fun FailureBody() {
 @Preview(showBackground = true)
 @Composable
 private fun SuccessBodyPreview() {
-    SuccessBody(
-        result = CleaningResult.Success(
-            originalText = "http://www.some.url?tracking=true",
-            cleanedText = "http://www.some.url",
-            cleanedParametersCount = 1,
-            urls = emptyList(),
-        ),
-        onShareButtonClick = {},
-        onVerifyButtonClick = {},
-    )
+    AppTheme {
+        SuccessBody(
+            result = CleaningResult.Success(
+                originalText = "http://www.some.url?tracking=true",
+                cleanedText = "http://www.some.url",
+                cleanedParametersCount = 1,
+                urls = emptyList(),
+            ),
+            onShareButtonClick = {},
+            onVerifyButtonClick = {},
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun FailureBodyPreview() {
-    FailureBody()
+    AppTheme {
+        FailureBody()
+    }
 }

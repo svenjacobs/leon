@@ -19,7 +19,7 @@ androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref
 androidx-appcompat = "androidx.appcompat:appcompat:1.4.2"
 androidx-browser = "androidx.browser:browser:1.4.0"
 androidx-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "androidx-compose" }
-androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
+androidx-compose-material3 = "androidx.compose.material3:material3:1.0.0-alpha13"
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-core-ktx = "androidx.core:core-ktx:1.8.0"
@@ -52,7 +52,7 @@ square-moshi = "com.squareup.moshi:moshi:1.13.0"
 [bundles]
 androidx-compose = [
     "androidx-compose-compiler",
-    "androidx-compose-material",
+    "androidx-compose-material3",
     "androidx-compose-ui",
     "androidx-compose-ui-tooling",
 ]

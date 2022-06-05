@@ -21,11 +21,10 @@ package com.svenjacobs.app.leon.ui.screens.main
 import android.content.Context
 import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,7 +34,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -56,6 +54,7 @@ import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun MainScreen(
     context: Context,
     viewModel: MainViewModel,
@@ -131,21 +130,17 @@ private fun MyTopAppBar(
     isBackVisible: Boolean,
     navController: NavHostController
 ) {
-    Box(modifier = Modifier.background(color = MaterialTheme.colors.primary)) {
-        TopAppBar(
-            modifier = Modifier.statusBarsPadding(),
-            elevation = 0.dp,
-            backgroundColor = MaterialTheme.colors.primary,
-            title = {
-                Text(
-                    text = stringResource(R.string.scaffold_title),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1
-                )
-            },
-            navigationIcon = if (isBackVisible) ({ NavigationIcon(navController) }) else null
-        )
-    }
+    CenterAlignedTopAppBar(
+        modifier = Modifier.statusBarsPadding(),
+        title = {
+            Text(
+                text = stringResource(R.string.scaffold_title),
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1
+            )
+        },
+        navigationIcon = if (isBackVisible) ({ NavigationIcon(navController) }) else ({})
+    )
 }
 
 @Composable
@@ -157,37 +152,32 @@ private fun MyBottomBar(
         Screen.Settings
     )
 
-    Box(
-        modifier = Modifier.background(color = MaterialTheme.colors.primary)
+    NavigationBar(
+        modifier = Modifier.navigationBarsPadding(),
     ) {
-        BottomNavigation(
-            modifier = Modifier.navigationBarsPadding(),
-            elevation = 0.dp,
-        ) {
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentDestination = navBackStackEntry?.destination
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
 
-            bottomNavItems.forEach { screen ->
-                BottomNavigationItem(
-                    icon = {
-                        Icon(
-                            imageVector = screen.icon,
-                            contentDescription = stringResource(screen.iconContentDescription),
-                        )
-                    },
-                    label = { Text(stringResource(screen.label)) },
-                    selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                    onClick = {
-                        navController.navigate(screen.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
+        bottomNavItems.forEach { screen ->
+            NavigationBarItem(
+                icon = {
+                    Icon(
+                        imageVector = screen.icon,
+                        contentDescription = stringResource(screen.iconContentDescription),
+                    )
+                },
+                label = { Text(stringResource(screen.label)) },
+                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                onClick = {
+                    navController.navigate(screen.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
                         }
-                    },
-                )
-            }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
+            )
         }
     }
 }

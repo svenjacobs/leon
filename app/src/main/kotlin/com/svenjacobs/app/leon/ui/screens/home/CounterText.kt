@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,16 +24,15 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateInt
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.material.LocalTextStyle
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
-import com.svenjacobs.app.leon.ui.theme.primaryDarkColor
 
 @Composable
 fun CounterText(
@@ -65,7 +64,7 @@ fun CounterText(
         },
         label = "color"
     ) {
-        if (it == number) primaryDarkColor else MaterialTheme.colors.onSurface
+        if (it == number) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
     }
 
     val text = LocalContext.current.resources.getQuantityString(

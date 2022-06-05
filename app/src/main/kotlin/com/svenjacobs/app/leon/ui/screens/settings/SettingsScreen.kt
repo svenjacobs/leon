@@ -19,9 +19,9 @@
 package com.svenjacobs.app.leon.ui.screens.settings
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -93,7 +93,7 @@ private fun Content(
                     end = 8.dp,
                 ),
             text = BuildConfig.VERSION_NAME,
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.bodySmall,
         )
     }
 }

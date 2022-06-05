@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Switch
-import androidx.compose.material.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -37,6 +34,7 @@ import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsParametersViewModel
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun SettingsParametersScreen(
     viewModel: SettingsParametersViewModel,
 ) {
@@ -56,7 +54,7 @@ fun SettingsParametersScreen(
             Text(
                 stringResource(R.string.parameters_description),
                 modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge,
             )
 
             LazyColumn {

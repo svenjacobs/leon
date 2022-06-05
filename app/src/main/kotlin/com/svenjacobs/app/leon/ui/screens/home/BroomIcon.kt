@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Image
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -34,7 +35,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.ui.theme.primaryColor
 
 enum class BroomState { START, END }
 
@@ -57,7 +57,7 @@ fun BroomIcon(
     ) { progress ->
         when (progress) {
             BroomState.START -> Color.DarkGray
-            BroomState.END -> primaryColor
+            BroomState.END -> MaterialTheme.colorScheme.primary
         }
     }
 
