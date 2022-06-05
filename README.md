@@ -41,4 +41,5 @@ recommended and cutting-edge technologies and libraries such as:
 - Jetpack [Compose](https://developer.android.com/jetpack/compose)
 - Jetpack [Navigation](https://developer.android.com/guide/navigation)
 - Jetpack [Hilt](https://dagger.dev/hilt/)
+- [Material Design 3](https://m3.material.io/)
 - several other Jetpack & AndroidX libraries
