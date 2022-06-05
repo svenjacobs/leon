@@ -39,6 +39,7 @@ import com.svenjacobs.app.leon.ui.theme.AppTheme
 fun HomeScreen(
     result: CleaningResult,
     onShareButtonClick: (CleaningResult.Success) -> Unit,
+    onCopyToClipboardClick: (CleaningResult.Success) -> Unit,
     onVerifyButtonClick: (CleaningResult.Success) -> Unit,
 ) {
     Column(
@@ -67,6 +68,7 @@ fun HomeScreen(
                             result = res,
                             onShareButtonClick = onShareButtonClick,
                             onVerifyButtonClick = onVerifyButtonClick,
+                            onCopyToClipboardClick = onCopyToClipboardClick,
                         )
                         is CleaningResult.Failure -> FailureBody()
                     }
@@ -92,6 +94,7 @@ private fun Statistics(result: CleaningResult.Success) {
 private fun SuccessBody(
     result: CleaningResult.Success,
     onShareButtonClick: (CleaningResult.Success) -> Unit,
+    onCopyToClipboardClick: (CleaningResult.Success) -> Unit,
     onVerifyButtonClick: (CleaningResult.Success) -> Unit,
 ) {
     Column {
@@ -121,11 +124,23 @@ private fun SuccessBody(
                             text = stringResource(R.string.share),
                         )
                     }
+
                     TextButton(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onVerifyButtonClick(result) }
+                        onClick = { onCopyToClipboardClick(result) },
+                    ) {
+                        Text(
+                            text = stringResource(R.string.copy),
+                        )
+                    }
+
+                    TextButton(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(8.dp),
+                        onClick = { onVerifyButtonClick(result) },
                     ) {
                         Text(
                             text = stringResource(R.string.verify),
@@ -184,6 +199,7 @@ private fun SuccessBodyPreview() {
             ),
             onShareButtonClick = {},
             onVerifyButtonClick = {},
+            onCopyToClipboardClick = {},
         )
     }
 }

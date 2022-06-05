@@ -1,3 +1,21 @@
+<!--
+  ~ Léon - The URL Cleaner
+  ~ Copyright (C) 2022 Sven Jacobs
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
 <resources>
     <string name="app_name" translatable="false">URL Cleaner</string>
     <string name="screen_home">Home</string>
@@ -5,6 +23,8 @@
     <string name="scaffold_title">Léon – The URL Cleaner (Beta)</string>
     <string name="share">Share</string>
     <string name="verify">Verify</string>
+    <string name="copy">Copy</string>
+    <string name="clipboard_message">Link copied to clipboard</string>
     <string name="how_to_title">How-to</string>
     <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app.</string>
     <plurals name="statistics_parameters">

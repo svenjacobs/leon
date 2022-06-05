@@ -1,1 +1,2 @@
-Reiniger für Flipkart hinzugefügt
+- "In Zwischenablage kopieren" Funktion hinzugefügt
+- Material You Design

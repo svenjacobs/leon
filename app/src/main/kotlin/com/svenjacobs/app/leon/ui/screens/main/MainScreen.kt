@@ -25,14 +25,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -52,6 +52,7 @@ import com.svenjacobs.app.leon.ui.screens.main.model.Screen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsParametersScreen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
+import kotlinx.coroutines.launch
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,13 +72,17 @@ fun MainScreen(
         intent.launchUrl(context, Uri.parse(result.urls.first()))
     }
 
-    val navController = rememberNavController()
     val isBackVisible by viewModel.isBackVisible.collectAsState()
+    val navController = rememberNavController()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+    val clipboard = LocalClipboardManager.current
 
     AppTheme {
         Scaffold(
             topBar = { MyTopAppBar(isBackVisible, navController) },
             bottomBar = { MyBottomBar(navController) },
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             content = { padding ->
                 Box(
                     modifier = Modifier.padding(
@@ -98,6 +103,12 @@ fun MainScreen(
                             HomeScreen(
                                 result = result,
                                 onShareButtonClick = ::onShareButtonClick,
+                                onCopyToClipboardClick = { result ->
+                                    clipboard.setText(AnnotatedString(result.cleanedText))
+                                    coroutineScope.launch {
+                                        snackbarHostState.showSnackbar(context.getString(R.string.clipboard_message))
+                                    }
+                                },
                                 onVerifyButtonClick = ::onVerifyButtonClick,
                             )
                         }

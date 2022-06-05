@@ -1,1 +1,2 @@
-Add sanitizer for Flipkart
+- Add "copy to clipboard" functionality
+- Material You design
