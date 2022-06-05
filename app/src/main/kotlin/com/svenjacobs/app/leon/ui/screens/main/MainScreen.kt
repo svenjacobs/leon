@@ -107,7 +107,9 @@ fun MainScreen(
                             viewModel.setIsBackVisible(false)
                             SettingsScreen(
                                 viewModel = hiltViewModel(),
-                                navController = navController,
+                                onParametersClick = {
+                                    navController.navigate(Screen.SettingsParameters.route)
+                                },
                             )
                         }
 
