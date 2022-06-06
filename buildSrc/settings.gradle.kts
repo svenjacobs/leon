@@ -16,16 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    `kotlin-dsl`
-}
+@file:Suppress("UnstableApiUsage")
 
-repositories {
-    google()
-    mavenCentral()
-}
-
-dependencies {
-    implementation(libs.kotlin.gradle.plugin)
-    implementation(libs.android.gradle.plugin)
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
 }

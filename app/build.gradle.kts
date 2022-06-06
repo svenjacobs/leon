@@ -127,6 +127,9 @@ testlogger {
 }
 
 dependencies {
+    implementation(project(":core-common"))
+    implementation(project(":core-domain"))
+
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

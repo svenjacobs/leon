@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,4 +17,8 @@
  */
 
 rootProject.name = "Leon"
-include(":app")
+include(
+    ":core-common",
+    ":core-domain",
+    ":app",
+)

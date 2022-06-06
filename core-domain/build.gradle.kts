@@ -17,15 +17,9 @@
  */
 
 plugins {
-    `kotlin-dsl`
-}
-
-repositories {
-    google()
-    mavenCentral()
+    `kotlin-library`
 }
 
 dependencies {
-    implementation(libs.kotlin.gradle.plugin)
-    implementation(libs.android.gradle.plugin)
+    api(libs.javax.inject)
 }
