@@ -7,7 +7,7 @@
 !.idea/dictionaries/
 !.idea/copyright/
 .DS_Store
-/build
+build
 /captures
 .externalNativeBuild
 .cxx

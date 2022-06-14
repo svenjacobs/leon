@@ -28,4 +28,6 @@ repositories {
 dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.android.gradle.plugin)
+    // See https://github.com/google/dagger/issues/3068#issuecomment-999118496
+    implementation(libs.square.javapoet)
 }

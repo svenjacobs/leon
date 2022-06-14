@@ -48,6 +48,7 @@ mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.
 mikepenz-aboutlibraries-ui = { module = "com.mikepenz:aboutlibraries", version.ref = "mikepenz-aboutlibraries" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk-agent-jvm = { module = "io.mockk:mockk-agent-jvm", version.ref = "mockk" } # See https://github.com/mockk/mockk/issues/605
+square-javapoet = "com.squareup:javapoet:1.13.0"
 square-moshi = "com.squareup.moshi:moshi:1.13.0"
 
 [bundles]
