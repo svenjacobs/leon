@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,12 +28,12 @@ import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsServiceConnection
 import androidx.core.view.WindowCompat
 import com.svenjacobs.app.leon.ui.screens.main.MainScreen
-import com.svenjacobs.app.leon.ui.screens.main.model.MainViewModel
+import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainScreenViewModel: MainScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         onIntent(intent)
 
-        setContent { MainScreen(this, mainViewModel) }
+        setContent { MainScreen(mainScreenViewModel) }
     }
 
     override fun onStart() {
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             else -> null
         }
 
-        mainViewModel.setText(text)
+        mainScreenViewModel.setText(text)
     }
 
     private fun warmupCustomTabsService() {

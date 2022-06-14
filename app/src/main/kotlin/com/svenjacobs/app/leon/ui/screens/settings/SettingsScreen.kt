@@ -23,23 +23,25 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun SettingsScreen(
-    viewModel: SettingsViewModel = viewModel(),
-    onParametersClick: () -> Unit,
+    onHideBars: (Boolean) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -50,10 +52,36 @@ fun SettingsScreen(
             .start(context)
     }
 
-    Content(
-        onParametersClick = onParametersClick,
-        onLicensesClick = ::onLicensesClick,
-    )
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = SCREEN_SETTINGS,
+    ) {
+        composable(
+            route = SCREEN_SETTINGS,
+        ) {
+            SideEffect { onHideBars(false) }
+
+            Content(
+                onParametersClick = {
+                    navController.navigate(SCREEN_PARAMETERS)
+                },
+                onLicensesClick = ::onLicensesClick
+            )
+        }
+
+        composable(
+            route = SCREEN_PARAMETERS,
+        ) {
+            SideEffect { onHideBars(true) }
+
+            SettingsParametersScreen(
+                viewModel = hiltViewModel(),
+                onBackClick = { navController.popBackStack() },
+            )
+        }
+    }
 }
 
 @Composable
@@ -102,8 +130,9 @@ private fun Content(
 @Preview
 private fun SettingsScreenPreview() {
     AppTheme {
-        SettingsScreen(
-            onParametersClick = {},
-        )
+        SettingsScreen {}
     }
 }
+
+private const val SCREEN_SETTINGS = "settings"
+private const val SCREEN_PARAMETERS = "parameters"

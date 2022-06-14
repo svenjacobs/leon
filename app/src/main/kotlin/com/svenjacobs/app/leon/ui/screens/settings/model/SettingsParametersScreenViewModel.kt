@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsParametersViewModel @Inject constructor(
+class SettingsParametersScreenViewModel @Inject constructor(
     private val cleanerRepository: CleanerRepository,
 ) : ViewModel() {
 

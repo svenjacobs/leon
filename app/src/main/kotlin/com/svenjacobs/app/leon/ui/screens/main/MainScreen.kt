@@ -18,24 +18,19 @@
 
 package com.svenjacobs.app.leon.ui.screens.main
 
-import android.content.Context
-import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -45,11 +40,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.services.model.CleaningResult
+import com.svenjacobs.app.leon.ui.common.MyTopAppBar
 import com.svenjacobs.app.leon.ui.screens.home.HomeScreen
-import com.svenjacobs.app.leon.ui.screens.main.model.MainViewModel
+import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
 import com.svenjacobs.app.leon.ui.screens.main.model.Screen
-import com.svenjacobs.app.leon.ui.screens.settings.SettingsParametersScreen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 import kotlinx.coroutines.launch
@@ -57,40 +51,23 @@ import kotlinx.coroutines.launch
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MainScreen(
-    context: Context,
-    viewModel: MainViewModel,
+    viewModel: MainScreenViewModel,
 ) {
-    val result by viewModel.result.collectAsState()
+    val state by viewModel.uiState.collectAsState()
 
-    fun onShareButtonClick(result: CleaningResult.Success) {
-        val intent = viewModel.buildIntent(result.cleanedText)
-        context.startActivity(intent)
-    }
-
-    fun onVerifyButtonClick(result: CleaningResult.Success) {
-        val intent = viewModel.buildCustomTabIntent(context)
-        intent.launchUrl(context, Uri.parse(result.urls.first()))
-    }
-
-    val isBackVisible by viewModel.isBackVisible.collectAsState()
+    var hideBars by rememberSaveable { mutableStateOf(false) }
     val navController = rememberNavController()
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
-    val clipboard = LocalClipboardManager.current
 
     AppTheme {
         Scaffold(
-            topBar = { MyTopAppBar(isBackVisible, navController) },
-            bottomBar = { MyBottomBar(navController) },
+            topBar = { if (!hideBars) MyTopAppBar() },
+            bottomBar = { if (!hideBars) MyBottomBar(navController = navController) },
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             content = { padding ->
                 Box(
-                    modifier = Modifier.padding(
-                        start = padding.calculateStartPadding(layoutDirection = LocalLayoutDirection.current),
-                        top = padding.calculateTopPadding(),
-                        end = padding.calculateEndPadding(layoutDirection = LocalLayoutDirection.current),
-                        bottom = padding.calculateBottomPadding(),
-                    )
+                    modifier = Modifier.padding(padding)
                 ) {
                     BackgroundImage()
 
@@ -99,34 +76,20 @@ fun MainScreen(
                         startDestination = Screen.Home.route,
                     ) {
                         composable(Screen.Home.route) {
-                            viewModel.setIsBackVisible(false)
                             HomeScreen(
-                                result = result,
-                                onShareButtonClick = ::onShareButtonClick,
-                                onCopyToClipboardClick = { result ->
-                                    clipboard.setText(AnnotatedString(result.cleanedText))
+                                viewModel = hiltViewModel(),
+                                result = state.result,
+                                showSnackbarMessage = { message ->
                                     coroutineScope.launch {
-                                        snackbarHostState.showSnackbar(context.getString(R.string.clipboard_message))
+                                        snackbarHostState.showSnackbar(message)
                                     }
                                 },
-                                onVerifyButtonClick = ::onVerifyButtonClick,
                             )
                         }
 
                         composable(Screen.Settings.route) {
-                            viewModel.setIsBackVisible(false)
                             SettingsScreen(
-                                viewModel = hiltViewModel(),
-                                onParametersClick = {
-                                    navController.navigate(Screen.SettingsParameters.route)
-                                },
-                            )
-                        }
-
-                        composable(Screen.SettingsParameters.route) {
-                            viewModel.setIsBackVisible(true)
-                            SettingsParametersScreen(
-                                viewModel = hiltViewModel(),
+                                onHideBars = { hideBars = it },
                             )
                         }
                     }
@@ -137,26 +100,9 @@ fun MainScreen(
 }
 
 @Composable
-private fun MyTopAppBar(
-    isBackVisible: Boolean,
-    navController: NavHostController
-) {
-    CenterAlignedTopAppBar(
-        modifier = Modifier.statusBarsPadding(),
-        title = {
-            Text(
-                text = stringResource(R.string.scaffold_title),
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1
-            )
-        },
-        navigationIcon = if (isBackVisible) ({ NavigationIcon(navController) }) else ({})
-    )
-}
-
-@Composable
 private fun MyBottomBar(
-    navController: NavHostController
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
 ) {
     val bottomNavItems = listOf(
         Screen.Home,
@@ -164,7 +110,7 @@ private fun MyBottomBar(
     )
 
     NavigationBar(
-        modifier = Modifier.navigationBarsPadding(),
+        modifier = modifier.navigationBarsPadding(),
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
@@ -194,21 +140,13 @@ private fun MyBottomBar(
 }
 
 @Composable
-private fun NavigationIcon(navController: NavController) {
-    IconButton(onClick = { navController.popBackStack() }) {
-        Icon(
-            Icons.Filled.ArrowBack,
-            contentDescription = stringResource(R.string.a11y_back_navigation),
-        )
-    }
-}
-
-@Composable
-private fun BackgroundImage() {
+private fun BackgroundImage(
+    modifier: Modifier = Modifier,
+) {
     Image(
+        modifier = modifier.fillMaxSize(),
         painter = painterResource(if (BuildConfig.DEBUG) R.drawable.background_bug else R.drawable.background_broom),
         contentDescription = null,
         contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize(),
     )
 }

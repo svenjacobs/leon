@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,13 +40,6 @@ sealed class Screen(
 
     object Settings : Screen(
         route = "settings",
-        icon = Icons.Filled.Settings,
-        label = R.string.screen_settings,
-        iconContentDescription = R.string.screen_settings,
-    )
-
-    object SettingsParameters : Screen(
-        route = "settings_parameters",
         icon = Icons.Filled.Settings,
         label = R.string.screen_settings,
         iconContentDescription = R.string.screen_settings,

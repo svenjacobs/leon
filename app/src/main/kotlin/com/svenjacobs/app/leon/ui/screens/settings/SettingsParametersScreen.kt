@@ -31,51 +31,62 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.domain.model.Sanitizer
-import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsParametersViewModel
+import com.svenjacobs.app.leon.ui.common.MyTopAppBar
+import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsParametersScreenViewModel
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun SettingsParametersScreen(
-    viewModel: SettingsParametersViewModel,
+    viewModel: SettingsParametersScreenViewModel,
+    onBackClick: () -> Unit,
 ) {
     val sanitizers by viewModel.sanitizers.collectAsState()
 
-    Card(
-        modifier = Modifier.padding(16.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(
-                start = 8.dp,
-                top = 8.dp,
-                end = 8.dp,
-                bottom = 16.dp,
+    Scaffold(
+        topBar = {
+            MyTopAppBar(
+                onBackClick = onBackClick,
             )
+        }
+    ) { contentPadding ->
+        Card(
+            modifier = Modifier
+                .padding(contentPadding)
+                .padding(16.dp)
         ) {
-            Text(
-                stringResource(R.string.parameters_description),
-                modifier = Modifier.padding(8.dp),
-                style = MaterialTheme.typography.bodyLarge,
-            )
+            Column(
+                modifier = Modifier.padding(
+                    start = 8.dp,
+                    top = 8.dp,
+                    end = 8.dp,
+                    bottom = 16.dp,
+                )
+            ) {
+                Text(
+                    stringResource(R.string.parameters_description),
+                    modifier = Modifier.padding(8.dp),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
 
-            LazyColumn {
-                sanitizers.forEach { sanitizer ->
-                    item(key = sanitizer.uid) {
-                        Item(
-                            sanitizer = sanitizer,
-                            viewModel = viewModel,
-                        )
+                LazyColumn {
+                    sanitizers.forEach { sanitizer ->
+                        item(key = sanitizer.uid) {
+                            Item(
+                                sanitizer = sanitizer,
+                                viewModel = viewModel,
+                            )
+                        }
                     }
                 }
             }
         }
-
     }
 }
 
 @Composable
 private fun Item(
     sanitizer: Sanitizer,
-    viewModel: SettingsParametersViewModel,
+    viewModel: SettingsParametersScreenViewModel,
 ) {
     Row(
         modifier = Modifier.padding(16.dp)

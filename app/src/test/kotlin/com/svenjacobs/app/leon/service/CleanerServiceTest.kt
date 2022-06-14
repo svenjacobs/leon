@@ -20,13 +20,12 @@ package com.svenjacobs.app.leon.service
 
 import com.svenjacobs.app.leon.repository.CleanerRepositoryFake
 import com.svenjacobs.app.leon.services.CleanerService
-import com.svenjacobs.app.leon.services.model.CleaningResult
 import com.svenjacobs.app.leon.test.MOCK_SANITIZER_STRATEGY_EXECUTOR
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.be
 import io.kotest.matchers.collections.haveSize
 import io.kotest.matchers.should
-import io.kotest.matchers.types.beInstanceOf
+import io.kotest.matchers.shouldBe
 
 class CleanerServiceTest : ShouldSpec({
 
@@ -40,48 +39,63 @@ class CleanerServiceTest : ShouldSpec({
         should("remove tracking parameters") {
             val result =
                 service.clean("https://www.some.site/?utm_source=source&utm_medium=medium&ga_source=ga_source&ga_medium=ga_medium")
-            result should beInstanceOf<CleaningResult.Success>()
-            (result as CleaningResult.Success).cleanedText should be("https://www.some.site/")
-            result.cleanedParametersCount should be(4)
-            result.urls should haveSize(1)
-            result.urls.first() should be("https://www.some.site/")
+
+            result.isSuccess shouldBe true
+            val cleaned = result.getOrThrow()
+
+            cleaned.cleanedText should be("https://www.some.site/")
+            cleaned.cleanedParametersCount should be(4)
+            cleaned.urls should haveSize(1)
+            cleaned.urls.first() should be("https://www.some.site/")
         }
 
         should("keep non-tracking parameters") {
             val result =
                 service.clean("https://www.some.site/?utm_source=source&utm_medium=medium&page=1&q=query")
-            result should beInstanceOf<CleaningResult.Success>()
-            (result as CleaningResult.Success).cleanedText should be("https://www.some.site/?page=1&q=query")
-            result.cleanedParametersCount should be(2)
-            result.urls should haveSize(1)
-            result.urls.first() should be("https://www.some.site/?page=1&q=query")
+
+            result.isSuccess shouldBe true
+            val cleaned = result.getOrThrow()
+
+            cleaned.cleanedText should be("https://www.some.site/?page=1&q=query")
+            cleaned.cleanedParametersCount should be(2)
+            cleaned.urls should haveSize(1)
+            cleaned.urls.first() should be("https://www.some.site/?page=1&q=query")
         }
 
         should("keep anchor tags after cleaned parameters") {
             val result =
                 service.clean("https://www.some.site/?utm_source=source&utm_medium=medium#anchor")
-            result should beInstanceOf<CleaningResult.Success>()
-            (result as CleaningResult.Success).cleanedText should be("https://www.some.site/#anchor")
-            result.urls.first() should be("https://www.some.site/#anchor")
+
+            result.isSuccess shouldBe true
+            val cleaned = result.getOrThrow()
+
+            cleaned.cleanedText should be("https://www.some.site/#anchor")
+            cleaned.urls.first() should be("https://www.some.site/#anchor")
         }
 
         should("clean multiple URLs in text") {
             val result =
                 service.clean("Hey, I would like to share this https://www.some.site/?utm_source=source&utm_medium=medium link as well as this https://www.some2.site?wt_mc=wt_mc link :)")
-            result should beInstanceOf<CleaningResult.Success>()
-            (result as CleaningResult.Success).cleanedText should be("Hey, I would like to share this https://www.some.site/ link as well as this https://www.some2.site link :)")
-            result.cleanedParametersCount should be(3)
-            result.urls should haveSize(2)
-            result.urls[0] should be("https://www.some.site/")
-            result.urls[1] should be("https://www.some2.site")
+
+            result.isSuccess shouldBe true
+            val cleaned = result.getOrThrow()
+
+            cleaned.cleanedText should be("Hey, I would like to share this https://www.some.site/ link as well as this https://www.some2.site link :)")
+            cleaned.cleanedParametersCount should be(3)
+            cleaned.urls should haveSize(2)
+            cleaned.urls[0] should be("https://www.some.site/")
+            cleaned.urls[1] should be("https://www.some2.site")
         }
 
         should("clean Amazon URLs") {
             val result =
                 service.clean("https://smile.amazon.de/Goodstoworld-Herren-T-Shirt-Gr-Shark/dp/B07Q5KYJ9G/ref=sr_1_22?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Nyan+cat&qid=1623259976&sr=8-22")
-            result should beInstanceOf<CleaningResult.Success>()
-            (result as CleaningResult.Success).cleanedText should be("https://smile.amazon.de/Goodstoworld-Herren-T-Shirt-Gr-Shark/dp/B07Q5KYJ9G/")
-            result.cleanedParametersCount should be(6)
+
+            result.isSuccess shouldBe true
+            val cleaned = result.getOrThrow()
+
+            cleaned.cleanedText should be("https://smile.amazon.de/Goodstoworld-Herren-T-Shirt-Gr-Shark/dp/B07Q5KYJ9G/")
+            cleaned.cleanedParametersCount should be(6)
         }
     }
 })

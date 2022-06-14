@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.ui.screens.settings.model
+package com.svenjacobs.app.leon.core.common.result
 
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+sealed interface UiResult<out T> {
+    data class Success<T>(val data: T) : UiResult<T>
+    data class Error(val exception: Throwable? = null) : UiResult<Nothing>
+    object Loading : UiResult<Nothing>
+}
 
-@HiltViewModel
-class SettingsViewModel @Inject constructor(
-) : ViewModel()
+fun <T> Result<T>.toUiResult(): UiResult<T> =
+    when {
+        isSuccess -> UiResult.Success(data = getOrThrow())
+        else -> UiResult.Error(exception = exceptionOrNull())
+    }

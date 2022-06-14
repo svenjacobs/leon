@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.ui.screens.main.model
+package com.svenjacobs.app.leon.ui.screens.home.model
 
 import android.content.Context
 import android.content.Intent
@@ -24,38 +24,12 @@ import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.services.CleanerService
-import com.svenjacobs.app.leon.services.model.CleaningResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val cleanerService: CleanerService,
-) : ViewModel() {
-
-    private val _result = MutableStateFlow<CleaningResult>(CleaningResult.Failure)
-    val result = _result.asStateFlow()
-
-    private val _isBackVisible = MutableStateFlow(false)
-    val isBackVisible = _isBackVisible.asStateFlow()
-
-    fun setText(text: String?) {
-        if (text == null && result.value is CleaningResult.Success) return
-
-        viewModelScope.launch {
-            _result.value = cleanerService.clean(text)
-        }
-    }
-
-    fun setIsBackVisible(isBackVisible: Boolean) {
-        _isBackVisible.value = isBackVisible
-    }
+class HomeScreenViewModel @Inject constructor() : ViewModel() {
 
     fun buildIntent(text: String): Intent {
         val target = Intent(Intent.ACTION_SEND).apply {

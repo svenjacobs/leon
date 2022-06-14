@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ package com.svenjacobs.app.leon.services
 
 import com.svenjacobs.app.leon.domain.model.Sanitizer
 import com.svenjacobs.app.leon.repository.CleanerRepository
-import com.svenjacobs.app.leon.services.model.CleaningResult
+import com.svenjacobs.app.leon.services.model.Cleaned
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
@@ -29,8 +29,8 @@ class CleanerService @Inject constructor(
     private val sanitizerStrategyExecutor: SanitizerStrategyExecutor,
 ) {
 
-    suspend fun clean(text: String?): CleaningResult {
-        if (text.isNullOrEmpty()) return CleaningResult.Failure
+    suspend fun clean(text: String?): Result<Cleaned> {
+        if (text.isNullOrEmpty()) return Result.failure(IllegalArgumentException())
 
         var cleaned: String = text
         var count = 0
@@ -44,11 +44,13 @@ class CleanerService @Inject constructor(
             count += result.cleanedParametersCount
         }
 
-        return CleaningResult.Success(
-            originalText = text,
-            cleanedText = cleaned,
-            cleanedParametersCount = count,
-            urls = urls,
+        return Result.success(
+            Cleaned(
+                originalText = text,
+                cleanedText = cleaned,
+                cleanedParametersCount = count,
+                urls = urls,
+            ),
         )
     }
 

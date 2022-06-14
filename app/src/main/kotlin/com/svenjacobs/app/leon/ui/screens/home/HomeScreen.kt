@@ -18,6 +18,7 @@
 
 package com.svenjacobs.app.leon.ui.screens.home
 
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -26,24 +27,48 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.services.model.CleaningResult
+import com.svenjacobs.app.leon.core.common.result.UiResult
+import com.svenjacobs.app.leon.services.model.Cleaned
+import com.svenjacobs.app.leon.ui.screens.home.model.HomeScreenViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen(
-    result: CleaningResult,
-    onShareButtonClick: (CleaningResult.Success) -> Unit,
-    onCopyToClipboardClick: (CleaningResult.Success) -> Unit,
-    onVerifyButtonClick: (CleaningResult.Success) -> Unit,
+    viewModel: HomeScreenViewModel = viewModel(),
+    modifier: Modifier = Modifier,
+    result: UiResult<Cleaned>,
+    showSnackbarMessage: (String) -> Unit,
 ) {
+    val context = LocalContext.current
+    val clipboard = LocalClipboardManager.current
+
+    fun onShareButtonClick(cleaned: Cleaned) {
+        val intent = viewModel.buildIntent(cleaned.cleanedText)
+        context.startActivity(intent)
+    }
+
+    fun onVerifyButtonClick(cleaned: Cleaned) {
+        val intent = viewModel.buildCustomTabIntent(context)
+        intent.launchUrl(context, Uri.parse(cleaned.urls.first()))
+    }
+
+    fun onCopyToClipboardClick(cleaned: Cleaned) {
+        clipboard.setText(AnnotatedString(cleaned.cleanedText))
+        showSnackbarMessage(context.getString(R.string.clipboard_message))
+    }
+
     Column(
-        modifier = Modifier.verticalScroll(rememberScrollState())
+        modifier = modifier.verticalScroll(rememberScrollState())
     ) {
         Box(
             modifier = Modifier.padding(16.dp),
@@ -54,24 +79,22 @@ fun HomeScreen(
             ) {
                 BroomIcon(
                     modifier = Modifier
-                        .width(128.dp)
-                        .height(128.dp)
+                        .size(128.dp)
                         .padding(
                             top = 16.dp,
                             bottom = 32.dp,
                         )
                 )
 
-                result.let { res ->
-                    when (res) {
-                        is CleaningResult.Success -> SuccessBody(
-                            result = res,
-                            onShareButtonClick = onShareButtonClick,
-                            onVerifyButtonClick = onVerifyButtonClick,
-                            onCopyToClipboardClick = onCopyToClipboardClick,
-                        )
-                        is CleaningResult.Failure -> FailureBody()
-                    }
+                when (result) {
+                    is UiResult.Success -> SuccessBody(
+                        cleaned = result.data,
+                        onShareButtonClick = ::onShareButtonClick,
+                        onVerifyButtonClick = ::onVerifyButtonClick,
+                        onCopyToClipboardClick = ::onCopyToClipboardClick,
+                    )
+                    is UiResult.Error -> ErrorBody()
+                    else -> {}
                 }
             }
         }
@@ -79,10 +102,15 @@ fun HomeScreen(
 }
 
 @Composable
-private fun Statistics(result: CleaningResult.Success) {
-    Column {
+private fun Statistics(
+    modifier: Modifier = Modifier,
+    cleaned: Cleaned,
+) {
+    Column(
+        modifier = modifier,
+    ) {
         CounterText(
-            result.cleanedParametersCount,
+            cleaned.cleanedParametersCount,
             pluralsRes = R.plurals.statistics_parameters,
             style = MaterialTheme.typography.headlineSmall,
         )
@@ -92,22 +120,25 @@ private fun Statistics(result: CleaningResult.Success) {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun SuccessBody(
-    result: CleaningResult.Success,
-    onShareButtonClick: (CleaningResult.Success) -> Unit,
-    onCopyToClipboardClick: (CleaningResult.Success) -> Unit,
-    onVerifyButtonClick: (CleaningResult.Success) -> Unit,
+    modifier: Modifier = Modifier,
+    cleaned: Cleaned,
+    onShareButtonClick: (Cleaned) -> Unit,
+    onCopyToClipboardClick: (Cleaned) -> Unit,
+    onVerifyButtonClick: (Cleaned) -> Unit,
 ) {
-    Column {
+    Column(
+        modifier = modifier,
+    ) {
         Card {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     modifier = Modifier.padding(16.dp),
-                    text = result.cleanedText,
+                    text = cleaned.cleanedText,
                 )
 
-                Statistics(result)
+                Statistics(cleaned = cleaned)
 
                 Row(
                     modifier = Modifier
@@ -118,7 +149,7 @@ private fun SuccessBody(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onShareButtonClick(result) },
+                        onClick = { onShareButtonClick(cleaned) },
                     ) {
                         Text(
                             text = stringResource(R.string.share),
@@ -129,7 +160,7 @@ private fun SuccessBody(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onCopyToClipboardClick(result) },
+                        onClick = { onCopyToClipboardClick(cleaned) },
                     ) {
                         Text(
                             text = stringResource(R.string.copy),
@@ -140,7 +171,7 @@ private fun SuccessBody(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onVerifyButtonClick(result) },
+                        onClick = { onVerifyButtonClick(cleaned) },
                     ) {
                         Text(
                             text = stringResource(R.string.verify),
@@ -154,9 +185,11 @@ private fun SuccessBody(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun FailureBody() {
+private fun ErrorBody(
+    modifier: Modifier = Modifier,
+) {
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -191,7 +224,7 @@ private fun FailureBody() {
 private fun SuccessBodyPreview() {
     AppTheme {
         SuccessBody(
-            result = CleaningResult.Success(
+            cleaned = Cleaned(
                 originalText = "http://www.some.url?tracking=true",
                 cleanedText = "http://www.some.url",
                 cleanedParametersCount = 1,
@@ -208,6 +241,6 @@ private fun SuccessBodyPreview() {
 @Composable
 private fun FailureBodyPreview() {
     AppTheme {
-        FailureBody()
+        ErrorBody()
     }
 }
