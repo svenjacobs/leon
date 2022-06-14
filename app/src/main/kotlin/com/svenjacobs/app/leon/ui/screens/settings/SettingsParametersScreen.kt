@@ -20,6 +20,7 @@ package com.svenjacobs.app.leon.ui.screens.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
@@ -53,6 +54,7 @@ fun SettingsParametersScreen(
             modifier = Modifier
                 .padding(contentPadding)
                 .padding(16.dp)
+                .navigationBarsPadding()
         ) {
             Column(
                 modifier = Modifier.padding(

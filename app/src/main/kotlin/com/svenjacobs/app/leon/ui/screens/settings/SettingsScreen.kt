@@ -26,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +33,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mikepenz.aboutlibraries.LibsBuilder
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.ui.theme.AppTheme
@@ -43,15 +41,6 @@ import com.svenjacobs.app.leon.ui.theme.AppTheme
 fun SettingsScreen(
     onHideBars: (Boolean) -> Unit,
 ) {
-    val context = LocalContext.current
-
-    fun onLicensesClick() {
-        LibsBuilder()
-            .withAboutIconShown(false)
-            .withVersionShown(false)
-            .start(context)
-    }
-
     val navController = rememberNavController()
 
     NavHost(
@@ -64,10 +53,8 @@ fun SettingsScreen(
             SideEffect { onHideBars(false) }
 
             Content(
-                onParametersClick = {
-                    navController.navigate(SCREEN_PARAMETERS)
-                },
-                onLicensesClick = ::onLicensesClick
+                onParametersClick = { navController.navigate(SCREEN_PARAMETERS) },
+                onLicensesClick = { navController.navigate(SCREEN_LICENSES) }
             )
         }
 
@@ -78,6 +65,16 @@ fun SettingsScreen(
 
             SettingsParametersScreen(
                 viewModel = hiltViewModel(),
+                onBackClick = { navController.popBackStack() },
+            )
+        }
+
+        composable(
+            route = SCREEN_LICENSES,
+        ) {
+            SideEffect { onHideBars(true) }
+
+            SettingsLicensesScreen(
                 onBackClick = { navController.popBackStack() },
             )
         }
@@ -136,3 +133,4 @@ private fun SettingsScreenPreview() {
 
 private const val SCREEN_SETTINGS = "settings"
 private const val SCREEN_PARAMETERS = "parameters"
+private const val SCREEN_LICENSES = "licenses"
