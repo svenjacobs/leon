@@ -16,20 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.emptyparameters
+
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
+
+class EmptyParametersSanitizerTest : WordSpec({
+
+
+    "invoke" should {
+
+        "remove empty parameters" {
+            val sanitizer = EmptyParametersSanitizer()
+            val result = sanitizer(
+                "https://www.buch24.de/shopdirekt.cgi?sessionid=1650808921-319962258&id=13241297&p=3&sid=&static=0&nav="
+            )
+
+            result shouldBe "https://www.buch24.de/shopdirekt.cgi?sessionid=1650808921-319962258&id=13241297&p=3&static=0"
+        }
+    }
+})

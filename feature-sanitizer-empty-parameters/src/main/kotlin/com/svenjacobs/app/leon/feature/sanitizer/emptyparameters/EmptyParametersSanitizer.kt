@@ -16,20 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
+package com.svenjacobs.app.leon.feature.sanitizer.emptyparameters
+
+import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
+import javax.inject.Inject
+
+class EmptyParametersSanitizer @Inject constructor() : RegexSanitizer(
+    regex = Regex("[?&][^=]+=(?=&|$)")
 )

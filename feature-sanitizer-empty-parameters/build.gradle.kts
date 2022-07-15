@@ -16,20 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
-)
+plugins {
+    `feature-sanitizer`
+}
+
+android {
+    resourcePrefix("feat_sanitizer_empty_parameters_")
+}

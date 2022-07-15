@@ -118,6 +118,7 @@ dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-domain"))
     implementation(project(":feature-sanitizer-amazon"))
+    implementation(project(":feature-sanitizer-empty-parameters"))
     implementation(project(":feature-sanitizer-facebook"))
     implementation(project(":feature-sanitizer-flipkart"))
     implementation(project(":feature-sanitizer-google-analytics"))
