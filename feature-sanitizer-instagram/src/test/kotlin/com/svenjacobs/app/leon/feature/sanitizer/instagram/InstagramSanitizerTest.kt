@@ -16,18 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.instagram
+
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
+
+class InstagramSanitizerTest : WordSpec({
+
+    "invoke" should {
+
+        "remove \"igshid\" parameter" {
+            val sanitizer = InstagramSanitizer()
+
+            val result = sanitizer(
+                "https://www.instagram.com/p/Ceeg-VgI4yF/?igshid=YmMyMTA2M2Y="
+            )
+
+            result shouldBe "https://www.instagram.com/p/Ceeg-VgI4yF/"
+        }
+    }
+})

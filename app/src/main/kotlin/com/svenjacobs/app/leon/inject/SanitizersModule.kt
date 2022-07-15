@@ -25,6 +25,7 @@ import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonSanitizerRegistrat
 import com.svenjacobs.app.leon.feature.sanitizer.facebook.FacebookSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.flipkart.FlipkartSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.ga.GoogleAnalyticsSanitizerRegistration
+import com.svenjacobs.app.leon.feature.sanitizer.instagram.InstagramSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.netflix.NetflixSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.spotify.SpotifySanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.twitter.TwitterSanitizerRegistration
@@ -50,6 +51,7 @@ object SanitizersModuleProviders {
         facebook: FacebookSanitizerRegistration,
         flipkart: FlipkartSanitizerRegistration,
         googleAnalytics: GoogleAnalyticsSanitizerRegistration,
+        instagram: InstagramSanitizerRegistration,
         netflix: NetflixSanitizerRegistration,
         spotify: SpotifySanitizerRegistration,
         twitter: TwitterSanitizerRegistration,
@@ -60,6 +62,7 @@ object SanitizersModuleProviders {
             facebook,
             flipkart,
             googleAnalytics,
+            instagram,
             netflix,
             spotify,
             twitter,
