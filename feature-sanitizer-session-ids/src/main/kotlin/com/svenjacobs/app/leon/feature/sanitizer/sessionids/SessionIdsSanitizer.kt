@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.feature.sanitizer.flipkart
+package com.svenjacobs.app.leon.feature.sanitizer.sessionids
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
-class FlipkartSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.AllParameters,
+class SessionIdsSanitizer @Inject constructor() : RegexSanitizer(
+    regex = RegexFactory.ofWildcardParameter("j?sessionid"),
 )

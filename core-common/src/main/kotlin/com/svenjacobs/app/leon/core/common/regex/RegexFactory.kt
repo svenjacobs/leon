@@ -23,7 +23,7 @@ object RegexFactory {
     /**
      * This regex matches all parameters of a URL, so everything starting at "?".
      */
-    val allParameters = Regex("\\?.*")
+    val AllParameters = Regex("\\?.*")
 
     /**
      * Returns a regex string which matches a certain parameter.

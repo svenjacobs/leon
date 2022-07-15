@@ -26,6 +26,7 @@ include(
     ":feature-sanitizer-google-analytics",
     ":feature-sanitizer-instagram",
     ":feature-sanitizer-netflix",
+    ":feature-sanitizer-session-ids",
     ":feature-sanitizer-spotify",
     ":feature-sanitizer-twitter",
     ":feature-sanitizer-webtrekk",
