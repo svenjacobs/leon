@@ -9,7 +9,7 @@ google-accompanist = "0.24.13-rc"
 google-hilt = "2.42"
 kotest = "5.3.2"
 kotlin = "1.7.0"
-kotlinx-coroutines = "1.6.3"
+kotlinx-coroutines = "1.6.4"
 mikepenz-aboutlibraries = "10.3.1"
 mockk = "1.12.4"
 
