@@ -1,2 +1,3 @@
-- "In Zwischenablage kopieren" Funktion hinzugefügt
-- Material You Design
+- Instagram Reiniger hinzugefügt
+- Reiniger für generische Session IDs hinzugefügt
+- Reiniger für leere Parameter hinzugefügt

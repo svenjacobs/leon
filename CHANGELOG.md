@@ -1,3 +1,11 @@
+## Version 0.10.0
+
+_2022-07-15_
+
+- Add Instagram sanitizer
+- Add sanitizer for generic session IDs
+- Add sanitizer for empty parameters
+
 ## Version 0.9.0
 
 _2022-06-05_
