@@ -23,9 +23,3 @@ sealed interface UiResult<out T> {
     data class Error(val exception: Throwable? = null) : UiResult<Nothing>
     object Loading : UiResult<Nothing>
 }
-
-fun <T> Result<T>.toUiResult(): UiResult<T> =
-    when {
-        isSuccess -> UiResult.Success(data = getOrThrow())
-        else -> UiResult.Error(exception = exceptionOrNull())
-    }

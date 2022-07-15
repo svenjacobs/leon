@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,33 +18,25 @@
 
 package com.svenjacobs.app.leon.startup
 
-import com.svenjacobs.app.leon.datastore.DataStoreManager
-import com.svenjacobs.app.leon.repository.CleanerRepository
-import kotlinx.coroutines.flow.first
+import android.content.Context
+import androidx.core.content.ContextCompat
 import timber.log.Timber
+import java.io.File
 import javax.inject.Inject
 
-class Migrations @Inject constructor(
-    private val cleanerRepository: CleanerRepository,
-    private val dataStoreManager: DataStoreManager,
-) {
+class Migrations @Inject constructor() {
 
-    suspend fun migrate() {
-        val prevVersionCode = dataStoreManager.versionCode.first()
+    fun migrate(context: Context) {
+        try {
+            // Delete obsolete database files from previous app version
+            val dataDir = ContextCompat.getDataDir(context) ?: return
+            val databases = File(dataDir, "databases")
 
-        if (prevVersionCode <= VERSION_0_4_1) {
-            Timber.d("Performing migration from version <= 0.4.1")
-
-            // Removing all default sanitizers because they have changed
-            cleanerRepository.getSanitizers().first().forEach { sanitizer ->
-                if (sanitizer.isDefault) {
-                    cleanerRepository.deleteSanitizer(sanitizer)
-                }
-            }
+            databases.listFiles()
+                ?.filter { file -> file.name.startsWith("leon") }
+                ?.forEach { file -> file.delete() }
+        } catch (e: Exception) {
+            Timber.e(e)
         }
-    }
-
-    private companion object {
-        private const val VERSION_0_4_1 = 225
     }
 }

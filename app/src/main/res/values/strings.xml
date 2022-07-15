@@ -27,11 +27,9 @@
     <string name="clipboard_message">Link copied to clipboard</string>
     <string name="how_to_title">How-to</string>
     <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app.</string>
-    <plurals name="statistics_parameters">
-        <item quantity="one">%1$d parameter removed</item>
-        <item quantity="other">%1$d parameters removed</item>
-    </plurals>
-    <string name="parameters">Parameters</string>
+    <string name="cleaned_url">Cleaned URL</string>
+    <string name="original_url">Original URL</string>
+    <string name="sanitizers">Sanitizers</string>
     <string name="licenses">Licenses</string>
-    <string name="parameters_description">Here you can toggle parameters on or off, which should be removed.</string>
+    <string name="sanitizers_description">Enable or disable sanitizers</string>
 </resources>

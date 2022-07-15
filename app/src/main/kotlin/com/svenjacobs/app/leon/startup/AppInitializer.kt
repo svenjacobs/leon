@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +21,12 @@ package com.svenjacobs.app.leon.startup
 import android.content.Context
 import androidx.startup.Initializer
 import com.svenjacobs.app.leon.BuildConfig
-import com.svenjacobs.app.leon.datastore.DataStoreManager
-import com.svenjacobs.app.leon.domain.Defaults
-import com.svenjacobs.app.leon.inject.ApplicationCoroutineScope
-import com.svenjacobs.app.leon.repository.CleanerRepository
+import com.svenjacobs.app.leon.datastore.AppDataStoreManager
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * Performs (initial) initialization of app.
@@ -42,14 +38,9 @@ class AppInitializer : Initializer<Unit> {
     @InstallIn(SingletonComponent::class)
     interface AppInitializerEntryPoint {
 
-        val cleanerRepository: CleanerRepository
-
-        val dataStoreManager: DataStoreManager
+        val appDataStoreManager: AppDataStoreManager
 
         val migrations: Migrations
-
-        @get:ApplicationCoroutineScope
-        val coroutineScope: CoroutineScope
 
         val stethoHelper: StethoHelper
     }
@@ -58,33 +49,14 @@ class AppInitializer : Initializer<Unit> {
         val entryPoint = EntryPoints.get(context, AppInitializerEntryPoint::class.java)
 
         val migrations = entryPoint.migrations
-        val dataStoreManager = entryPoint.dataStoreManager
-        val repository = entryPoint.cleanerRepository
+        val appDataStoreManager = entryPoint.appDataStoreManager
         val stethoHelper = entryPoint.stethoHelper
-        val coroutineScope = entryPoint.coroutineScope
 
         stethoHelper.initialize(context)
+        migrations.migrate(context)
 
-        coroutineScope.launch {
-            migrations.migrate()
-
-            dataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
-
-            Defaults.Sanitizers.forEach { sanitizer ->
-                val existingSanitizer = repository.getSanitizerByName(sanitizer.name)
-
-                if (existingSanitizer == null) {
-                    repository.addSanitizer(
-                        sanitizer,
-                        withConfig = false,
-                    )
-                } else {
-                    repository.updateSanitizer(
-                        sanitizer.copy(uid = existingSanitizer.uid),
-                        withConfig = false,
-                    )
-                }
-            }
+        runBlocking {
+            appDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
         }
     }
 

@@ -38,32 +38,32 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.common.result.UiResult
-import com.svenjacobs.app.leon.services.model.Cleaned
+import com.svenjacobs.app.leon.core.domain.CleanerService.Result
 import com.svenjacobs.app.leon.ui.screens.home.model.HomeScreenViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeScreenViewModel = viewModel(),
     modifier: Modifier = Modifier,
-    result: UiResult<Cleaned>,
+    viewModel: HomeScreenViewModel = viewModel(),
+    result: UiResult<Result>,
     showSnackbarMessage: (String) -> Unit,
 ) {
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
 
-    fun onShareButtonClick(cleaned: Cleaned) {
+    fun onShareButtonClick(cleaned: Result) {
         val intent = viewModel.buildIntent(cleaned.cleanedText)
         context.startActivity(intent)
     }
 
-    fun onVerifyButtonClick(cleaned: Cleaned) {
+    fun onVerifyButtonClick(result: Result) {
         val intent = viewModel.buildCustomTabIntent(context)
-        intent.launchUrl(context, Uri.parse(cleaned.urls.first()))
+        intent.launchUrl(context, Uri.parse(result.urls.first()))
     }
 
-    fun onCopyToClipboardClick(cleaned: Cleaned) {
-        clipboard.setText(AnnotatedString(cleaned.cleanedText))
+    fun onCopyToClipboardClick(result: Result) {
+        clipboard.setText(AnnotatedString(result.cleanedText))
         showSnackbarMessage(context.getString(R.string.clipboard_message))
     }
 
@@ -88,7 +88,7 @@ fun HomeScreen(
 
                 when (result) {
                     is UiResult.Success -> SuccessBody(
-                        cleaned = result.data,
+                        result = result.data,
                         onShareButtonClick = ::onShareButtonClick,
                         onVerifyButtonClick = ::onVerifyButtonClick,
                         onCopyToClipboardClick = ::onCopyToClipboardClick,
@@ -102,29 +102,13 @@ fun HomeScreen(
 }
 
 @Composable
-private fun Statistics(
-    modifier: Modifier = Modifier,
-    cleaned: Cleaned,
-) {
-    Column(
-        modifier = modifier,
-    ) {
-        CounterText(
-            cleaned.cleanedParametersCount,
-            pluralsRes = R.plurals.statistics_parameters,
-            style = MaterialTheme.typography.headlineSmall,
-        )
-    }
-}
-
-@Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun SuccessBody(
     modifier: Modifier = Modifier,
-    cleaned: Cleaned,
-    onShareButtonClick: (Cleaned) -> Unit,
-    onCopyToClipboardClick: (Cleaned) -> Unit,
-    onVerifyButtonClick: (Cleaned) -> Unit,
+    result: Result,
+    onShareButtonClick: (Result) -> Unit,
+    onCopyToClipboardClick: (Result) -> Unit,
+    onVerifyButtonClick: (Result) -> Unit,
 ) {
     Column(
         modifier = modifier,
@@ -135,10 +119,29 @@ private fun SuccessBody(
             ) {
                 Text(
                     modifier = Modifier.padding(16.dp),
-                    text = cleaned.cleanedText,
+                    text = stringResource(R.string.original_url),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.primary,
                 )
 
-                Statistics(cleaned = cleaned)
+                Text(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    text = result.originalText,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+
+                Text(
+                    modifier = Modifier.padding(16.dp),
+                    text = stringResource(R.string.cleaned_url),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+
+                Text(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    text = result.cleanedText,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
 
                 Row(
                     modifier = Modifier
@@ -149,7 +152,7 @@ private fun SuccessBody(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onShareButtonClick(cleaned) },
+                        onClick = { onShareButtonClick(result) },
                     ) {
                         Text(
                             text = stringResource(R.string.share),
@@ -160,7 +163,7 @@ private fun SuccessBody(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onCopyToClipboardClick(cleaned) },
+                        onClick = { onCopyToClipboardClick(result) },
                     ) {
                         Text(
                             text = stringResource(R.string.copy),
@@ -171,7 +174,7 @@ private fun SuccessBody(
                         modifier = Modifier
                             .weight(1f)
                             .padding(8.dp),
-                        onClick = { onVerifyButtonClick(cleaned) },
+                        onClick = { onVerifyButtonClick(result) },
                     ) {
                         Text(
                             text = stringResource(R.string.verify),
@@ -224,10 +227,9 @@ private fun ErrorBody(
 private fun SuccessBodyPreview() {
     AppTheme {
         SuccessBody(
-            cleaned = Cleaned(
+            result = Result(
                 originalText = "http://www.some.url?tracking=true",
                 cleanedText = "http://www.some.url",
-                cleanedParametersCount = 1,
                 urls = emptyList(),
             ),
             onShareButtonClick = {},

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,22 +27,19 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.MainScope
 
-object ApplicationModule {
+@Module
+@InstallIn(SingletonComponent::class)
+object ApplicationModuleProviders {
 
-    @Module
-    @InstallIn(SingletonComponent::class)
-    object Providers {
+    @Provides
+    @ApplicationCoroutineScope
+    fun provideApplicationCoroutineScope() = MainScope()
+}
 
-        @Provides
-        @ApplicationCoroutineScope
-        fun provideApplicationCoroutineScope() = MainScope()
-    }
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class ApplicationModuleBindings {
 
-    @Module
-    @InstallIn(SingletonComponent::class)
-    abstract class Bindings {
-
-        @Binds
-        abstract fun bindStethoHelper(stethoHelperImpl: StethoHelperImpl): StethoHelper
-    }
+    @Binds
+    abstract fun bindStethoHelper(stethoHelperImpl: StethoHelperImpl): StethoHelper
 }

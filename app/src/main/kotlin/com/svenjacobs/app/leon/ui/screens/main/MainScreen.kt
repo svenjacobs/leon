@@ -54,6 +54,7 @@ import kotlinx.coroutines.launch
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MainScreen(
+    modifier: Modifier = Modifier,
     viewModel: MainScreenViewModel,
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -65,12 +66,13 @@ fun MainScreen(
     val systemUiController = rememberSystemUiController()
     val isDarkTheme = isSystemInDarkTheme()
 
-    SideEffect {
+    LaunchedEffect(Unit) {
         systemUiController.setStatusBarColor(Color.Transparent, darkIcons = !isDarkTheme)
     }
 
     AppTheme {
         Scaffold(
+            modifier = modifier,
             topBar = { if (!hideBars) MyTopAppBar() },
             bottomBar = { if (!hideBars) MyBottomBar(navController = navController) },
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) },

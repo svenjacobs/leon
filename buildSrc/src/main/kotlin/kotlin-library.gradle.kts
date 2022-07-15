@@ -25,4 +25,9 @@ plugins {
 
 dependencies {
     api(libs.findLibrary("kotlin.stdlib.jdk8").get())
+
+    testApi(libs.findLibrary("kotest.runner.junit5").get())
+    testApi(libs.findLibrary("kotest.assertions.core").get())
+    testApi(libs.findLibrary("mockk").get())
+    testApi(libs.findLibrary("mockk.agent.jvm").get())
 }

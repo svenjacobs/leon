@@ -26,11 +26,9 @@
     <string name="clipboard_message">Link in Zwischenablage kopiert</string>
     <string name="how_to_title">Anleitung</string>
     <string name="how_to_text">Wähle die App \"URL Cleaner\" beim Teilen von Text aus. Klicke anschließend in dieser App auf \"Teilen\", um den Text an die Ziel-App zu schicken.</string>
-    <plurals name="statistics_parameters">
-        <item quantity="one">%1$d Parameter entfernt</item>
-        <item quantity="other">%1$d Parameter entfernt</item>
-    </plurals>
-    <string name="parameters">Parameter</string>
+    <string name="cleaned_url">Gesäuberte URL</string>
+    <string name="original_url">Original URL</string>
+    <string name="sanitizers">Reiniger</string>
     <string name="licenses">Lizenzen</string>
-    <string name="parameters_description">Hier kannst Du Parameter an oder ausschalten, die entfernt werden sollen.</string>
+    <string name="sanitizers_description">Aktiviere oder deaktiviere Reiniger</string>
 </resources>

@@ -23,7 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -39,31 +39,33 @@ import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun SettingsScreen(
+    modifier: Modifier = Modifier,
     onHideBars: (Boolean) -> Unit,
 ) {
     val navController = rememberNavController()
 
     NavHost(
+        modifier = modifier,
         navController = navController,
         startDestination = SCREEN_SETTINGS,
     ) {
         composable(
             route = SCREEN_SETTINGS,
         ) {
-            SideEffect { onHideBars(false) }
+            LaunchedEffect(Unit) { onHideBars(false) }
 
             Content(
-                onParametersClick = { navController.navigate(SCREEN_PARAMETERS) },
+                onSanitizersClick = { navController.navigate(SCREEN_SANITIZERS) },
                 onLicensesClick = { navController.navigate(SCREEN_LICENSES) }
             )
         }
 
         composable(
-            route = SCREEN_PARAMETERS,
+            route = SCREEN_SANITIZERS,
         ) {
-            SideEffect { onHideBars(true) }
+            LaunchedEffect(Unit) { onHideBars(true) }
 
-            SettingsParametersScreen(
+            SettingsSanitizersScreen(
                 viewModel = hiltViewModel(),
                 onBackClick = { navController.popBackStack() },
             )
@@ -72,7 +74,7 @@ fun SettingsScreen(
         composable(
             route = SCREEN_LICENSES,
         ) {
-            SideEffect { onHideBars(true) }
+            LaunchedEffect(Unit) { onHideBars(true) }
 
             SettingsLicensesScreen(
                 onBackClick = { navController.popBackStack() },
@@ -84,7 +86,7 @@ fun SettingsScreen(
 @Composable
 private fun Content(
     modifier: Modifier = Modifier,
-    onParametersClick: () -> Unit,
+    onSanitizersClick: () -> Unit,
     onLicensesClick: () -> Unit,
 ) {
     Box(
@@ -95,9 +97,9 @@ private fun Content(
         ) {
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = onParametersClick
+                onClick = onSanitizersClick
             ) {
-                Text(stringResource(R.string.parameters))
+                Text(stringResource(R.string.sanitizers))
             }
 
             OutlinedButton(
@@ -132,5 +134,5 @@ private fun SettingsScreenPreview() {
 }
 
 private const val SCREEN_SETTINGS = "settings"
-private const val SCREEN_PARAMETERS = "parameters"
+private const val SCREEN_SANITIZERS = "sanitizers"
 private const val SCREEN_LICENSES = "licenses"

@@ -21,9 +21,8 @@ package com.svenjacobs.app.leon.ui.screens.main.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.core.common.result.UiResult
-import com.svenjacobs.app.leon.core.common.result.toUiResult
-import com.svenjacobs.app.leon.services.CleanerService
-import com.svenjacobs.app.leon.services.model.Cleaned
+import com.svenjacobs.app.leon.core.domain.CleanerService
+import com.svenjacobs.app.leon.core.domain.CleanerService.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,22 +36,30 @@ class MainScreenViewModel @Inject constructor(
 ) : ViewModel() {
 
     data class UiState(
-        val result: UiResult<Cleaned> = UiResult.Loading,
+        val result: UiResult<Result> = UiResult.Loading,
     )
 
     private val _uiState = MutableStateFlow(UiState())
     val uiState = _uiState.asStateFlow()
 
-    fun setText(text: String?) {
+    fun setText(
+        text: String?,
+    ) {
         if (text == null && uiState.value.result is UiResult.Success) return
 
         viewModelScope.launch {
             _uiState.update { uiState ->
-                val result = cleanerService.clean(text)
+                try {
+                    val result = cleanerService.clean(text)
 
-                uiState.copy(
-                    result = result.toUiResult(),
-                )
+                    uiState.copy(
+                        result = UiResult.Success(result)
+                    )
+                } catch (e: Exception) {
+                    uiState.copy(
+                        result = UiResult.Error(e)
+                    )
+                }
             }
         }
     }

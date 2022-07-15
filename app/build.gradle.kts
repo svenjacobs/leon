@@ -31,29 +31,17 @@ plugins {
 }
 
 android {
-    compileSdk = 32
-    buildToolsVersion = "32.0.0"
+    compileSdk = Android.compileSdk
+    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
         applicationId = "com.svenjacobs.app.leon"
-        minSdk = 21
-        targetSdk = 32
-        versionCode = 232
-        versionName = "0.9.0"
+        minSdk = Android.minSdk
+        targetSdk = Android.targetSdk
+        versionCode = 233
+        versionName = "0.10.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments(
-                    mapOf(
-                        "room.schemaLocation" to "$projectDir/schemas",
-                        "room.incremental" to "true",
-                        "room.expandProjection" to "true"
-                    )
-                )
-            }
-        }
     }
 
     signingConfigs {
@@ -97,8 +85,8 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = listOf(
-            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xopt-in=kotlin.RequiresOptIn"
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlin.RequiresOptIn"
         )
     }
 
@@ -129,6 +117,14 @@ testlogger {
 dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-domain"))
+    implementation(project(":feature-sanitizer-amazon"))
+    implementation(project(":feature-sanitizer-facebook"))
+    implementation(project(":feature-sanitizer-flipkart"))
+    implementation(project(":feature-sanitizer-google-analytics"))
+    implementation(project(":feature-sanitizer-netflix"))
+    implementation(project(":feature-sanitizer-spotify"))
+    implementation(project(":feature-sanitizer-twitter"))
+    implementation(project(":feature-sanitizer-webtrekk"))
 
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.androidx.core.ktx)
@@ -152,15 +148,12 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.google.hilt.android)
-    implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.browser)
     implementation(libs.jakewharton.timber)
-    implementation(libs.square.moshi)
 
     debugImplementation(libs.facebook.stetho)
 
     kapt(libs.google.hilt.android.compiler)
-    kapt(libs.androidx.room.compiler)
 
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)

@@ -42,7 +42,11 @@ class MainActivity : AppCompatActivity() {
 
         onIntent(intent)
 
-        setContent { MainScreen(mainScreenViewModel) }
+        setContent {
+            MainScreen(
+                viewModel = mainScreenViewModel
+            )
+        }
     }
 
     override fun onStart() {

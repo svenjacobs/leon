@@ -17,9 +17,9 @@
  */
 
 plugins {
-    `kotlin-library`
+    `android-library`
 }
 
 dependencies {
-    api(libs.javax.inject)
+    api(libs.kotlinx.collections.immutable)
 }
