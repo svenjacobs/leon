@@ -123,6 +123,7 @@ dependencies {
     implementation(project(":feature-sanitizer-facebook"))
     implementation(project(":feature-sanitizer-flipkart"))
     implementation(project(":feature-sanitizer-google-analytics"))
+    implementation(project(":feature-sanitizer-google-search"))
     implementation(project(":feature-sanitizer-instagram"))
     implementation(project(":feature-sanitizer-netflix"))
     implementation(project(":feature-sanitizer-session-ids"))

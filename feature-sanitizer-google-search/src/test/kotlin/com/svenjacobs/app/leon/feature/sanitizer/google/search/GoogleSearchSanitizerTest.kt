@@ -16,22 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-amazon-smile",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-google-search",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.google.search
+
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
+
+class GoogleSearchSanitizerTest : WordSpec({
+
+    "invoke" should {
+
+        "extract URL from Google Search link" {
+            val sanitizer = GoogleSearchSanitizer()
+
+            val result = sanitizer(
+                "https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.regextester.com/&ved=2ahUKEwiTpvflqP34AhXOgv0HHSNQCOIQFnoECAcQAQ&usg=AOvVaw1wBmEA7TD90QkZPu7zcsOa"
+            )
+
+            result shouldBe "https://www.regextester.com/"
+        }
+    }
+})

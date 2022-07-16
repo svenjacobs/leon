@@ -16,22 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-amazon-smile",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-google-search",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.google.search
+
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import java.net.URLDecoder
+import javax.inject.Inject
+
+class GoogleSearchSanitizer @Inject constructor() : Sanitizer {
+
+    override fun invoke(input: String): String {
+        val result = URL_PARAMETER_REGEX.find(input) ?: return input
+        val group = result.groups[1] ?: return input
+        return URLDecoder.decode(group.value, "UTF-8")
+    }
+
+    private companion object {
+        private val URL_PARAMETER_REGEX = Regex("[?&]url=([^&]+)")
+    }
+}
