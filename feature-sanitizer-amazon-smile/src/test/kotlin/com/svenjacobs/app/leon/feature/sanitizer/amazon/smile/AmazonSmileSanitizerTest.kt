@@ -16,21 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-amazon-smile",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.amazon.smile
+
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
+
+class AmazonSmileSanitizerTest : WordSpec({
+
+    "invoke" should {
+
+        "replace Amazon with Amazon Smile domain" {
+            val sanitizer = AmazonSmileSanitizer()
+            val result = sanitizer(
+                "https://www.amazon.de/dp/B08SG2QTZS/"
+            )
+
+            result shouldBe "https://smile.amazon.de/dp/B08SG2QTZS/"
+        }
+    }
+})

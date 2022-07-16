@@ -22,6 +22,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Registrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonSanitizerRegistration
+import com.svenjacobs.app.leon.feature.sanitizer.amazon.smile.AmazonSmileSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.emptyparameters.EmptyParametersSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.facebook.FacebookSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.flipkart.FlipkartSanitizerRegistration
@@ -50,6 +51,7 @@ object SanitizersModuleProviders {
     @Registrations
     fun provideRegistrations(
         amazon: AmazonSanitizerRegistration,
+        amazonSmile: AmazonSmileSanitizerRegistration,
         emptyParameters: EmptyParametersSanitizerRegistration,
         facebook: FacebookSanitizerRegistration,
         flipkart: FlipkartSanitizerRegistration,
@@ -63,6 +65,7 @@ object SanitizersModuleProviders {
     ): SanitizerRegistrations =
         listOf(
             amazon,
+            amazonSmile,
             emptyParameters,
             facebook,
             flipkart,
