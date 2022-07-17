@@ -27,8 +27,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.CleanerService
-import com.svenjacobs.app.leon.core.domain.CleanerService.Result
+import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -42,10 +43,22 @@ class MainScreenViewModel @Inject constructor(
 
     data class UiState(
         val isLoading: Boolean = true,
-        val isError: Boolean = false,
         val isUrlDecodeEnabled: Boolean = false,
-        val result: Result? = null,
-    )
+        val result: Result = Result.Empty,
+    ) {
+        sealed interface Result {
+
+            object Empty : Result
+
+            data class Success(
+                val originalText: String,
+                val cleanedText: String,
+                val urls: ImmutableList<String>,
+            ) : Result
+
+            object Error : Result
+        }
+    }
 
     private val text = MutableStateFlow<String?>(null)
     private val urlDecodeEnabled = MutableStateFlow(false)
@@ -55,23 +68,15 @@ class MainScreenViewModel @Inject constructor(
             text,
             urlDecodeEnabled,
         ) { text, urlDecodeEnabled ->
-            val (result, isError) = try {
-                text?.let {
-                    Pair(
-                        cleanerService.clean(
-                            text = text,
-                            decodeUrl = urlDecodeEnabled,
-                        ),
-                        false,
-                    )
-                } ?: Pair(null, false)
-            } catch (e: Exception) {
-                Pair(null, true)
-            }
+            val result = text?.let {
+                clean(
+                    text = text,
+                    decodeUrl = urlDecodeEnabled,
+                )
+            } ?: Result.Empty
 
             UiState(
                 isLoading = text == null,
-                isError = isError,
                 isUrlDecodeEnabled = urlDecodeEnabled,
                 result = result,
             )
@@ -82,8 +87,12 @@ class MainScreenViewModel @Inject constructor(
         )
 
     fun setText(text: String?) {
-        if (text == null && uiState.value.result != null) return
+        if (text == null && uiState.value.result is Result.Success) return
         this.text.value = text
+    }
+
+    fun onResetClick() {
+        text.value = null
     }
 
     fun onUrlDecodeCheckedChange(enabled: Boolean) {
@@ -118,4 +127,23 @@ class MainScreenViewModel @Inject constructor(
             .setDefaultColorSchemeParams(light)
             .build()
     }
+
+    private suspend fun clean(
+        text: String,
+        decodeUrl: Boolean,
+    ): Result =
+        try {
+            cleanerService.clean(
+                text = text,
+                decodeUrl = decodeUrl
+            ).let { result ->
+                Result.Success(
+                    originalText = result.originalText,
+                    cleanedText = result.cleanedText,
+                    urls = result.urls,
+                )
+            }
+        } catch (e: Exception) {
+            Result.Error
+        }
 }

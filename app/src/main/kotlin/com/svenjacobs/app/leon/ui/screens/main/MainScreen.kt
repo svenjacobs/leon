@@ -43,15 +43,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.core.domain.CleanerService
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
+import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
 import com.svenjacobs.app.leon.ui.screens.main.model.Screen
 import com.svenjacobs.app.leon.ui.screens.main.views.BackgroundImage
 import com.svenjacobs.app.leon.ui.screens.main.views.BottomBar
 import com.svenjacobs.app.leon.ui.screens.main.views.BroomIcon
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 
 @Composable
@@ -71,17 +72,19 @@ fun MainScreen(
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
 
-    fun onShareButtonClick(cleaned: CleanerService.Result) {
-        val intent = viewModel.buildIntent(cleaned.cleanedText)
+    fun onShareButtonClick(result: Result.Success) {
+        val intent = viewModel.buildIntent(result.cleanedText)
         context.startActivity(intent)
     }
 
-    fun onVerifyButtonClick(result: CleanerService.Result) {
-        val intent = viewModel.buildCustomTabIntent(context)
-        intent.launchUrl(context, Uri.parse(result.urls.first()))
+    fun onVerifyButtonClick(result: Result.Success) {
+        result.urls.firstOrNull()?.let { url ->
+            val intent = viewModel.buildCustomTabIntent(context)
+            intent.launchUrl(context, Uri.parse(url))
+        }
     }
 
-    fun onCopyToClipboardClick(result: CleanerService.Result) {
+    fun onCopyToClipboardClick(result: Result.Success) {
         clipboard.setText(AnnotatedString(result.cleanedText))
         coroutineScope.launch {
             snackbarHostState.showSnackbar(context.getString(R.string.clipboard_message))
@@ -112,9 +115,15 @@ fun MainScreen(
                             Content(
                                 result = uiState.result,
                                 isUrlDecodeEnabled = uiState.isUrlDecodeEnabled,
-                                onShareButtonClick = ::onShareButtonClick,
-                                onVerifyButtonClick = ::onVerifyButtonClick,
+                                onImportFromClipboardClick = {
+                                    viewModel.setText(
+                                        clipboard.getText()?.toString()
+                                    )
+                                },
+                                onShareClick = ::onShareButtonClick,
                                 onCopyToClipboardClick = ::onCopyToClipboardClick,
+                                onVerifyClick = ::onVerifyButtonClick,
+                                onResetClick = viewModel::onResetClick,
                                 onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
                             )
                         }
@@ -134,11 +143,13 @@ fun MainScreen(
 @Composable
 private fun Content(
     modifier: Modifier = Modifier,
-    result: CleanerService.Result?,
+    result: Result,
     isUrlDecodeEnabled: Boolean,
-    onShareButtonClick: (CleanerService.Result) -> Unit,
-    onVerifyButtonClick: (CleanerService.Result) -> Unit,
-    onCopyToClipboardClick: (CleanerService.Result) -> Unit,
+    onImportFromClipboardClick: () -> Unit,
+    onShareClick: (Result.Success) -> Unit,
+    onCopyToClipboardClick: (Result.Success) -> Unit,
+    onVerifyClick: (Result.Success) -> Unit,
+    onResetClick: () -> Unit,
     onUrlDecodeCheckedChange: (Boolean) -> Unit,
 ) {
     Column(
@@ -161,14 +172,17 @@ private fun Content(
                 )
 
                 when (result) {
-                    null -> HowToBody()
-                    else -> SuccessBody(
+                    is Result.Success -> SuccessBody(
                         result = result,
                         isUrlDecodeEnabled = isUrlDecodeEnabled,
-                        onShareButtonClick = onShareButtonClick,
-                        onVerifyButtonClick = onVerifyButtonClick,
+                        onShareClick = onShareClick,
                         onCopyToClipboardClick = onCopyToClipboardClick,
+                        onVerifyClick = onVerifyClick,
+                        onResetClick = onResetClick,
                         onUrlDecodeCheckedChange = onUrlDecodeCheckedChange,
+                    )
+                    else -> HowToBody(
+                        onImportFromClipboardClick = onImportFromClipboardClick,
                     )
                 }
             }
@@ -180,11 +194,12 @@ private fun Content(
 @OptIn(ExperimentalMaterial3Api::class)
 private fun SuccessBody(
     modifier: Modifier = Modifier,
-    result: CleanerService.Result,
+    result: Result.Success,
     isUrlDecodeEnabled: Boolean,
-    onShareButtonClick: (CleanerService.Result) -> Unit,
-    onCopyToClipboardClick: (CleanerService.Result) -> Unit,
-    onVerifyButtonClick: (CleanerService.Result) -> Unit,
+    onShareClick: (Result.Success) -> Unit,
+    onCopyToClipboardClick: (Result.Success) -> Unit,
+    onVerifyClick: (Result.Success) -> Unit,
+    onResetClick: () -> Unit,
     onUrlDecodeCheckedChange: (Boolean) -> Unit,
 ) {
     Column(
@@ -220,6 +235,8 @@ private fun SuccessBody(
                     style = MaterialTheme.typography.bodyMedium,
                 )
 
+                val buttonModifier = Modifier.widthIn(min = 120.dp)
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -231,7 +248,8 @@ private fun SuccessBody(
                     horizontalArrangement = Arrangement.SpaceAround,
                 ) {
                     OutlinedButton(
-                        onClick = { onShareButtonClick(result) },
+                        modifier = buttonModifier,
+                        onClick = { onShareClick(result) },
                     ) {
                         Text(
                             text = stringResource(R.string.share),
@@ -240,6 +258,7 @@ private fun SuccessBody(
                     }
 
                     OutlinedButton(
+                        modifier = buttonModifier,
                         onClick = { onCopyToClipboardClick(result) },
                     ) {
                         Text(
@@ -247,12 +266,34 @@ private fun SuccessBody(
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }
+                }
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = 8.dp,
+                            start = 16.dp,
+                            end = 16.dp,
+                        ),
+                    horizontalArrangement = Arrangement.SpaceAround,
+                ) {
                     OutlinedButton(
-                        onClick = { onVerifyButtonClick(result) },
+                        modifier = buttonModifier,
+                        onClick = { onVerifyClick(result) },
                     ) {
                         Text(
                             text = stringResource(R.string.verify),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+
+                    OutlinedButton(
+                        modifier = buttonModifier,
+                        onClick = onResetClick,
+                    ) {
+                        Text(
+                            text = stringResource(R.string.reset),
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }
@@ -289,9 +330,10 @@ private fun SuccessBody(
 @OptIn(ExperimentalMaterial3Api::class)
 private fun HowToBody(
     modifier: Modifier = Modifier,
+    onImportFromClipboardClick: () -> Unit,
 ) {
     Card(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -317,6 +359,18 @@ private fun HowToBody(
                     text = stringResource(R.string.how_to_text)
                 )
             }
+
+            OutlinedButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                onClick = onImportFromClipboardClick,
+            ) {
+                Text(
+                    text = stringResource(R.string.import_from_clipboard),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
         }
     }
 }
@@ -326,15 +380,16 @@ private fun HowToBody(
 private fun SuccessBodyPreview() {
     AppTheme {
         SuccessBody(
-            result = CleanerService.Result(
+            result = Result.Success(
                 originalText = "http://www.some.url?tracking=true",
                 cleanedText = "http://www.some.url",
-                urls = emptyList(),
+                urls = persistentListOf(),
             ),
             isUrlDecodeEnabled = false,
-            onShareButtonClick = {},
-            onVerifyButtonClick = {},
+            onShareClick = {},
             onCopyToClipboardClick = {},
+            onVerifyClick = {},
+            onResetClick = {},
             onUrlDecodeCheckedChange = {},
         )
     }
@@ -344,6 +399,8 @@ private fun SuccessBodyPreview() {
 @Composable
 private fun FailureBodyPreview() {
     AppTheme {
-        HowToBody()
+        HowToBody(
+            onImportFromClipboardClick = {},
+        )
     }
 }

@@ -21,6 +21,8 @@ package com.svenjacobs.app.leon.core.domain
 import com.svenjacobs.app.leon.core.domain.sanitizer.Registrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.URLDecoder
@@ -34,9 +36,10 @@ class CleanerService @Inject constructor(
     data class Result(
         val originalText: String,
         val cleanedText: String,
-        val urls: List<String>,
+        val urls: ImmutableList<String>,
     )
 
+    @Suppress("BlockingMethodInNonBlockingContext")
     suspend fun clean(
         text: String?,
         decodeUrl: Boolean = false,
@@ -63,7 +66,7 @@ class CleanerService @Inject constructor(
         return Result(
             originalText = text,
             cleanedText = cleaned,
-            urls = urls,
+            urls = urls.toImmutableList(),
         )
     }
 
