@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             MainScreen(
-                viewModel = mainScreenViewModel
+                viewModel = mainScreenViewModel,
             )
         }
     }

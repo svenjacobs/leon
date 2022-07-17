@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.ui.common
+package com.svenjacobs.app.leon.ui.common.views
 
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.svenjacobs.app.leon.R
 
 @Composable
-fun MyTopAppBar(
+fun TopAppBar(
     modifier: Modifier = Modifier,
     onBackClick: (() -> Unit)? = null,
 ) {
@@ -51,7 +51,7 @@ fun MyTopAppBar(
 @Composable
 private fun NavigationIcon(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     IconButton(
         modifier = modifier,

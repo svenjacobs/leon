@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.ui.screens.home
+package com.svenjacobs.app.leon.ui.screens.main.views
 
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.MutableTransitionState
@@ -39,7 +39,7 @@ import com.svenjacobs.app.leon.R
 enum class BroomState { START, END }
 
 @Composable
-fun BroomIcon(
+internal fun BroomIcon(
     modifier: Modifier = Modifier,
 ) {
     val state = remember { MutableTransitionState(BroomState.START) }

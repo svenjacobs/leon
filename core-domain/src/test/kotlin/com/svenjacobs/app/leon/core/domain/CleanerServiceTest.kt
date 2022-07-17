@@ -99,5 +99,14 @@ class CleanerServiceTest : WordSpec({
             result.urls[0] shouldBe "https://www.some.site/"
             result.urls[1] shouldBe "https://www.some2.site"
         }
+
+        "URL decode when enabled" {
+            val result = service.clean(
+                text = "https://www.some.site/Hello%2FWorld?paramA=A&paramB=B",
+                decodeUrl = true,
+            )
+
+            result.cleanedText shouldBe "https://www.some.site/Hello/World"
+        }
     }
 })

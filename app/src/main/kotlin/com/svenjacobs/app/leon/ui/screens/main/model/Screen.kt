@@ -31,11 +31,11 @@ sealed class Screen(
     @StringRes val label: Int,
     @StringRes val iconContentDescription: Int,
 ) {
-    object Home : Screen(
-        route = "home",
+    object Main : Screen(
+        route = "main",
         icon = Icons.Filled.Home,
-        label = R.string.screen_home,
-        iconContentDescription = R.string.screen_home,
+        label = R.string.screen_main,
+        iconContentDescription = R.string.screen_main,
     )
 
     object Settings : Screen(

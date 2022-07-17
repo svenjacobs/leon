@@ -18,16 +18,21 @@
 
 package com.svenjacobs.app.leon.ui.screens.main.model
 
+import android.content.Context
+import android.content.Intent
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svenjacobs.app.leon.core.common.result.UiResult
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.CleanerService
 import com.svenjacobs.app.leon.core.domain.CleanerService.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,31 +41,81 @@ class MainScreenViewModel @Inject constructor(
 ) : ViewModel() {
 
     data class UiState(
-        val result: UiResult<Result> = UiResult.Loading,
+        val isLoading: Boolean = true,
+        val isError: Boolean = false,
+        val isUrlDecodeEnabled: Boolean = false,
+        val result: Result? = null,
     )
 
-    private val _uiState = MutableStateFlow(UiState())
-    val uiState = _uiState.asStateFlow()
+    private val text = MutableStateFlow<String?>(null)
+    private val urlDecodeEnabled = MutableStateFlow(false)
 
-    fun setText(
-        text: String?,
-    ) {
-        if (text == null && uiState.value.result is UiResult.Success) return
-
-        viewModelScope.launch {
-            _uiState.update { uiState ->
-                try {
-                    val result = cleanerService.clean(text)
-
-                    uiState.copy(
-                        result = UiResult.Success(result)
+    val uiState =
+        combine(
+            text,
+            urlDecodeEnabled,
+        ) { text, urlDecodeEnabled ->
+            val (result, isError) = try {
+                text?.let {
+                    Pair(
+                        cleanerService.clean(
+                            text = text,
+                            decodeUrl = urlDecodeEnabled,
+                        ),
+                        false,
                     )
-                } catch (e: Exception) {
-                    uiState.copy(
-                        result = UiResult.Error(e)
-                    )
-                }
+                } ?: Pair(null, false)
+            } catch (e: Exception) {
+                Pair(null, true)
             }
+
+            UiState(
+                isLoading = text == null,
+                isError = isError,
+                isUrlDecodeEnabled = urlDecodeEnabled,
+                result = result,
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = UiState(),
+        )
+
+    fun setText(text: String?) {
+        if (text == null && uiState.value.result != null) return
+        this.text.value = text
+    }
+
+    fun onUrlDecodeCheckedChange(enabled: Boolean) {
+        urlDecodeEnabled.value = enabled
+    }
+
+    fun buildIntent(text: String): Intent {
+        val target = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            addCategory(Intent.CATEGORY_DEFAULT)
+            putExtra(Intent.EXTRA_TEXT, text)
         }
+
+        return Intent.createChooser(target, null)
+    }
+
+    fun buildCustomTabIntent(context: Context): CustomTabsIntent {
+        val toolbarColorLight = ContextCompat.getColor(context, R.color.primaryColor)
+        val toolbarColorDark = ContextCompat.getColor(context, R.color.nightPrimaryColor)
+
+        val light = CustomTabColorSchemeParams.Builder()
+            .setToolbarColor(toolbarColorLight)
+            .build()
+
+        val dark = CustomTabColorSchemeParams.Builder()
+            .setToolbarColor(toolbarColorDark)
+            .build()
+
+        return CustomTabsIntent.Builder()
+            .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
+            .setColorSchemeParams(CustomTabsIntent.COLOR_SCHEME_DARK, dark)
+            .setDefaultColorSchemeParams(light)
+            .build()
     }
 }

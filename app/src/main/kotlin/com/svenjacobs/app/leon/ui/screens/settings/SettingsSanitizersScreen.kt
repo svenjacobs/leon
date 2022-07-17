@@ -32,7 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.svenjacobs.app.leon.R
-import com.svenjacobs.app.leon.ui.common.MyTopAppBar
+import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsSanitizersScreenViewModel
 
 @Composable
@@ -47,7 +47,7 @@ fun SettingsSanitizersScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            MyTopAppBar(
+            TopAppBar(
                 onBackClick = onBackClick,
             )
         }

@@ -21,6 +21,9 @@ package com.svenjacobs.app.leon.core.domain
 import com.svenjacobs.app.leon.core.domain.sanitizer.Registrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.net.URLDecoder
 import javax.inject.Inject
 
 class CleanerService @Inject constructor(
@@ -36,6 +39,7 @@ class CleanerService @Inject constructor(
 
     suspend fun clean(
         text: String?,
+        decodeUrl: Boolean = false,
     ): Result {
         if (text.isNullOrEmpty()) throw IllegalArgumentException()
 
@@ -44,6 +48,16 @@ class CleanerService @Inject constructor(
             .fold(Pair(text, emptyList<String>())) { (currentText, urls), match ->
                 val result = cleanUrl(match.value, registrations)
                 Pair(currentText.replace(match.value, result), urls + result)
+            }
+            .let { (cleaned, urls) ->
+                val decoded = if (decodeUrl) withContext(Dispatchers.Default) {
+                    URLDecoder.decode(
+                        cleaned,
+                        "UTF-8"
+                    )
+                } else cleaned
+
+                Pair(decoded, urls)
             }
 
         return Result(

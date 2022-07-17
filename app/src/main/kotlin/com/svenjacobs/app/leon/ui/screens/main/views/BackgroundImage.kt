@@ -16,35 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.ui.screens.settings
+package com.svenjacobs.app.leon.ui.screens.main.views
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
-import com.svenjacobs.app.leon.ui.common.views.TopAppBar
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.svenjacobs.app.leon.BuildConfig
+import com.svenjacobs.app.leon.R
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-fun SettingsLicensesScreen(
+internal fun BackgroundImage(
     modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
 ) {
-    Scaffold(
+    Image(
         modifier = modifier.fillMaxSize(),
-        topBar = {
-            TopAppBar(
-                onBackClick = onBackClick,
-            )
-        }
-    ) { contentPadding ->
-        LibrariesContainer(
-            modifier = Modifier
-                .padding(contentPadding)
-                .fillMaxSize(),
-        )
-    }
+        painter = painterResource(if (BuildConfig.DEBUG) R.drawable.background_bug else R.drawable.background_broom),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+    )
 }

@@ -17,7 +17,7 @@
   -->
 
 <resources>
-    <string name="screen_home">Дом</string>
+    <string name="screen_main">Дом</string>
     <string name="screen_settings">Настройки</string>
     <string name="scaffold_title">Léon – The URL Cleaner (Beta)</string>
     <string name="share">Поделиться</string>
@@ -31,4 +31,5 @@
     <string name="sanitizers">Дезинфекция</string>
     <string name="licenses">Лицензия</string>
     <string name="sanitizers_description">Включение или отключение дезинфекции</string>
+    <string name="decode_url">Decode URL</string>
 </resources>
