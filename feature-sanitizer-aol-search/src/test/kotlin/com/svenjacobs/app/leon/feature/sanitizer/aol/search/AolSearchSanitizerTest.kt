@@ -16,24 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-    ":core-common",
-    ":core-domain",
-    ":feature-sanitizer-amazon",
-    ":feature-sanitizer-amazon-smile",
-    ":feature-sanitizer-aol-search",
-    ":feature-sanitizer-empty-parameters",
-    ":feature-sanitizer-facebook",
-    ":feature-sanitizer-flipkart",
-    ":feature-sanitizer-google-analytics",
-    ":feature-sanitizer-google-search",
-    ":feature-sanitizer-instagram",
-    ":feature-sanitizer-netflix",
-    ":feature-sanitizer-session-ids",
-    ":feature-sanitizer-spotify",
-    ":feature-sanitizer-twitter",
-    ":feature-sanitizer-webtrekk",
-    ":feature-sanitizer-yahoo-search",
-    ":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.aol.search
+
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
+
+class AolSearchSanitizerTest : WordSpec({
+
+    "invoke" should {
+
+        "extract URL from AOL search link" {
+            val sanitizer = AolSearchSanitizer()
+
+            val result = sanitizer(
+                "https://search.aol.com/click/_ylt=A0geK.HAoltiwykAlAR8CWVH;_ylu=Y29sbwNiZjEEcG9zAzQEdnRpZAMEc2VjA3Ny/RV=2/RE=1650201408/RO=10/RU=https%3a%2f%2fgithub.com%2fsvenjacobs%2fleon/RK=0/RS=cXRWej4shdsEIIDm147.G4CRZEo-"
+            )
+
+            result shouldBe "https://github.com/svenjacobs/leon"
+        }
+    }
+})
