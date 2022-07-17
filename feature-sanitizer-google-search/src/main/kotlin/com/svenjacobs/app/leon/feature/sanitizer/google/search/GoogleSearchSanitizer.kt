@@ -18,19 +18,9 @@
 
 package com.svenjacobs.app.leon.feature.sanitizer.google.search
 
-import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import java.net.URLDecoder
+import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 import javax.inject.Inject
 
-class GoogleSearchSanitizer @Inject constructor() : Sanitizer {
-
-    override fun invoke(input: String): String {
-        val result = URL_PARAMETER_REGEX.find(input) ?: return input
-        val group = result.groups[1] ?: return input
-        return URLDecoder.decode(group.value, "UTF-8")
-    }
-
-    private companion object {
-        private val URL_PARAMETER_REGEX = Regex("[?&]url=([^&]+)")
-    }
-}
+class GoogleSearchSanitizer @Inject constructor() : SearchResultSanitizer(
+    Regex("[?&]url=([^&]+)")
+)

@@ -33,5 +33,6 @@ include(
     ":feature-sanitizer-spotify",
     ":feature-sanitizer-twitter",
     ":feature-sanitizer-webtrekk",
+    ":feature-sanitizer-yahoo-search",
     ":app",
 )

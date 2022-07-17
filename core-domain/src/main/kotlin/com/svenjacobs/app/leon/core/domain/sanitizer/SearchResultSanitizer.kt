@@ -18,18 +18,20 @@
 
 package com.svenjacobs.app.leon.core.domain.sanitizer
 
+import java.net.URLDecoder
+
 /**
- * Base class for sanitizers that are based on regular expressions.
+ * Base class for sanitizers that extract URLs from search engine result links.
  *
- * @param regex Regular expression whose matches are removed from the input string
+ * @param regex Regular expression which must return the URL in the first group
  */
-open class RegexSanitizer(
+open class SearchResultSanitizer(
     private val regex: Regex,
 ) : Sanitizer {
 
-    /**
-     * Removes all matches of supplied [regex].
-     */
-    override fun invoke(input: String) =
-        regex.replace(input, "")
+    override fun invoke(input: String): String {
+        val result = regex.find(input) ?: return input
+        val group = result.groups[1] ?: return input
+        return URLDecoder.decode(group.value, "UTF-8")
+    }
 }

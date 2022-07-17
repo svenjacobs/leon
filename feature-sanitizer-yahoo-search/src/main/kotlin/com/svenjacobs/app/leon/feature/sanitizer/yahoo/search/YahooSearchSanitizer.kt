@@ -16,20 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain.sanitizer
+package com.svenjacobs.app.leon.feature.sanitizer.yahoo.search
 
-/**
- * Base class for sanitizers that are based on regular expressions.
- *
- * @param regex Regular expression whose matches are removed from the input string
- */
-open class RegexSanitizer(
-    private val regex: Regex,
-) : Sanitizer {
+import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
+import javax.inject.Inject
 
-    /**
-     * Removes all matches of supplied [regex].
-     */
-    override fun invoke(input: String) =
-        regex.replace(input, "")
-}
+class YahooSearchSanitizer @Inject constructor() : SearchResultSanitizer(
+    Regex("RU=([^/]+)")
+)

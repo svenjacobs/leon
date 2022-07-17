@@ -34,6 +34,7 @@ import com.svenjacobs.app.leon.feature.sanitizer.sessionids.SessionIdsSanitizerR
 import com.svenjacobs.app.leon.feature.sanitizer.spotify.SpotifySanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.twitter.TwitterSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.webtrekk.WebtrekkSanitizerRegistration
+import com.svenjacobs.app.leon.feature.sanitizer.yahoo.search.YahooSearchSanitizerRegistration
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
 import dagger.Binds
 import dagger.Module
@@ -64,6 +65,7 @@ object SanitizersModuleProviders {
         spotify: SpotifySanitizerRegistration,
         twitter: TwitterSanitizerRegistration,
         webtrekk: WebtrekkSanitizerRegistration,
+        yahooSearch: YahooSearchSanitizerRegistration,
     ): SanitizerRegistrations =
         listOf(
             amazon,
@@ -79,6 +81,7 @@ object SanitizersModuleProviders {
             spotify,
             twitter,
             webtrekk,
+            yahooSearch,
         ).toImmutableList()
 }
 

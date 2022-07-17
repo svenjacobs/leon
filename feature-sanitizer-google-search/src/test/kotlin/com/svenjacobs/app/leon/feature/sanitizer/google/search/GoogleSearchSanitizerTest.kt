@@ -25,7 +25,7 @@ class GoogleSearchSanitizerTest : WordSpec({
 
     "invoke" should {
 
-        "extract URL from Google Search link" {
+        "extract URL from Google search link" {
             val sanitizer = GoogleSearchSanitizer()
 
             val result = sanitizer(

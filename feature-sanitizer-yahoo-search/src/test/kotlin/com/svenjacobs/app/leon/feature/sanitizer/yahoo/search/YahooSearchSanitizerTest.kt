@@ -16,20 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain.sanitizer
+package com.svenjacobs.app.leon.feature.sanitizer.yahoo.search
 
-/**
- * Base class for sanitizers that are based on regular expressions.
- *
- * @param regex Regular expression whose matches are removed from the input string
- */
-open class RegexSanitizer(
-    private val regex: Regex,
-) : Sanitizer {
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-    /**
-     * Removes all matches of supplied [regex].
-     */
-    override fun invoke(input: String) =
-        regex.replace(input, "")
-}
+class YahooSearchSanitizerTest : WordSpec({
+
+    "invoke" should {
+
+        "extract URL from Yahoo search link" {
+            val sanitizer = YahooSearchSanitizer()
+
+            val result = sanitizer(
+                "https://r.search.yahoo.com/_ylt=A0geKLovoVtisIEAUapx.9w4;_ylu=Y29sbwNiZjEEcG9zAzQEdnRpZAMEc2VjA3Ny/RV=2/RE=1650201007/RO=10/RU=https%3a%2f%2fgithub.com%2fsvenjacobs%2fleon/RK=2/RS=rHoItccMzwyZAXsJuDMkBaKUMx0-"
+            )
+
+            result shouldBe "https://github.com/svenjacobs/leon"
+        }
+    }
+})

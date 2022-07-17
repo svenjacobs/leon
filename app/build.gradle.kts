@@ -130,6 +130,7 @@ dependencies {
     implementation(project(":feature-sanitizer-spotify"))
     implementation(project(":feature-sanitizer-twitter"))
     implementation(project(":feature-sanitizer-webtrekk"))
+    implementation(project(":feature-sanitizer-yahoo-search"))
 
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.androidx.core.ktx)
