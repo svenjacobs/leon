@@ -18,7 +18,9 @@
 
 package com.svenjacobs.app.leon.ui.screens.main
 
+import android.content.Intent
 import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -73,13 +75,21 @@ fun MainScreen(
     val clipboard = LocalClipboardManager.current
 
     fun onShareButtonClick(result: Result.Success) {
-        val intent = viewModel.buildIntent(result.cleanedText)
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            addCategory(Intent.CATEGORY_DEFAULT)
+            putExtra(Intent.EXTRA_TEXT, result.cleanedText)
+        }
+
         context.startActivity(intent)
     }
 
     fun onVerifyButtonClick(result: Result.Success) {
         result.urls.firstOrNull()?.let { url ->
-            val intent = viewModel.buildCustomTabIntent(context)
+            val intent = CustomTabsIntent.Builder()
+                .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
+                .build()
+
             intent.launchUrl(context, Uri.parse(url))
         }
     }

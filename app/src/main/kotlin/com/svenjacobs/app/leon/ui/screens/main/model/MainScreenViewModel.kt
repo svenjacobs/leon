@@ -18,14 +18,8 @@
 
 package com.svenjacobs.app.leon.ui.screens.main.model
 
-import android.content.Context
-import android.content.Intent
-import androidx.browser.customtabs.CustomTabColorSchemeParams
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.CleanerService
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -106,35 +100,6 @@ class MainScreenViewModel @Inject constructor(
 
     fun onExtractUrlCheckedChange(enabled: Boolean) {
         extractUrlEnabled.value = enabled
-    }
-
-    fun buildIntent(text: String): Intent {
-        val target = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            addCategory(Intent.CATEGORY_DEFAULT)
-            putExtra(Intent.EXTRA_TEXT, text)
-        }
-
-        return Intent.createChooser(target, null)
-    }
-
-    fun buildCustomTabIntent(context: Context): CustomTabsIntent {
-        val toolbarColorLight = ContextCompat.getColor(context, R.color.primaryColor)
-        val toolbarColorDark = ContextCompat.getColor(context, R.color.nightPrimaryColor)
-
-        val light = CustomTabColorSchemeParams.Builder()
-            .setToolbarColor(toolbarColorLight)
-            .build()
-
-        val dark = CustomTabColorSchemeParams.Builder()
-            .setToolbarColor(toolbarColorDark)
-            .build()
-
-        return CustomTabsIntent.Builder()
-            .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
-            .setColorSchemeParams(CustomTabsIntent.COLOR_SCHEME_DARK, dark)
-            .setDefaultColorSchemeParams(light)
-            .build()
     }
 
     private suspend fun clean(
