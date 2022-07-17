@@ -34,4 +34,5 @@
     <string name="decode_url">Decode URL</string>
     <string name="import_from_clipboard">Import from clipboard</string>
     <string name="reset">Reset</string>
+    <string name="extract_url">Extract only URL</string>
 </resources>

@@ -115,6 +115,7 @@ fun MainScreen(
                             Content(
                                 result = uiState.result,
                                 isUrlDecodeEnabled = uiState.isUrlDecodeEnabled,
+                                isExtractUrlEnabled = uiState.isExtractUrlEnabled,
                                 onImportFromClipboardClick = {
                                     viewModel.setText(
                                         clipboard.getText()?.toString()
@@ -125,6 +126,7 @@ fun MainScreen(
                                 onVerifyClick = ::onVerifyButtonClick,
                                 onResetClick = viewModel::onResetClick,
                                 onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
+                                onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,
                             )
                         }
 
@@ -145,12 +147,14 @@ private fun Content(
     modifier: Modifier = Modifier,
     result: Result,
     isUrlDecodeEnabled: Boolean,
+    isExtractUrlEnabled: Boolean,
     onImportFromClipboardClick: () -> Unit,
     onShareClick: (Result.Success) -> Unit,
     onCopyToClipboardClick: (Result.Success) -> Unit,
     onVerifyClick: (Result.Success) -> Unit,
     onResetClick: () -> Unit,
     onUrlDecodeCheckedChange: (Boolean) -> Unit,
+    onExtractUrlCheckedChange: (Boolean) -> Unit,
 ) {
     Column(
         modifier = modifier.verticalScroll(rememberScrollState())
@@ -175,11 +179,13 @@ private fun Content(
                     is Result.Success -> SuccessBody(
                         result = result,
                         isUrlDecodeEnabled = isUrlDecodeEnabled,
+                        isExtractUrlEnabled = isExtractUrlEnabled,
                         onShareClick = onShareClick,
                         onCopyToClipboardClick = onCopyToClipboardClick,
                         onVerifyClick = onVerifyClick,
                         onResetClick = onResetClick,
                         onUrlDecodeCheckedChange = onUrlDecodeCheckedChange,
+                        onExtractUrlCheckedChange = onExtractUrlCheckedChange,
                     )
                     else -> HowToBody(
                         onImportFromClipboardClick = onImportFromClipboardClick,
@@ -196,41 +202,42 @@ private fun SuccessBody(
     modifier: Modifier = Modifier,
     result: Result.Success,
     isUrlDecodeEnabled: Boolean,
+    isExtractUrlEnabled: Boolean,
     onShareClick: (Result.Success) -> Unit,
     onCopyToClipboardClick: (Result.Success) -> Unit,
     onVerifyClick: (Result.Success) -> Unit,
     onResetClick: () -> Unit,
     onUrlDecodeCheckedChange: (Boolean) -> Unit,
+    onExtractUrlCheckedChange: (Boolean) -> Unit,
 ) {
     Column(
         modifier = modifier,
     ) {
         Card {
             Column(
+                modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    modifier = Modifier.padding(16.dp),
                     text = stringResource(R.string.original_url),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary,
                 )
 
                 Text(
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(16.dp),
                     text = result.originalText,
                     style = MaterialTheme.typography.bodyMedium,
                 )
 
                 Text(
-                    modifier = Modifier.padding(16.dp),
                     text = stringResource(R.string.cleaned_url),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary,
                 )
 
                 Text(
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(16.dp),
                     text = result.cleanedText,
                     style = MaterialTheme.typography.bodyMedium,
                 )
@@ -240,11 +247,7 @@ private fun SuccessBody(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(
-                            top = 16.dp,
-                            start = 16.dp,
-                            end = 16.dp,
-                        ),
+                        .padding(top = 8.dp),
                     horizontalArrangement = Arrangement.SpaceAround,
                 ) {
                     OutlinedButton(
@@ -271,11 +274,7 @@ private fun SuccessBody(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(
-                            top = 8.dp,
-                            start = 16.dp,
-                            end = 16.dp,
-                        ),
+                        .padding(top = 8.dp),
                     horizontalArrangement = Arrangement.SpaceAround,
                 ) {
                     OutlinedButton(
@@ -299,30 +298,46 @@ private fun SuccessBody(
                     }
                 }
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                            top = 8.dp,
-                            start = 16.dp,
-                            end = 16.dp,
-                            bottom = 8.dp,
-                        ),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = stringResource(R.string.decode_url),
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
+                SwitchRow(
+                    modifier = Modifier.padding(top = 8.dp),
+                    text = stringResource(R.string.decode_url),
+                    checked = isUrlDecodeEnabled,
+                    onCheckedChange = onUrlDecodeCheckedChange,
+                )
 
-                    Switch(
-                        modifier = Modifier.padding(start = 16.dp),
-                        checked = isUrlDecodeEnabled,
-                        onCheckedChange = onUrlDecodeCheckedChange,
-                    )
-                }
+                SwitchRow(
+                    modifier = Modifier.padding(top = 8.dp),
+                    text = stringResource(R.string.extract_url),
+                    checked = isExtractUrlEnabled,
+                    onCheckedChange = onExtractUrlCheckedChange,
+                )
             }
         }
+    }
+}
+
+@Composable
+private fun SwitchRow(
+    modifier: Modifier = Modifier,
+    text: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+
+        Switch(
+            modifier = Modifier.padding(start = 16.dp),
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+        )
     }
 }
 
@@ -386,11 +401,13 @@ private fun SuccessBodyPreview() {
                 urls = persistentListOf(),
             ),
             isUrlDecodeEnabled = false,
+            isExtractUrlEnabled = false,
             onShareClick = {},
             onCopyToClipboardClick = {},
             onVerifyClick = {},
             onResetClick = {},
             onUrlDecodeCheckedChange = {},
+            onExtractUrlCheckedChange = {},
         )
     }
 }

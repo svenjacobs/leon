@@ -44,6 +44,7 @@ class MainScreenViewModel @Inject constructor(
     data class UiState(
         val isLoading: Boolean = true,
         val isUrlDecodeEnabled: Boolean = false,
+        val isExtractUrlEnabled: Boolean = false,
         val result: Result = Result.Empty,
     ) {
         sealed interface Result {
@@ -62,22 +63,26 @@ class MainScreenViewModel @Inject constructor(
 
     private val text = MutableStateFlow<String?>(null)
     private val urlDecodeEnabled = MutableStateFlow(false)
+    private val extractUrlEnabled = MutableStateFlow(false)
 
     val uiState =
         combine(
             text,
             urlDecodeEnabled,
-        ) { text, urlDecodeEnabled ->
+            extractUrlEnabled,
+        ) { text, urlDecodeEnabled, extractUrlEnabled ->
             val result = text?.let {
                 clean(
                     text = text,
                     decodeUrl = urlDecodeEnabled,
+                    extractUrl = extractUrlEnabled,
                 )
             } ?: Result.Empty
 
             UiState(
                 isLoading = text == null,
                 isUrlDecodeEnabled = urlDecodeEnabled,
+                isExtractUrlEnabled = extractUrlEnabled,
                 result = result,
             )
         }.stateIn(
@@ -97,6 +102,10 @@ class MainScreenViewModel @Inject constructor(
 
     fun onUrlDecodeCheckedChange(enabled: Boolean) {
         urlDecodeEnabled.value = enabled
+    }
+
+    fun onExtractUrlCheckedChange(enabled: Boolean) {
+        extractUrlEnabled.value = enabled
     }
 
     fun buildIntent(text: String): Intent {
@@ -131,6 +140,7 @@ class MainScreenViewModel @Inject constructor(
     private suspend fun clean(
         text: String,
         decodeUrl: Boolean,
+        extractUrl: Boolean,
     ): Result =
         try {
             cleanerService.clean(
@@ -139,7 +149,10 @@ class MainScreenViewModel @Inject constructor(
             ).let { result ->
                 Result.Success(
                     originalText = result.originalText,
-                    cleanedText = result.cleanedText,
+                    cleanedText = when {
+                        extractUrl -> result.urls.firstOrNull().orEmpty()
+                        else -> result.cleanedText
+                    },
                     urls = result.urls,
                 )
             }
