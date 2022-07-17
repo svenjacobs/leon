@@ -1,3 +1,5 @@
-- Instagram Reiniger hinzugefügt
-- Reiniger für generische Session IDs hinzugefügt
-- Reiniger für leere Parameter hinzugefügt
+- "Aus Zwischenablage importieren" Funktion hinzugefügt
+- "Dekodiere URL" & "Extrahiere URL" Funktionen hinzugefügt
+- Google, Yahoo & AOL Suchergebnis Reiniger hinzugefügt
+- Amazon Smile Reiniger / Domainumwandler hinzugefügt
+- Übersetzung für Russisch hinzugefügt

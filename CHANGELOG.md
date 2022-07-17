@@ -1,3 +1,13 @@
+## Version 1.0.0
+
+_2022-07-17_
+
+- Add "import from clipboard" functionality
+- Add "decode URL" & "extract only URL" functionality
+- Add Google, Yahoo & AOL search result sanitizers
+- Add Amazon Smile sanitizer / domain rewriter
+- Add Russian translations (thanks @chel1k)
+
 ## Version 0.10.0
 
 _2022-07-15_

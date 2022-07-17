@@ -27,9 +27,9 @@ Cleaner share the cleaned URL to the actual target application.
 
 ## Issues & feedback
 
-The app is currently in public beta phase. Please
-report [bugs](https://github.com/svenjacobs/leon/issues) or
-give [feedback](https://github.com/svenjacobs/leon/discussions).
+Did you find a bug or have an idea of how the app could be improved? Please report
+[bugs](https://github.com/svenjacobs/leon/issues) or give
+[feedback](https://github.com/svenjacobs/leon/discussions).
 
 ## Technical implementation
 

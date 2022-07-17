@@ -1,3 +1,5 @@
-- Add Instagram sanitizer
-- Add sanitizer for generic session IDs
-- Add sanitizer for empty parameters
+- Add "import from clipboard" functionality
+- Add "decode URL" & "extract only URL" functionality
+- Add Google, Yahoo & AOL search result sanitizers
+- Add Amazon Smile sanitizer / domain rewriter
+- Add Russian translations
