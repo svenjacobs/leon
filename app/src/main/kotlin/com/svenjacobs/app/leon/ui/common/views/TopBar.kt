@@ -21,10 +21,7 @@ package com.svenjacobs.app.leon.ui.common.views
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -32,6 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.svenjacobs.app.leon.R
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun TopAppBar(
     modifier: Modifier = Modifier,
     onBackClick: (() -> Unit)? = null,
