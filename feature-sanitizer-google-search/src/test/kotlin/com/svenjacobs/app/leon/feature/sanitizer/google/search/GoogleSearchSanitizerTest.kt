@@ -23,13 +23,21 @@ import io.kotest.matchers.shouldBe
 
 class GoogleSearchSanitizerTest : WordSpec({
 
+    val sanitizer = GoogleSearchSanitizer()
+
     "invoke" should {
 
-        "extract URL from Google search link" {
-            val sanitizer = GoogleSearchSanitizer()
-
+        "extract URL from Google search link (\"url\" parameter)" {
             val result = sanitizer(
                 "https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.regextester.com/&ved=2ahUKEwiTpvflqP34AhXOgv0HHSNQCOIQFnoECAcQAQ&usg=AOvVaw1wBmEA7TD90QkZPu7zcsOa"
+            )
+
+            result shouldBe "https://www.regextester.com/"
+        }
+
+        "extract URL from Google search link (\"q\" parameter)" {
+            val result = sanitizer(
+                "https://www.google.com/url?sa=t&source=web&rct=j&q=https://www.regextester.com/&ved=2ahUKEwiTpvflqP34AhXOgv0HHSNQCOIQFnoECAcQAQ&usg=AOvVaw1wBmEA7TD90QkZPu7zcsOa"
             )
 
             result shouldBe "https://www.regextester.com/"
