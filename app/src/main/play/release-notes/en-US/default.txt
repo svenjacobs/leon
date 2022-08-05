@@ -1,5 +1,3 @@
-- Add "import from clipboard" functionality
-- Add "decode URL" & "extract only URL" functionality
-- Add Google, Yahoo & AOL search result sanitizers
-- Add Amazon Smile sanitizer / domain rewriter
-- Add Russian translations
+- Add missing "q" parameter to Google sanitizer
+- Improve sharing
+- Update Russian translations

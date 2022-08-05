@@ -1,5 +1,3 @@
-- "Aus Zwischenablage importieren" Funktion hinzugefügt
-- "Dekodiere URL" & "Extrahiere URL" Funktionen hinzugefügt
-- Google, Yahoo & AOL Suchergebnis Reiniger hinzugefügt
-- Amazon Smile Reiniger / Domainumwandler hinzugefügt
-- Übersetzung für Russisch hinzugefügt
+- Fehlendes "q" Parameter hinzugefügt
+- Teilen verbessert
+- Russische Übersetzung aktualisiert

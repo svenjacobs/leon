@@ -1,3 +1,11 @@
+## Version 1.0.1
+
+_2022-08-05_
+
+- Add missing `q` parameter to Google sanitizer
+- Improve sharing
+- Update Russian translations
+
 ## Version 1.0.0
 
 _2022-07-17_
