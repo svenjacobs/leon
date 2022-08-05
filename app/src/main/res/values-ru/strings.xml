@@ -25,14 +25,14 @@
     <string name="copy">Копировать</string>
     <string name="clipboard_message">Ссылка скопирована в буфер обмена</string>
     <string name="how_to_title">Инструкция</string>
-    <string name="how_to_text">При передаче текста выберите \"Очистка URL\". Затем нажмите \"Поделиться\" в этом приложении, чтобы отправить текст в целевое приложение.</string> <!-- TODO: update translation -->
+    <string name="how_to_text">При передаче текста выберите \"Очистка URL\". Затем нажмите \"Поделиться\" в этом приложении, чтобы отправить текст в целевое приложение.</string>
     <string name="cleaned_url">Очищенный URL-адрес</string>
     <string name="original_url">Оригинальный URL-адрес</string>
-    <string name="sanitizers">Дезинфекция</string>
+    <string name="sanitizers">Очистка</string>
     <string name="licenses">Лицензия</string>
-    <string name="sanitizers_description">Включение или отключение дезинфекции</string>
-    <string name="decode_url">Decode URL</string>
-    <string name="import_from_clipboard">Import from clipboard</string>
-    <string name="reset">Reset</string>
-    <string name="extract_url">Extract only URL</string>
+    <string name="sanitizers_description">Включение или отключение очистки</string>
+    <string name="decode_url">Декодировать URL-адрес</string>
+    <string name="import_from_clipboard">Импорт из буфера обмена</string>
+    <string name="reset">Сброс</string>
+    <string name="extract_url">Извлечение только URL-адреса</string>
 </resources>
