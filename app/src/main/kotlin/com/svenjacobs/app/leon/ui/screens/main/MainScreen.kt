@@ -74,14 +74,21 @@ fun MainScreen(
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
 
-    fun onShareButtonClick(result: Result.Success) {
+    fun onShareButtonClick(
+        result: Result.Success,
+        title: String,
+    ) {
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             addCategory(Intent.CATEGORY_DEFAULT)
             putExtra(Intent.EXTRA_TEXT, result.cleanedText)
         }
 
-        context.startActivity(intent)
+        context.startActivity(
+            Intent.createChooser(
+                intent, title
+            )
+        )
     }
 
     fun onVerifyButtonClick(result: Result.Success) {
@@ -122,6 +129,8 @@ fun MainScreen(
                         startDestination = Screen.Main.route,
                     ) {
                         composable(Screen.Main.route) {
+                            val shareTitle = stringResource(R.string.share)
+
                             Content(
                                 result = uiState.result,
                                 isUrlDecodeEnabled = uiState.isUrlDecodeEnabled,
@@ -131,7 +140,7 @@ fun MainScreen(
                                         clipboard.getText()?.toString()
                                     )
                                 },
-                                onShareClick = ::onShareButtonClick,
+                                onShareClick = { result -> onShareButtonClick(result, shareTitle) },
                                 onCopyToClipboardClick = ::onCopyToClipboardClick,
                                 onVerifyClick = ::onVerifyButtonClick,
                                 onResetClick = viewModel::onResetClick,
