@@ -22,5 +22,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class AmazonSanitizer @Inject constructor() : RegexSanitizer(
-    regex = Regex("ref=[^?&]+|[?&][^=]+=.[^&]*"),
+	regex = Regex("ref=[^?&]+|[?&][^=]+=.[^&]*"),
 )

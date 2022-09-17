@@ -26,16 +26,15 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class FacebookSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<FacebookSanitizer>,
+	private val sanitizerProvider: Provider<FacebookSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("facebook")
+	override val id = SanitizerId("facebook")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_facebook_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_facebook_name)
 }

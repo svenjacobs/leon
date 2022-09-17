@@ -31,15 +31,15 @@ import kotlinx.coroutines.MainScope
 @InstallIn(SingletonComponent::class)
 object ApplicationModuleProviders {
 
-    @Provides
-    @ApplicationCoroutineScope
-    fun provideApplicationCoroutineScope() = MainScope()
+	@Provides
+	@ApplicationCoroutineScope
+	fun provideApplicationCoroutineScope() = MainScope()
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class ApplicationModuleBindings {
 
-    @Binds
-    abstract fun bindStethoHelper(stethoHelperImpl: StethoHelperImpl): StethoHelper
+	@Binds
+	abstract fun bindStethoHelper(stethoHelperImpl: StethoHelperImpl): StethoHelper
 }

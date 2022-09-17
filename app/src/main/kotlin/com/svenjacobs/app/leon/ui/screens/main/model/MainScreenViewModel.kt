@@ -23,105 +23,100 @@ import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.core.domain.CleanerService
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val cleanerService: CleanerService,
+	private val cleanerService: CleanerService,
 ) : ViewModel() {
 
-    data class UiState(
-        val isLoading: Boolean = true,
-        val isUrlDecodeEnabled: Boolean = false,
-        val isExtractUrlEnabled: Boolean = false,
-        val result: Result = Result.Empty,
-    ) {
-        sealed interface Result {
+	data class UiState(
+		val isLoading: Boolean = true,
+		val isUrlDecodeEnabled: Boolean = false,
+		val isExtractUrlEnabled: Boolean = false,
+		val result: Result = Result.Empty,
+	) {
+		sealed interface Result {
 
-            object Empty : Result
+			object Empty : Result
 
-            data class Success(
-                val originalText: String,
-                val cleanedText: String,
-                val urls: ImmutableList<String>,
-            ) : Result
+			data class Success(
+				val originalText: String,
+				val cleanedText: String,
+				val urls: ImmutableList<String>,
+			) : Result
 
-            object Error : Result
-        }
-    }
+			object Error : Result
+		}
+	}
 
-    private val text = MutableStateFlow<String?>(null)
-    private val urlDecodeEnabled = MutableStateFlow(false)
-    private val extractUrlEnabled = MutableStateFlow(false)
+	private val text = MutableStateFlow<String?>(null)
+	private val urlDecodeEnabled = MutableStateFlow(false)
+	private val extractUrlEnabled = MutableStateFlow(false)
 
-    val uiState =
-        combine(
-            text,
-            urlDecodeEnabled,
-            extractUrlEnabled,
-        ) { text, urlDecodeEnabled, extractUrlEnabled ->
-            val result = text?.let {
-                clean(
-                    text = text,
-                    decodeUrl = urlDecodeEnabled,
-                    extractUrl = extractUrlEnabled,
-                )
-            } ?: Result.Empty
+	val uiState =
+		combine(
+			text,
+			urlDecodeEnabled,
+			extractUrlEnabled,
+		) { text, urlDecodeEnabled, extractUrlEnabled ->
+			val result = text?.let {
+				clean(
+					text = text,
+					decodeUrl = urlDecodeEnabled,
+					extractUrl = extractUrlEnabled,
+				)
+			} ?: Result.Empty
 
-            UiState(
-                isLoading = text == null,
-                isUrlDecodeEnabled = urlDecodeEnabled,
-                isExtractUrlEnabled = extractUrlEnabled,
-                result = result,
-            )
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = UiState(),
-        )
+			UiState(
+				isLoading = text == null,
+				isUrlDecodeEnabled = urlDecodeEnabled,
+				isExtractUrlEnabled = extractUrlEnabled,
+				result = result,
+			)
+		}.stateIn(
+			scope = viewModelScope,
+			started = SharingStarted.WhileSubscribed(5_000),
+			initialValue = UiState(),
+		)
 
-    fun setText(text: String?) {
-        if (text == null && uiState.value.result is Result.Success) return
-        this.text.value = text
-    }
+	fun setText(text: String?) {
+		if (text == null && uiState.value.result is Result.Success) return
+		this.text.value = text
+	}
 
-    fun onResetClick() {
-        text.value = null
-    }
+	fun onResetClick() {
+		text.value = null
+	}
 
-    fun onUrlDecodeCheckedChange(enabled: Boolean) {
-        urlDecodeEnabled.value = enabled
-    }
+	fun onUrlDecodeCheckedChange(enabled: Boolean) {
+		urlDecodeEnabled.value = enabled
+	}
 
-    fun onExtractUrlCheckedChange(enabled: Boolean) {
-        extractUrlEnabled.value = enabled
-    }
+	fun onExtractUrlCheckedChange(enabled: Boolean) {
+		extractUrlEnabled.value = enabled
+	}
 
-    private suspend fun clean(
-        text: String,
-        decodeUrl: Boolean,
-        extractUrl: Boolean,
-    ): Result =
-        try {
-            cleanerService.clean(
-                text = text,
-                decodeUrl = decodeUrl
-            ).let { result ->
-                Result.Success(
-                    originalText = result.originalText,
-                    cleanedText = when {
-                        extractUrl -> result.urls.firstOrNull().orEmpty()
-                        else -> result.cleanedText
-                    },
-                    urls = result.urls,
-                )
-            }
-        } catch (e: Exception) {
-            Result.Error
-        }
+	private suspend fun clean(text: String, decodeUrl: Boolean, extractUrl: Boolean): Result = try {
+		cleanerService.clean(
+			text = text,
+			decodeUrl = decodeUrl,
+		).let { result ->
+			Result.Success(
+				originalText = result.originalText,
+				cleanedText = when {
+					extractUrl -> result.urls.firstOrNull().orEmpty()
+					else -> result.cleanedText
+				},
+				urls = result.urls,
+			)
+		}
+	} catch (e: Exception) {
+		Result.Error
+	}
 }

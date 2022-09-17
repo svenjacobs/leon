@@ -28,13 +28,13 @@ import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
 
 @Composable
-internal fun BackgroundImage(
-    modifier: Modifier = Modifier,
-) {
-    Image(
-        modifier = modifier.fillMaxSize(),
-        painter = painterResource(if (BuildConfig.DEBUG) R.drawable.background_bug else R.drawable.background_broom),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-    )
+internal fun BackgroundImage(modifier: Modifier = Modifier) {
+	Image(
+		modifier = modifier.fillMaxSize(),
+		painter = painterResource(
+			if (BuildConfig.DEBUG) R.drawable.background_bug else R.drawable.background_broom,
+		),
+		contentDescription = null,
+		contentScale = ContentScale.Crop,
+	)
 }

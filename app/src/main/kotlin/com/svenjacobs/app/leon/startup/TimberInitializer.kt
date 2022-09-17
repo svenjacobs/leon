@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,11 +25,11 @@ import timber.log.Timber
 
 class TimberInitializer : Initializer<Unit> {
 
-    override fun create(context: Context) {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
-    }
+	override fun create(context: Context) {
+		if (BuildConfig.DEBUG) {
+			Timber.plant(Timber.DebugTree())
+		}
+	}
 
-    override fun dependencies() = emptyList<Class<out Initializer<*>>>()
+	override fun dependencies() = emptyList<Class<out Initializer<*>>>()
 }

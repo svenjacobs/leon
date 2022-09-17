@@ -26,23 +26,21 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class AolSearchSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<AolSearchSanitizer>,
+	private val sanitizerProvider: Provider<AolSearchSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("aol_search")
+	override val id = SanitizerId("aol_search")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_aol_search_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_aol_search_name)
 
-    override fun matchesDomain(input: String) =
-        DOMAIN_REGEX.containsMatchIn(input)
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-    private companion object {
-        private val DOMAIN_REGEX = Regex("search\\.aol\\.com")
-    }
+	private companion object {
+		private val DOMAIN_REGEX = Regex("search\\.aol\\.com")
+	}
 }

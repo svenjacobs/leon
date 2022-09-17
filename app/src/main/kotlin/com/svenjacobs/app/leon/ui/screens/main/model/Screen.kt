@@ -26,22 +26,22 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.svenjacobs.app.leon.R
 
 sealed class Screen(
-    val route: String,
-    val icon: ImageVector,
-    @StringRes val label: Int,
-    @StringRes val iconContentDescription: Int,
+	val route: String,
+	val icon: ImageVector,
+	@StringRes val label: Int,
+	@StringRes val iconContentDescription: Int,
 ) {
-    object Main : Screen(
-        route = "main",
-        icon = Icons.Filled.Home,
-        label = R.string.screen_main,
-        iconContentDescription = R.string.screen_main,
-    )
+	object Main : Screen(
+		route = "main",
+		icon = Icons.Filled.Home,
+		label = R.string.screen_main,
+		iconContentDescription = R.string.screen_main,
+	)
 
-    object Settings : Screen(
-        route = "settings",
-        icon = Icons.Filled.Settings,
-        label = R.string.screen_settings,
-        iconContentDescription = R.string.screen_settings,
-    )
+	object Settings : Screen(
+		route = "settings",
+		icon = Icons.Filled.Settings,
+		label = R.string.screen_settings,
+		iconContentDescription = R.string.screen_settings,
+	)
 }

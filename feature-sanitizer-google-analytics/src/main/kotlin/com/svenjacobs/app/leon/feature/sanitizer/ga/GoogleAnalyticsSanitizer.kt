@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class GoogleAnalyticsSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofWildcardParameter("ga_|utm_"),
+	regex = RegexFactory.ofWildcardParameter("ga_|utm_"),
 )

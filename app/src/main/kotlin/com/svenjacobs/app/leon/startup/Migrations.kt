@@ -20,23 +20,23 @@ package com.svenjacobs.app.leon.startup
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
+import timber.log.Timber
 
 class Migrations @Inject constructor() {
 
-    fun migrate(context: Context) {
-        try {
-            // Delete obsolete database files from previous app version
-            val dataDir = ContextCompat.getDataDir(context) ?: return
-            val databases = File(dataDir, "databases")
+	fun migrate(context: Context) {
+		try {
+			// Delete obsolete database files from previous app version
+			val dataDir = ContextCompat.getDataDir(context) ?: return
+			val databases = File(dataDir, "databases")
 
-            databases.listFiles()
-                ?.filter { file -> file.name.startsWith("leon") }
-                ?.forEach { file -> file.delete() }
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
-    }
+			databases.listFiles()
+				?.filter { file -> file.name.startsWith("leon") }
+				?.forEach { file -> file.delete() }
+		} catch (e: Exception) {
+			Timber.e(e)
+		}
+	}
 }

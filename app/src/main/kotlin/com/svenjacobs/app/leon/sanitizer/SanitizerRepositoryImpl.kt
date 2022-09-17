@@ -24,35 +24,32 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository.SanitizerState
 import com.svenjacobs.app.leon.datastore.SanitizerDataStoreManager
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 class SanitizerRepositoryImpl @Inject constructor(
-    private val dataStoreManager: SanitizerDataStoreManager,
-    @Registrations private val registrations: SanitizerRegistrations,
+	private val dataStoreManager: SanitizerDataStoreManager,
+	@Registrations private val registrations: SanitizerRegistrations,
 ) : SanitizerRepository {
 
-    override val state: Flow<ImmutableList<SanitizerState>>
-        get() = dataStoreManager.data.map { pref ->
-            registrations.map { reg ->
-                SanitizerState(
-                    id = reg.id,
-                    enabled = pref[dataStoreManager.preferencesKey(reg.id.value)] ?: true
-                )
-            }.toImmutableList()
-        }
+	override val state: Flow<ImmutableList<SanitizerState>>
+		get() = dataStoreManager.data.map { pref ->
+			registrations.map { reg ->
+				SanitizerState(
+					id = reg.id,
+					enabled = pref[dataStoreManager.preferencesKey(reg.id.value)] ?: true,
+				)
+			}.toImmutableList()
+		}
 
-    override suspend fun isEnabled(id: SanitizerId): Boolean =
-        dataStoreManager.isSanitizerEnabled(id.value).first() ?: true
+	override suspend fun isEnabled(id: SanitizerId): Boolean =
+		dataStoreManager.isSanitizerEnabled(id.value).first() ?: true
 
-    override suspend fun setEnabled(
-        id: SanitizerId,
-        enabled: Boolean,
-    ) {
-        dataStoreManager.setSanitizerEnabled(id.value, enabled)
-    }
+	override suspend fun setEnabled(id: SanitizerId, enabled: Boolean) {
+		dataStoreManager.setSanitizerEnabled(id.value, enabled)
+	}
 }

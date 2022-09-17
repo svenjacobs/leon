@@ -26,16 +26,15 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class WebtrekkSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<WebtrekkSanitizer>,
+	private val sanitizerProvider: Provider<WebtrekkSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("webtrekk")
+	override val id = SanitizerId("webtrekk")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_webtrekk_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_webtrekk_name)
 }

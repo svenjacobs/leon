@@ -24,34 +24,33 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 @Singleton
 class SanitizerDataStoreManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+	@ApplicationContext private val context: Context,
 ) {
-    private val Context.dataStore by preferencesDataStore(name = "sanitizers")
+	private val Context.dataStore by preferencesDataStore(name = "sanitizers")
 
-    internal fun preferencesKey(id: String) =
-        booleanPreferencesKey(name = "sanitizer_$id")
+	internal fun preferencesKey(id: String) = booleanPreferencesKey(name = "sanitizer_$id")
 
-    val data: Flow<Preferences>
-        get() = context.dataStore.data
+	val data: Flow<Preferences>
+		get() = context.dataStore.data
 
-    suspend fun setSanitizerEnabled(id: String, enabled: Boolean) {
-        val key = preferencesKey(id)
-        context.dataStore.edit {
-            it[key] = enabled
-        }
-    }
+	suspend fun setSanitizerEnabled(id: String, enabled: Boolean) {
+		val key = preferencesKey(id)
+		context.dataStore.edit {
+			it[key] = enabled
+		}
+	}
 
-    fun isSanitizerEnabled(id: String): Flow<Boolean?> {
-        val key = preferencesKey(id)
-        return context.dataStore.data.map {
-            it[key]
-        }
-    }
+	fun isSanitizerEnabled(id: String): Flow<Boolean?> {
+		val key = preferencesKey(id)
+		return context.dataStore.data.map {
+			it[key]
+		}
+	}
 }

@@ -26,23 +26,21 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class InstagramSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<InstagramSanitizer>,
+	private val sanitizerProvider: Provider<InstagramSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("instagram")
+	override val id = SanitizerId("instagram")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_instagram_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_instagram_name)
 
-    override fun matchesDomain(input: String) =
-        DOMAIN_REGEX.containsMatchIn(input)
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-    private companion object {
-        private val DOMAIN_REGEX = Regex("instagram\\.com")
-    }
+	private companion object {
+		private val DOMAIN_REGEX = Regex("instagram\\.com")
+	}
 }

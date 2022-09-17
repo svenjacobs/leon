@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2021 Sven Jacobs
+ * Copyright (C) 2022 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@ import javax.inject.Inject
 
 class StethoHelperImpl @Inject constructor() : StethoHelper {
 
-    /**
-     * Nothing to do because there is no Stetho dependency in release build variant :)
-     */
-    override fun initialize(context: Context) {
-    }
+	/**
+	 * Nothing to do because there is no Stetho dependency in release build variant :)
+	 */
+	override fun initialize(context: Context) {
+	}
 }

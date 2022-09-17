@@ -39,47 +39,45 @@ import com.svenjacobs.app.leon.R
 enum class BroomState { START, END }
 
 @Composable
-internal fun BroomIcon(
-    modifier: Modifier = Modifier,
-) {
-    val state = remember { MutableTransitionState(BroomState.START) }
-    state.targetState = BroomState.END
-    val transition = updateTransition(state, label = "broom")
+internal fun BroomIcon(modifier: Modifier = Modifier) {
+	val state = remember { MutableTransitionState(BroomState.START) }
+	state.targetState = BroomState.END
+	val transition = updateTransition(state, label = "broom")
 
-    val color by transition.animateColor(
-        transitionSpec = {
-            tween(
-                durationMillis = 1000,
-                delayMillis = 250,
-            )
-        },
-        label = "color"
-    ) { progress ->
-        when (progress) {
-            BroomState.START -> Color.DarkGray
-            BroomState.END -> MaterialTheme.colorScheme.primary
-        }
-    }
+	val color by transition.animateColor(
+		transitionSpec = {
+			tween(
+				durationMillis = 1000,
+				delayMillis = 250,
+			)
+		},
+		label = "color",
+	) { progress ->
+		when (progress) {
+			BroomState.START -> Color.DarkGray
+			BroomState.END -> MaterialTheme.colorScheme.primary
+		}
+	}
 
-    val scale by transition.animateFloat(
-        transitionSpec = {
-            tween(
-                durationMillis = 1000,
-                delayMillis = 250,
-            )
-        },
-        label = "scale"
-    ) { progress ->
-        when (progress) {
-            BroomState.START -> 0.8F
-            BroomState.END -> 1.0F
-        }
-    }
+	val scale by transition.animateFloat(
+		transitionSpec = {
+			tween(
+				durationMillis = 1000,
+				delayMillis = 250,
+			)
+		},
+		label = "scale",
+	) { progress ->
+		when (progress) {
+			BroomState.START -> 0.8F
+			BroomState.END -> 1.0F
+		}
+	}
 
-    Image(
-        modifier = modifier.scale(scale),
-        painter = painterResource(R.drawable.ic_broom),
-        contentDescription = stringResource(R.string.a11y_broom_icon),
-        colorFilter = ColorFilter.tint(color),
-    )
+	Image(
+		modifier = modifier.scale(scale),
+		painter = painterResource(R.drawable.ic_broom),
+		contentDescription = stringResource(R.string.a11y_broom_icon),
+		colorFilter = ColorFilter.tint(color),
+	)
 }

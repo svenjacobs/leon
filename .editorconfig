@@ -5,9 +5,15 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.kt]
-indent_style = space
+[*.{kt,kts}]
+charset = utf-8
+indent_style = tab
 indent_size = 4
+# ktlint configuration
+ktlint_code_style = android
+#ktlint_disabled_rules =
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
 
 [*.md]
 trim_trailing_whitespace = false

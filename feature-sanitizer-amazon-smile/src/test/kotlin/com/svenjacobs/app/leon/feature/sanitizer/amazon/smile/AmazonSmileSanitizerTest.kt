@@ -23,15 +23,15 @@ import io.kotest.matchers.shouldBe
 
 class AmazonSmileSanitizerTest : WordSpec({
 
-    "invoke" should {
+	"invoke" should {
 
-        "replace Amazon with Amazon Smile domain" {
-            val sanitizer = AmazonSmileSanitizer()
-            val result = sanitizer(
-                "https://www.amazon.de/dp/B08SG2QTZS/"
-            )
+		"replace Amazon with Amazon Smile domain" {
+			val sanitizer = AmazonSmileSanitizer()
+			val result = sanitizer(
+				"https://www.amazon.de/dp/B08SG2QTZS/",
+			)
 
-            result shouldBe "https://smile.amazon.de/dp/B08SG2QTZS/"
-        }
-    }
-})
+			result shouldBe "https://smile.amazon.de/dp/B08SG2QTZS/"
+		}
+	}
+},)

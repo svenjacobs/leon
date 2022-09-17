@@ -23,16 +23,16 @@ import io.kotest.matchers.shouldBe
 
 class FacebookSanitizerTest : WordSpec({
 
-    "invoke" should {
+	"invoke" should {
 
-        "remove \"fb_*\" and \"fbclid\" parameters" {
-            val sanitizer = FacebookSanitizer()
+		"remove \"fb_*\" and \"fbclid\" parameters" {
+			val sanitizer = FacebookSanitizer()
 
-            val result = sanitizer(
-                "https://www.example.com?fb_abc=123&fbclid=12345",
-            )
+			val result = sanitizer(
+				"https://www.example.com?fb_abc=123&fbclid=12345",
+			)
 
-            result shouldBe "https://www.example.com"
-        }
-    }
-})
+			result shouldBe "https://www.example.com"
+		}
+	}
+},)

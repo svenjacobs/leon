@@ -26,23 +26,22 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class AmazonSmileSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<AmazonSmileSanitizer>,
+	private val sanitizerProvider: Provider<AmazonSmileSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("amazon_smile")
+	override val id = SanitizerId("amazon_smile")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_amazon_smile_name)
+	override fun getName(context: Context) =
+		context.getString(R.string.feat_sanitizer_amazon_smile_name)
 
-    override fun matchesDomain(input: String) =
-        DOMAIN_REGEX.containsMatchIn(input)
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-    internal companion object {
-        internal val DOMAIN_REGEX = Regex("^(?:https?://)?((?:www\\.)?amazon)\\.")
-    }
+	internal companion object {
+		internal val DOMAIN_REGEX = Regex("^(?:https?://)?((?:www\\.)?amazon)\\.")
+	}
 }

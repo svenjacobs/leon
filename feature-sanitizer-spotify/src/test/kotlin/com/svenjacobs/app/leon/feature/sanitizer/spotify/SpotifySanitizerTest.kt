@@ -21,18 +21,22 @@ package com.svenjacobs.app.leon.feature.sanitizer.spotify
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class SpotifySanitizerTest : WordSpec({
+class SpotifySanitizerTest : WordSpec(
+	{
 
-    "invoke" should {
+		"invoke" should {
 
-        "remove \"si\" parameter" {
-            val sanitizer = SpotifySanitizer()
+			"remove \"si\" parameter" {
+				val sanitizer = SpotifySanitizer()
 
-            val result = sanitizer(
-                "https://open.spotify.com/album/5N2BIKomahKMAAirp8tiBN?si=BICcHVzTTqmqt82Y6f2e_A&utm_source=native-share-menu",
-            )
+				val result = sanitizer(
+					"https://open.spotify.com/album/5N2BIKomahKMAAirp8tiBN?si=BICcHVzTTqmqt" +
+						"82Y6f2e_A&utm_source=native-share-menu",
+				)
 
-            result shouldBe "https://open.spotify.com/album/5N2BIKomahKMAAirp8tiBN&utm_source=native-share-menu"
-        }
-    }
-})
+				result shouldBe "https://open.spotify.com/album/5N2BIKomahKMAAirp8tiBN&utm_source" +
+					"=native-share-menu"
+			}
+		}
+	},
+)

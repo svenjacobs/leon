@@ -18,7 +18,11 @@
 
 package com.svenjacobs.app.leon.ui.screens.settings
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -38,99 +42,96 @@ import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
-fun SettingsScreen(
-    modifier: Modifier = Modifier,
-    onHideBars: (Boolean) -> Unit,
-) {
-    val navController = rememberNavController()
+fun SettingsScreen(modifier: Modifier = Modifier, onHideBars: (Boolean) -> Unit) {
+	val navController = rememberNavController()
 
-    NavHost(
-        modifier = modifier,
-        navController = navController,
-        startDestination = SCREEN_SETTINGS,
-    ) {
-        composable(
-            route = SCREEN_SETTINGS,
-        ) {
-            LaunchedEffect(Unit) { onHideBars(false) }
+	NavHost(
+		modifier = modifier,
+		navController = navController,
+		startDestination = SCREEN_SETTINGS,
+	) {
+		composable(
+			route = SCREEN_SETTINGS,
+		) {
+			LaunchedEffect(Unit) { onHideBars(false) }
 
-            Content(
-                onSanitizersClick = { navController.navigate(SCREEN_SANITIZERS) },
-                onLicensesClick = { navController.navigate(SCREEN_LICENSES) }
-            )
-        }
+			Content(
+				onSanitizersClick = { navController.navigate(SCREEN_SANITIZERS) },
+				onLicensesClick = { navController.navigate(SCREEN_LICENSES) },
+			)
+		}
 
-        composable(
-            route = SCREEN_SANITIZERS,
-        ) {
-            LaunchedEffect(Unit) { onHideBars(true) }
+		composable(
+			route = SCREEN_SANITIZERS,
+		) {
+			LaunchedEffect(Unit) { onHideBars(true) }
 
-            SettingsSanitizersScreen(
-                viewModel = hiltViewModel(),
-                onBackClick = { navController.popBackStack() },
-            )
-        }
+			SettingsSanitizersScreen(
+				viewModel = hiltViewModel(),
+				onBackClick = { navController.popBackStack() },
+			)
+		}
 
-        composable(
-            route = SCREEN_LICENSES,
-        ) {
-            LaunchedEffect(Unit) { onHideBars(true) }
+		composable(
+			route = SCREEN_LICENSES,
+		) {
+			LaunchedEffect(Unit) { onHideBars(true) }
 
-            SettingsLicensesScreen(
-                onBackClick = { navController.popBackStack() },
-            )
-        }
-    }
+			SettingsLicensesScreen(
+				onBackClick = { navController.popBackStack() },
+			)
+		}
+	}
 }
 
 @Composable
 private fun Content(
-    modifier: Modifier = Modifier,
-    onSanitizersClick: () -> Unit,
-    onLicensesClick: () -> Unit,
+	onSanitizersClick: () -> Unit,
+	onLicensesClick: () -> Unit,
+	modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-        ) {
-            OutlinedButton(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = onSanitizersClick
-            ) {
-                Text(stringResource(R.string.sanitizers))
-            }
+	Box(
+		modifier = modifier.fillMaxSize(),
+	) {
+		Column(
+			modifier = Modifier.padding(16.dp),
+		) {
+			OutlinedButton(
+				modifier = Modifier.fillMaxWidth(),
+				onClick = onSanitizersClick,
+			) {
+				Text(stringResource(R.string.sanitizers))
+			}
 
-            OutlinedButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp),
-                onClick = onLicensesClick,
-            ) {
-                Text(stringResource(R.string.licenses))
-            }
-        }
+			OutlinedButton(
+				modifier = Modifier
+					.fillMaxWidth()
+					.padding(top = 16.dp),
+				onClick = onLicensesClick,
+			) {
+				Text(stringResource(R.string.licenses))
+			}
+		}
 
-        Text(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(
-                    bottom = 8.dp,
-                    end = 8.dp,
-                ),
-            text = BuildConfig.VERSION_NAME,
-            style = MaterialTheme.typography.bodySmall,
-        )
-    }
+		Text(
+			modifier = Modifier
+				.align(Alignment.BottomEnd)
+				.padding(
+					bottom = 8.dp,
+					end = 8.dp,
+				),
+			text = BuildConfig.VERSION_NAME,
+			style = MaterialTheme.typography.bodySmall,
+		)
+	}
 }
 
 @Composable
 @Preview
 private fun SettingsScreenPreview() {
-    AppTheme {
-        SettingsScreen {}
-    }
+	AppTheme {
+		SettingsScreen {}
+	}
 }
 
 private const val SCREEN_SETTINGS = "settings"

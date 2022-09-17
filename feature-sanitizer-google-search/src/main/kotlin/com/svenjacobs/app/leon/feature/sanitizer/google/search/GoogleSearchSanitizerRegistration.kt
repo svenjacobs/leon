@@ -26,23 +26,22 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class GoogleSearchSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<GoogleSearchSanitizer>,
+	private val sanitizerProvider: Provider<GoogleSearchSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("google_search")
+	override val id = SanitizerId("google_search")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_google_search_name)
+	override fun getName(context: Context) =
+		context.getString(R.string.feat_sanitizer_google_search_name)
 
-    override fun matchesDomain(input: String) =
-        DOMAIN_REGEX.containsMatchIn(input)
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-    private companion object {
-        private val DOMAIN_REGEX = Regex("google\\.[^/]+/url")
-    }
+	private companion object {
+		private val DOMAIN_REGEX = Regex("google\\.[^/]+/url")
+	}
 }

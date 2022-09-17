@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class SessionIdsSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofWildcardParameter("j?sessionid"),
+	regex = RegexFactory.ofWildcardParameter("j?sessionid"),
 )

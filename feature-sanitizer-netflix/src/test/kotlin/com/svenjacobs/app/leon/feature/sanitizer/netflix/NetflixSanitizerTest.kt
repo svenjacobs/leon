@@ -23,16 +23,16 @@ import io.kotest.matchers.shouldBe
 
 class NetflixSanitizerTest : WordSpec({
 
-    "invoke" should {
+	"invoke" should {
 
-        "remove various Netflix parameters" {
-            val sanitizer = NetflixSanitizer()
+		"remove various Netflix parameters" {
+			val sanitizer = NetflixSanitizer()
 
-            val result = sanitizer(
-                "https://www.netflix.com/de/title/81040344?s=a&trkid=13747225&t=more&vlang=de&clip=81499054",
-            )
+			val result = sanitizer(
+				"https://www.netflix.com/de/title/81040344?s=a&trkid=13747225&t=more&vlang=de&clip=81499054",
+			)
 
-            result shouldBe "https://www.netflix.com/de/title/81040344"
-        }
-    }
-})
+			result shouldBe "https://www.netflix.com/de/title/81040344"
+		}
+	}
+},)

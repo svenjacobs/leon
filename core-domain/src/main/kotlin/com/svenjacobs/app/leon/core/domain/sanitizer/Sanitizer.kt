@@ -20,5 +20,5 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
 
 fun interface Sanitizer {
 
-    operator fun invoke(input: String): String
+	operator fun invoke(input: String): String
 }

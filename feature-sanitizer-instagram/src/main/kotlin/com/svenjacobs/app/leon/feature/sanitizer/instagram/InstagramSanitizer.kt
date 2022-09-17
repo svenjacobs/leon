@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class InstagramSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofParameter("igshid"),
+	regex = RegexFactory.ofParameter("igshid"),
 )

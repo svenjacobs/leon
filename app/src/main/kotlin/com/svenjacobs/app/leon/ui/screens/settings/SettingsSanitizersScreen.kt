@@ -23,7 +23,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,74 +43,74 @@ import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsSanitizersScree
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun SettingsSanitizersScreen(
-    modifier: Modifier = Modifier,
-    viewModel: SettingsSanitizersScreenViewModel,
-    onBackClick: () -> Unit,
+	viewModel: SettingsSanitizersScreenViewModel,
+	onBackClick: () -> Unit,
+	modifier: Modifier = Modifier,
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+	val uiState by viewModel.uiState.collectAsState()
 
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            TopAppBar(
-                onBackClick = onBackClick,
-            )
-        }
-    ) { contentPadding ->
-        Column(
-            modifier = Modifier
-                .padding(contentPadding)
-                .padding(16.dp)
-                .navigationBarsPadding()
-        ) {
-            Text(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    end = 16.dp,
-                    bottom = 16.dp
-                ),
-                text = stringResource(R.string.sanitizers_description),
-                style = MaterialTheme.typography.bodyLarge,
-            )
+	Scaffold(
+		modifier = modifier,
+		topBar = {
+			TopAppBar(
+				onBackClick = onBackClick,
+			)
+		},
+	) { contentPadding ->
+		Column(
+			modifier = Modifier
+				.padding(contentPadding)
+				.padding(16.dp)
+				.navigationBarsPadding(),
+		) {
+			Text(
+				modifier = Modifier.padding(
+					start = 16.dp,
+					end = 16.dp,
+					bottom = 16.dp,
+				),
+				text = stringResource(R.string.sanitizers_description),
+				style = MaterialTheme.typography.bodyLarge,
+			)
 
-            Card {
-                LazyColumn {
-                    uiState.sanitizers.forEach { sanitizer ->
-                        item(key = sanitizer.id.value) {
-                            Item(
-                                name = sanitizer.name,
-                                isEnabled = sanitizer.enabled,
-                                onCheckedChange = { enabled ->
-                                    viewModel.onSanitizerCheckedChange(sanitizer.id, enabled)
-                                },
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
+			Card {
+				LazyColumn {
+					uiState.sanitizers.forEach { sanitizer ->
+						item(key = sanitizer.id.value) {
+							Item(
+								name = sanitizer.name,
+								isEnabled = sanitizer.enabled,
+								onCheckedChange = { enabled ->
+									viewModel.onSanitizerCheckedChange(sanitizer.id, enabled)
+								},
+							)
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 @Composable
 private fun Item(
-    modifier: Modifier = Modifier,
-    name: String,
-    isEnabled: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
+	name: String,
+	isEnabled: Boolean,
+	onCheckedChange: (Boolean) -> Unit,
+	modifier: Modifier = Modifier,
 ) {
-    Row(
-        modifier = modifier.padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            modifier = Modifier.weight(2f),
-            text = name,
-        )
+	Row(
+		modifier = modifier.padding(16.dp),
+		verticalAlignment = Alignment.CenterVertically,
+	) {
+		Text(
+			modifier = Modifier.weight(2f),
+			text = name,
+		)
 
-        Switch(
-            checked = isEnabled,
-            onCheckedChange = onCheckedChange,
-        )
-    }
+		Switch(
+			checked = isEnabled,
+			onCheckedChange = onCheckedChange,
+		)
+	}
 }

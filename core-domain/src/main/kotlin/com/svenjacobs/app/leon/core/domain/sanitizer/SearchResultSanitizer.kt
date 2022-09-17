@@ -26,12 +26,12 @@ import java.net.URLDecoder
  * @param regex Regular expression which must return the URL in the first group
  */
 open class SearchResultSanitizer(
-    private val regex: Regex,
+	private val regex: Regex,
 ) : Sanitizer {
 
-    override fun invoke(input: String): String {
-        val result = regex.find(input) ?: return input
-        val group = result.groups[1] ?: return input
-        return URLDecoder.decode(group.value, "UTF-8")
-    }
+	override fun invoke(input: String): String {
+		val result = regex.find(input) ?: return input
+		val group = result.groups[1] ?: return input
+		return URLDecoder.decode(group.value, "UTF-8")
+	}
 }

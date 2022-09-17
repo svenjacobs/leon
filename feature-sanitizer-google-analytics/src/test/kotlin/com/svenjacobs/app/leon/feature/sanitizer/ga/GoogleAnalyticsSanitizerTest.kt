@@ -23,16 +23,16 @@ import io.kotest.matchers.shouldBe
 
 class GoogleAnalyticsSanitizerTest : WordSpec({
 
-    "invoke" should {
+	"invoke" should {
 
-        "remove \"ga_*\" and \"utm_*\" parameters" {
-            val sanitizer = GoogleAnalyticsSanitizer()
+		"remove \"ga_*\" and \"utm_*\" parameters" {
+			val sanitizer = GoogleAnalyticsSanitizer()
 
-            val result = sanitizer(
-                "https://www.example.com?ga_abc=123&utm_def=456"
-            )
+			val result = sanitizer(
+				"https://www.example.com?ga_abc=123&utm_def=456",
+			)
 
-            result shouldBe "https://www.example.com"
-        }
-    }
-})
+			result shouldBe "https://www.example.com"
+		}
+	}
+},)

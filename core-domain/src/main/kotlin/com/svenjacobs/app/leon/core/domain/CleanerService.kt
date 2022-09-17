@@ -21,74 +21,72 @@ package com.svenjacobs.app.leon.core.domain
 import com.svenjacobs.app.leon.core.domain.sanitizer.Registrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
+import java.net.URLDecoder
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.net.URLDecoder
-import javax.inject.Inject
 
 class CleanerService @Inject constructor(
-    @Registrations private val registrations: SanitizerRegistrations,
-    private val repository: SanitizerRepository,
+	@Registrations private val registrations: SanitizerRegistrations,
+	private val repository: SanitizerRepository,
 ) {
 
-    data class Result(
-        val originalText: String,
-        val cleanedText: String,
-        val urls: ImmutableList<String>,
-    )
+	data class Result(
+		val originalText: String,
+		val cleanedText: String,
+		val urls: ImmutableList<String>,
+	)
 
-    @Suppress("BlockingMethodInNonBlockingContext")
-    suspend fun clean(
-        text: String?,
-        decodeUrl: Boolean = false,
-    ): Result {
-        if (text.isNullOrEmpty()) throw IllegalArgumentException()
+	@Suppress("BlockingMethodInNonBlockingContext")
+	suspend fun clean(text: String?, decodeUrl: Boolean = false): Result {
+		if (text.isNullOrEmpty()) throw IllegalArgumentException()
 
-        val (cleaned, urls) = URL_REGEX
-            .findAll(text)
-            .fold(Pair(text, emptyList<String>())) { (currentText, urls), match ->
-                val result = cleanUrl(match.value, registrations)
-                Pair(currentText.replace(match.value, result), urls + result)
-            }
-            .let { (cleaned, urls) ->
-                val decoded = if (decodeUrl) withContext(Dispatchers.Default) {
-                    URLDecoder.decode(
-                        cleaned,
-                        "UTF-8"
-                    )
-                } else cleaned
+		val (cleaned, urls) = URL_REGEX
+			.findAll(text)
+			.fold(Pair(text, emptyList<String>())) { (currentText, urls), match ->
+				val result = cleanUrl(match.value, registrations)
+				Pair(currentText.replace(match.value, result), urls + result)
+			}
+			.let { (cleaned, urls) ->
+				val decoded = if (decodeUrl) {
+					withContext(Dispatchers.Default) {
+						URLDecoder.decode(
+							cleaned,
+							"UTF-8",
+						)
+					}
+				} else {
+					cleaned
+				}
 
-                Pair(decoded, urls)
-            }
+				Pair(decoded, urls)
+			}
 
-        return Result(
-            originalText = text,
-            cleanedText = cleaned,
-            urls = urls.toImmutableList(),
-        )
-    }
+		return Result(
+			originalText = text,
+			cleanedText = cleaned,
+			urls = urls.toImmutableList(),
+		)
+	}
 
-    private suspend fun cleanUrl(
-        url: String,
-        registrations: SanitizerRegistrations,
-    ): String {
-        val cleaned = registrations
-            .filter { repository.isEnabled(it.id) }
-            .filter { it.matchesDomain(url) }
-            .fold(url) { currentUrl, registration ->
-                registration.sanitizer(currentUrl)
-            }
+	private suspend fun cleanUrl(url: String, registrations: SanitizerRegistrations): String {
+		val cleaned = registrations
+			.filter { repository.isEnabled(it.id) }
+			.filter { it.matchesDomain(url) }
+			.fold(url) { currentUrl, registration ->
+				registration.sanitizer(currentUrl)
+			}
 
-        return if (cleaned.contains('?')) {
-            cleaned
-        } else {
-            cleaned.replaceFirst('&', '?')
-        }
-    }
+		return if (cleaned.contains('?')) {
+			cleaned
+		} else {
+			cleaned.replaceFirst('&', '?')
+		}
+	}
 
-    private companion object {
-        private val URL_REGEX = Regex("https?://.[^\\s]*")
-    }
+	private companion object {
+		private val URL_REGEX = Regex("https?://.[^\\s]*")
+	}
 }

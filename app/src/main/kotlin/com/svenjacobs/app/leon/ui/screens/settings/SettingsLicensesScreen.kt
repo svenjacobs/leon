@@ -29,22 +29,19 @@ import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun SettingsLicensesScreen(
-    modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
-) {
-    Scaffold(
-        modifier = modifier.fillMaxSize(),
-        topBar = {
-            TopAppBar(
-                onBackClick = onBackClick,
-            )
-        }
-    ) { contentPadding ->
-        LibrariesContainer(
-            modifier = Modifier
-                .padding(contentPadding)
-                .fillMaxSize(),
-        )
-    }
+fun SettingsLicensesScreen(modifier: Modifier = Modifier, onBackClick: () -> Unit) {
+	Scaffold(
+		modifier = modifier.fillMaxSize(),
+		topBar = {
+			TopAppBar(
+				onBackClick = onBackClick,
+			)
+		},
+	) { contentPadding ->
+		LibrariesContainer(
+			modifier = Modifier
+				.padding(contentPadding)
+				.fillMaxSize(),
+		)
+	}
 }

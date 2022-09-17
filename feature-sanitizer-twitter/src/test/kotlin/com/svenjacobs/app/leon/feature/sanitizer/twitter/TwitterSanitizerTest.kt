@@ -23,16 +23,16 @@ import io.kotest.matchers.shouldBe
 
 class TwitterSanitizerTest : WordSpec({
 
-    "invoke" should {
+	"invoke" should {
 
-        "remove the \"s\" and \"t\" parameters" {
-            val sanitizer = TwitterSanitizer()
+		"remove the \"s\" and \"t\" parameters" {
+			val sanitizer = TwitterSanitizer()
 
-            val result = sanitizer(
-                "https://twitter.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
-            )
+			val result = sanitizer(
+				"https://twitter.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
+			)
 
-            result shouldBe "https://twitter.com/AndroidDev/status/1453763770334027781"
-        }
-    }
-})
+			result shouldBe "https://twitter.com/AndroidDev/status/1453763770334027781"
+		}
+	}
+},)
