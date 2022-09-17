@@ -149,7 +149,6 @@ dependencies {
     implementation(libs.google.accompanist.systemuicontroller)
     //endregion
 
-    implementation(libs.google.material3)
     implementation(libs.androidx.startup.runtime)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

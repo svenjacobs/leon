@@ -18,7 +18,7 @@
 
 <resources>
 
-    <style name="Base.Theme.App" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.App" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="windowActionBar">false</item>
@@ -30,8 +30,4 @@
         <item name="colorPrimaryDark">#FF00210B</item>
         <item name="colorAccent">#FF39656D</item>
     </style>
-
-    <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-
-    <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 </resources>
