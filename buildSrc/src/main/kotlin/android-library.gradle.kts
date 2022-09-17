@@ -24,6 +24,7 @@ val libs: VersionCatalog = catalogs.named("libs")
 plugins {
 	id("com.android.library")
 	kotlin("android")
+	kotlin("kapt")
 }
 
 android {
@@ -66,6 +67,9 @@ dependencies {
 	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
 	api(libs.findLibrary("javax.inject").get())
 	api(libs.findBundle("androidx.compose").get())
+	api(libs.findLibrary("google.hilt.android").get())
+
+	kapt(libs.findLibrary("google.hilt.android.compiler").get())
 
 	testApi(libs.findLibrary("kotest.runner.junit5").get())
 	testApi(libs.findLibrary("kotest.assertions.core").get())

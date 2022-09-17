@@ -60,13 +60,16 @@ class SettingsSanitizersScreenViewModel @Inject constructor(
 	val uiState: StateFlow<UiState> =
 		repository.state.map { states ->
 			UiState(
-				sanitizers = states.map { state ->
-					Sanitizer(
-						id = state.id,
-						name = registrations.first { it.id == state.id }.getName(context),
-						enabled = state.enabled,
-					)
-				}.toImmutableList(),
+				sanitizers = states
+					.map { state ->
+						Sanitizer(
+							id = state.id,
+							name = registrations.first { it.id == state.id }.getName(context),
+							enabled = state.enabled,
+						)
+					}
+					.sortedBy { it.name }
+					.toImmutableList(),
 			)
 		}.stateIn(
 			scope = viewModelScope,

@@ -16,39 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.inject
+package com.svenjacobs.app.leon.feature.sanitizer.aol.search
 
-import com.svenjacobs.app.leon.core.domain.sanitizer.Registrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
-import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
-import kotlinx.collections.immutable.toImmutableSet
+import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(SingletonComponent::class)
-object SanitizersModuleProviders {
+object AolSearchModule {
 
 	@Provides
-	@Singleton
-	@Registrations
-	fun provideRegistrations(
-		registrations: Set<@JvmSuppressWildcards SanitizerRegistration>,
-	): SanitizerRegistrations = registrations.toImmutableSet()
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class SanitizersModuleBindings {
-
-	@Binds
-	abstract fun bindSanitizerRepository(
-		sanitizerRepositoryImpl: SanitizerRepositoryImpl,
-	): SanitizerRepository
+	@IntoSet
+	fun provideSanitizerRegistration(
+		aolSearchSanitizerRegistration: AolSearchSanitizerRegistration,
+	): SanitizerRegistration = aolSearchSanitizerRegistration
 }
