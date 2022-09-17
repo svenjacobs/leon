@@ -139,6 +139,7 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
 
     //region Compose
+    debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.bundles.androidx.compose)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
