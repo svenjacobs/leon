@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_instagram_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.instagram"
+	resourcePrefix("feat_sanitizer_instagram_")
 }

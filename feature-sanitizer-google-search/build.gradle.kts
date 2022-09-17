@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_google_search_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.google.search"
+	resourcePrefix("feat_sanitizer_google_search_")
 }

@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_spotify_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.spotify"
+	resourcePrefix("feat_sanitizer_spotify_")
 }

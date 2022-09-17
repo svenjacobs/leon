@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_webtrekk_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.webtrekk"
+	resourcePrefix("feat_sanitizer_webtrekk_")
 }

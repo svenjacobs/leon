@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_amazon_smile_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.amazon.smile"
+	resourcePrefix("feat_sanitizer_amazon_smile_")
 }
