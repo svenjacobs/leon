@@ -39,7 +39,6 @@ google-accompanist-systemuicontroller = { module = "com.google.accompanist:accom
 google-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "google-hilt" }
 google-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "google-hilt" }
 google-hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "google-hilt" }
-google-material3 = "com.google.android.material:material:1.6.1"
 jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
 javax-inject = "javax.inject:javax.inject:1"
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
