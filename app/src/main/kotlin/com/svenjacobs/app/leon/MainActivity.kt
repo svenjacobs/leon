@@ -61,10 +61,23 @@ class MainActivity : AppCompatActivity() {
 
 	// TODO: Pass all Intent extras
 	private fun onIntent(intent: Intent?) {
-		val text = when {
-			intent?.action == Intent.ACTION_SEND && intent.type == MIME_TYPE ->
-				intent.getStringExtra(Intent.EXTRA_TEXT)
-			else -> null
+		val text = if (intent == null) {
+			null
+		} else {
+			when (intent.action) {
+				Intent.ACTION_SEND ->
+					if (intent.type == MIME_TYPE_TEXT_PLAIN) {
+						intent.getStringExtra(Intent.EXTRA_TEXT)
+					} else {
+						null
+					}
+				Intent.ACTION_VIEW -> if (intent.scheme.orEmpty().startsWith("http")) {
+					intent.dataString
+				} else {
+					null
+				}
+				else -> null
+			}
 		}
 
 		mainScreenViewModel.setText(text)
@@ -84,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private companion object {
-		private const val MIME_TYPE = "text/plain"
+		private const val MIME_TYPE_TEXT_PLAIN = "text/plain"
 		private const val CHROME_PACKAGE_NAME = "com.android.chrome"
 	}
 }
