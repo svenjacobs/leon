@@ -18,4 +18,5 @@
 
 <resources>
     <string name="feat_sanitizer_youtube_redirect_name">YouTube Redirect</string>
+    <string name="feat_sanitizer_youtube_short_url_name" translatable="false">Youtu.be</string>
 </resources>
