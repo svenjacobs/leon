@@ -16,25 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-	":core-common",
-	":core-domain",
-	":feature-sanitizer-amazon",
-	":feature-sanitizer-amazon-smile",
-	":feature-sanitizer-aol-search",
-	":feature-sanitizer-empty-parameters",
-	":feature-sanitizer-facebook",
-	":feature-sanitizer-flipkart",
-	":feature-sanitizer-google-analytics",
-	":feature-sanitizer-google-search",
-	":feature-sanitizer-instagram",
-	":feature-sanitizer-netflix",
-	":feature-sanitizer-session-ids",
-	":feature-sanitizer-spotify",
-	":feature-sanitizer-twitter",
-	":feature-sanitizer-webtrekk",
-	":feature-sanitizer-yahoo-search",
-	":feature-sanitizer-youtube",
-	":app",
-)
+package com.svenjacobs.app.leon.feature.sanitizer.youtube
+
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import dagger.multibindings.IntoSet
+
+@Module
+@InstallIn(SingletonComponent::class)
+object YoutubeModule {
+
+	@Provides
+	@IntoSet
+	fun provideSanitizerRegistration(
+		youtubeRedirectSanitizerRegistration: YoutubeRedirectSanitizerRegistration,
+	): SanitizerRegistration = youtubeRedirectSanitizerRegistration
+}

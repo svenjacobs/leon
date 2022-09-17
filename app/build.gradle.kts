@@ -39,8 +39,8 @@ android {
 		applicationId = "com.svenjacobs.app.leon"
 		minSdk = Android.minSdk
 		targetSdk = Android.targetSdk
-		versionCode = 235
-		versionName = "1.0.1"
+		versionCode = 236
+		versionName = "1.0.2"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
@@ -133,6 +133,7 @@ dependencies {
 	implementation(project(":feature-sanitizer-twitter"))
 	implementation(project(":feature-sanitizer-webtrekk"))
 	implementation(project(":feature-sanitizer-yahoo-search"))
+	implementation(project(":feature-sanitizer-youtube"))
 
 	implementation(libs.kotlin.stdlib.jdk8)
 	implementation(libs.androidx.core.ktx)
