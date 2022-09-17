@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_facebook_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.facebook"
+	resourcePrefix("feat_sanitizer_facebook_")
 }

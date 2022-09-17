@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_aol_search_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.aol.search"
+	resourcePrefix("feat_sanitizer_aol_search_")
 }

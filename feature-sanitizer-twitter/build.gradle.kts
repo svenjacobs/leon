@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_twitter_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.twitter"
+	resourcePrefix("feat_sanitizer_twitter_")
 }

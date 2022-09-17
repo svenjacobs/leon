@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_flipkart_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.flipkart"
+	resourcePrefix("feat_sanitizer_flipkart_")
 }

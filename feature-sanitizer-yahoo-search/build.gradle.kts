@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_yahoo_search_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.yahoo.search"
+	resourcePrefix("feat_sanitizer_yahoo_search_")
 }

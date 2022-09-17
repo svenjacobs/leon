@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_netflix_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.netflix"
+	resourcePrefix("feat_sanitizer_netflix_")
 }

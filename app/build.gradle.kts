@@ -31,6 +31,7 @@ plugins {
 }
 
 android {
+	namespace = "com.svenjacobs.app.leon"
 	compileSdk = Android.compileSdk
 	buildToolsVersion = Android.buildToolsVersion
 

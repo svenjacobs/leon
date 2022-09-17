@@ -17,9 +17,10 @@
  */
 
 plugins {
-    `feature-sanitizer`
+	`feature-sanitizer`
 }
 
 android {
-    resourcePrefix("feat_sanitizer_session_ids_")
+	namespace = "com.svenjacobs.app.leon.feature.sanitizer.sessionids"
+	resourcePrefix("feat_sanitizer_session_ids_")
 }
