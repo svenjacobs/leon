@@ -35,4 +35,5 @@
     <string name="import_from_clipboard">Aus Zwischenablage importieren</string>
     <string name="reset">Zurücksetzen</string>
     <string name="extract_url">Nur URL extrahieren</string>
+    <string name="register_as_browser">Registriere Léon als Browser</string>
 </resources>
