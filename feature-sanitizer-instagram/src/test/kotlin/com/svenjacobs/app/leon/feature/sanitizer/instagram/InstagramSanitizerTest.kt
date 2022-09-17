@@ -23,16 +23,16 @@ import io.kotest.matchers.shouldBe
 
 class InstagramSanitizerTest : WordSpec({
 
-    "invoke" should {
+	"invoke" should {
 
-        "remove \"igshid\" parameter" {
-            val sanitizer = InstagramSanitizer()
+		"remove \"igshid\" parameter" {
+			val sanitizer = InstagramSanitizer()
 
-            val result = sanitizer(
-                "https://www.instagram.com/p/Ceeg-VgI4yF/?igshid=YmMyMTA2M2Y="
-            )
+			val result = sanitizer(
+				"https://www.instagram.com/p/Ceeg-VgI4yF/?igshid=YmMyMTA2M2Y=",
+			)
 
-            result shouldBe "https://www.instagram.com/p/Ceeg-VgI4yF/"
-        }
-    }
-})
+			result shouldBe "https://www.instagram.com/p/Ceeg-VgI4yF/"
+		}
+	}
+},)

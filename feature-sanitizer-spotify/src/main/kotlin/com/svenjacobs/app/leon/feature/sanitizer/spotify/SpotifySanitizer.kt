@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class SpotifySanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofParameter("si|dl_branch"),
+	regex = RegexFactory.ofParameter("si|dl_branch"),
 )

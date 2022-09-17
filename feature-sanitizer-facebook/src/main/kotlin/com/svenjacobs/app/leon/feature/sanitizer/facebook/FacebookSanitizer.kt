@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class FacebookSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofWildcardParameter("fb_|fbclid"),
+	regex = RegexFactory.ofWildcardParameter("fb_|fbclid"),
 )

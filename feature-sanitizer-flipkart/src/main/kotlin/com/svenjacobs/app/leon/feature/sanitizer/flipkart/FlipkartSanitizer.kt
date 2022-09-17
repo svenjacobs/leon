@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class FlipkartSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.AllParameters,
+	regex = RegexFactory.AllParameters,
 )

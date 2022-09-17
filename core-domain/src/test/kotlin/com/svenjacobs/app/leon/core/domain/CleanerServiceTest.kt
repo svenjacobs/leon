@@ -30,83 +30,88 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.collections.immutable.toImmutableList
 
-class CleanerServiceTest : WordSpec({
+class CleanerServiceTest : WordSpec(
+	{
 
-    val repository = mockk<SanitizerRepository>()
+		val repository = mockk<SanitizerRepository>()
 
-    val service = CleanerService(
-        registrations = listOf(
-            SanitizerRegistrationFake(
-                RegexSanitizer(RegexFactory.ofParameter("paramA")),
-            ),
-            SanitizerRegistrationFake(
-                RegexSanitizer(RegexFactory.ofParameter("paramB")),
-            ),
-            SanitizerRegistrationFake(
-                RegexSanitizer(RegexFactory.ofParameter("paramC")),
-            ),
-        ).toImmutableList(),
-        repository = repository,
-    )
+		val service = CleanerService(
+			registrations = listOf(
+				SanitizerRegistrationFake(
+					RegexSanitizer(RegexFactory.ofParameter("paramA")),
+				),
+				SanitizerRegistrationFake(
+					RegexSanitizer(RegexFactory.ofParameter("paramB")),
+				),
+				SanitizerRegistrationFake(
+					RegexSanitizer(RegexFactory.ofParameter("paramC")),
+				),
+			).toImmutableList(),
+			repository = repository,
+		)
 
-    beforeEach {
-        clearMocks(
-            repository,
-        )
+		beforeEach {
+			clearMocks(
+				repository,
+			)
 
-        // Currently it's not possible to use "any()" here, see https://github.com/mockk/mockk/issues/152
-        coEvery { repository.isEnabled(SanitizerId("fake")) } returns true
-    }
+			// Currently it's not possible to use "any()" here, see https://github.com/mockk/mockk/issues/152
+			coEvery { repository.isEnabled(SanitizerId("fake")) } returns true
+		}
 
-    "clean" should {
+		"clean" should {
 
-        "remove tracking parameters" {
-            val result = service.clean(
-                "https://www.some.site/?paramA=A&paramB=B"
-            )
+			"remove tracking parameters" {
+				val result = service.clean(
+					"https://www.some.site/?paramA=A&paramB=B",
+				)
 
-            result.cleanedText shouldBe "https://www.some.site/"
-            result.urls shouldHaveSize 1
-            result.urls.first() shouldBe "https://www.some.site/"
-        }
+				result.cleanedText shouldBe "https://www.some.site/"
+				result.urls shouldHaveSize 1
+				result.urls.first() shouldBe "https://www.some.site/"
+			}
 
-        "keep non-tracking parameters" {
-            val result = service.clean(
-                "https://www.some.site/?paramA=A&paramB=B&page=1&q=query"
-            )
+			"keep non-tracking parameters" {
+				val result = service.clean(
+					"https://www.some.site/?paramA=A&paramB=B&page=1&q=query",
+				)
 
-            result.cleanedText shouldBe "https://www.some.site/?page=1&q=query"
-            result.urls shouldHaveSize 1
-            result.urls.first() shouldBe "https://www.some.site/?page=1&q=query"
-        }
+				result.cleanedText shouldBe "https://www.some.site/?page=1&q=query"
+				result.urls shouldHaveSize 1
+				result.urls.first() shouldBe "https://www.some.site/?page=1&q=query"
+			}
 
-        "keep anchor tags after cleaned parameters" {
-            val result = service.clean(
-                "https://www.some.site/?paramA=A&paramB=B#anchor"
-            )
+			"keep anchor tags after cleaned parameters" {
+				val result = service.clean(
+					"https://www.some.site/?paramA=A&paramB=B#anchor",
+				)
 
-            result.cleanedText shouldBe "https://www.some.site/#anchor"
-            result.urls.first() shouldBe "https://www.some.site/#anchor"
-        }
+				result.cleanedText shouldBe "https://www.some.site/#anchor"
+				result.urls.first() shouldBe "https://www.some.site/#anchor"
+			}
 
-        "clean multiple URLs in text" {
-            val result = service.clean(
-                "Hey, I would like to share this https://www.some.site/?paramA=A&paramB=B link as well as this https://www.some2.site?paramC=C link :)"
-            )
+			"clean multiple URLs in text" {
+				val result = service.clean(
+					"Hey, I would like to share this " +
+						"https://www.some.site/?paramA=A&paramB=B link as well as this " +
+						"https://www.some2.site?paramC=C link :)",
+				)
 
-            result.cleanedText shouldBe "Hey, I would like to share this https://www.some.site/ link as well as this https://www.some2.site link :)"
-            result.urls shouldHaveSize 2
-            result.urls[0] shouldBe "https://www.some.site/"
-            result.urls[1] shouldBe "https://www.some2.site"
-        }
+				result.cleanedText shouldBe "Hey, I would like to share this " +
+					"https://www.some.site/ link as well as this https://www.some2.site link :)"
+				result.urls shouldHaveSize 2
+				result.urls[0] shouldBe "https://www.some.site/"
+				result.urls[1] shouldBe "https://www.some2.site"
+			}
 
-        "URL decode when enabled" {
-            val result = service.clean(
-                text = "https://www.some.site/Hello%2FWorld?paramA=A&paramB=B",
-                decodeUrl = true,
-            )
+			"URL decode when enabled" {
+				val result = service.clean(
+					text = "https://www.some.site/Hello%2FWorld?paramA=A&paramB=B",
+					decodeUrl = true,
+				)
 
-            result.cleanedText shouldBe "https://www.some.site/Hello/World"
-        }
-    }
-})
+				result.cleanedText shouldBe "https://www.some.site/Hello/World"
+			}
+		}
+	},
+)

@@ -26,16 +26,15 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class GoogleAnalyticsSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<GoogleAnalyticsSanitizer>,
+	private val sanitizerProvider: Provider<GoogleAnalyticsSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("google_analytics")
+	override val id = SanitizerId("google_analytics")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_ga_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_ga_name)
 }

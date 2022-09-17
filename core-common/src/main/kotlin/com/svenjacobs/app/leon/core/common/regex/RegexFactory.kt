@@ -20,31 +20,29 @@ package com.svenjacobs.app.leon.core.common.regex
 
 object RegexFactory {
 
-    /**
-     * This regex matches all parameters of a URL, so everything starting at "?".
-     */
-    val AllParameters = Regex("\\?.*")
+	/**
+	 * This regex matches all parameters of a URL, so everything starting at "?".
+	 */
+	val AllParameters = Regex("\\?.*")
 
-    /**
-     * Returns a regex string which matches a certain parameter.
-     *
-     * For example `ofParameter("abc")` returns a regex string which matches `?abc=` or `&abc=`.
-     *
-     * @param parameter Parameter prefix
-     */
-    @Suppress("RegExpUnnecessaryNonCapturingGroup")
-    fun ofParameter(parameter: String): Regex =
-        Regex("[?&](?:$parameter)=.[^&#]*")
+	/**
+	 * Returns a regex string which matches a certain parameter.
+	 *
+	 * For example `ofParameter("abc")` returns a regex string which matches `?abc=` or `&abc=`.
+	 *
+	 * @param parameter Parameter prefix
+	 */
+	@Suppress("RegExpUnnecessaryNonCapturingGroup")
+	fun ofParameter(parameter: String): Regex = Regex("[?&](?:$parameter)=.[^&#]*")
 
-    /**
-     * Returns a regex string which matches a certain parameter prefix.
-     *
-     * For example `ofWildcardParameter("abc_")` returns a regex string which matches `?abc_x=`,
-     * `&abc_y=`, `&abc_zzz=` et cetera.
-     *
-     * @param parameter Parameter prefix
-     */
-    @Suppress("RegExpUnnecessaryNonCapturingGroup")
-    fun ofWildcardParameter(parameter: String): Regex =
-        Regex("[?&](?:$parameter)[^=]*=.[^&#]*")
+	/**
+	 * Returns a regex string which matches a certain parameter prefix.
+	 *
+	 * For example `ofWildcardParameter("abc_")` returns a regex string which matches `?abc_x=`,
+	 * `&abc_y=`, `&abc_zzz=` et cetera.
+	 *
+	 * @param parameter Parameter prefix
+	 */
+	@Suppress("RegExpUnnecessaryNonCapturingGroup")
+	fun ofWildcardParameter(parameter: String): Regex = Regex("[?&](?:$parameter)[^=]*=.[^&#]*")
 }

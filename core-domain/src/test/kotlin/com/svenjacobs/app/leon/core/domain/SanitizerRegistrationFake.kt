@@ -24,12 +24,12 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
 
 internal class SanitizerRegistrationFake(
-    override val sanitizer: Sanitizer,
+	override val sanitizer: Sanitizer,
 ) : SanitizerRegistration {
 
-    override val id = SanitizerId("fake")
+	override val id = SanitizerId("fake")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) = "Fake"
+	override fun getName(context: Context) = "Fake"
 }

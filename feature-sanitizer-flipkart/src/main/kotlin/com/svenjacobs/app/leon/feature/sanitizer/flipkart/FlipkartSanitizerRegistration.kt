@@ -26,23 +26,21 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class FlipkartSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<FlipkartSanitizer>,
+	private val sanitizerProvider: Provider<FlipkartSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("flipkart")
+	override val id = SanitizerId("flipkart")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_flipkart_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_flipkart_name)
 
-    override fun matchesDomain(input: String) =
-        DOMAIN_REGEX.containsMatchIn(input)
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-    private companion object {
-        private val DOMAIN_REGEX = Regex("flipkart\\.com")
-    }
+	private companion object {
+		private val DOMAIN_REGEX = Regex("flipkart\\.com")
+	}
 }

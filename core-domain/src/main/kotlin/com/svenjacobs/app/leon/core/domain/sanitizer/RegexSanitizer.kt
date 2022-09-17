@@ -24,12 +24,11 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
  * @param regex Regular expression whose matches are removed from the input string
  */
 open class RegexSanitizer(
-    private val regex: Regex,
+	private val regex: Regex,
 ) : Sanitizer {
 
-    /**
-     * Removes all matches of supplied [regex].
-     */
-    override fun invoke(input: String) =
-        regex.replace(input, "")
+	/**
+	 * Removes all matches of supplied [regex].
+	 */
+	override fun invoke(input: String) = regex.replace(input, "")
 }

@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class NetflixSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofParameter("s|t|trkid|vlang|clip"),
+	regex = RegexFactory.ofParameter("s|t|trkid|vlang|clip"),
 )

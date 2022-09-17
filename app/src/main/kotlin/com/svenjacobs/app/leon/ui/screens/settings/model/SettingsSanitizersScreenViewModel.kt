@@ -29,6 +29,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsSanitizersScreenViewModel.UiState.Sanitizer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -37,49 +38,45 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 @SuppressLint("StaticFieldLeak")
 class SettingsSanitizersScreenViewModel @Inject constructor(
-    @ApplicationContext private val context: Context,
-    @Registrations private val registrations: SanitizerRegistrations,
-    private val repository: SanitizerRepository,
+	@ApplicationContext private val context: Context,
+	@Registrations private val registrations: SanitizerRegistrations,
+	private val repository: SanitizerRepository,
 ) : ViewModel() {
 
-    data class UiState(
-        val sanitizers: ImmutableList<Sanitizer> = persistentListOf(),
-    ) {
-        data class Sanitizer(
-            val id: SanitizerId,
-            val name: String,
-            val enabled: Boolean,
-        )
-    }
+	data class UiState(
+		val sanitizers: ImmutableList<Sanitizer> = persistentListOf(),
+	) {
+		data class Sanitizer(
+			val id: SanitizerId,
+			val name: String,
+			val enabled: Boolean,
+		)
+	}
 
-    val uiState: StateFlow<UiState> =
-        repository.state.map { states ->
-            UiState(
-                sanitizers = states.map { state ->
-                    Sanitizer(
-                        id = state.id,
-                        name = registrations.first { it.id == state.id }.getName(context),
-                        enabled = state.enabled,
-                    )
-                }.toImmutableList()
-            )
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = UiState(),
-        )
+	val uiState: StateFlow<UiState> =
+		repository.state.map { states ->
+			UiState(
+				sanitizers = states.map { state ->
+					Sanitizer(
+						id = state.id,
+						name = registrations.first { it.id == state.id }.getName(context),
+						enabled = state.enabled,
+					)
+				}.toImmutableList(),
+			)
+		}.stateIn(
+			scope = viewModelScope,
+			started = SharingStarted.WhileSubscribed(5_000),
+			initialValue = UiState(),
+		)
 
-    fun onSanitizerCheckedChange(
-        id: SanitizerId,
-        enabled: Boolean,
-    ) {
-        viewModelScope.launch {
-            repository.setEnabled(id, enabled)
-        }
-    }
+	fun onSanitizerCheckedChange(id: SanitizerId, enabled: Boolean) {
+		viewModelScope.launch {
+			repository.setEnabled(id, enabled)
+		}
+	}
 }

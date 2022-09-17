@@ -23,17 +23,17 @@ import androidx.compose.runtime.Composable
 
 interface SanitizerRegistration {
 
-    val sanitizer: Sanitizer
+	val sanitizer: Sanitizer
 
-    val id: SanitizerId
+	val id: SanitizerId
 
-    val hasSettingsScreen: Boolean
+	val hasSettingsScreen: Boolean
 
-    fun getName(context: Context): String
+	fun getName(context: Context): String
 
-    fun matchesDomain(input: String): Boolean = true
+	fun matchesDomain(input: String): Boolean = true
 
-    @Composable
-    fun SettingsScreen() {
-    }
+	@Composable
+	fun SettingsScreen() {
+	}
 }

@@ -22,5 +22,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class EmptyParametersSanitizer @Inject constructor() : RegexSanitizer(
-    regex = Regex("[?&][^=]+=(?=&|$)")
+	regex = Regex("[?&][^=]+=(?=&|$)"),
 )

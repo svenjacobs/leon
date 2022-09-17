@@ -33,61 +33,58 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val mainScreenViewModel: MainScreenViewModel by viewModels()
+	private val mainScreenViewModel: MainScreenViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+		WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        onIntent(intent)
+		onIntent(intent)
 
-        setContent {
-            MainScreen(
-                viewModel = mainScreenViewModel,
-            )
-        }
-    }
+		setContent {
+			MainScreen(
+				viewModel = mainScreenViewModel,
+			)
+		}
+	}
 
-    override fun onStart() {
-        super.onStart()
-        warmupCustomTabsService()
-    }
+	override fun onStart() {
+		super.onStart()
+		warmupCustomTabsService()
+	}
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        onIntent(intent)
-    }
+	override fun onNewIntent(intent: Intent?) {
+		super.onNewIntent(intent)
+		onIntent(intent)
+	}
 
-    // TODO: Pass all Intent extras
-    private fun onIntent(intent: Intent?) {
-        val text = when {
-            intent?.action == Intent.ACTION_SEND && intent.type == MIME_TYPE ->
-                intent.getStringExtra(Intent.EXTRA_TEXT)
-            else -> null
-        }
+	// TODO: Pass all Intent extras
+	private fun onIntent(intent: Intent?) {
+		val text = when {
+			intent?.action == Intent.ACTION_SEND && intent.type == MIME_TYPE ->
+				intent.getStringExtra(Intent.EXTRA_TEXT)
+			else -> null
+		}
 
-        mainScreenViewModel.setText(text)
-    }
+		mainScreenViewModel.setText(text)
+	}
 
-    private fun warmupCustomTabsService() {
-        val connection = object : CustomTabsServiceConnection() {
-            override fun onCustomTabsServiceConnected(
-                name: ComponentName,
-                client: CustomTabsClient,
-            ) {
-                client.warmup(0)
-            }
+	private fun warmupCustomTabsService() {
+		val connection = object : CustomTabsServiceConnection() {
+			override fun onCustomTabsServiceConnected(name: ComponentName, client: CustomTabsClient) {
+				client.warmup(0)
+			}
 
-            override fun onServiceDisconnected(name: ComponentName?) {
-            }
-        }
+			override fun onServiceDisconnected(name: ComponentName?) {
+			}
+		}
 
-        CustomTabsClient.bindCustomTabsService(this, CHROME_PACKAGE_NAME, connection)
-    }
+		CustomTabsClient.bindCustomTabsService(this, CHROME_PACKAGE_NAME, connection)
+	}
 
-    private companion object {
-        private const val MIME_TYPE = "text/plain"
-        private const val CHROME_PACKAGE_NAME = "com.android.chrome"
-    }
+	private companion object {
+		private const val MIME_TYPE = "text/plain"
+		private const val CHROME_PACKAGE_NAME = "com.android.chrome"
+	}
 }

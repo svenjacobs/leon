@@ -26,16 +26,16 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class EmptyParametersSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<EmptyParametersSanitizer>,
+	private val sanitizerProvider: Provider<EmptyParametersSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("empty_parameters")
+	override val id = SanitizerId("empty_parameters")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_empty_parameters_name)
+	override fun getName(context: Context) =
+		context.getString(R.string.feat_sanitizer_empty_parameters_name)
 }

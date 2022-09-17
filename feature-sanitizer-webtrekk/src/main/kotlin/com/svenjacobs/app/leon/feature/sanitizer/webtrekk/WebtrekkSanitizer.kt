@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class WebtrekkSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofWildcardParameter("wt_"),
+	regex = RegexFactory.ofWildcardParameter("wt_"),
 )

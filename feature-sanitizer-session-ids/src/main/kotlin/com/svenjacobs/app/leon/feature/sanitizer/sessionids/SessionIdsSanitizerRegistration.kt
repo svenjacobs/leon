@@ -26,16 +26,16 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class SessionIdsSanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<SessionIdsSanitizer>,
+	private val sanitizerProvider: Provider<SessionIdsSanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("session_ids")
+	override val id = SanitizerId("session_ids")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_session_ids_name)
+	override fun getName(context: Context) =
+		context.getString(R.string.feat_sanitizer_session_ids_name)
 }

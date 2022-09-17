@@ -23,5 +23,5 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import javax.inject.Inject
 
 class TwitterSanitizer @Inject constructor() : RegexSanitizer(
-    regex = RegexFactory.ofParameter("s|t"),
+	regex = RegexFactory.ofParameter("s|t"),
 )

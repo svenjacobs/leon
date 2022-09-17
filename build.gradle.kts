@@ -17,6 +17,7 @@
  */
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 buildscript {
     repositories {
@@ -29,17 +30,29 @@ buildscript {
         classpath(libs.kotlin.gradle.plugin)
         classpath(libs.google.hilt.android.gradle.plugin)
         classpath(libs.mikepenz.aboutlibraries.gradle.plugin)
+        classpath(libs.twitter.compose.ktlint.rules)
     }
 }
 
 plugins {
-    id("com.github.ben-manes.versions") version "0.42.0"
+    alias(libs.plugins.ben.manes.versions)
+    alias(libs.plugins.kotlinter)
 }
 
-allprojects {
+subprojects {
+    apply(plugin = "org.jmailen.kotlinter")
+
     repositories {
         google()
         mavenCentral()
+    }
+
+    kotlinter {
+        experimentalRules = true
+    }
+
+    tasks.withType<LintTask>().configureEach {
+        exclude { it.file.path.contains("/build/generated/") }
     }
 }
 

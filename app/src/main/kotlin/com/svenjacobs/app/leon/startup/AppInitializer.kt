@@ -34,31 +34,31 @@ import kotlinx.coroutines.runBlocking
 @Suppress("unused")
 class AppInitializer : Initializer<Unit> {
 
-    @EntryPoint
-    @InstallIn(SingletonComponent::class)
-    interface AppInitializerEntryPoint {
+	@EntryPoint
+	@InstallIn(SingletonComponent::class)
+	interface AppInitializerEntryPoint {
 
-        val appDataStoreManager: AppDataStoreManager
+		val appDataStoreManager: AppDataStoreManager
 
-        val migrations: Migrations
+		val migrations: Migrations
 
-        val stethoHelper: StethoHelper
-    }
+		val stethoHelper: StethoHelper
+	}
 
-    override fun create(context: Context) {
-        val entryPoint = EntryPoints.get(context, AppInitializerEntryPoint::class.java)
+	override fun create(context: Context) {
+		val entryPoint = EntryPoints.get(context, AppInitializerEntryPoint::class.java)
 
-        val migrations = entryPoint.migrations
-        val appDataStoreManager = entryPoint.appDataStoreManager
-        val stethoHelper = entryPoint.stethoHelper
+		val migrations = entryPoint.migrations
+		val appDataStoreManager = entryPoint.appDataStoreManager
+		val stethoHelper = entryPoint.stethoHelper
 
-        stethoHelper.initialize(context)
-        migrations.migrate(context)
+		stethoHelper.initialize(context)
+		migrations.migrate(context)
 
-        runBlocking {
-            appDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
-        }
-    }
+		runBlocking {
+			appDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
+		}
+	}
 
-    override fun dependencies() = listOf(TimberInitializer::class.java)
+	override fun dependencies() = listOf(TimberInitializer::class.java)
 }

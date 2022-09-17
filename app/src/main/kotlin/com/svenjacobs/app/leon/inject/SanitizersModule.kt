@@ -42,58 +42,57 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.collections.immutable.toImmutableList
 import javax.inject.Singleton
+import kotlinx.collections.immutable.toImmutableList
 
 @Module
 @InstallIn(SingletonComponent::class)
 object SanitizersModuleProviders {
 
-    @Provides
-    @Singleton
-    @Registrations
-    fun provideRegistrations(
-        amazon: AmazonSanitizerRegistration,
-        amazonSmile: AmazonSmileSanitizerRegistration,
-        aolSearch: AolSearchSanitizerRegistration,
-        emptyParameters: EmptyParametersSanitizerRegistration,
-        facebook: FacebookSanitizerRegistration,
-        flipkart: FlipkartSanitizerRegistration,
-        googleAnalytics: GoogleAnalyticsSanitizerRegistration,
-        googleSearch: GoogleSearchSanitizerRegistration,
-        instagram: InstagramSanitizerRegistration,
-        netflix: NetflixSanitizerRegistration,
-        sessionIds: SessionIdsSanitizerRegistration,
-        spotify: SpotifySanitizerRegistration,
-        twitter: TwitterSanitizerRegistration,
-        webtrekk: WebtrekkSanitizerRegistration,
-        yahooSearch: YahooSearchSanitizerRegistration,
-    ): SanitizerRegistrations =
-        listOf(
-            amazon,
-            amazonSmile,
-            aolSearch,
-            emptyParameters,
-            facebook,
-            flipkart,
-            googleAnalytics,
-            googleSearch,
-            instagram,
-            netflix,
-            sessionIds,
-            spotify,
-            twitter,
-            webtrekk,
-            yahooSearch,
-        ).toImmutableList()
+	@Provides
+	@Singleton
+	@Registrations
+	fun provideRegistrations(
+		amazon: AmazonSanitizerRegistration,
+		amazonSmile: AmazonSmileSanitizerRegistration,
+		aolSearch: AolSearchSanitizerRegistration,
+		emptyParameters: EmptyParametersSanitizerRegistration,
+		facebook: FacebookSanitizerRegistration,
+		flipkart: FlipkartSanitizerRegistration,
+		googleAnalytics: GoogleAnalyticsSanitizerRegistration,
+		googleSearch: GoogleSearchSanitizerRegistration,
+		instagram: InstagramSanitizerRegistration,
+		netflix: NetflixSanitizerRegistration,
+		sessionIds: SessionIdsSanitizerRegistration,
+		spotify: SpotifySanitizerRegistration,
+		twitter: TwitterSanitizerRegistration,
+		webtrekk: WebtrekkSanitizerRegistration,
+		yahooSearch: YahooSearchSanitizerRegistration,
+	): SanitizerRegistrations = listOf(
+		amazon,
+		amazonSmile,
+		aolSearch,
+		emptyParameters,
+		facebook,
+		flipkart,
+		googleAnalytics,
+		googleSearch,
+		instagram,
+		netflix,
+		sessionIds,
+		spotify,
+		twitter,
+		webtrekk,
+		yahooSearch,
+	).toImmutableList()
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class SanitizersModuleBindings {
 
-    @Binds
-    abstract fun bindSanitizerRepository(
-        sanitizerRepositoryImpl: SanitizerRepositoryImpl,
-    ): SanitizerRepository
+	@Binds
+	abstract fun bindSanitizerRepository(
+		sanitizerRepositoryImpl: SanitizerRepositoryImpl,
+	): SanitizerRepository
 }

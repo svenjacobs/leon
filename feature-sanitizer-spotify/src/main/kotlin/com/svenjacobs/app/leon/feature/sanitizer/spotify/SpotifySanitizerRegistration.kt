@@ -26,23 +26,21 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class SpotifySanitizerRegistration @Inject constructor(
-    private val sanitizerProvider: Provider<SpotifySanitizer>,
+	private val sanitizerProvider: Provider<SpotifySanitizer>,
 ) : SanitizerRegistration {
 
-    override val sanitizer: Sanitizer
-        get() = sanitizerProvider.get()
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
 
-    override val id = SanitizerId("spotify")
+	override val id = SanitizerId("spotify")
 
-    override val hasSettingsScreen = false
+	override val hasSettingsScreen = false
 
-    override fun getName(context: Context) =
-        context.getString(R.string.feat_sanitizer_spotify_name)
+	override fun getName(context: Context) = context.getString(R.string.feat_sanitizer_spotify_name)
 
-    override fun matchesDomain(input: String) =
-        DOMAIN_REGEX.containsMatchIn(input)
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-    private companion object {
-        private val DOMAIN_REGEX = Regex("spotify\\.com")
-    }
+	private companion object {
+		private val DOMAIN_REGEX = Regex("spotify\\.com")
+	}
 }
