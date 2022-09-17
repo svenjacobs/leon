@@ -18,24 +18,30 @@
 
 package com.svenjacobs.app.leon.feature.sanitizer.youtube
 
+import android.content.Context
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.ElementsIntoSet
+import javax.inject.Inject
+import javax.inject.Provider
 
-@Module
-@InstallIn(SingletonComponent::class)
-object YoutubeModule {
+class YoutubeShortUrlSanitizerRegistration @Inject constructor(
+	private val sanitizerProvider: Provider<YoutubeShortUrlSanitizer>,
+) : SanitizerRegistration {
 
-	@Provides
-	@ElementsIntoSet
-	fun provideSanitizerRegistrations(
-		youtubeRedirectSanitizerRegistration: YoutubeRedirectSanitizerRegistration,
-		youtubeShortUrlSanitizerRegistration: YoutubeShortUrlSanitizerRegistration,
-	): Set<@JvmSuppressWildcards SanitizerRegistration> = setOf(
-		youtubeRedirectSanitizerRegistration,
-		youtubeShortUrlSanitizerRegistration,
-	)
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
+
+	override val id = SanitizerId("youtube_short_url")
+
+	override val hasSettingsScreen = false
+
+	override fun getName(context: Context) =
+		context.getString(R.string.feat_sanitizer_youtube_short_url_name)
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+
+	private companion object {
+		private val DOMAIN_REGEX = Regex("youtu\\.be")
+	}
 }
