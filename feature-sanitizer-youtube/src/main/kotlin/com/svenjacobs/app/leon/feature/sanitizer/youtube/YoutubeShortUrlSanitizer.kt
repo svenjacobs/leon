@@ -18,24 +18,18 @@
 
 package com.svenjacobs.app.leon.feature.sanitizer.youtube
 
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.ElementsIntoSet
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import javax.inject.Inject
 
-@Module
-@InstallIn(SingletonComponent::class)
-object YoutubeModule {
+class YoutubeShortUrlSanitizer @Inject constructor() : Sanitizer {
 
-	@Provides
-	@ElementsIntoSet
-	fun provideSanitizerRegistrations(
-		youtubeRedirectSanitizerRegistration: YoutubeRedirectSanitizerRegistration,
-		youtubeShortUrlSanitizerRegistration: YoutubeShortUrlSanitizerRegistration,
-	): Set<@JvmSuppressWildcards SanitizerRegistration> = setOf(
-		youtubeRedirectSanitizerRegistration,
-		youtubeShortUrlSanitizerRegistration,
-	)
+	override fun invoke(input: String): String {
+		val videoId = VIDEO_ID_REGEX.matchEntire(input)?.groupValues?.getOrNull(1)
+			?: throw IllegalArgumentException("Could not extract video ID from youtu.be URL")
+		return "https://www.youtube.com/watch?v=$videoId"
+	}
+
+	private companion object {
+		val VIDEO_ID_REGEX = Regex("(?:https?://)?youtu\\.be/(.+)\$")
+	}
 }
