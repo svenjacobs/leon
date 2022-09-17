@@ -35,4 +35,5 @@
     <string name="import_from_clipboard">Импорт из буфера обмена</string>
     <string name="reset">Сброс</string>
     <string name="extract_url">Извлечение только URL-адреса</string>
+    <string name="register_as_browser">Register Léon as browser</string>
 </resources>
