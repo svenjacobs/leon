@@ -1,8 +1,6 @@
-name: Android
+name: Build & Verify
 
-on:
-  push:
-  workflow_dispatch:
+on: [ pull_request, workflow_dispatch ]
 
 jobs:
   build:
@@ -29,13 +27,10 @@ jobs:
       - name: Build and test app
         run: ./gradlew build
 
-      - name: Deploy beta version
-        if: github.ref == 'refs/heads/main'
-        run: ./gradlew publishReleaseBundle --track beta --release-status completed
-
       - uses: actions/upload-artifact@v3
         with:
           name: Android artifacts
           path: |
             app/build/outputs/apk/**/*.apk
             app/build/outputs/bundle/**/*.aab
+        if: always()

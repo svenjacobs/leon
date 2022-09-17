@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Import GPG key for git-secret
+        run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch --yes
+
+      - name: Install git-secret
+        run: sudo apt-get install git-secret
+
+      - name: Decrypt secrets
+        run: git secret reveal -f
+
+      - name: Deploy beta version
+        run: ./gradlew publishReleaseBundle --track beta --release-status completed
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Android artifacts
+          path: |
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/bundle/**/*.aab
+        if: always()
