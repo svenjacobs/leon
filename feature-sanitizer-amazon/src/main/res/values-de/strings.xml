@@ -17,6 +17,5 @@
   -->
 
 <resources>
-    <string name="feat_sanitizer_amazon_name" translatable="false">Amazon</string>
-    <string name="feat_sanitizer_amazon_product_name">Amazon Products</string>
+    <string name="feat_sanitizer_amazon_product_name">Amazon Produkte</string>
 </resources>

@@ -32,7 +32,11 @@ class AmazonSanitizerRegistration @Inject constructor(
 	override val sanitizer: Sanitizer
 		get() = sanitizerProvider.get()
 
-	override val id = SanitizerId("amazon")
+	/**
+	 * Since [AmazonProductSanitizerRegistration] already uses "amazon" and IDs should not be
+	 * changed afterwards, this is just "amazon2".
+	 */
+	override val id = SanitizerId("amazon2")
 
 	override val hasSettingsScreen = false
 
@@ -41,6 +45,6 @@ class AmazonSanitizerRegistration @Inject constructor(
 	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
 	private companion object {
-		private val DOMAIN_REGEX = Regex("amazon\\..+/dp/[0-9A-Z]+")
+		private val DOMAIN_REGEX = Regex("amazon\\..+/")
 	}
 }
