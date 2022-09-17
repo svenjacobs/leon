@@ -18,24 +18,30 @@
 
 package com.svenjacobs.app.leon.feature.sanitizer.amazon
 
+import android.content.Context
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.ElementsIntoSet
+import javax.inject.Inject
+import javax.inject.Provider
 
-@Module
-@InstallIn(SingletonComponent::class)
-object AmazonModule {
+class AmazonProductSanitizerRegistration @Inject constructor(
+	private val sanitizerProvider: Provider<AmazonProductSanitizer>,
+) : SanitizerRegistration {
 
-	@Provides
-	@ElementsIntoSet
-	fun provideSanitizerRegistrations(
-		amazonSanitizerRegistration: AmazonSanitizerRegistration,
-		amazonProductSanitizerRegistration: AmazonProductSanitizerRegistration,
-	): Set<@JvmSuppressWildcards SanitizerRegistration> = setOf(
-		amazonSanitizerRegistration,
-		amazonProductSanitizerRegistration,
-	)
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider.get()
+
+	override val id = SanitizerId("amazon")
+
+	override val hasSettingsScreen = false
+
+	override fun getName(context: Context) =
+		context.getString(R.string.feat_sanitizer_amazon_product_name)
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+
+	private companion object {
+		private val DOMAIN_REGEX = Regex("amazon\\..+/dp/[0-9A-Z]+")
+	}
 }
