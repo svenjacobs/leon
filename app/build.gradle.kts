@@ -20,150 +20,150 @@ import com.adarshr.gradle.testlogger.theme.ThemeType.STANDARD
 import java.util.*
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    kotlin("plugin.parcelize")
-    id("dagger.hilt.android.plugin")
-    id("com.mikepenz.aboutlibraries.plugin")
-    alias(libs.plugins.triplet.play)
-    alias(libs.plugins.adarshr.test.logger)
+	id("com.android.application")
+	kotlin("android")
+	kotlin("kapt")
+	kotlin("plugin.parcelize")
+	id("dagger.hilt.android.plugin")
+	id("com.mikepenz.aboutlibraries.plugin")
+	alias(libs.plugins.triplet.play)
+	alias(libs.plugins.adarshr.test.logger)
 }
 
 android {
-    compileSdk = Android.compileSdk
-    buildToolsVersion = Android.buildToolsVersion
+	compileSdk = Android.compileSdk
+	buildToolsVersion = Android.buildToolsVersion
 
-    defaultConfig {
-        applicationId = "com.svenjacobs.app.leon"
-        minSdk = Android.minSdk
-        targetSdk = Android.targetSdk
-        versionCode = 235
-        versionName = "1.0.1"
+	defaultConfig {
+		applicationId = "com.svenjacobs.app.leon"
+		minSdk = Android.minSdk
+		targetSdk = Android.targetSdk
+		versionCode = 235
+		versionName = "1.0.1"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+	}
 
-    signingConfigs {
-        val signingFile = rootProject.file("signing.properties")
-        if (!signingFile.exists()) {
-            logger.warn("No signing properties found. Release signing not possible.")
-            return@signingConfigs
-        }
+	signingConfigs {
+		val signingFile = rootProject.file("signing.properties")
+		if (!signingFile.exists()) {
+			logger.warn("No signing properties found. Release signing not possible.")
+			return@signingConfigs
+		}
 
-        create("release") {
-            val props = Properties()
-            signingFile.inputStream().use { props.load(it) }
+		create("release") {
+			val props = Properties()
+			signingFile.inputStream().use { props.load(it) }
 
-            storeFile = rootProject.file("upload-keystore.jks")
-            storePassword = props.getProperty("storePassword")
-            keyPassword = props.getProperty("keyPassword")
-            keyAlias = "upload"
-        }
-    }
+			storeFile = rootProject.file("upload-keystore.jks")
+			storePassword = props.getProperty("storePassword")
+			keyPassword = props.getProperty("keyPassword")
+			keyAlias = "upload"
+		}
+	}
 
-    buildTypes {
-        debug {
-            applicationIdSuffix = ".debug"
-        }
+	buildTypes {
+		debug {
+			applicationIdSuffix = ".debug"
+		}
 
-        release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            signingConfig = signingConfigs.getByName("release")
-        }
-    }
+		release {
+			isMinifyEnabled = true
+			proguardFiles(
+				getDefaultProguardFile("proguard-android-optimize.txt"),
+				"proguard-rules.pro",
+			)
+			signingConfig = signingConfigs.getByName("release")
+		}
+	}
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
+	}
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs = listOf(
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-opt-in=kotlin.RequiresOptIn"
-        )
-    }
+	kotlinOptions {
+		jvmTarget = "11"
+		freeCompilerArgs = listOf(
+			"-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+			"-opt-in=kotlin.RequiresOptIn",
+		)
+	}
 
-    buildFeatures {
-        compose = true
-    }
+	buildFeatures {
+		compose = true
+	}
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
-    }
+	composeOptions {
+		kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
+	}
 
-    testOptions {
-        unitTests.all {
-            it.useJUnitPlatform()
-        }
-    }
+	testOptions {
+		unitTests.all {
+			it.useJUnitPlatform()
+		}
+	}
 }
 
 play {
-    serviceAccountCredentials.set(rootProject.file("google-play-service-account.json"))
-    defaultToAppBundles.set(true)
+	serviceAccountCredentials.set(rootProject.file("google-play-service-account.json"))
+	defaultToAppBundles.set(true)
 }
 
 testlogger {
-    theme = STANDARD
+	theme = STANDARD
 }
 
 dependencies {
-    implementation(project(":core-common"))
-    implementation(project(":core-domain"))
-    implementation(project(":feature-sanitizer-amazon"))
-    implementation(project(":feature-sanitizer-amazon-smile"))
-    implementation(project(":feature-sanitizer-aol-search"))
-    implementation(project(":feature-sanitizer-empty-parameters"))
-    implementation(project(":feature-sanitizer-facebook"))
-    implementation(project(":feature-sanitizer-flipkart"))
-    implementation(project(":feature-sanitizer-google-analytics"))
-    implementation(project(":feature-sanitizer-google-search"))
-    implementation(project(":feature-sanitizer-instagram"))
-    implementation(project(":feature-sanitizer-netflix"))
-    implementation(project(":feature-sanitizer-session-ids"))
-    implementation(project(":feature-sanitizer-spotify"))
-    implementation(project(":feature-sanitizer-twitter"))
-    implementation(project(":feature-sanitizer-webtrekk"))
-    implementation(project(":feature-sanitizer-yahoo-search"))
+	implementation(project(":core-common"))
+	implementation(project(":core-domain"))
+	implementation(project(":feature-sanitizer-amazon"))
+	implementation(project(":feature-sanitizer-amazon-smile"))
+	implementation(project(":feature-sanitizer-aol-search"))
+	implementation(project(":feature-sanitizer-empty-parameters"))
+	implementation(project(":feature-sanitizer-facebook"))
+	implementation(project(":feature-sanitizer-flipkart"))
+	implementation(project(":feature-sanitizer-google-analytics"))
+	implementation(project(":feature-sanitizer-google-search"))
+	implementation(project(":feature-sanitizer-instagram"))
+	implementation(project(":feature-sanitizer-netflix"))
+	implementation(project(":feature-sanitizer-session-ids"))
+	implementation(project(":feature-sanitizer-spotify"))
+	implementation(project(":feature-sanitizer-twitter"))
+	implementation(project(":feature-sanitizer-webtrekk"))
+	implementation(project(":feature-sanitizer-yahoo-search"))
 
-    implementation(libs.kotlin.stdlib.jdk8)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.activity.ktx)
+	implementation(libs.kotlin.stdlib.jdk8)
+	implementation(libs.androidx.core.ktx)
+	implementation(libs.androidx.appcompat)
+	implementation(libs.androidx.activity.ktx)
 
-    //region Compose
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.bundles.androidx.compose)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.mikepenz.aboutlibraries.compose)
-    implementation(libs.google.accompanist.systemuicontroller)
-    //endregion
+	//region Compose
+	debugImplementation(libs.androidx.compose.ui.tooling)
+	implementation(libs.bundles.androidx.compose)
+	implementation(libs.androidx.activity.compose)
+	implementation(libs.androidx.lifecycle.viewmodel.compose)
+	implementation(libs.androidx.navigation.compose)
+	implementation(libs.androidx.hilt.navigation.compose)
+	implementation(libs.mikepenz.aboutlibraries.compose)
+	implementation(libs.google.accompanist.systemuicontroller)
+	//endregion
 
-    implementation(libs.androidx.startup.runtime)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.google.hilt.android)
-    implementation(libs.androidx.browser)
-    implementation(libs.jakewharton.timber)
+	implementation(libs.androidx.startup.runtime)
+	implementation(libs.androidx.lifecycle.runtime.ktx)
+	implementation(libs.androidx.lifecycle.viewmodel.ktx)
+	implementation(libs.androidx.datastore.preferences)
+	implementation(libs.kotlinx.coroutines.android)
+	implementation(libs.google.hilt.android)
+	implementation(libs.androidx.browser)
+	implementation(libs.jakewharton.timber)
 
-    debugImplementation(libs.facebook.stetho)
+	debugImplementation(libs.facebook.stetho)
 
-    kapt(libs.google.hilt.android.compiler)
+	kapt(libs.google.hilt.android.compiler)
 
-    testImplementation(libs.kotest.runner.junit5)
-    testImplementation(libs.kotest.assertions.core)
-    testImplementation(libs.mockk)
-    testImplementation(libs.mockk.agent.jvm)
+	testImplementation(libs.kotest.runner.junit5)
+	testImplementation(libs.kotest.assertions.core)
+	testImplementation(libs.mockk)
+	testImplementation(libs.mockk.agent.jvm)
 }
