@@ -1,3 +1,12 @@
+## Version 1.1.0
+
+_2022-09-18_
+
+- Add sanitizer for YouTube redirection links
+- Add sanitizer for Amazon non-product pages
+- Add Youtu.be short URL sanitizer
+- Add feature to register app as a browser
+
 ## Version 1.0.1
 
 _2022-08-05_
@@ -56,9 +65,9 @@ _2021-10-20_
 
 - Fix display of title for large fonts (PR #30, thanks @yuhuitech)
 - Add sanitizers for
-  - Twitter
-  - Spotify
-  - Netflix
+    - Twitter
+    - Spotify
+    - Netflix
 - Minor UI improvements
 
 ## Version 0.5.0

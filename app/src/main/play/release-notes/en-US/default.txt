@@ -1,3 +1,4 @@
-- Add missing "q" parameter to Google sanitizer
-- Improve sharing
-- Update Russian translations
+- Add sanitizer for YouTube redirection links
+- Add sanitizer for Amazon non-product pages
+- Add Youtu.be short URL sanitizer
+- Add feature to register app as a browser
