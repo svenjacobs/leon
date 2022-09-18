@@ -21,6 +21,11 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
 import android.content.Context
 import androidx.compose.runtime.Composable
 
+/**
+ * A registration provides metadata of a [Sanitizer].
+ *
+ * @See Sanitizer
+ */
 interface SanitizerRegistration {
 
 	val sanitizer: Sanitizer

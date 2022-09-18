@@ -18,6 +18,11 @@
 
 package com.svenjacobs.app.leon.core.domain.sanitizer
 
+/**
+ * A sanitizer is basically just a function with an input and an output string.
+ *
+ * It might just remove a few parameters or it might completely rewrite an URL.
+ */
 fun interface Sanitizer {
 
 	operator fun invoke(input: String): String
