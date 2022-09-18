@@ -24,6 +24,7 @@ import java.io.File
 import javax.inject.Inject
 import timber.log.Timber
 
+@Deprecated(message = "Remove this in a future version")
 class Migrations @Inject constructor() {
 
 	fun migrate(context: Context) {

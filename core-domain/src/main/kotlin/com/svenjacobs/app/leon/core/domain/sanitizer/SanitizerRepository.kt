@@ -21,6 +21,9 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Repository for enabled and disabling [Sanitizers][Sanitizer].
+ */
 interface SanitizerRepository {
 
 	data class SanitizerState(
