@@ -21,9 +21,9 @@ package com.svenjacobs.app.leon
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsServiceConnection
 import androidx.core.view.WindowCompat
@@ -32,7 +32,7 @@ import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 	private val mainScreenViewModel: MainScreenViewModel by viewModels()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
