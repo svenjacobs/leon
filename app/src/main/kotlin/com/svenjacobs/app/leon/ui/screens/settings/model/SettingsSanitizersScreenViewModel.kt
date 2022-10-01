@@ -64,7 +64,7 @@ class SettingsSanitizersScreenViewModel(
 							enabled = state.enabled,
 						)
 					}
-					.sortedBy { it.name }
+					.sortedBy { it.name.lowercase() }
 					.toImmutableList(),
 			)
 		}.stateIn(

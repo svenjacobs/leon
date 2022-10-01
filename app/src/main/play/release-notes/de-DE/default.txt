@@ -1,4 +1,1 @@
-- Reiniger für YouTube-Weiterleitungslinks hinzugefügt
-- Reiniger für Amazon-Seiten, die keine Produktseiten sind, hinzugefügt
-- Reiniger für Youtu.be Kurz-URLs hinzugefügt
-- Die App kann als Browser registriert werden
+- eBay Reiniger hinzugefügt

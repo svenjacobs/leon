@@ -16,26 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-rootProject.name = "Leon"
-include(
-	":core-common",
-	":core-domain",
-	":feature-sanitizer-amazon",
-	":feature-sanitizer-amazon-smile",
-	":feature-sanitizer-aol-search",
-	":feature-sanitizer-ebay",
-	":feature-sanitizer-empty-parameters",
-	":feature-sanitizer-facebook",
-	":feature-sanitizer-flipkart",
-	":feature-sanitizer-google-analytics",
-	":feature-sanitizer-google-search",
-	":feature-sanitizer-instagram",
-	":feature-sanitizer-netflix",
-	":feature-sanitizer-session-ids",
-	":feature-sanitizer-spotify",
-	":feature-sanitizer-twitter",
-	":feature-sanitizer-webtrekk",
-	":feature-sanitizer-yahoo-search",
-	":feature-sanitizer-youtube",
-	":app",
+package com.svenjacobs.app.leon.feature.sanitizer.amazon
+
+import com.svenjacobs.app.leon.feature.sanitizer.ebay.EbaySanitizer
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
+
+class EbaySanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove all parameters from eBay article URL" {
+				val sanitizer = EbaySanitizer()
+				val result = sanitizer(
+					"https://www.ebay.de/itm/271784973135?mkcid=16&mkevt=1&mkrid=707-127654" +
+						"-2357-0&ssspo=rMbbkKXARCW&sssrc=2348624&ssuid=Bw-3_LUXSsm&widget_ver=art" +
+						"emis&media=MORE",
+				)
+
+				result shouldBe "https://www.ebay.de/itm/271784973135"
+			}
+		}
+	},
 )

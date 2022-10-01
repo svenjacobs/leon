@@ -37,8 +37,8 @@ android {
 		applicationId = "com.svenjacobs.app.leon"
 		minSdk = Android.minSdk
 		targetSdk = Android.targetSdk
-		versionCode = 236
-		versionName = "1.1.0"
+		versionCode = 237
+		versionName = "1.2.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
@@ -123,6 +123,7 @@ dependencies {
 	implementation(project(":feature-sanitizer-amazon"))
 	implementation(project(":feature-sanitizer-amazon-smile"))
 	implementation(project(":feature-sanitizer-aol-search"))
+	implementation(project(":feature-sanitizer-ebay"))
 	implementation(project(":feature-sanitizer-empty-parameters"))
 	implementation(project(":feature-sanitizer-facebook"))
 	implementation(project(":feature-sanitizer-flipkart"))

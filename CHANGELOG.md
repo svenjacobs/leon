@@ -1,3 +1,9 @@
+## Version 1.2.0
+
+_2022-10-01_
+
+- Add eBay sanitizer
+
 ## Version 1.1.0
 
 _2022-09-18_

@@ -24,6 +24,7 @@ import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonProductSanitizerRe
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.smile.AmazonSmileSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.aol.search.AolSearchSanitizerRegistration
+import com.svenjacobs.app.leon.feature.sanitizer.ebay.EbaySanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.emptyparameters.EmptyParametersSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.facebook.FacebookSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.flipkart.FlipkartSanitizerRegistration
@@ -52,6 +53,7 @@ class ComponentInitializer : DistinctInitializer<Unit> {
 				AmazonSanitizerRegistration(),
 				AmazonSmileSanitizerRegistration(),
 				AolSearchSanitizerRegistration(),
+				EbaySanitizerRegistration(),
 				EmptyParametersSanitizerRegistration(),
 				FacebookSanitizerRegistration(),
 				FlipkartSanitizerRegistration(),
