@@ -22,15 +22,13 @@ import android.content.Context
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import javax.inject.Inject
-import javax.inject.Provider
 
-class GoogleAnalyticsSanitizerRegistration @Inject constructor(
-	private val sanitizerProvider: Provider<GoogleAnalyticsSanitizer>,
+class GoogleAnalyticsSanitizerRegistration(
+	private val sanitizerProvider: () -> GoogleAnalyticsSanitizer = { GoogleAnalyticsSanitizer() },
 ) : SanitizerRegistration {
 
 	override val sanitizer: Sanitizer
-		get() = sanitizerProvider.get()
+		get() = sanitizerProvider()
 
 	override val id = SanitizerId("google_analytics")
 

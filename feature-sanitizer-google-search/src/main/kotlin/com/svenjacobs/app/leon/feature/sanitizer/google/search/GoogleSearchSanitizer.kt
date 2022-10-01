@@ -19,8 +19,7 @@
 package com.svenjacobs.app.leon.feature.sanitizer.google.search
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
-import javax.inject.Inject
 
-class GoogleSearchSanitizer @Inject constructor() : SearchResultSanitizer(
+class GoogleSearchSanitizer : SearchResultSanitizer(
 	Regex("[?&](?:url|q)=([^&]+)"),
 )

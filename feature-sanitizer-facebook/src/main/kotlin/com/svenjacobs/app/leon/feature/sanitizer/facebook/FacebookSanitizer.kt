@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.facebook
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class FacebookSanitizer @Inject constructor() : RegexSanitizer(
+class FacebookSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofWildcardParameter("fb_|fbclid"),
 )

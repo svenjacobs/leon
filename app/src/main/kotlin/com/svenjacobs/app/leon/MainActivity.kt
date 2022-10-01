@@ -29,9 +29,7 @@ import androidx.browser.customtabs.CustomTabsServiceConnection
 import androidx.core.view.WindowCompat
 import com.svenjacobs.app.leon.ui.screens.main.MainScreen
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 	private val mainScreenViewModel: MainScreenViewModel by viewModels()
 

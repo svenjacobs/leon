@@ -24,19 +24,16 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
+import com.svenjacobs.app.leon.core.domain.inject.AppComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 
-@HiltViewModel
 @SuppressLint("StaticFieldLeak")
-class SettingsScreenViewModel @Inject constructor(
-	@ApplicationContext private val context: Context,
+class SettingsScreenViewModel(
+	private val context: Context = AppComponent.appContext,
 ) : ViewModel() {
 
 	data class UiState(

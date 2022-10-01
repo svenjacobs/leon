@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.netflix
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class NetflixSanitizer @Inject constructor() : RegexSanitizer(
+class NetflixSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofParameter("s|t|trkid|vlang|clip"),
 )

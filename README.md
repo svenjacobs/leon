@@ -34,12 +34,12 @@ Did you find a bug or have an idea of how the app could be improved? Please repo
 ## Technical implementation
 
 This app is also meant as a blueprint for modern Android development, presenting and evaluating
-recommended and cutting-edge technologies and libraries such as:
+recommended and cutting-edge technologies, patterns and libraries such as:
 
 - [Kotlin](https://kotlinlang.org/) programming language
 - Kotlin [coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 - Jetpack [Compose](https://developer.android.com/jetpack/compose)
 - Jetpack [Navigation](https://developer.android.com/guide/navigation)
-- Jetpack [Hilt](https://dagger.dev/hilt/)
 - [Material Design 3](https://m3.material.io/)
+- Dependency Injection pattern with custom implementation
 - several other Jetpack & AndroidX libraries

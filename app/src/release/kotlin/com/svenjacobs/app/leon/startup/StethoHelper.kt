@@ -16,10 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon
+package com.svenjacobs.app.leon.startup
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import android.content.Context
 
-@HiltAndroidApp
-class LeonApp : Application()
+class StethoHelper {
+
+	/**
+	 * Nothing to do because there is no Stetho dependency in release build variant :)
+	 */
+	@Suppress("UNUSED_PARAMETER")
+	fun initialize(context: Context) {
+	}
+}

@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.instagram
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class InstagramSanitizer @Inject constructor() : RegexSanitizer(
+class InstagramSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofParameter("igshid"),
 )

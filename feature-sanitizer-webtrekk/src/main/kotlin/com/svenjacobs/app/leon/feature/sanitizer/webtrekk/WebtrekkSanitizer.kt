@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.webtrekk
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class WebtrekkSanitizer @Inject constructor() : RegexSanitizer(
+class WebtrekkSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofWildcardParameter("wt_"),
 )

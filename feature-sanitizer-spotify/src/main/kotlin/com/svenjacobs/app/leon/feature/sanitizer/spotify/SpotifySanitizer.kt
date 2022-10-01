@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.spotify
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class SpotifySanitizer @Inject constructor() : RegexSanitizer(
+class SpotifySanitizer : RegexSanitizer(
 	regex = RegexFactory.ofParameter("si|dl_branch"),
 )

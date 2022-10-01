@@ -22,15 +22,13 @@ import android.content.Context
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import javax.inject.Inject
-import javax.inject.Provider
 
-class AmazonSmileSanitizerRegistration @Inject constructor(
-	private val sanitizerProvider: Provider<AmazonSmileSanitizer>,
+class AmazonSmileSanitizerRegistration(
+	private val sanitizerProvider: () -> AmazonSmileSanitizer = { AmazonSmileSanitizer() },
 ) : SanitizerRegistration {
 
 	override val sanitizer: Sanitizer
-		get() = sanitizerProvider.get()
+		get() = sanitizerProvider()
 
 	override val id = SanitizerId("amazon_smile")
 

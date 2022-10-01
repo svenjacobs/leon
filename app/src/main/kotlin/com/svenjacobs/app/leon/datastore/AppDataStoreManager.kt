@@ -23,8 +23,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
+import com.svenjacobs.app.leon.core.domain.inject.AppComponent
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -33,8 +32,8 @@ import kotlinx.coroutines.flow.map
  * Manages app specific preferences stored via [DataStore].
  */
 @Singleton
-class AppDataStoreManager @Inject constructor(
-	@ApplicationContext private val context: Context,
+class AppDataStoreManager(
+	private val context: Context = AppComponent.appContext,
 ) {
 	private val Context.dataStore by preferencesDataStore(name = "settings")
 

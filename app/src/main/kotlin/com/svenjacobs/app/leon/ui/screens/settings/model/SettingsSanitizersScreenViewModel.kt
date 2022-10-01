@@ -22,14 +22,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svenjacobs.app.leon.core.domain.sanitizer.Registrations
+import com.svenjacobs.app.leon.core.domain.inject.AppComponent
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsSanitizersScreenViewModel.UiState.Sanitizer
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -39,12 +36,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 @SuppressLint("StaticFieldLeak")
-class SettingsSanitizersScreenViewModel @Inject constructor(
-	@ApplicationContext private val context: Context,
-	@Registrations private val registrations: SanitizerRegistrations,
-	private val repository: SanitizerRepository,
+class SettingsSanitizersScreenViewModel(
+	private val context: Context = AppComponent.appContext,
+	private val registrations: SanitizerRegistrations = AppComponent.sanitizerRegistrations,
+	private val repository: SanitizerRepository = AppComponent.sanitizerRepository,
 ) : ViewModel() {
 
 	data class UiState(

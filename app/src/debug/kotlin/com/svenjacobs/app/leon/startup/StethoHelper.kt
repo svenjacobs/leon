@@ -16,22 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.feature.sanitizer.flipkart
+package com.svenjacobs.app.leon.startup
 
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.IntoSet
+import android.content.Context
+import com.facebook.stetho.Stetho
 
-@Module
-@InstallIn(SingletonComponent::class)
-object FlipkartModule {
+class StethoHelper {
 
-	@Provides
-	@IntoSet
-	fun provideSanitizerRegistration(
-		flipkartSanitizerRegistration: FlipkartSanitizerRegistration,
-	): SanitizerRegistration = flipkartSanitizerRegistration
+	fun initialize(context: Context) {
+		Stetho.initializeWithDefaults(context)
+	}
 }

@@ -19,8 +19,7 @@
 package com.svenjacobs.app.leon.feature.sanitizer.emptyparameters
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class EmptyParametersSanitizer @Inject constructor() : RegexSanitizer(
+class EmptyParametersSanitizer : RegexSanitizer(
 	regex = Regex("[?&][^=]+=(?=&|$)"),
 )

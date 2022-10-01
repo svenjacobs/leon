@@ -19,8 +19,7 @@
 package com.svenjacobs.app.leon.feature.sanitizer.youtube
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
-import javax.inject.Inject
 
-class YoutubeRedirectSanitizer @Inject constructor() : SearchResultSanitizer(
+class YoutubeRedirectSanitizer : SearchResultSanitizer(
 	Regex("[?&]q=([^&]+)"),
 )

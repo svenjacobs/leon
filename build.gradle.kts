@@ -20,54 +20,53 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
+	repositories {
+		google()
+		mavenCentral()
+	}
 
-    dependencies {
-        classpath(libs.android.gradle.plugin)
-        classpath(libs.kotlin.gradle.plugin)
-        classpath(libs.google.hilt.android.gradle.plugin)
-        classpath(libs.mikepenz.aboutlibraries.gradle.plugin)
-        classpath(libs.twitter.compose.ktlint.rules)
-    }
+	dependencies {
+		classpath(libs.android.gradle.plugin)
+		classpath(libs.kotlin.gradle.plugin)
+		classpath(libs.mikepenz.aboutlibraries.gradle.plugin)
+		classpath(libs.twitter.compose.ktlint.rules)
+	}
 }
 
 plugins {
-    alias(libs.plugins.ben.manes.versions)
-    alias(libs.plugins.kotlinter)
+	alias(libs.plugins.ben.manes.versions)
+	alias(libs.plugins.kotlinter)
 }
 
 subprojects {
-    apply(plugin = "org.jmailen.kotlinter")
+	apply(plugin = "org.jmailen.kotlinter")
 
-    repositories {
-        google()
-        mavenCentral()
-    }
+	repositories {
+		google()
+		mavenCentral()
+	}
 
-    kotlinter {
-        experimentalRules = true
-    }
+	kotlinter {
+		experimentalRules = true
+	}
 
-    tasks.withType<LintTask>().configureEach {
-        exclude { it.file.path.contains("/build/generated/") }
-    }
+	tasks.withType<LintTask>().configureEach {
+		exclude { it.file.path.contains("/build/generated/") }
+	}
 }
 
 tasks.create<Delete>("clean") {
-    delete = setOf(rootProject.buildDir)
+	delete = setOf(rootProject.buildDir)
 }
 
 tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
 
-    fun isNonStable(version: String) =
-        listOf("alpha", "beta", "rc", "eap", "-m", ".m", "-a").any {
-            version.toLowerCase().contains(it)
-        }
+	fun isNonStable(version: String) =
+		listOf("alpha", "beta", "rc", "eap", "-m", ".m", "-a").any {
+			version.toLowerCase().contains(it)
+		}
 
-    rejectVersionIf {
-        isNonStable(candidate.version) && !isNonStable(currentVersion)
-    }
+	rejectVersionIf {
+		isNonStable(candidate.version) && !isNonStable(currentVersion)
+	}
 }

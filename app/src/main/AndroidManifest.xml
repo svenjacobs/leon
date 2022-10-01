@@ -20,7 +20,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".LeonApp"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"

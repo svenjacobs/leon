@@ -22,15 +22,13 @@ import android.content.Context
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import javax.inject.Inject
-import javax.inject.Provider
 
-class YoutubeRedirectSanitizerRegistration @Inject constructor(
-	private val sanitizerProvider: Provider<YoutubeRedirectSanitizer>,
+class YoutubeRedirectSanitizerRegistration(
+	private val sanitizerProvider: () -> YoutubeRedirectSanitizer = { YoutubeRedirectSanitizer() },
 ) : SanitizerRegistration {
 
 	override val sanitizer: Sanitizer
-		get() = sanitizerProvider.get()
+		get() = sanitizerProvider()
 
 	override val id = SanitizerId("youtube_redirect")
 

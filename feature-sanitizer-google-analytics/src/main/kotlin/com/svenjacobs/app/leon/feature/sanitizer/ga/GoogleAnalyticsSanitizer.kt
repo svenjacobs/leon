@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.ga
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class GoogleAnalyticsSanitizer @Inject constructor() : RegexSanitizer(
+class GoogleAnalyticsSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofWildcardParameter("ga_|utm_"),
 )

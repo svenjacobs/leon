@@ -19,8 +19,7 @@
 package com.svenjacobs.app.leon.feature.sanitizer.yahoo.search
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
-import javax.inject.Inject
 
-class YahooSearchSanitizer @Inject constructor() : SearchResultSanitizer(
+class YahooSearchSanitizer : SearchResultSanitizer(
 	Regex("RU=([^/]+)"),
 )
