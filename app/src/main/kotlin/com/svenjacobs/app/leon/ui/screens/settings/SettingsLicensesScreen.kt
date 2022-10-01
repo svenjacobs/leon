@@ -20,7 +20,6 @@ package com.svenjacobs.app.leon.ui.screens.settings
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,7 +27,6 @@ import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 fun SettingsLicensesScreen(modifier: Modifier = Modifier, onBackClick: () -> Unit) {
 	Scaffold(
 		modifier = modifier.fillMaxSize(),

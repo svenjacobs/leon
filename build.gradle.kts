@@ -17,6 +17,7 @@
  */
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 buildscript {
@@ -52,6 +53,16 @@ subprojects {
 
 	tasks.withType<LintTask>().configureEach {
 		exclude { it.file.path.contains("/build/generated/") }
+	}
+
+	tasks.withType<KotlinCompile>().configureEach {
+		kotlinOptions {
+			freeCompilerArgs = freeCompilerArgs + listOf(
+				"-opt-in=kotlin.RequiresOptIn",
+				"-opt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
+				"-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+			)
+		}
 	}
 }
 
