@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.amazon
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class AmazonSanitizer @Inject constructor() : RegexSanitizer(
+class AmazonSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofParameter("ref_?"),
 )

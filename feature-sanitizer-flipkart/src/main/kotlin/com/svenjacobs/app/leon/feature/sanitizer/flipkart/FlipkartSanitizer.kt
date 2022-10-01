@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.flipkart
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class FlipkartSanitizer @Inject constructor() : RegexSanitizer(
+class FlipkartSanitizer : RegexSanitizer(
 	regex = RegexFactory.AllParameters,
 )

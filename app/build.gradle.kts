@@ -22,9 +22,7 @@ import java.util.*
 plugins {
 	id("com.android.application")
 	kotlin("android")
-	kotlin("kapt")
 	kotlin("plugin.parcelize")
-	id("dagger.hilt.android.plugin")
 	id("com.mikepenz.aboutlibraries.plugin")
 	alias(libs.plugins.triplet.play)
 	alias(libs.plugins.adarshr.test.logger)
@@ -146,7 +144,6 @@ dependencies {
 	implementation(libs.androidx.activity.compose)
 	implementation(libs.androidx.lifecycle.viewmodel.compose)
 	implementation(libs.androidx.navigation.compose)
-	implementation(libs.androidx.hilt.navigation.compose)
 	implementation(libs.mikepenz.aboutlibraries.compose)
 	implementation(libs.google.accompanist.systemuicontroller)
 	//endregion
@@ -156,13 +153,10 @@ dependencies {
 	implementation(libs.androidx.lifecycle.viewmodel.ktx)
 	implementation(libs.androidx.datastore.preferences)
 	implementation(libs.kotlinx.coroutines.android)
-	implementation(libs.google.hilt.android)
 	implementation(libs.androidx.browser)
 	implementation(libs.jakewharton.timber)
 
 	debugImplementation(libs.facebook.stetho)
-
-	kapt(libs.google.hilt.android.compiler)
 
 	testImplementation(libs.kotest.runner.junit5)
 	testImplementation(libs.kotest.assertions.core)

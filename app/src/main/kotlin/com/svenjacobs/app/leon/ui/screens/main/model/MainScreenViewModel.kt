@@ -22,17 +22,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.core.domain.CleanerService
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
-@HiltViewModel
-class MainScreenViewModel @Inject constructor(
-	private val cleanerService: CleanerService,
+class MainScreenViewModel(
+	private val cleanerService: CleanerService = CleanerService(),
 ) : ViewModel() {
 
 	data class UiState(

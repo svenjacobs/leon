@@ -18,13 +18,9 @@
 
 package com.svenjacobs.app.leon.startup
 
-import android.content.Context
-import com.facebook.stetho.Stetho
-import javax.inject.Inject
+import androidx.startup.Initializer
 
-class StethoHelperImpl @Inject constructor() : StethoHelper {
+interface DistinctInitializer<T> : Initializer<T> {
 
-	override fun initialize(context: Context) {
-		Stetho.initializeWithDefaults(context)
-	}
+	override fun dependencies() = emptyList<Class<out Initializer<*>>>()
 }

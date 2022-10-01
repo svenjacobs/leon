@@ -19,8 +19,7 @@
 package com.svenjacobs.app.leon.feature.sanitizer.aol.search
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
-import javax.inject.Inject
 
-class AolSearchSanitizer @Inject constructor() : SearchResultSanitizer(
+class AolSearchSanitizer : SearchResultSanitizer(
 	Regex("RU=([^/]+)"),
 )

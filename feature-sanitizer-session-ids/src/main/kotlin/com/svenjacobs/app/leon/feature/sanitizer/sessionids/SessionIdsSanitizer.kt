@@ -20,8 +20,7 @@ package com.svenjacobs.app.leon.feature.sanitizer.sessionids
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import javax.inject.Inject
 
-class SessionIdsSanitizer @Inject constructor() : RegexSanitizer(
+class SessionIdsSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofWildcardParameter("j?sessionid"),
 )

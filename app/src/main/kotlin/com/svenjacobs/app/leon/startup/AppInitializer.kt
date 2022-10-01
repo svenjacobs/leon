@@ -22,10 +22,6 @@ import android.content.Context
 import androidx.startup.Initializer
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.datastore.AppDataStoreManager
-import dagger.hilt.EntryPoint
-import dagger.hilt.EntryPoints
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -34,31 +30,19 @@ import kotlinx.coroutines.runBlocking
 @Suppress("unused")
 class AppInitializer : Initializer<Unit> {
 
-	@EntryPoint
-	@InstallIn(SingletonComponent::class)
-	interface AppInitializerEntryPoint {
-
-		val appDataStoreManager: AppDataStoreManager
-
-		val migrations: Migrations
-
-		val stethoHelper: StethoHelper
-	}
-
 	override fun create(context: Context) {
-		val entryPoint = EntryPoints.get(context, AppInitializerEntryPoint::class.java)
-
-		val migrations = entryPoint.migrations
-		val appDataStoreManager = entryPoint.appDataStoreManager
-		val stethoHelper = entryPoint.stethoHelper
+		val appDataStoreManager = AppDataStoreManager()
+		val stethoHelper = StethoHelper()
 
 		stethoHelper.initialize(context)
-		migrations.migrate(context)
 
 		runBlocking {
 			appDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
 		}
 	}
 
-	override fun dependencies() = listOf(TimberInitializer::class.java)
+	override fun dependencies() = listOf(
+		ComponentInitializer::class.java,
+		TimberInitializer::class.java,
+	)
 }

@@ -19,9 +19,8 @@
 package com.svenjacobs.app.leon.feature.sanitizer.youtube
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import javax.inject.Inject
 
-class YoutubeShortUrlSanitizer @Inject constructor() : Sanitizer {
+class YoutubeShortUrlSanitizer : Sanitizer {
 
 	override fun invoke(input: String): String {
 		val videoId = VIDEO_ID_REGEX.matchEntire(input)?.groupValues?.getOrNull(1)

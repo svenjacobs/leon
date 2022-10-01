@@ -22,15 +22,13 @@ import android.content.Context
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
-import javax.inject.Inject
-import javax.inject.Provider
 
-class EmptyParametersSanitizerRegistration @Inject constructor(
-	private val sanitizerProvider: Provider<EmptyParametersSanitizer>,
+class EmptyParametersSanitizerRegistration(
+	private val sanitizerProvider: () -> EmptyParametersSanitizer = { EmptyParametersSanitizer() },
 ) : SanitizerRegistration {
 
 	override val sanitizer: Sanitizer
-		get() = sanitizerProvider.get()
+		get() = sanitizerProvider()
 
 	override val id = SanitizerId("empty_parameters")
 

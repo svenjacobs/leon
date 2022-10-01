@@ -20,9 +20,8 @@ package com.svenjacobs.app.leon.feature.sanitizer.amazon.smile
 
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.smile.AmazonSmileSanitizerRegistration.Companion.DOMAIN_REGEX
-import javax.inject.Inject
 
-class AmazonSmileSanitizer @Inject constructor() : Sanitizer {
+class AmazonSmileSanitizer : Sanitizer {
 
 	override fun invoke(input: String): String {
 		val result = DOMAIN_REGEX.find(input) ?: return input
