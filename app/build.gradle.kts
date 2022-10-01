@@ -102,6 +102,10 @@ android {
 			it.useJUnitPlatform()
 		}
 	}
+
+	lint {
+		disable.add("EnsureInitializerMetadata")
+	}
 }
 
 play {
