@@ -3,7 +3,7 @@ android-gradle-plugin = "7.4.0-beta01"
 androidx-activity = "1.6.0"
 androidx-compose = "1.2.1"
 androidx-compose-compiler = "1.3.1"
-androidx-lifecycle = "2.5.1"
+androidx-lifecycle = "2.6.0-alpha02"
 androidx-room = "2.4.2"
 google-accompanist = "0.25.1"
 kotest = "5.4.2"
@@ -25,6 +25,7 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
 androidx-core-ktx = "androidx.core:core-ktx:1.9.0"
 androidx-datastore-preferences = "androidx.datastore:datastore-preferences:1.0.0"
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
