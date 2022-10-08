@@ -22,29 +22,26 @@ import android.content.Context
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import kotlinx.collections.immutable.ImmutableCollection
-import kotlinx.coroutines.MainScope
 
-object AppComponent {
+object AppContainer {
 
-	fun setup(
+	fun init(
 		appContext: Context,
 		sanitizerRepositoryProvider: () -> SanitizerRepository,
 		sanitizerRegistrations: ImmutableCollection<SanitizerRegistration>,
 	) {
-		this.appContext = appContext
-		this.sanitizerRepositoryProvider = sanitizerRepositoryProvider
-		this.sanitizerRegistrations = sanitizerRegistrations
+		this.AppContext = appContext
+		this.SanitizerRepositoryProvider = sanitizerRepositoryProvider
+		this.SanitizerRegistrations = sanitizerRegistrations
 	}
 
-	private lateinit var sanitizerRepositoryProvider: () -> SanitizerRepository
+	private lateinit var SanitizerRepositoryProvider: () -> SanitizerRepository
 
-	lateinit var appContext: Context
+	lateinit var AppContext: Context
 		private set
 
-	val appCoroutineScope by lazy { MainScope() }
-
-	lateinit var sanitizerRegistrations: ImmutableCollection<SanitizerRegistration>
+	lateinit var SanitizerRegistrations: ImmutableCollection<SanitizerRegistration>
 		private set
 
-	val sanitizerRepository: SanitizerRepository by lazy { sanitizerRepositoryProvider() }
+	val SanitizerRepository: SanitizerRepository by lazy { SanitizerRepositoryProvider() }
 }

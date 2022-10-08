@@ -23,7 +23,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.svenjacobs.app.leon.core.domain.inject.AppComponent
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.map
  */
 @Singleton
 class AppDataStoreManager(
-	private val context: Context = AppComponent.appContext,
+	private val context: Context = AppContext,
 ) {
 	private val Context.dataStore by preferencesDataStore(name = "settings")
 

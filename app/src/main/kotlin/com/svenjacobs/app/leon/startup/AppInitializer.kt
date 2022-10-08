@@ -42,7 +42,7 @@ class AppInitializer : Initializer<Unit> {
 	}
 
 	override fun dependencies() = listOf(
-		ComponentInitializer::class.java,
+		ContainerInitializer::class.java,
 		TimberInitializer::class.java,
 	)
 }

@@ -24,7 +24,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svenjacobs.app.leon.core.domain.inject.AppComponent
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.stateIn
 
 @SuppressLint("StaticFieldLeak")
 class SettingsScreenViewModel(
-	private val context: Context = AppComponent.appContext,
+	private val context: Context = AppContext,
 ) : ViewModel() {
 
 	data class UiState(

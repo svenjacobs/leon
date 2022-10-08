@@ -18,7 +18,8 @@
 
 package com.svenjacobs.app.leon.core.domain
 
-import com.svenjacobs.app.leon.core.domain.inject.AppComponent
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRegistrations
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
@@ -32,8 +33,8 @@ import kotlinx.coroutines.withContext
  * Performs cleaning of a URL taking all enabled [Sanitizers][Sanitizer] into account.
  */
 class CleanerService(
-	private val registrations: SanitizerRegistrations = AppComponent.sanitizerRegistrations,
-	private val repository: SanitizerRepository = AppComponent.sanitizerRepository,
+	private val registrations: SanitizerRegistrations = SanitizerRegistrations,
+	private val repository: SanitizerRepository = SanitizerRepository,
 ) {
 
 	data class Result(

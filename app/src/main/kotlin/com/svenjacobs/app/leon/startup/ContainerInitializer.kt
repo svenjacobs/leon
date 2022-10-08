@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.startup
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.domain.inject.AppComponent
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonProductSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonSanitizerRegistration
 import com.svenjacobs.app.leon.feature.sanitizer.amazon.smile.AmazonSmileSanitizerRegistration
@@ -42,10 +42,10 @@ import com.svenjacobs.app.leon.feature.sanitizer.youtube.YoutubeShortUrlSanitize
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
 import kotlinx.collections.immutable.persistentListOf
 
-class ComponentInitializer : DistinctInitializer<Unit> {
+class ContainerInitializer : DistinctInitializer<Unit> {
 
 	override fun create(context: Context) {
-		AppComponent.setup(
+		AppContainer.init(
 			appContext = context,
 			sanitizerRepositoryProvider = { SanitizerRepositoryImpl() },
 			sanitizerRegistrations = persistentListOf(

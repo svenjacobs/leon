@@ -18,7 +18,7 @@
 
 package com.svenjacobs.app.leon.sanitizer
 
-import com.svenjacobs.app.leon.core.domain.inject.AppComponent
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
@@ -32,7 +32,7 @@ import kotlinx.coroutines.flow.map
 
 class SanitizerRepositoryImpl(
 	private val dataStoreManager: SanitizerDataStoreManager = SanitizerDataStoreManager(),
-	private val registrations: SanitizerRegistrations = AppComponent.sanitizerRegistrations,
+	private val registrations: SanitizerRegistrations = SanitizerRegistrations,
 ) : SanitizerRepository {
 
 	override val state: Flow<ImmutableList<SanitizerState>>
