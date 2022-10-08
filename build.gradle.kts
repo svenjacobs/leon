@@ -73,7 +73,7 @@ tasks.create<Delete>("clean") {
 tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
 
 	fun isNonStable(version: String) =
-		listOf("alpha", "beta", "rc", "eap", "-m", ".m", "-a").any {
+		listOf("alpha", "beta", "rc", "eap", "-m", ".m", "-a", "dev").any {
 			version.toLowerCase().contains(it)
 		}
 

@@ -1,13 +1,13 @@
 [versions]
-android-gradle-plugin = "7.4.0-beta01"
+android-gradle-plugin = "7.4.0-beta02"
 androidx-activity = "1.6.0"
 androidx-compose = "1.2.1"
-androidx-compose-compiler = "1.3.1"
+androidx-compose-compiler = "1.3.2"
 androidx-lifecycle = "2.6.0-alpha02"
 androidx-room = "2.4.2"
 google-accompanist = "0.25.1"
-kotest = "5.4.2"
-kotlin = "1.7.10"
+kotest = "5.5.0"
+kotlin = "1.7.20"
 kotlinx-coroutines = "1.6.4"
 mikepenz-aboutlibraries = "10.5.0"
 mockk = "1.13.2"
@@ -18,7 +18,7 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-appcompat = "androidx.appcompat:appcompat:1.5.1"
 androidx-browser = "androidx.browser:browser:1.4.0"
-androidx-compose-material3 = "androidx.compose.material3:material3:1.0.0-beta03"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.0.0-rc01"
 androidx-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "androidx-compose" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
@@ -49,7 +49,7 @@ mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk-agent-jvm = { module = "io.mockk:mockk-agent-jvm", version.ref = "mockk" } # See https://github.com/mockk/mockk/issues/605
 square-moshi = "com.squareup.moshi:moshi:1.13.0"
-twitter-compose-ktlint-rules = "com.twitter.compose.rules:ktlint:0.0.17"
+twitter-compose-ktlint-rules = "com.twitter.compose.rules:ktlint:0.0.18"
 
 [bundles]
 androidx-compose = [
