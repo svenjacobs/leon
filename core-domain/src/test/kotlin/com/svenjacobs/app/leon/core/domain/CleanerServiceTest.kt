@@ -19,7 +19,6 @@
 package com.svenjacobs.app.leon.core.domain
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
-import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import io.kotest.core.spec.style.WordSpec
@@ -36,15 +35,21 @@ class CleanerServiceTest : WordSpec(
 		val repository = mockk<SanitizerRepository>()
 
 		val service = CleanerService(
-			registrations = listOf(
-				SanitizerRegistrationFake(
-					RegexSanitizer(RegexFactory.ofParameter("paramA")),
+			sanitizers = listOf(
+				MockSanitizer(
+					id = SanitizerId("mock1"),
+					name = "mock1",
+					regex = RegexFactory.ofParameter("paramA"),
 				),
-				SanitizerRegistrationFake(
-					RegexSanitizer(RegexFactory.ofParameter("paramB")),
+				MockSanitizer(
+					id = SanitizerId("mock2"),
+					name = "mock2",
+					regex = RegexFactory.ofParameter("paramB"),
 				),
-				SanitizerRegistrationFake(
-					RegexSanitizer(RegexFactory.ofParameter("paramC")),
+				MockSanitizer(
+					id = SanitizerId("mock3"),
+					name = "mock3",
+					regex = RegexFactory.ofParameter("paramC"),
 				),
 			).toImmutableList(),
 			repository = repository,
@@ -55,8 +60,7 @@ class CleanerServiceTest : WordSpec(
 				repository,
 			)
 
-			// Currently it's not possible to use "any()" here, see https://github.com/mockk/mockk/issues/152
-			coEvery { repository.isEnabled(SanitizerId("fake")) } returns true
+			coEvery { repository.isEnabled(SanitizerId(any())) } returns true
 		}
 
 		"clean" should {

@@ -18,9 +18,30 @@
 
 package com.svenjacobs.app.leon.sanitizer.amazon
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class AmazonSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofParameter("ref_?"),
-)
+) {
+
+	/**
+	 * Since [AmazonProductSanitizer] already uses "amazon" and IDs should not be changed
+	 * afterwards, this is just "amazon2".
+	 */
+	override val id = SanitizerId("amazon2")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_amazon_name),
+	)
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+
+	private companion object {
+		private val DOMAIN_REGEX = Regex("amazon\\..+/")
+	}
+}

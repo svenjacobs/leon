@@ -21,25 +21,25 @@ package com.svenjacobs.app.leon.startup
 import android.content.Context
 import com.svenjacobs.app.leon.core.domain.inject.AppContainer
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
-import com.svenjacobs.app.leon.sanitizer.amazon.AmazonProductSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSmileSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.aol.AolSearchSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.ebay.EbaySanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.emptyparameters.EmptyParametersSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.facebook.FacebookSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.flipkart.FlipkartSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.google.GoogleAnalyticsSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.google.GoogleSearchSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.instagram.InstagramSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.netflix.NetflixSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.sessionids.SessionIdsSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.spotify.SpotifySanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.twitter.TwitterSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.webtrekk.WebtrekkSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.yahoo.YahooSearchSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.youtube.YoutubeRedirectSanitizerRegistration
-import com.svenjacobs.app.leon.sanitizer.youtube.YoutubeShortUrlSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.amazon.AmazonProductSanitizer
+import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSanitizer
+import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSmileSanitizer
+import com.svenjacobs.app.leon.sanitizer.aol.AolSearchSanitizer
+import com.svenjacobs.app.leon.sanitizer.ebay.EbaySanitizer
+import com.svenjacobs.app.leon.sanitizer.emptyparameters.EmptyParametersSanitizer
+import com.svenjacobs.app.leon.sanitizer.facebook.FacebookSanitizer
+import com.svenjacobs.app.leon.sanitizer.flipkart.FlipkartSanitizer
+import com.svenjacobs.app.leon.sanitizer.google.GoogleAnalyticsSanitizer
+import com.svenjacobs.app.leon.sanitizer.google.GoogleSearchSanitizer
+import com.svenjacobs.app.leon.sanitizer.instagram.InstagramSanitizer
+import com.svenjacobs.app.leon.sanitizer.netflix.NetflixSanitizer
+import com.svenjacobs.app.leon.sanitizer.sessionids.SessionIdsSanitizer
+import com.svenjacobs.app.leon.sanitizer.spotify.SpotifySanitizer
+import com.svenjacobs.app.leon.sanitizer.twitter.TwitterSanitizer
+import com.svenjacobs.app.leon.sanitizer.webtrekk.WebtrekkSanitizer
+import com.svenjacobs.app.leon.sanitizer.yahoo.YahooSearchSanitizer
+import com.svenjacobs.app.leon.sanitizer.youtube.YoutubeRedirectSanitizer
+import com.svenjacobs.app.leon.sanitizer.youtube.YoutubeShortUrlSanitizer
 import kotlinx.collections.immutable.persistentListOf
 
 class ContainerInitializer : DistinctInitializer<Unit> {
@@ -48,26 +48,26 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 		AppContainer.init(
 			appContext = context,
 			sanitizerRepositoryProvider = { SanitizerRepositoryImpl() },
-			sanitizerRegistrations = persistentListOf(
-				AmazonProductSanitizerRegistration(),
-				AmazonSanitizerRegistration(),
-				AmazonSmileSanitizerRegistration(),
-				AolSearchSanitizerRegistration(),
-				EbaySanitizerRegistration(),
-				EmptyParametersSanitizerRegistration(),
-				FacebookSanitizerRegistration(),
-				FlipkartSanitizerRegistration(),
-				GoogleAnalyticsSanitizerRegistration(),
-				GoogleSearchSanitizerRegistration(),
-				InstagramSanitizerRegistration(),
-				NetflixSanitizerRegistration(),
-				SessionIdsSanitizerRegistration(),
-				SpotifySanitizerRegistration(),
-				TwitterSanitizerRegistration(),
-				WebtrekkSanitizerRegistration(),
-				YahooSearchSanitizerRegistration(),
-				YoutubeRedirectSanitizerRegistration(),
-				YoutubeShortUrlSanitizerRegistration(),
+			sanitizers = persistentListOf(
+				AmazonProductSanitizer(),
+				AmazonSanitizer(),
+				AmazonSmileSanitizer(),
+				AolSearchSanitizer(),
+				EbaySanitizer(),
+				EmptyParametersSanitizer(),
+				FacebookSanitizer(),
+				FlipkartSanitizer(),
+				GoogleAnalyticsSanitizer(),
+				GoogleSearchSanitizer(),
+				InstagramSanitizer(),
+				NetflixSanitizer(),
+				SessionIdsSanitizer(),
+				SpotifySanitizer(),
+				TwitterSanitizer(),
+				WebtrekkSanitizer(),
+				YahooSearchSanitizer(),
+				YoutubeRedirectSanitizer(),
+				YoutubeShortUrlSanitizer(),
 			),
 		)
 	}

@@ -18,9 +18,20 @@
 
 package com.svenjacobs.app.leon.sanitizer.webtrekk
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class WebtrekkSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofWildcardParameter("wt_"),
-)
+) {
+
+	override val id = SanitizerId("webtrekk")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_webtrekk_name),
+	)
+}

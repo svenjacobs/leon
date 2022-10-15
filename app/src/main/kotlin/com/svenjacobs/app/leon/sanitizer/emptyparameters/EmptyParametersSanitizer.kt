@@ -18,8 +18,19 @@
 
 package com.svenjacobs.app.leon.sanitizer.emptyparameters
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class EmptyParametersSanitizer : RegexSanitizer(
 	regex = Regex("[?&][^=]+=(?=&|$)"),
-)
+) {
+
+	override val id = SanitizerId("empty_parameters")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_empty_parameters_name),
+	)
+}

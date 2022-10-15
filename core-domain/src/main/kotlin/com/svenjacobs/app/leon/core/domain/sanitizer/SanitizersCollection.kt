@@ -18,11 +18,6 @@
 
 package com.svenjacobs.app.leon.core.domain.sanitizer
 
-import javax.inject.Qualifier
 import kotlinx.collections.immutable.ImmutableCollection
 
-typealias SanitizerRegistrations = ImmutableCollection<@JvmSuppressWildcards SanitizerRegistration>
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class Registrations
+typealias SanitizersCollection = ImmutableCollection<Sanitizer>

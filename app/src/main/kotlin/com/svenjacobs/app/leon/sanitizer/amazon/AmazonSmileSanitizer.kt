@@ -18,14 +18,28 @@
 
 package com.svenjacobs.app.leon.sanitizer.amazon
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSmileSanitizerRegistration.Companion.DOMAIN_REGEX
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class AmazonSmileSanitizer : Sanitizer {
+
+	override val id = SanitizerId("amazon_smile")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_amazon_smile_name),
+	)
 
 	override fun invoke(input: String): String {
 		val result = DOMAIN_REGEX.find(input) ?: return input
 		val group = result.groups[1] ?: return input
 		return input.replaceRange(group.range, "smile.amazon")
+	}
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+
+	private companion object {
+		val DOMAIN_REGEX = Regex("^(?:https?://)?((?:www\\.)?amazon)\\.")
 	}
 }

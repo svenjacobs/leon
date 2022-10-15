@@ -19,20 +19,19 @@
 package com.svenjacobs.app.leon.core.domain.inject
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
-import kotlinx.collections.immutable.ImmutableCollection
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection
 
 object AppContainer {
 
 	fun init(
 		appContext: Context,
 		sanitizerRepositoryProvider: () -> SanitizerRepository,
-		sanitizerRegistrations: ImmutableCollection<SanitizerRegistration>,
+		sanitizers: SanitizersCollection,
 	) {
 		this.AppContext = appContext
 		this.SanitizerRepositoryProvider = sanitizerRepositoryProvider
-		this.SanitizerRegistrations = sanitizerRegistrations
+		this.Sanitizers = sanitizers
 	}
 
 	private lateinit var SanitizerRepositoryProvider: () -> SanitizerRepository
@@ -40,7 +39,7 @@ object AppContainer {
 	lateinit var AppContext: Context
 		private set
 
-	lateinit var SanitizerRegistrations: ImmutableCollection<SanitizerRegistration>
+	lateinit var Sanitizers: SanitizersCollection
 		private set
 
 	val SanitizerRepository: SanitizerRepository by lazy { SanitizerRepositoryProvider() }

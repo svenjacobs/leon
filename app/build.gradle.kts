@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.adarshr.gradle.testlogger.theme.ThemeType.STANDARD
 import java.util.*
 
 plugins {
@@ -25,7 +24,6 @@ plugins {
 	kotlin("plugin.parcelize")
 	id("com.mikepenz.aboutlibraries.plugin")
 	alias(libs.plugins.triplet.play)
-	alias(libs.plugins.adarshr.test.logger)
 }
 
 android {
@@ -111,10 +109,6 @@ android {
 play {
 	serviceAccountCredentials.set(rootProject.file("google-play-service-account.json"))
 	defaultToAppBundles.set(true)
-}
-
-testlogger {
-	theme = STANDARD
 }
 
 dependencies {

@@ -18,9 +18,20 @@
 
 package com.svenjacobs.app.leon.sanitizer.youtube
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class YoutubeShortUrlSanitizer : Sanitizer {
+
+	override val id = SanitizerId("youtube_short_url")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_youtube_short_url_name),
+	)
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
 	override fun invoke(input: String): String {
 		val videoId = VIDEO_ID_REGEX.matchEntire(input)?.groupValues?.getOrNull(1)
@@ -29,6 +40,7 @@ class YoutubeShortUrlSanitizer : Sanitizer {
 	}
 
 	private companion object {
-		val VIDEO_ID_REGEX = Regex("(?:https?://)?youtu\\.be/(.+)\$")
+		private val DOMAIN_REGEX = Regex("youtu\\.be")
+		private val VIDEO_ID_REGEX = Regex("(?:https?://)?youtu\\.be/(.+)\$")
 	}
 }

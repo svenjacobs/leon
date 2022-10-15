@@ -16,30 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.sanitizer.yahoo
+package com.svenjacobs.app.leon.core.domain
 
 import android.content.Context
-import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
 
-class YahooSearchSanitizerRegistration(
-	private val sanitizerProvider: () -> YahooSearchSanitizer = { YahooSearchSanitizer() },
-) : SanitizerRegistration {
+class MockSanitizer(
+	override val id: SanitizerId,
+	private val name: String,
+	regex: Regex,
+) : RegexSanitizer(regex) {
 
-	override val sanitizer: Sanitizer
-		get() = sanitizerProvider()
-
-	override val id = SanitizerId("yahoo_search")
-
-	override val hasSettingsScreen = false
-
-	override fun getName(context: Context) = context.getString(R.string.sanitizer_yahoo_search_name)
-
-	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
-
-	private companion object {
-		private val DOMAIN_REGEX = Regex("search\\.yahoo\\.com")
-	}
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = name,
+	)
 }

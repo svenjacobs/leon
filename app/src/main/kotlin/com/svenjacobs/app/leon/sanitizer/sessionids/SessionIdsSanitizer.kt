@@ -18,9 +18,20 @@
 
 package com.svenjacobs.app.leon.sanitizer.sessionids
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class SessionIdsSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofWildcardParameter("j?sessionid"),
-)
+) {
+
+	override val id = SanitizerId("session_ids")
+
+	override fun getMetadata(context: Context): Sanitizer.Metadata = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_session_ids_name),
+	)
+}

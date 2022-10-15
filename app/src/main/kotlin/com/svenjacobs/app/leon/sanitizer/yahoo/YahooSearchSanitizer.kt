@@ -18,8 +18,25 @@
 
 package com.svenjacobs.app.leon.sanitizer.yahoo
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
 class YahooSearchSanitizer : SearchResultSanitizer(
 	Regex("RU=([^/]+)"),
-)
+) {
+
+	override val id = SanitizerId("yahoo_search")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_yahoo_search_name),
+	)
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+
+	private companion object {
+		private val DOMAIN_REGEX = Regex("search\\.yahoo\\.com")
+	}
+}

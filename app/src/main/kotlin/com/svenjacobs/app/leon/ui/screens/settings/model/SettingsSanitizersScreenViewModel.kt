@@ -23,11 +23,11 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsSanitizersScreenViewModel.UiState.Sanitizer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -41,7 +41,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("StaticFieldLeak")
 class SettingsSanitizersScreenViewModel(
 	private val context: Context = AppContext,
-	private val registrations: SanitizerRegistrations = SanitizerRegistrations,
+	private val sanitizers: SanitizersCollection = Sanitizers,
 	private val repository: SanitizerRepository = SanitizerRepository,
 ) : ViewModel() {
 
@@ -62,7 +62,7 @@ class SettingsSanitizersScreenViewModel(
 					.map { state ->
 						Sanitizer(
 							id = state.id,
-							name = registrations.first { it.id == state.id }.getName(context),
+							name = sanitizers.first { it.id == state.id }.getMetadata(context).name,
 							enabled = state.enabled,
 						)
 					}

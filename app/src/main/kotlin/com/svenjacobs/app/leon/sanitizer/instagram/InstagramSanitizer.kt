@@ -18,9 +18,26 @@
 
 package com.svenjacobs.app.leon.sanitizer.instagram
 
+import android.content.Context
+import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class InstagramSanitizer : RegexSanitizer(
 	regex = RegexFactory.ofParameter("igshid"),
-)
+) {
+
+	override val id = SanitizerId("instagram")
+
+	override fun getMetadata(context: Context) = Sanitizer.Metadata(
+		name = context.getString(R.string.sanitizer_instagram_name),
+	)
+
+	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+
+	private companion object {
+		private val DOMAIN_REGEX = Regex("instagram\\.com")
+	}
+}

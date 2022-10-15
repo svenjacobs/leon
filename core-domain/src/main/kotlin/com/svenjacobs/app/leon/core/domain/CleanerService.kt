@@ -18,11 +18,11 @@
 
 package com.svenjacobs.app.leon.core.domain
 
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection
 import java.net.URLDecoder
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -33,7 +33,7 @@ import kotlinx.coroutines.withContext
  * Performs cleaning of a URL taking all enabled [Sanitizers][Sanitizer] into account.
  */
 class CleanerService(
-	private val registrations: SanitizerRegistrations = SanitizerRegistrations,
+	private val sanitizers: SanitizersCollection = Sanitizers,
 	private val repository: SanitizerRepository = SanitizerRepository,
 ) {
 
@@ -50,7 +50,7 @@ class CleanerService(
 		val (cleaned, urls) = URL_REGEX
 			.findAll(text)
 			.fold(Pair(text, emptyList<String>())) { (currentText, urls), match ->
-				val result = cleanUrl(match.value, registrations)
+				val result = cleanUrl(match.value, sanitizers)
 				Pair(currentText.replace(match.value, result), urls + result)
 			}
 			.let { (cleaned, urls) ->
@@ -75,12 +75,12 @@ class CleanerService(
 		)
 	}
 
-	private suspend fun cleanUrl(url: String, registrations: SanitizerRegistrations): String {
-		val cleaned = registrations
+	private suspend fun cleanUrl(url: String, sanitizers: SanitizersCollection): String {
+		val cleaned = sanitizers
 			.filter { repository.isEnabled(it.id) }
 			.filter { it.matchesDomain(url) }
-			.fold(url) { currentUrl, registration ->
-				registration.sanitizer(currentUrl)
+			.fold(url) { currentUrl, sanitizer ->
+				sanitizer(currentUrl)
 			}
 
 		return if (cleaned.contains('?')) {
@@ -91,6 +91,6 @@ class CleanerService(
 	}
 
 	private companion object {
-		private val URL_REGEX = Regex("https?://.[^\\s]*")
+		private val URL_REGEX = Regex("https?://.\\S*")
 	}
 }
