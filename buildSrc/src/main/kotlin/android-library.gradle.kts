@@ -31,7 +31,6 @@ android {
 
 	defaultConfig {
 		minSdk = Android.minSdk
-		targetSdk = Android.targetSdk
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
 
@@ -70,5 +69,4 @@ dependencies {
 	testApi(libs.findLibrary("kotest.runner.junit5").get())
 	testApi(libs.findLibrary("kotest.assertions.core").get())
 	testApi(libs.findLibrary("mockk").get())
-	testApi(libs.findLibrary("mockk.agent.jvm").get())
 }

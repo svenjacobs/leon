@@ -47,7 +47,6 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 mikepenz-aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "mikepenz-aboutlibraries" }
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-mockk-agent-jvm = { module = "io.mockk:mockk-agent-jvm", version.ref = "mockk" } # See https://github.com/mockk/mockk/issues/605
 square-moshi = "com.squareup.moshi:moshi:1.13.0"
 twitter-compose-ktlint-rules = "com.twitter.compose.rules:ktlint:0.0.20"
 

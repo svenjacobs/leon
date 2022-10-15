@@ -18,12 +18,31 @@
 
 package com.svenjacobs.app.leon.core.domain.sanitizer
 
+import android.content.Context
+import androidx.compose.runtime.Composable
+
 /**
- * A sanitizer is basically just a function with an input and an output string.
+ * Performs sanitization of URLs.
  *
- * It might just remove a few parameters or it might completely rewrite an URL.
+ * Might just remove a few parameters or completely rewrite an URL.
  */
-fun interface Sanitizer {
+interface Sanitizer {
+
+	data class Metadata(
+		val name: String,
+		val hasSettingsScreen: Boolean = false,
+	)
+
+	val id: SanitizerId
+
+	fun getMetadata(context: Context): Metadata
+
+	fun matchesDomain(input: String): Boolean = true
 
 	operator fun invoke(input: String): String
+
+	@Composable
+	@Suppress("unused")
+	fun SettingsScreen() {
+	}
 }

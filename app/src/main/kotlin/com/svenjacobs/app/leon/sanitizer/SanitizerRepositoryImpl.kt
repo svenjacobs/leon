@@ -18,11 +18,11 @@
 
 package com.svenjacobs.app.leon.sanitizer
 
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRegistrations
+import com.svenjacobs.app.leon.core.domain.inject.AppContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistrations
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository.SanitizerState
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection
 import com.svenjacobs.app.leon.datastore.SanitizerDataStoreManager
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -32,15 +32,15 @@ import kotlinx.coroutines.flow.map
 
 class SanitizerRepositoryImpl(
 	private val dataStoreManager: SanitizerDataStoreManager = SanitizerDataStoreManager(),
-	private val registrations: SanitizerRegistrations = SanitizerRegistrations,
+	private val sanitizers: SanitizersCollection = Sanitizers,
 ) : SanitizerRepository {
 
 	override val state: Flow<ImmutableList<SanitizerState>>
 		get() = dataStoreManager.data.map { pref ->
-			registrations.map { reg ->
+			sanitizers.map { sanitizer ->
 				SanitizerState(
-					id = reg.id,
-					enabled = pref[dataStoreManager.preferencesKey(reg.id.value)] ?: true,
+					id = sanitizer.id,
+					enabled = pref[dataStoreManager.preferencesKey(sanitizer.id.value)] ?: true,
 				)
 			}.toImmutableList()
 		}

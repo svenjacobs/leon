@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.adarshr.gradle.testlogger.theme.ThemeType.STANDARD
 import java.util.*
 
 plugins {
@@ -25,7 +24,6 @@ plugins {
 	kotlin("plugin.parcelize")
 	id("com.mikepenz.aboutlibraries.plugin")
 	alias(libs.plugins.triplet.play)
-	alias(libs.plugins.adarshr.test.logger)
 }
 
 android {
@@ -113,30 +111,9 @@ play {
 	defaultToAppBundles.set(true)
 }
 
-testlogger {
-	theme = STANDARD
-}
-
 dependencies {
 	implementation(project(":core-common"))
 	implementation(project(":core-domain"))
-	implementation(project(":feature-sanitizer-amazon"))
-	implementation(project(":feature-sanitizer-amazon-smile"))
-	implementation(project(":feature-sanitizer-aol-search"))
-	implementation(project(":feature-sanitizer-ebay"))
-	implementation(project(":feature-sanitizer-empty-parameters"))
-	implementation(project(":feature-sanitizer-facebook"))
-	implementation(project(":feature-sanitizer-flipkart"))
-	implementation(project(":feature-sanitizer-google-analytics"))
-	implementation(project(":feature-sanitizer-google-search"))
-	implementation(project(":feature-sanitizer-instagram"))
-	implementation(project(":feature-sanitizer-netflix"))
-	implementation(project(":feature-sanitizer-session-ids"))
-	implementation(project(":feature-sanitizer-spotify"))
-	implementation(project(":feature-sanitizer-twitter"))
-	implementation(project(":feature-sanitizer-webtrekk"))
-	implementation(project(":feature-sanitizer-yahoo-search"))
-	implementation(project(":feature-sanitizer-youtube"))
 
 	implementation(libs.kotlin.stdlib.jdk8)
 	implementation(libs.androidx.core.ktx)
@@ -167,5 +144,4 @@ dependencies {
 	testImplementation(libs.kotest.runner.junit5)
 	testImplementation(libs.kotest.assertions.core)
 	testImplementation(libs.mockk)
-	testImplementation(libs.mockk.agent.jvm)
 }

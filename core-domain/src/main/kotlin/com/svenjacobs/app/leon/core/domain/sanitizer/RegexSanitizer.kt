@@ -23,7 +23,7 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
  *
  * @param regex Regular expression whose matches are removed from the input string
  */
-open class RegexSanitizer(
+abstract class RegexSanitizer(
 	private val regex: Regex,
 ) : Sanitizer {
 

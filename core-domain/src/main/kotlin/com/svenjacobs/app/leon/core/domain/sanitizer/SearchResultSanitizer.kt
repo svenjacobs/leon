@@ -25,7 +25,7 @@ import java.net.URLDecoder
  *
  * @param regex Regular expression which must return the URL in the first group
  */
-open class SearchResultSanitizer(
+abstract class SearchResultSanitizer(
 	private val regex: Regex,
 ) : Sanitizer {
 

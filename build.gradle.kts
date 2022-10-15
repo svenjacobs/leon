@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import com.adarshr.gradle.testlogger.theme.ThemeType.STANDARD
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jmailen.gradle.kotlinter.tasks.LintTask
@@ -37,10 +38,12 @@ buildscript {
 plugins {
 	alias(libs.plugins.ben.manes.versions)
 	alias(libs.plugins.kotlinter)
+	alias(libs.plugins.adarshr.test.logger)
 }
 
 subprojects {
 	apply(plugin = "org.jmailen.kotlinter")
+	apply(plugin = "com.adarshr.test-logger")
 
 	repositories {
 		google()
@@ -49,6 +52,10 @@ subprojects {
 
 	kotlinter {
 		experimentalRules = true
+	}
+
+	testlogger {
+		theme = STANDARD
 	}
 
 	tasks.withType<LintTask>().configureEach {
