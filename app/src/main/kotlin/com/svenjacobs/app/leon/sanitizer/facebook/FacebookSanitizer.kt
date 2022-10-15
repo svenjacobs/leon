@@ -16,14 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.facebook
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import com.svenjacobs.app.leon.core.common.regex.RegexFactory
+import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class FacebookSanitizer : RegexSanitizer(
+	regex = RegexFactory.ofWildcardParameter("fb_|fbclid"),
+)

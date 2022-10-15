@@ -20,26 +20,26 @@ package com.svenjacobs.app.leon.startup
 
 import android.content.Context
 import com.svenjacobs.app.leon.core.domain.inject.AppContainer
-import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonProductSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.amazon.AmazonSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.amazon.smile.AmazonSmileSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.aol.search.AolSearchSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.ebay.EbaySanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.emptyparameters.EmptyParametersSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.facebook.FacebookSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.flipkart.FlipkartSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.ga.GoogleAnalyticsSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.google.search.GoogleSearchSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.instagram.InstagramSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.netflix.NetflixSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.sessionids.SessionIdsSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.spotify.SpotifySanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.twitter.TwitterSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.webtrekk.WebtrekkSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.yahoo.search.YahooSearchSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.youtube.YoutubeRedirectSanitizerRegistration
-import com.svenjacobs.app.leon.feature.sanitizer.youtube.YoutubeShortUrlSanitizerRegistration
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
+import com.svenjacobs.app.leon.sanitizer.amazon.AmazonProductSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSmileSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.aol.AolSearchSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.ebay.EbaySanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.emptyparameters.EmptyParametersSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.facebook.FacebookSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.flipkart.FlipkartSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.google.GoogleAnalyticsSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.google.GoogleSearchSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.instagram.InstagramSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.netflix.NetflixSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.sessionids.SessionIdsSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.spotify.SpotifySanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.twitter.TwitterSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.webtrekk.WebtrekkSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.yahoo.YahooSearchSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.youtube.YoutubeRedirectSanitizerRegistration
+import com.svenjacobs.app.leon.sanitizer.youtube.YoutubeShortUrlSanitizerRegistration
 import kotlinx.collections.immutable.persistentListOf
 
 class ContainerInitializer : DistinctInitializer<Unit> {

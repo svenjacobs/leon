@@ -16,14 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.webtrekk
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import android.content.Context
+import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
+class WebtrekkSanitizerRegistration(
+	private val sanitizerProvider: () -> WebtrekkSanitizer = { WebtrekkSanitizer() },
+) : SanitizerRegistration {
+
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider()
+
+	override val id = SanitizerId("webtrekk")
+
+	override val hasSettingsScreen = false
+
+	override fun getName(context: Context) = context.getString(R.string.sanitizer_webtrekk_name)
 }

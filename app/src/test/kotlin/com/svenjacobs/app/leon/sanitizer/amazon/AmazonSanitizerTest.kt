@@ -16,14 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.amazon
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class AmazonSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove ref_ parameter" {
+				val sanitizer = AmazonSanitizer()
+				val result = sanitizer(
+					"https://www.amazon.de/gp/css/homepage.html?ref_=nav_AccountFlyout_ya",
+				)
+
+				result shouldBe "https://www.amazon.de/gp/css/homepage.html"
+			}
+		}
+	},
+)

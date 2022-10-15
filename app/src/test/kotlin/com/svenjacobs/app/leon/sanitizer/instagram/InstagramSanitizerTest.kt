@@ -16,14 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.instagram
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class InstagramSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove \"igshid\" parameter" {
+				val sanitizer = com.svenjacobs.app.leon.sanitizer.instagram.InstagramSanitizer()
+
+				val result = sanitizer(
+					"https://www.instagram.com/p/Ceeg-VgI4yF/?igshid=YmMyMTA2M2Y=",
+				)
+
+				result shouldBe "https://www.instagram.com/p/Ceeg-VgI4yF/"
+			}
+		}
+	},
+)

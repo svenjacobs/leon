@@ -16,14 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.aol
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class AolSearchSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"extract URL from AOL search link" {
+				val sanitizer = AolSearchSanitizer()
+
+				val result = sanitizer(
+					"https://search.aol.com/click/_ylt=A0geK.HAoltiwykAlAR8CWVH;_ylu=Y29sbw" +
+						"NiZjEEcG9zAzQEdnRpZAMEc2VjA3Ny/RV=2/RE=1650201408/RO=10/RU=https%3a%2f%2" +
+						"fgithub.com%2fsvenjacobs%2fleon/RK=0/RS=cXRWej4shdsEIIDm147.G4CRZEo-",
+				)
+
+				result shouldBe "https://github.com/svenjacobs/leon"
+			}
+		}
+	},
+)

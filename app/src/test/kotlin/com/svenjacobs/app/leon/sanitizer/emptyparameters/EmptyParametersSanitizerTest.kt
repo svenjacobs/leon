@@ -16,14 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.emptyparameters
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class EmptyParametersSanitizerTest : WordSpec(
+	{
+		"invoke" should {
+
+			"remove empty parameters" {
+				val sanitizer = EmptyParametersSanitizer()
+				val result = sanitizer(
+					"https://www.buch24.de/shopdirekt.cgi?sessionid=1650808921-319962258&id" +
+						"=13241297&p=3&sid=&static=0&nav=",
+				)
+
+				result shouldBe "https://www.buch24.de/shopdirekt.cgi?sessionid=1650808921-319962" +
+					"258&id=13241297&p=3&static=0"
+			}
+		}
+	},
+)

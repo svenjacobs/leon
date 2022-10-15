@@ -16,14 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.facebook
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class FacebookSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove \"fb_*\" and \"fbclid\" parameters" {
+				val sanitizer = FacebookSanitizer()
+
+				val result = sanitizer(
+					"https://www.example.com?fb_abc=123&fbclid=12345",
+				)
+
+				result shouldBe "https://www.example.com"
+			}
+		}
+	},
+)

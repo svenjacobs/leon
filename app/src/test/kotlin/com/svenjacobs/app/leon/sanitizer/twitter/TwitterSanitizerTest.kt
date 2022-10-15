@@ -16,14 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.twitter
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class TwitterSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove the \"s\" and \"t\" parameters" {
+				val sanitizer = TwitterSanitizer()
+
+				val result = sanitizer(
+					"https://twitter.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
+				)
+
+				result shouldBe "https://twitter.com/AndroidDev/status/1453763770334027781"
+			}
+		}
+	},
+)

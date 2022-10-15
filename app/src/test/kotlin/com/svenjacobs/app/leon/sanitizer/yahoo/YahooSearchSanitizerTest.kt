@@ -16,14 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.yahoo
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class YahooSearchSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"extract URL from Yahoo search link" {
+				val sanitizer = YahooSearchSanitizer()
+
+				val result = sanitizer(
+					"https://r.search.yahoo.com/_ylt=A0geKLovoVtisIEAUapx.9w4;_ylu=Y29sbwNi" +
+						"ZjEEcG9zAzQEdnRpZAMEc2VjA3Ny/RV=2/RE=1650201007/RO=10/RU=https%3a%2f%2fg" +
+						"ithub.com%2fsvenjacobs%2fleon/RK=2/RS=rHoItccMzwyZAXsJuDMkBaKUMx0-",
+				)
+
+				result shouldBe "https://github.com/svenjacobs/leon"
+			}
+		}
+	},
+)

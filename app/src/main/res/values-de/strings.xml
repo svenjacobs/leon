@@ -36,4 +36,10 @@
     <string name="reset">Zurücksetzen</string>
     <string name="extract_url">Nur URL extrahieren</string>
     <string name="register_as_browser">Registriere Léon als Browser</string>
+    <string name="sanitizer_amazon_product_name">Amazon Produkte</string>
+    <string name="sanitizer_aol_search_name">AOL Suche</string>
+    <string name="sanitizer_empty_parameters_name">Leere Parameter</string>
+    <string name="sanitizer_google_search_name">Google Suche</string>
+    <string name="sanitizer_yahoo_search_name">Yahoo Suche</string>
+    <string name="sanitizer_youtube_redirect_name">YouTube Weiterleitung</string>
 </resources>

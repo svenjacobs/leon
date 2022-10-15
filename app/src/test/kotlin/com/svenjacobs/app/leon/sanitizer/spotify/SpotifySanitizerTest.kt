@@ -16,14 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.spotify
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class SpotifySanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove \"si\" parameter" {
+				val sanitizer = SpotifySanitizer()
+
+				val result = sanitizer(
+					"https://open.spotify.com/album/5N2BIKomahKMAAirp8tiBN?si=BICcHVzTTqmqt" +
+						"82Y6f2e_A&utm_source=native-share-menu",
+				)
+
+				result shouldBe "https://open.spotify.com/album/5N2BIKomahKMAAirp8tiBN&utm_source" +
+					"=native-share-menu"
+			}
+		}
+	},
+)

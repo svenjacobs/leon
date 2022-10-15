@@ -16,14 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.youtube
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
+class YoutubeShortUrlSanitizer : Sanitizer {
+
+	override fun invoke(input: String): String {
+		val videoId = VIDEO_ID_REGEX.matchEntire(input)?.groupValues?.getOrNull(1)
+			?: throw IllegalArgumentException("Could not extract video ID from youtu.be URL")
+		return "https://www.youtube.com/watch?v=$videoId"
+	}
+
+	private companion object {
+		val VIDEO_ID_REGEX = Regex("(?:https?://)?youtu\\.be/(.+)\$")
+	}
 }

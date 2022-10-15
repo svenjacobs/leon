@@ -16,14 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.netflix
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class NetflixSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove various Netflix parameters" {
+				val sanitizer = NetflixSanitizer()
+
+				val result = sanitizer(
+					"https://www.netflix.com/de/title/81040344?s=a&trkid=13747225&t=more&vlang=de&clip=81499054",
+				)
+
+				result shouldBe "https://www.netflix.com/de/title/81040344"
+			}
+		}
+	},
+)

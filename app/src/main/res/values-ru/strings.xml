@@ -35,5 +35,11 @@
     <string name="import_from_clipboard">Импорт из буфера обмена</string>
     <string name="reset">Сброс</string>
     <string name="extract_url">Извлечение только URL-адреса</string>
-    <string name="register_as_browser">Register Léon as browser</string>
+    <string name="register_as_browser">Register Léon as browser</string> <!-- TODO: translate -->
+    <string name="sanitizer_amazon_product_name">Amazon Products</string> <!-- TODO: translate -->
+    <string name="sanitizer_aol_search_name">AOL Search</string> <!-- TODO: translate -->
+    <string name="sanitizer_empty_parameters_name">Пустые параметры</string>
+    <string name="sanitizer_google_search_name">Google Search</string> <!-- TODO: translate -->
+    <string name="sanitizer_yahoo_search_name">Yahoo Search</string> <!-- TODO: translate -->
+    <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string> <!-- TODO: translate -->
 </resources>

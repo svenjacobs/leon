@@ -37,4 +37,23 @@
     <string name="reset">Reset</string>
     <string name="extract_url">Extract only URL</string>
     <string name="register_as_browser">Register Léon as browser</string>
+    <string name="sanitizer_amazon_name" translatable="false">Amazon</string>
+    <string name="sanitizer_amazon_product_name">Amazon Products</string>
+    <string name="sanitizer_amazon_smile_name" translatable="false">Amazon Smile</string>
+    <string name="sanitizer_aol_search_name">AOL Search</string>
+    <string name="sanitizer_ebay_name" translatable="false">eBay</string>
+    <string name="sanitizer_empty_parameters_name">Empty Parameters</string>
+    <string name="sanitizer_facebook_name" translatable="false">Facebook</string>
+    <string name="sanitizer_flipkart_name" translatable="false">Flipkart</string>
+    <string name="sanitizer_ga_name" translatable="false">Google Analytics</string>
+    <string name="sanitizer_google_search_name">Google Search</string>
+    <string name="sanitizer_instagram_name" translatable="false">Instagram</string>
+    <string name="sanitizer_netflix_name" translatable="false">Netflix</string>
+    <string name="sanitizer_session_ids_name" translatable="false">Session IDs</string>
+    <string name="sanitizer_spotify_name" translatable="false">Spotify</string>
+    <string name="sanitizer_twitter_name" translatable="false">Twitter</string>
+    <string name="sanitizer_webtrekk_name" translatable="false">Webtrekk</string>
+    <string name="sanitizer_yahoo_search_name">Yahoo Search</string>
+    <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string>
+    <string name="sanitizer_youtube_short_url_name" translatable="false">Youtu.be</string>
 </resources>

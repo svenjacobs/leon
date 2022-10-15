@@ -16,14 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.google
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class GoogleSearchSanitizer : SearchResultSanitizer(
+	Regex("[?&](?:url|q)=([^&]+)"),
+)

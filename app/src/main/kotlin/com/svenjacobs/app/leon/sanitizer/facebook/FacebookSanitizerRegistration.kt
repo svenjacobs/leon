@@ -16,14 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.facebook
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import android.content.Context
+import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
+import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRegistration
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
+class FacebookSanitizerRegistration(
+	private val sanitizerProvider: () -> FacebookSanitizer = { FacebookSanitizer() },
+) : SanitizerRegistration {
+
+	override val sanitizer: Sanitizer
+		get() = sanitizerProvider()
+
+	override val id = SanitizerId("facebook")
+
+	override val hasSettingsScreen = false
+
+	override fun getName(context: Context) = context.getString(R.string.sanitizer_facebook_name)
 }

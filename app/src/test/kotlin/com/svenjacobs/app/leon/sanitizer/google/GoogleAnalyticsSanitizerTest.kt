@@ -16,14 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-	`android-library`
-}
+package com.svenjacobs.app.leon.sanitizer.google
 
-android {
-	namespace = "com.svenjacobs.app.leon.core.domain"
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(libs.kotlinx.collections.immutable)
-}
+class GoogleAnalyticsSanitizerTest : WordSpec(
+	{
+
+		"invoke" should {
+
+			"remove \"ga_*\" and \"utm_*\" parameters" {
+				val sanitizer = GoogleAnalyticsSanitizer()
+
+				val result = sanitizer(
+					"https://www.example.com?ga_abc=123&utm_def=456",
+				)
+
+				result shouldBe "https://www.example.com"
+			}
+		}
+	},
+)
