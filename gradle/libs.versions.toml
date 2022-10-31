@@ -19,6 +19,7 @@ androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref
 androidx-appcompat = "androidx.appcompat:appcompat:1.5.1"
 androidx-browser = "androidx.browser:browser:1.4.0"
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
+androidx-compose-material2 = { module = "androidx.compose.material:material" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class" }
 androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }

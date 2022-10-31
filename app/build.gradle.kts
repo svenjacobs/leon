@@ -125,6 +125,7 @@ dependencies {
 	implementation(composeBom)
 	debugImplementation(libs.androidx.compose.ui.tooling)
 	implementation(libs.bundles.androidx.compose)
+	implementation(libs.androidx.compose.material2) // Required by AboutLibraries
 	implementation(libs.androidx.compose.material3)
 	implementation(libs.androidx.compose.material3.window.size)
 	implementation(libs.androidx.activity.compose)
