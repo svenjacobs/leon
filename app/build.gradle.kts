@@ -121,13 +121,18 @@ dependencies {
 	implementation(libs.androidx.activity.ktx)
 
 	//region Compose
+	val composeBom = platform(libs.androidx.compose.bom)
+	implementation(composeBom)
 	debugImplementation(libs.androidx.compose.ui.tooling)
 	implementation(libs.bundles.androidx.compose)
+	implementation(libs.androidx.compose.material3)
+	implementation(libs.androidx.compose.material3.window.size)
 	implementation(libs.androidx.activity.compose)
 	implementation(libs.androidx.lifecycle.viewmodel.compose)
 	implementation(libs.androidx.navigation.compose)
 	implementation(libs.mikepenz.aboutlibraries.compose)
 	implementation(libs.google.accompanist.systemuicontroller)
+	androidTestImplementation(composeBom)
 	//endregion
 
 	implementation(libs.androidx.startup.runtime)

@@ -62,6 +62,9 @@ android {
 dependencies {
 	api(project(":core-common"))
 
+	val composeBom = platform(libs.findLibrary("androidx.compose.bom").get())
+	api(composeBom)
+
 	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
 	api(libs.findLibrary("javax.inject").get())
 	api(libs.findBundle("androidx.compose").get())
@@ -69,4 +72,6 @@ dependencies {
 	testApi(libs.findLibrary("kotest.runner.junit5").get())
 	testApi(libs.findLibrary("kotest.assertions.core").get())
 	testApi(libs.findLibrary("mockk").get())
+
+	androidTestApi(composeBom)
 }
