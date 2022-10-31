@@ -1,1 +1,1 @@
-- eBay Reiniger hinzugefügt
+- Crash im Lizenz-Bildschirm behoben

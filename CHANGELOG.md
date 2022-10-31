@@ -1,3 +1,12 @@
+## Version 17 🎃
+
+_2022-10-31_
+
+- Happy Halloween! 🎃
+- Fix crash in license screen
+- Changed versioning schema from semantic versioning to an incrementing number.
+  Semantic versioning makes sense for a library but not so much for an application like Léon.
+
 ## Version 1.2.0
 
 _2022-10-01_

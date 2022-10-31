@@ -1,1 +1,1 @@
-- Add eBay sanitizer
+- Fixed crash in license screen
