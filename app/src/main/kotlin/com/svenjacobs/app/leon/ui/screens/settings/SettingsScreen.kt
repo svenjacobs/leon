@@ -160,7 +160,7 @@ private fun Content(
 					bottom = 8.dp,
 					end = 8.dp,
 				),
-			text = BuildConfig.VERSION_NAME,
+			text = "v${BuildConfig.VERSION_NAME}",
 			style = MaterialTheme.typography.bodySmall,
 		)
 	}
