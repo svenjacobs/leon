@@ -27,8 +27,8 @@ jobs:
       - name: Decrypt secrets
         run: git secret reveal -f
 
-      - name: Deploy beta version
-        run: ./gradlew publishReleaseBundle --track beta --release-status completed
+      - name: Deploy production version
+        run: ./gradlew publishReleaseBundle --track production --release-status completed
 
       - uses: actions/upload-artifact@v3
         with:
