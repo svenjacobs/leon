@@ -1,3 +1,9 @@
+## Version 18
+
+_2022-11-06_
+
+- Identical to previous version, just fixes a build issue on F-Droid
+
 ## Version 17 🎃
 
 _2022-10-31_
