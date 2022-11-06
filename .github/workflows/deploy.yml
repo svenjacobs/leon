@@ -45,5 +45,6 @@ jobs:
         run: |
           git config --global user.name 'Sven Jacobs'
           git config --global user.email 'github@svenjacobs.com'
+          git checkout "${GITHUB_REF:11}"
           git commit -am '[skip ci] Increment version code for next release'
           git push
