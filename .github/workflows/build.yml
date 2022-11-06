@@ -28,4 +28,3 @@ jobs:
           path: |
             app/build/outputs/apk/**/*.apk
             app/build/outputs/bundle/**/*.aab
-        if: always()
