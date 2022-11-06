@@ -24,14 +24,25 @@ jobs:
       - name: Decrypt secrets
         run: git secret reveal -f
       - name: Deploy production version
-        run: ./gradlew publishReleaseBundle --track production --release-status completed
+        run: ./gradlew assembleRelease publishReleaseBundle --track production --release-status completed
+      - name: Build changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{steps.github_release.outputs.changelog}}
+          files: |
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/bundle/**/*.aab
       - uses: actions/upload-artifact@v3
         with:
           name: Android artifacts
           path: |
             app/build/outputs/apk/**/*.apk
             app/build/outputs/bundle/**/*.aab
-        if: always()
 
   increment-version:
     timeout-minutes: 30
