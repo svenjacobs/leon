@@ -1,4 +1,7 @@
-![Build status](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg?branch=develop)
+![Build status](https://github.com/svenjacobs/leon/actions/workflows/build.yml/deploy.svg?branch=main)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
 parameters from a URL before sharing. Its usage is simple, integrating into Android's standard
@@ -43,3 +46,14 @@ recommended and cutting-edge technologies, patterns and libraries such as:
 - [Material Design 3](https://m3.material.io/)
 - Dependency Injection pattern with custom implementation
 - several other Jetpack & AndroidX libraries
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
