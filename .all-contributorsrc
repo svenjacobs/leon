@@ -12,7 +12,11 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/255313?v=4",
       "profile": "http://svenjacobs.com",
       "contributions": [
-        "maintenance"
+        "maintenance",
+        "code",
+        "test",
+        "doc",
+        "ideas"
       ]
     }
   ],
