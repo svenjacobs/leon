@@ -1,0 +1,29 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "svenjacobs",
+      "name": "Sven Jacobs",
+      "avatar_url": "https://avatars.githubusercontent.com/u/255313?v=4",
+      "profile": "http://svenjacobs.com",
+      "contributions": [
+        "maintenance",
+        "code",
+        "test",
+        "doc",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "leon",
+  "projectOwner": "svenjacobs"
+}
