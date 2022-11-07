@@ -21,6 +21,7 @@ package com.svenjacobs.app.leon.startup
 import android.content.Context
 import com.svenjacobs.app.leon.core.domain.inject.AppContainer
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
+import com.svenjacobs.app.leon.sanitizer.aliexpress.AliexpressSanitizer
 import com.svenjacobs.app.leon.sanitizer.amazon.AmazonProductSanitizer
 import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSanitizer
 import com.svenjacobs.app.leon.sanitizer.amazon.AmazonSmileSanitizer
@@ -49,6 +50,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 			appContext = context,
 			sanitizerRepositoryProvider = { SanitizerRepositoryImpl() },
 			sanitizers = persistentListOf(
+				AliexpressSanitizer(),
 				AmazonProductSanitizer(),
 				AmazonSanitizer(),
 				AmazonSmileSanitizer(),
