@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
