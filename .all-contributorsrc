@@ -110,6 +110,15 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "Enkidu70",
+      "name": "Robert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1456895?v=4",
+      "profile": "https://github.com/Enkidu70",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
