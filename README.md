@@ -1,6 +1,6 @@
 ![Build status](https://github.com/svenjacobs/leon/actions/workflows/build.yml/deploy.svg?branch=main)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
@@ -61,6 +61,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
 <table>
   <tbody>
     <tr>
+      <td align="center"><a href="http://svenjacobs.com"><img src="https://avatars.githubusercontent.com/u/255313?v=4?s=100" width="100px;" alt="Sven Jacobs"/><br /><sub><b>Sven Jacobs</b></sub></a><br /><a href="#maintenance-svenjacobs" title="Maintenance">🚧</a> <a href="https://github.com/svenjacobs/leon/commits?author=svenjacobs" title="Code">💻</a> <a href="https://github.com/svenjacobs/leon/commits?author=svenjacobs" title="Tests">⚠️</a> <a href="https://github.com/svenjacobs/leon/commits?author=svenjacobs" title="Documentation">📖</a> <a href="#ideas-svenjacobs" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="https://github.com/jimcarst"><img src="https://avatars.githubusercontent.com/u/37066510?v=4?s=100" width="100px;" alt="jimcarst"/><br /><sub><b>jimcarst</b></sub></a><br /><a href="#ideas-jimcarst" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
