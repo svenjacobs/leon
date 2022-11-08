@@ -47,6 +47,7 @@
     <string name="sanitizer_facebook_name" translatable="false">Facebook</string>
     <string name="sanitizer_flipkart_name" translatable="false">Flipkart</string>
     <string name="sanitizer_ga_name" translatable="false">Google Analytics</string>
+    <string name="sanitizer_georiot_name" translatable="false">GeoRiot</string>
     <string name="sanitizer_google_search_name">Google Search</string>
     <string name="sanitizer_instagram_name" translatable="false">Instagram</string>
     <string name="sanitizer_linksynergy_name" translatable="false">LinkSynergy</string>

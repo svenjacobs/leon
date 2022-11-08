@@ -30,6 +30,7 @@ import com.svenjacobs.app.leon.sanitizer.ebay.EbaySanitizer
 import com.svenjacobs.app.leon.sanitizer.emptyparameters.EmptyParametersSanitizer
 import com.svenjacobs.app.leon.sanitizer.facebook.FacebookSanitizer
 import com.svenjacobs.app.leon.sanitizer.flipkart.FlipkartSanitizer
+import com.svenjacobs.app.leon.sanitizer.georiot.GeoRiotSanitizer
 import com.svenjacobs.app.leon.sanitizer.google.GoogleAnalyticsSanitizer
 import com.svenjacobs.app.leon.sanitizer.google.GoogleSearchSanitizer
 import com.svenjacobs.app.leon.sanitizer.instagram.InstagramSanitizer
@@ -60,6 +61,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				EmptyParametersSanitizer(),
 				FacebookSanitizer(),
 				FlipkartSanitizer(),
+				GeoRiotSanitizer(),
 				GoogleAnalyticsSanitizer(),
 				GoogleSearchSanitizer(),
 				InstagramSanitizer(),
