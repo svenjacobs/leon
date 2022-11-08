@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -60,6 +60,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center"><a href="http://openfoxblog.leven.dev"><img src="https://avatars.githubusercontent.com/u/39553804?v=4?s=100" width="100px;" alt="Damon Leven"/><br /><sub><b>Damon Leven</b></sub></a><br /><a href="#ideas-MCWertGaming" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="https://github.com/EasyVector"><img src="https://avatars.githubusercontent.com/u/25502419?v=4?s=100" width="100px;" alt="Yuhui Su"/><br /><sub><b>Yuhui Su</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=EasyVector" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/bangzek"><img src="https://avatars.githubusercontent.com/u/5100725?v=4?s=100" width="100px;" alt="Zakaria"/><br /><sub><b>Zakaria</b></sub></a><br /><a href="#ideas-bangzek" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/pludi"><img src="https://avatars.githubusercontent.com/u/2112148?v=4?s=100" width="100px;" alt="Peter L."/><br /><sub><b>Peter L.</b></sub></a><br /><a href="#ideas-pludi" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
