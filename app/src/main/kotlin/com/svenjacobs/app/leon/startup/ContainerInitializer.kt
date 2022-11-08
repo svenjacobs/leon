@@ -36,6 +36,7 @@ import com.svenjacobs.app.leon.sanitizer.google.GoogleSearchSanitizer
 import com.svenjacobs.app.leon.sanitizer.instagram.InstagramSanitizer
 import com.svenjacobs.app.leon.sanitizer.linksynergy.LinkSynergySanitizer
 import com.svenjacobs.app.leon.sanitizer.netflix.NetflixSanitizer
+import com.svenjacobs.app.leon.sanitizer.newegg.NewEggSanitizer
 import com.svenjacobs.app.leon.sanitizer.sessionids.SessionIdsSanitizer
 import com.svenjacobs.app.leon.sanitizer.spotify.SpotifySanitizer
 import com.svenjacobs.app.leon.sanitizer.twitter.TwitterSanitizer
@@ -67,6 +68,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				InstagramSanitizer(),
 				LinkSynergySanitizer(),
 				NetflixSanitizer(),
+				NewEggSanitizer(),
 				SessionIdsSanitizer(),
 				SpotifySanitizer(),
 				TwitterSanitizer(),

@@ -52,6 +52,7 @@
     <string name="sanitizer_instagram_name" translatable="false">Instagram</string>
     <string name="sanitizer_linksynergy_name" translatable="false">LinkSynergy</string>
     <string name="sanitizer_netflix_name" translatable="false">Netflix</string>
+    <string name="sanitizer_newegg_name" translatable="false">NewEgg</string>
     <string name="sanitizer_session_ids_name" translatable="false">Session IDs</string>
     <string name="sanitizer_spotify_name" translatable="false">Spotify</string>
     <string name="sanitizer_twitter_name" translatable="false">Twitter</string>
