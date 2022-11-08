@@ -38,5 +38,4 @@ class LinkSynergySanitizer : SearchResultSanitizer(
 	private companion object {
 		private val DOMAIN_REGEX = Regex("linksynergy\\.[^/]+/link")
 	}
-
 }
