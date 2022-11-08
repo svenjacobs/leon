@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -58,6 +58,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center"><a href="http://meet.deekshith.in"><img src="https://avatars.githubusercontent.com/u/2568945?v=4?s=100" width="100px;" alt="Deekshith Allamaneni"/><br /><sub><b>Deekshith Allamaneni</b></sub></a><br /><a href="#ideas-adeekshith" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="https://github.com/jimcarst"><img src="https://avatars.githubusercontent.com/u/37066510?v=4?s=100" width="100px;" alt="jimcarst"/><br /><sub><b>jimcarst</b></sub></a><br /><a href="#ideas-jimcarst" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="http://openfoxblog.leven.dev"><img src="https://avatars.githubusercontent.com/u/39553804?v=4?s=100" width="100px;" alt="Damon Leven"/><br /><sub><b>Damon Leven</b></sub></a><br /><a href="#ideas-MCWertGaming" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/EasyVector"><img src="https://avatars.githubusercontent.com/u/25502419?v=4?s=100" width="100px;" alt="Yuhui Su"/><br /><sub><b>Yuhui Su</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=EasyVector" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
