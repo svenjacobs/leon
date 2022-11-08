@@ -173,6 +173,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "osjasmine",
+      "name": "osjasmine",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86544869?v=4",
+      "profile": "https://github.com/osjasmine",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
