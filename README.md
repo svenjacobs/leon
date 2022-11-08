@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -69,6 +69,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center"><a href="https://www.rakuten.com/r/TPSAMU?eeid=6991100"><img src="https://avatars.githubusercontent.com/u/185902?v=4?s=100" width="100px;" alt="TPS"/><br /><sub><b>TPS</b></sub></a><br /><a href="#ideas-TPS" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/svenjacobs/leon/issues?q=author%3ATPS" title="Bug reports">🐛</a></td>
       <td align="center"><a href="https://github.com/Enkidu70"><img src="https://avatars.githubusercontent.com/u/1456895?v=4?s=100" width="100px;" alt="Robert"/><br /><sub><b>Robert</b></sub></a><br /><a href="#ideas-Enkidu70" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="http://cooper-davis.net"><img src="https://avatars.githubusercontent.com/u/8947634?v=4?s=100" width="100px;" alt="Ari Cooper Davis"/><br /><sub><b>Ari Cooper Davis</b></sub></a><br /><a href="#ideas-aricooperdavis" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/ChristopherKing42"><img src="https://avatars.githubusercontent.com/u/8742930?v=4?s=100" width="100px;" alt="Christopher King"/><br /><sub><b>Christopher King</b></sub></a><br /><a href="#ideas-ChristopherKing42" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
