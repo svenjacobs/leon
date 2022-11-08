@@ -100,6 +100,16 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "TPS",
+      "name": "TPS",
+      "avatar_url": "https://avatars.githubusercontent.com/u/185902?v=4",
+      "profile": "https://www.rakuten.com/r/TPSAMU?eeid=6991100",
+      "contributions": [
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
