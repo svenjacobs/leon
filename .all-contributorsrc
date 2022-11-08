@@ -90,6 +90,16 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "slootsky",
+      "name": "slootsky",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5387861?v=4",
+      "profile": "https://github.com/slootsky",
+      "contributions": [
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
