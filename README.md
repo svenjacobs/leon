@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -76,6 +76,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center"><a href="https://github.com/slmb3"><img src="https://avatars.githubusercontent.com/u/80601335?v=4?s=100" width="100px;" alt="slmb3"/><br /><sub><b>slmb3</b></sub></a><br /><a href="#ideas-slmb3" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="https://github.com/aha999"><img src="https://avatars.githubusercontent.com/u/50620416?v=4?s=100" width="100px;" alt="Klemen Skerbiš"/><br /><sub><b>Klemen Skerbiš</b></sub></a><br /><a href="#ideas-aha999" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="https://github.com/chexxor"><img src="https://avatars.githubusercontent.com/u/843161?v=4?s=100" width="100px;" alt="Alex Berg"/><br /><sub><b>Alex Berg</b></sub></a><br /><a href="#ideas-chexxor" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/osjasmine"><img src="https://avatars.githubusercontent.com/u/86544869?v=4?s=100" width="100px;" alt="osjasmine"/><br /><sub><b>osjasmine</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Aosjasmine" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
