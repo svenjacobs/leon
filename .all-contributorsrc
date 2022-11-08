@@ -54,6 +54,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bangzek",
+      "name": "Zakaria",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5100725?v=4",
+      "profile": "https://github.com/bangzek",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
