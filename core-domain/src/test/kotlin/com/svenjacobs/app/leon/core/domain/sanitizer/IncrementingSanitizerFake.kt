@@ -16,20 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain
+package com.svenjacobs.app.leon.core.domain.sanitizer
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class MockSanitizer(
-	override val id: SanitizerId,
-	private val name: String,
-	regex: Regex,
-) : RegexSanitizer(regex) {
+class IncrementingSanitizerFake : Sanitizer {
+
+	private var iteration = 0
+
+	override val id: SanitizerId = SanitizerId("incrementing")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = name,
+		name = "Incrementing",
 	)
+
+	override fun invoke(input: String): String {
+		iteration++
+		return iteration.toString()
+	}
 }
