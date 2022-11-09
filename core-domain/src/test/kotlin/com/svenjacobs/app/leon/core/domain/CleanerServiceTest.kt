@@ -19,39 +19,41 @@
 package com.svenjacobs.app.leon.core.domain
 
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
+import com.svenjacobs.app.leon.core.domain.sanitizer.IncrementingSanitizerFake
+import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizerFake
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleSearchSanitizer
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 class CleanerServiceTest : WordSpec(
 	{
-
 		val repository = mockk<SanitizerRepository>()
 
 		val service = CleanerService(
-			sanitizers = listOf(
-				MockSanitizer(
-					id = SanitizerId("mock1"),
-					name = "mock1",
+			sanitizers = persistentListOf(
+				RegexSanitizerFake(
+					id = SanitizerId("fake1"),
+					name = "fake1",
 					regex = RegexFactory.ofParameter("paramA"),
 				),
-				MockSanitizer(
-					id = SanitizerId("mock2"),
-					name = "mock2",
+				RegexSanitizerFake(
+					id = SanitizerId("fake2"),
+					name = "fake2",
 					regex = RegexFactory.ofParameter("paramB"),
 				),
-				MockSanitizer(
-					id = SanitizerId("mock3"),
-					name = "mock3",
+				RegexSanitizerFake(
+					id = SanitizerId("fake3"),
+					name = "fake3",
 					regex = RegexFactory.ofParameter("paramC"),
 				),
-			).toImmutableList(),
+			),
 			repository = repository,
 		)
 
@@ -115,6 +117,36 @@ class CleanerServiceTest : WordSpec(
 				)
 
 				result.cleanedText shouldBe "https://www.some.site/Hello/World"
+			}
+
+			"repeat cleaning until iteration doesn't yield new value" {
+				val googleService = CleanerService(
+					sanitizers = persistentListOf(
+						GoogleSearchSanitizer(),
+					),
+					repository = repository,
+				)
+
+				googleService.clean(
+					text = "https://www.google.com/url?q=https://www.google.com/url?rct%3Dj%26sa%" +
+						"3Dt%26url%3Dhttps://www.inferse.com/268929/prime-day-2022-phone-deals-al" +
+						"l-the-best-amazon-prime-early-access-phone-deals-bgr/%26ct%3Dga%26cd%3DC" +
+						"AEYACoUMTA3NzY4NTE0MDEwNTAyODc4MzMyHDMxNGQyNzdmOTRjOGU5MDE6Y29tOmVuOlVTO" +
+						"lI%26usg%3DAOvVaw0ib2-8ukc8GkNkCxTAEkb6&source=gmail&ust=166582840354400" +
+						"0&usg=AOvVaw0R6tQNh7vvWCHGibWcIz_k",
+				).cleanedText shouldBe "https://www.inferse.com/268929/prime-day-2022-phone-deals" +
+					"-all-the-best-amazon-prime-early-access-phone-deals-bgr/"
+			}
+
+			"return result after max iterations" {
+				val incrementingService = CleanerService(
+					sanitizers = persistentListOf(
+						IncrementingSanitizerFake(),
+					),
+					repository = repository,
+				)
+
+				incrementingService.clean("http://www.example.com").cleanedText shouldBe "5"
 			}
 		}
 	},

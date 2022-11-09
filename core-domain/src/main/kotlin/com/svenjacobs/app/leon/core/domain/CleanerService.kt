@@ -50,7 +50,16 @@ class CleanerService(
 		val (cleaned, urls) = URL_REGEX
 			.findAll(text)
 			.fold(Pair(text, emptyList<String>())) { (currentText, urls), match ->
-				val result = cleanUrl(match.value, sanitizers)
+				var prevResult: String
+				var result = match.value
+				var i = 0
+
+				do {
+					prevResult = result
+					result = cleanUrl(result, sanitizers)
+					i++
+				} while (result != prevResult && i < MAX_ITERATION)
+
 				Pair(currentText.replace(match.value, result), urls + result)
 			}
 			.let { (cleaned, urls) ->
@@ -92,5 +101,6 @@ class CleanerService(
 
 	private companion object {
 		private val URL_REGEX = Regex("https?://.\\S*")
+		private const val MAX_ITERATION = 5
 	}
 }
