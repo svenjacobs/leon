@@ -1,6 +1,12 @@
-Contributions in terms of [bug reports](https://github.com/svenjacobs/leon/issues), feature
-requests, [discussions](https://github.com/svenjacobs/leon/discussions) or pull requests are always
-welcome.
+All kinds of contributions are welcomed. For example
 
-However before starting to write code, let's please discuss the change first. Please create an issue
-or a discussion for your desired change. Thank you.
+- implementing features or fixing bugs (see [issues](https://github.com/svenjacobs/leon/issues))
+- providing ideas and feedback
+- testing
+- translations
+- designs and graphics
+
+[All contributors](https://allcontributors.org/) are recognized.
+
+Please use [issues](https://github.com/svenjacobs/leon/issues) and
+[discussions](https://github.com/svenjacobs/leon/discussions) to get in touch with us.
