@@ -1,1 +1,2 @@
-- Crash im Lizenz-Bildschirm behoben
+Dieses Update verbessert die App.
+Für weitere Details schaue bitte auf der Projektwebseite nach https://github.com/svenjacobs/leon/releases.
