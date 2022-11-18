@@ -25,7 +25,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
 class LinkSynergySanitizer : SearchResultSanitizer(
-	Regex("[?&](?:murl)=([^&]+)"),
+	Regex("[?&]murl=([^&]+)"),
 ) {
 
 	override val id = SanitizerId("linksynergy")

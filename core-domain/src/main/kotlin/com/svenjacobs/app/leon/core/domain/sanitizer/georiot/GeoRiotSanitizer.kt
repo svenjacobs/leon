@@ -25,7 +25,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
 class GeoRiotSanitizer : SearchResultSanitizer(
-	Regex("[?&](?:GR_URL)=([^&]+)"),
+	Regex("[?&]GR_URL=([^&]+)"),
 ) {
 
 	override val id = SanitizerId("georiot")
