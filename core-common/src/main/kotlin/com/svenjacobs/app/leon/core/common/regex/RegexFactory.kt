@@ -33,7 +33,7 @@ object RegexFactory {
 	 * @param parameter Parameter prefix
 	 */
 	@Suppress("RegExpUnnecessaryNonCapturingGroup")
-	fun ofParameter(parameter: String): Regex = Regex("[?&](?:$parameter)=.[^&#]*")
+	fun ofParameter(parameter: String): Regex = Regex("[?&](?:$parameter)=([^&#]*)")
 
 	/**
 	 * Returns a regex string which matches a certain parameter prefix.
@@ -44,5 +44,5 @@ object RegexFactory {
 	 * @param parameter Parameter prefix
 	 */
 	@Suppress("RegExpUnnecessaryNonCapturingGroup")
-	fun ofWildcardParameter(parameter: String): Regex = Regex("[?&](?:$parameter)[^=]*=.[^&#]*")
+	fun ofWildcardParameter(parameter: String): Regex = Regex("[?&](?:$parameter)[^=]*=([^&#]*)")
 }

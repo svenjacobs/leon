@@ -19,13 +19,14 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.georiot
 
 import android.content.Context
+import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
 class GeoRiotSanitizer : SearchResultSanitizer(
-	Regex("[?&]GR_URL=([^&]+)"),
+	RegexFactory.ofParameter("GR_URL"),
 ) {
 
 	override val id = SanitizerId("georiot")
