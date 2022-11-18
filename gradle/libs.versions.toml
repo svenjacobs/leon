@@ -1,11 +1,11 @@
 [versions]
 android-gradle-plugin = "7.4.0-beta05"
 androidx-activity = "1.6.1"
-androidx-compose-bom = "2022.10.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
+androidx-compose-bom = "2022.11.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
 androidx-compose-compiler = "1.3.2"
 androidx-lifecycle = "2.6.0-alpha03"
 androidx-room = "2.4.2"
-google-accompanist = "0.27.0"
+google-accompanist = "0.27.1"
 kotest = "5.5.4"
 kotlin = "1.7.20"
 kotlinx-coroutines = "1.6.4"
@@ -51,7 +51,7 @@ mikepenz-aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compos
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 square-moshi = "com.squareup.moshi:moshi:1.13.0"
-twitter-compose-ktlint-rules = "com.twitter.compose.rules:ktlint:0.0.22"
+twitter-compose-ktlint-rules = "com.twitter.compose.rules:ktlint:0.0.24"
 
 [bundles]
 androidx-compose = [
@@ -61,7 +61,7 @@ androidx-compose = [
 ]
 
 [plugins]
-ben-manes-versions = "com.github.ben-manes.versions:0.43.0"
+ben-manes-versions = "com.github.ben-manes.versions:0.44.0"
 triplet-play = "com.github.triplet.play:3.7.0"
 adarshr-test-logger = "com.adarshr.test-logger:3.2.0"
 kotlinter = "org.jmailen.kotlinter:3.12.0"
