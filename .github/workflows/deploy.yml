@@ -55,9 +55,7 @@ jobs:
       - name: Increment version name
         run: sed -i 's/versionName = .*/versionName = "'$(awk '/versionName =/{print substr($3,2,length($3)-2)+1}' app/build.gradle.kts)'"/g' app/build.gradle.kts
       - name: Commit changes
-        run: |
-          git config --global user.name 'Sven Jacobs'
-          git config --global user.email 'github@svenjacobs.com'
-          git checkout main
-          git commit -am '[skip ci] Increment version code & name for next release'
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '[skip ci] Increment version code & name for next release'
+          branch: main
