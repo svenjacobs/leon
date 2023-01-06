@@ -29,7 +29,7 @@ class ChangeSanitizerTest : WordSpec(
 			"remove all parameters from Change petition URL" {
 				val sanitizer = ChangeSanitizer()
 				val result = sanitizer(
-                    "https://www.change.org/p/verbot-von-silvesterfeuerwerk-f%C3%BCr-privatpers"
+                    "https://www.change.org/p/verbot-von-silvesterfeuerwerk-f%C3%BCr-privatpers" +
                         "onen-staedtetag-bmuv?utm_content=cl_sharecopy_12878233_de-DE%3Av3&recr" +
                         "uiter=44645781&recruited_by_id=29ffed30-7385-0130-ec6e-3c764e044e9e&ut" +
                         "m_source=share_petition&utm_medium=copylink&utm_campaign=psf_combo_sha" +
