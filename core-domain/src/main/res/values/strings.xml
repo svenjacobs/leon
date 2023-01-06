@@ -35,6 +35,7 @@
     <string name="sanitizer_netflix_name" translatable="false">Netflix</string>
     <string name="sanitizer_newegg_name" translatable="false">NewEgg</string>
     <string name="sanitizer_session_ids_name" translatable="false">Session IDs</string>
+    <string name="sanitizer_spiegel_name" translatable="false">Spiegel</string>
     <string name="sanitizer_spotify_name" translatable="false">Spotify</string>
     <string name="sanitizer_twitter_name" translatable="false">Twitter</string>
     <string name="sanitizer_webtrekk_name" translatable="false">Webtrekk</string>
