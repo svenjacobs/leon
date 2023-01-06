@@ -27,7 +27,7 @@ class SpiegelSanitizerTest : WordSpec(
 		"invoke" should {
 
 			"remove all parameters from Spiegel URL" {
-				val sanitizer = AliexpressSanitizer()
+				val sanitizer = SpiegelSanitizer()
 				val result = sanitizer(
           "https://www.spiegel.de/netzwelt/elon-musk-twitter-sperrt-konten-mehrerer" +
             "-journalisten-von-new-york-times-washington-post-etc-a-040213a0-aa1e-4" +
