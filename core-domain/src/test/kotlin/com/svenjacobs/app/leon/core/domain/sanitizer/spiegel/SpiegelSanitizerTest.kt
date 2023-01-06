@@ -30,8 +30,8 @@ class SpiegelSanitizerTest : WordSpec(
 				val sanitizer = SpiegelSanitizer()
 				val result = sanitizer(
 					"https://www.spiegel.de/netzwelt/elon-musk-twitter-sperrt-konten-mehrerer" +
-					"-journalisten-von-new-york-times-washington-post-etc-a-040213a0-aa1e-4" +
-					"627-9a5a-69d5f4f929fb?sara_ecid=soci_upd_KsBF0AFjflf0DZCxpPYDCQgO1dEMph1",
+						"-journalisten-von-new-york-times-washington-post-etc-a-040213a0-aa1e-4" +
+						"627-9a5a-69d5f4f929fb?sara_ecid=soci_upd_KsBF0AFjflf0DZCxpPYDCQgO1dEMph1",
 				)
 
 				result shouldBe "https://www.spiegel.de/netzwelt/elon-musk-twitter-sperrt-k" +
