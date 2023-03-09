@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@ import com.svenjacobs.app.leon.core.domain.inject.AppContainer
 import com.svenjacobs.app.leon.core.domain.sanitizer.aliexpress.AliexpressSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonProductSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonSanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonSmileSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.aol.AolSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.change.ChangeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.ebay.EbaySanitizer
@@ -60,7 +59,6 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				AliexpressSanitizer(),
 				AmazonProductSanitizer(),
 				AmazonSanitizer(),
-				AmazonSmileSanitizer(),
 				AolSearchSanitizer(),
 				ChangeSanitizer(),
 				EbaySanitizer(),

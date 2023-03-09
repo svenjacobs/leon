@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Léon - The URL Cleaner
-  ~ Copyright (C) 2022 Sven Jacobs
+  ~ Copyright (C) 2023 Sven Jacobs
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
     <string name="sanitizer_aliexpress_name" translatable="false">AliExpress</string>
     <string name="sanitizer_amazon_name" translatable="false">Amazon</string>
     <string name="sanitizer_amazon_product_name">Amazon Products</string>
-    <string name="sanitizer_amazon_smile_name" translatable="false">Amazon Smile</string>
     <string name="sanitizer_aol_search_name">AOL Search</string>
     <string name="sanitizer_change_name" translatable="false">Change</string>
     <string name="sanitizer_ebay_name" translatable="false">eBay</string>
