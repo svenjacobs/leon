@@ -1,23 +1,22 @@
 [versions]
-android-gradle-plugin = "7.4.0-rc03"
+android-gradle-plugin = "7.4.2"
 androidx-activity = "1.6.1"
-androidx-compose-bom = "2022.12.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
-androidx-compose-compiler = "1.3.2"
-androidx-lifecycle = "2.6.0-alpha03"
+androidx-compose-bom = "2023.01.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
+androidx-compose-compiler = "1.4.3"
+androidx-lifecycle = "2.6.0"
 androidx-room = "2.4.2"
 google-accompanist = "0.28.0"
-kotest = "5.5.4"
-kotlin = "1.7.20"
+kotest = "5.5.5"
+kotlin = "1.8.10"
 kotlinx-coroutines = "1.6.4"
-mikepenz-aboutlibraries = "10.5.1"
-mockk = "1.13.3"
+mikepenz-aboutlibraries = "10.6.1"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
-androidx-appcompat = "androidx.appcompat:appcompat:1.5.1"
-androidx-browser = "androidx.browser:browser:1.4.0"
+androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
+androidx-browser = "androidx.browser:browser:1.5.0"
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-material2 = { module = "androidx.compose.material:material" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
@@ -49,9 +48,9 @@ kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immut
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 mikepenz-aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "mikepenz-aboutlibraries" }
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk = "io.mockk:mockk:1.13.4"
 square-moshi = "com.squareup.moshi:moshi:1.13.0"
-twitter-compose-ktlint-rules = "com.twitter.compose.rules:ktlint:0.0.26"
+slack-compose-lint-checks = "com.slack.lint.compose:compose-lint-checks:1.1.1"
 
 [bundles]
 androidx-compose = [
@@ -61,7 +60,7 @@ androidx-compose = [
 ]
 
 [plugins]
-ben-manes-versions = "com.github.ben-manes.versions:0.44.0"
-triplet-play = "com.github.triplet.play:3.7.0"
+ben-manes-versions = "com.github.ben-manes.versions:0.46.0"
+triplet-play = "com.github.triplet.play:3.8.1"
 adarshr-test-logger = "com.adarshr.test-logger:3.2.0"
 kotlinter = "org.jmailen.kotlinter:3.13.0"
