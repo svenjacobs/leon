@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ class NewEggSanitizerTest : WordSpec(
 
 		"invoke" should {
 
-			"replace Amazon with Amazon Smile domain" {
+			"remove obsolete parameters" {
 				val sanitizer = NewEggSanitizer()
 				val result = sanitizer(
 					"https://www.newegg.com/black-acer-nitro-5-an515-57-59f7-gaming/p/N82E1" +
