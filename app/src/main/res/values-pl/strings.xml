@@ -1,0 +1,39 @@
+<!--
+  ~ Léon - The URL Cleaner
+  ~ Copyright (C) 2023 Sven Jacobs
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="screen_main">Ekran główny</string>
+    <string name="screen_settings">Ustawienia</string>
+    <string name="scaffold_title">Léon – Oczyszczacz URL</string>
+    <string name="share">Udostępnij</string>
+    <string name="verify">Weryfikuj</string>
+    <string name="copy">Kopiuj</string>
+    <string name="clipboard_message">Link skopiowany do schowka</string>
+    <string name="how_to_title">Jak wykonać</string>
+    <string name="how_to_text">Podczas udostępniania tekstu wybierz opcję "Oczyszczacz URL". Następnie dotknij opcji "Udostępnij" w tej aplikacji, aby wysłać tekst do aplikacji docelowej. Możesz również kliknąć poniższy przycisk, aby zaimportować zawartość ze schowka.</string>
+    <string name="cleaned_url">URL Oczyszczony</string>
+    <string name="original_url">URL Źródłowy</string>
+    <string name="sanitizers">Sanityzatory</string>
+    <string name="licenses">Licencje</string>
+    <string name="sanitizers_description">Włącz lub wyłącz sanityzatory</string>
+    <string name="decode_url">Odkoduj URL</string>
+    <string name="import_from_clipboard">Importuj ze schowka</string>
+    <string name="reset">Wyzeruj</string>
+    <string name="extract_url">Wyodrębnij tylko URL</string>
+    <string name="register_as_browser">Zarejestruj Léona jako przeglądarkę</string>
+</resources>
