@@ -34,6 +34,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleAdsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleAnalyticsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.instagram.InstagramSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.jdoqocy.JdoqocyRedirectSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.netflix.NetflixSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.newegg.NewEggSanitizer
@@ -82,6 +83,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				YoutubeMusicSanitizer(),
 				YoutubeRedirectSanitizer(),
 				YoutubeShortUrlSanitizer(),
+				JdoqocyRedirectSanitizer()
 			),
 		)
 	}
