@@ -1,15 +1,15 @@
 [versions]
-android-gradle-plugin = "7.4.2"
-androidx-activity = "1.7.0"
-androidx-compose-bom = "2023.03.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
-androidx-compose-compiler = "1.4.4"
+android-gradle-plugin = "8.0.1"
+androidx-activity = "1.7.1"
+androidx-compose-bom = "2023.05.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
+androidx-compose-compiler = "1.4.7"
 androidx-lifecycle = "2.6.1"
 androidx-room = "2.4.2"
 google-accompanist = "0.30.1"
-kotest = "5.5.5"
-kotlin = "1.8.10"
-kotlinx-coroutines = "1.6.4"
-mikepenz-aboutlibraries = "10.6.1"
+kotest = "5.6.1"
+kotlin = "1.8.21"
+kotlinx-coroutines = "1.7.0"
+mikepenz-aboutlibraries = "10.6.3"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
@@ -48,9 +48,9 @@ kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immut
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 mikepenz-aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "mikepenz-aboutlibraries" }
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
-mockk = "io.mockk:mockk:1.13.4"
+mockk = "io.mockk:mockk:1.13.5"
 square-moshi = "com.squareup.moshi:moshi:1.13.0"
-slack-compose-lint-checks = "com.slack.lint.compose:compose-lint-checks:1.1.1"
+slack-compose-lint-checks = "com.slack.lint.compose:compose-lint-checks:1.2.0"
 
 [bundles]
 androidx-compose = [
@@ -61,6 +61,6 @@ androidx-compose = [
 
 [plugins]
 ben-manes-versions = "com.github.ben-manes.versions:0.46.0"
-triplet-play = "com.github.triplet.play:3.8.1"
+triplet-play = "com.github.triplet.play:3.8.2"
 adarshr-test-logger = "com.adarshr.test-logger:3.2.0"
 kotlinter = "org.jmailen.kotlinter:3.14.0"
