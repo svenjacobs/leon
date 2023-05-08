@@ -23,4 +23,5 @@
     <string name="sanitizer_google_search_name">Google Suche</string>
     <string name="sanitizer_yahoo_search_name">Yahoo Suche</string>
     <string name="sanitizer_youtube_redirect_name">YouTube Weiterleitung</string>
+    <string name="sanitizer_jdoqocy_redirect_name">Jdoqocy Weiterleitung</string>
 </resources>
