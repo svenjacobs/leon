@@ -25,14 +25,14 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
-class JdoqocyRedirectSanitizer : SearchResultSanitizer(
+class JdoqocySanitizer : SearchResultSanitizer(
 	RegexFactory.ofParameter("url"),
 ) {
 
 	override val id = SanitizerId("jdoqocy")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_jdoqocy_redirect_name),
+		name = context.getString(R.string.sanitizer_jdoqocy_name),
 	)
 
 	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)

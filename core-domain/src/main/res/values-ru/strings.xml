@@ -23,5 +23,4 @@
     <string name="sanitizer_google_search_name">Google Search</string> <!-- TODO: translate -->
     <string name="sanitizer_yahoo_search_name">Yahoo Search</string> <!-- TODO: translate -->
     <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string> <!-- TODO: translate -->
-    <string name="sanitizer_jdoqocy_redirect_name">Jdoqocy Redirect</string> <!-- TODO: translate -->
 </resources>
