@@ -8,7 +8,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class ElFinancieroSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofWildcardParameter("outputType"),
+	regex = RegexFactory.ofParameter("outputType"),
 ) {
 
 	override val id = SanitizerId("elfinanciero")
