@@ -83,7 +83,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				YoutubeMusicSanitizer(),
 				YoutubeRedirectSanitizer(),
 				YoutubeShortUrlSanitizer(),
-				JdoqocyRedirectSanitizer()
+				JdoqocyRedirectSanitizer(),
 			),
 		)
 	}
