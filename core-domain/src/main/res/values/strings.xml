@@ -43,4 +43,5 @@
     <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string>
     <string name="sanitizer_youtube_short_url_name" translatable="false">Youtu.be</string>
     <string name="sanitizer_youtube_music_name" translatable="false">YouTube Music</string>
+    <string name="sanitizer_jdoqocy_name" translatable="false">Jdoqocy</string>
 </resources>
