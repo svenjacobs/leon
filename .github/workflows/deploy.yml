@@ -13,23 +13,37 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
+
       - name: Import GPG key for git-secret
         run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch --yes
+
       - name: Install git-secret
         run: sudo apt-get install git-secret
+
       - name: Decrypt secrets
         run: git secret reveal -f
+
       - name: Deploy production version
         run: ./gradlew assembleRelease publishReleaseBundle --track production --release-status completed
+
       - name: Build changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          configurationJson: |
+            {
+              "tag_resolver": {
+                "method": "sort"
+              }
+            }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
@@ -37,6 +51,7 @@ jobs:
           files: |
             app/build/outputs/apk/**/*.apk
             app/build/outputs/bundle/**/*.aab
+
       - uses: actions/upload-artifact@v3
         with:
           name: Android artifacts
@@ -50,10 +65,13 @@ jobs:
     needs: deploy
     steps:
       - uses: actions/checkout@v3
+
       - name: Increment version code
         run: sed -i 's/versionCode = [0-9]*/versionCode = '$(awk '/versionCode =/{print $3=$3+1}' app/build.gradle.kts)'/g' app/build.gradle.kts
+
       - name: Increment version name
         run: sed -i 's/versionName = .*/versionName = "'$(awk '/versionName =/{print substr($3,2,length($3)-2)+1}' app/build.gradle.kts)'"/g' app/build.gradle.kts
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
