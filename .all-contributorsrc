@@ -196,6 +196,16 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "aleksandarzekovic",
+      "name": "Aleksandar Zekovic",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47242383?v=4",
+      "profile": "https://github.com/aleksandarzekovic",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
