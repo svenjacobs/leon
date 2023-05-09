@@ -26,6 +26,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.aol.AolSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.change.ChangeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.ebay.EbaySanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.elfinanciero.ElFinancieroSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.emptyparameters.EmptyParametersSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.facebook.FacebookSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.flipkart.FlipkartSanitizer
@@ -84,6 +85,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				YoutubeRedirectSanitizer(),
 				YoutubeShortUrlSanitizer(),
 				JdoqocySanitizer(),
+				ElFinancieroSanitizer(),
 			),
 		)
 	}
