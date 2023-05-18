@@ -35,8 +35,8 @@ android {
 		applicationId = "com.svenjacobs.app.leon"
 		minSdk = Android.minSdk
 		targetSdk = Android.targetSdk
-		versionCode = 246
-		versionName = "25"
+		versionCode = 247
+		versionName = "26"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
