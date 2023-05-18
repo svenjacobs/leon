@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,9 +38,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsScreenViewModel
@@ -49,52 +45,20 @@ import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun SettingsScreen(
-	onHideBars: (Boolean) -> Unit,
+	onNavigateToSettingsSanitizers: () -> Unit,
+	onNavigateToSettingsLicenses: () -> Unit,
 	modifier: Modifier = Modifier,
 	viewModel: SettingsScreenViewModel = viewModel(),
 ) {
 	val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-	val navController = rememberNavController()
 
-	NavHost(
+	Content(
 		modifier = modifier,
-		navController = navController,
-		startDestination = SCREEN_SETTINGS,
-	) {
-		composable(
-			route = SCREEN_SETTINGS,
-		) {
-			LaunchedEffect(Unit) { onHideBars(false) }
-
-			Content(
-				browserEnabled = uiState.browserEnabled,
-				onSanitizersClick = { navController.navigate(SCREEN_SANITIZERS) },
-				onLicensesClick = { navController.navigate(SCREEN_LICENSES) },
-				onBrowserSwitchCheckedChange = viewModel::onBrowserSwitchCheckedChange,
-			)
-		}
-
-		composable(
-			route = SCREEN_SANITIZERS,
-		) {
-			LaunchedEffect(Unit) { onHideBars(true) }
-
-			SettingsSanitizersScreen(
-				viewModel = viewModel(),
-				onBackClick = { navController.popBackStack() },
-			)
-		}
-
-		composable(
-			route = SCREEN_LICENSES,
-		) {
-			LaunchedEffect(Unit) { onHideBars(true) }
-
-			SettingsLicensesScreen(
-				onBackClick = { navController.popBackStack() },
-			)
-		}
-	}
+		browserEnabled = uiState.browserEnabled,
+		onSanitizersClick = onNavigateToSettingsSanitizers,
+		onLicensesClick = onNavigateToSettingsLicenses,
+		onBrowserSwitchCheckedChange = viewModel::onBrowserSwitchCheckedChange,
+	)
 }
 
 @Composable
@@ -167,15 +131,14 @@ private fun Content(
 }
 
 @Composable
-@Preview
-private fun SettingsScreenPreview() {
+@Preview(showBackground = true)
+private fun ContentPreview() {
 	AppTheme {
-		SettingsScreen(
-			onHideBars = {},
+		Content(
+			browserEnabled = false,
+			onSanitizersClick = {},
+			onLicensesClick = {},
+			onBrowserSwitchCheckedChange = {},
 		)
 	}
 }
-
-private const val SCREEN_SETTINGS = "settings"
-private const val SCREEN_SANITIZERS = "sanitizers"
-private const val SCREEN_LICENSES = "licenses"

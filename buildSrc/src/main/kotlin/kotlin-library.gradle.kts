@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ plugins {
 }
 
 dependencies {
+	api(platform(libs.findLibrary("kotlin.bom").get()))
 	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
 
 	testApi(libs.findLibrary("kotest.runner.junit5").get())

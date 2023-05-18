@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,12 +44,10 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -81,10 +79,15 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 
 @Composable
-fun MainScreen(viewModel: MainScreenViewModel, modifier: Modifier = Modifier) {
+fun MainScreen(
+	sourceText: State<String?>,
+	onNavigateToSettingsSanitizers: () -> Unit,
+	onNavigateToSettingsLicenses: () -> Unit,
+	modifier: Modifier = Modifier,
+	viewModel: MainScreenViewModel = viewModel(),
+) {
 	val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-	var hideBars by rememberSaveable { mutableStateOf(false) }
 	val navController = rememberNavController()
 	val snackbarHostState = remember { SnackbarHostState() }
 	val coroutineScope = rememberCoroutineScope()
@@ -92,6 +95,14 @@ fun MainScreen(viewModel: MainScreenViewModel, modifier: Modifier = Modifier) {
 	val isDarkTheme = isSystemInDarkTheme()
 	val context = LocalContext.current
 	val clipboard = LocalClipboardManager.current
+
+	LaunchedEffect(sourceText.value) {
+		viewModel.setText(sourceText.value)
+	}
+
+	LaunchedEffect(Unit) {
+		systemUiController.setStatusBarColor(Color.Transparent, darkIcons = !isDarkTheme)
+	}
 
 	fun onShareButtonClick(result: Result.Success, title: String) {
 		val intent = Intent(Intent.ACTION_SEND).apply {
@@ -125,15 +136,11 @@ fun MainScreen(viewModel: MainScreenViewModel, modifier: Modifier = Modifier) {
 		}
 	}
 
-	LaunchedEffect(Unit) {
-		systemUiController.setStatusBarColor(Color.Transparent, darkIcons = !isDarkTheme)
-	}
-
 	AppTheme {
 		Scaffold(
 			modifier = modifier,
-			topBar = { if (!hideBars) TopAppBar() },
-			bottomBar = { if (!hideBars) BottomBar(navController = navController) },
+			topBar = { TopAppBar() },
+			bottomBar = { BottomBar(navController = navController) },
 			snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
 			content = { padding ->
 				Box(
@@ -168,8 +175,8 @@ fun MainScreen(viewModel: MainScreenViewModel, modifier: Modifier = Modifier) {
 
 						composable(Screen.Settings.route) {
 							SettingsScreen(
-								viewModel = viewModel(),
-								onHideBars = { hideBars = it },
+								onNavigateToSettingsSanitizers = onNavigateToSettingsSanitizers,
+								onNavigateToSettingsLicenses = onNavigateToSettingsLicenses,
 							)
 						}
 					}
@@ -224,6 +231,7 @@ private fun Content(
 						onUrlDecodeCheckedChange = onUrlDecodeCheckedChange,
 						onExtractUrlCheckedChange = onExtractUrlCheckedChange,
 					)
+
 					else -> HowToBody(
 						onImportFromClipboardClick = onImportFromClipboardClick,
 					)
