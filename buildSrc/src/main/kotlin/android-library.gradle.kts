@@ -67,7 +67,6 @@ dependencies {
 	api(platform(libs.findLibrary("kotlin.bom").get()))
 
 	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
-	api(libs.findLibrary("javax.inject").get())
 	api(libs.findBundle("androidx.compose").get())
 
 	testApi(libs.findLibrary("kotest.runner.junit5").get())

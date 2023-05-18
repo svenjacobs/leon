@@ -16,32 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.startup
+package com.svenjacobs.app.leon.core.domain.action
 
-import android.content.Context
-import androidx.startup.Initializer
-import com.svenjacobs.app.leon.BuildConfig
-import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
-import kotlinx.coroutines.runBlocking
-
-/**
- * Performs (initial) initialization of app.
- */
-@Suppress("unused")
-class AppInitializer : Initializer<Unit> {
-
-	override fun create(context: Context) {
-		val stethoHelper = StethoHelper()
-
-		stethoHelper.initialize(context)
-
-		runBlocking {
-			AppDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
-		}
-	}
-
-	override fun dependencies() = listOf(
-		ContainerInitializer::class.java,
-		TimberInitializer::class.java,
-	)
+enum class ActionAfterClean {
+	DoNothing,
+	OpenShareMenu,
+	CopyToClipboard,
 }

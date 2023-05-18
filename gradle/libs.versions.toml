@@ -38,7 +38,6 @@ androidx-startup-runtime = "androidx.startup:startup-runtime:1.1.1"
 facebook-stetho = "com.facebook.stetho:stetho:1.6.0"
 google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "google-accompanist" }
 jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
-javax-inject = "javax.inject:javax.inject:1"
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-framework-api-jvm = { module = "io.kotest:kotest-framework-api-jvm", version.ref = "kotest" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

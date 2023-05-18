@@ -46,8 +46,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -66,6 +68,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
@@ -95,6 +98,8 @@ fun MainScreen(
 	val isDarkTheme = isSystemInDarkTheme()
 	val context = LocalContext.current
 	val clipboard = LocalClipboardManager.current
+	val shareTitle = stringResource(R.string.share)
+	var didPerformActionAfterClean by remember(uiState.result) { mutableStateOf(false) }
 
 	LaunchedEffect(sourceText.value) {
 		viewModel.setText(sourceText.value)
@@ -104,7 +109,7 @@ fun MainScreen(
 		systemUiController.setStatusBarColor(Color.Transparent, darkIcons = !isDarkTheme)
 	}
 
-	fun onShareButtonClick(result: Result.Success, title: String) {
+	fun openShareMenu(result: Result.Success) {
 		val intent = Intent(Intent.ACTION_SEND).apply {
 			type = "text/plain"
 			addCategory(Intent.CATEGORY_DEFAULT)
@@ -114,12 +119,12 @@ fun MainScreen(
 		context.startActivity(
 			Intent.createChooser(
 				intent,
-				title,
+				shareTitle,
 			),
 		)
 	}
 
-	fun onVerifyButtonClick(result: Result.Success) {
+	fun launchBrowser(result: Result.Success) {
 		result.urls.firstOrNull()?.let { url ->
 			val intent = CustomTabsIntent.Builder()
 				.setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
@@ -129,7 +134,7 @@ fun MainScreen(
 		}
 	}
 
-	fun onCopyToClipboardClick(result: Result.Success) {
+	fun copyToClipboard(result: Result.Success) {
 		clipboard.setText(AnnotatedString(result.cleanedText))
 		coroutineScope.launch {
 			snackbarHostState.showSnackbar(context.getString(R.string.clipboard_message))
@@ -153,7 +158,19 @@ fun MainScreen(
 						startDestination = Screen.Main.route,
 					) {
 						composable(Screen.Main.route) {
-							val shareTitle = stringResource(R.string.share)
+							LaunchedEffect(uiState.result, uiState.actionAfterClean) {
+								if (didPerformActionAfterClean) return@LaunchedEffect
+
+								(uiState.result as? Result.Success)?.let { result ->
+									when (uiState.actionAfterClean) {
+										ActionAfterClean.OpenShareMenu -> openShareMenu(result)
+										ActionAfterClean.CopyToClipboard -> copyToClipboard(result)
+										ActionAfterClean.DoNothing -> {}
+									}
+
+									didPerformActionAfterClean = true
+								}
+							}
 
 							Content(
 								result = uiState.result,
@@ -164,9 +181,9 @@ fun MainScreen(
 										clipboard.getText()?.toString(),
 									)
 								},
-								onShareClick = { result -> onShareButtonClick(result, shareTitle) },
-								onCopyToClipboardClick = ::onCopyToClipboardClick,
-								onVerifyClick = ::onVerifyButtonClick,
+								onShareClick = ::openShareMenu,
+								onCopyToClipboardClick = ::copyToClipboard,
+								onVerifyClick = ::launchBrowser,
 								onResetClick = viewModel::onResetClick,
 								onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
 								onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,

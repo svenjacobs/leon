@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@
 
 package com.svenjacobs.app.leon.core.domain
 
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRepository
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.Sanitizers
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection

@@ -16,32 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.startup
+package com.svenjacobs.app.leon.inject
 
-import android.content.Context
-import androidx.startup.Initializer
-import com.svenjacobs.app.leon.BuildConfig
-import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
-import kotlinx.coroutines.runBlocking
+import com.svenjacobs.app.leon.datastore.AppDataStoreManager
+import com.svenjacobs.app.leon.datastore.SanitizerDataStoreManager
 
-/**
- * Performs (initial) initialization of app.
- */
-@Suppress("unused")
-class AppInitializer : Initializer<Unit> {
+object AppContainer {
 
-	override fun create(context: Context) {
-		val stethoHelper = StethoHelper()
-
-		stethoHelper.initialize(context)
-
-		runBlocking {
-			AppDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
-		}
-	}
-
-	override fun dependencies() = listOf(
-		ContainerInitializer::class.java,
-		TimberInitializer::class.java,
-	)
+	val AppDataStoreManager: AppDataStoreManager by lazy { AppDataStoreManager() }
+	val SanitizerDataStoreManager: SanitizerDataStoreManager by lazy { SanitizerDataStoreManager() }
 }

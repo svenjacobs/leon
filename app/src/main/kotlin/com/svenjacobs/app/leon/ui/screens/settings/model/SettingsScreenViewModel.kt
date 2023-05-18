@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,36 +24,46 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
+import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.AppContext
+import com.svenjacobs.app.leon.datastore.AppDataStoreManager
+import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 @SuppressLint("StaticFieldLeak")
 class SettingsScreenViewModel(
 	private val context: Context = AppContext,
+	private val appDataStoreManager: AppDataStoreManager = AppDataStoreManager,
 ) : ViewModel() {
 
 	data class UiState(
-		val browserEnabled: Boolean? = null,
+		val isLoading: Boolean = true,
+		val browserEnabled: Boolean = false,
+		val actionAfterClean: ActionAfterClean = ActionAfterClean.DoNothing,
 	)
 
-	private val browserEnabled = MutableStateFlow<Boolean?>(null)
+	private val browserEnabled = MutableStateFlow(false)
 
 	val uiState: StateFlow<UiState> =
-		browserEnabled
-			.mapLatest {
-				UiState(
-					browserEnabled = it,
-				)
-			}
-			.stateIn(
-				scope = viewModelScope,
-				started = SharingStarted.WhileSubscribed(5_000),
-				initialValue = UiState(),
+		combine(
+			browserEnabled,
+			appDataStoreManager.actionAfterClean,
+		) { browserEnabled, actionAfterClean ->
+			UiState(
+				isLoading = false,
+				browserEnabled = browserEnabled,
+				actionAfterClean = actionAfterClean ?: ActionAfterClean.DoNothing,
 			)
+		}.stateIn(
+			scope = viewModelScope,
+			started = SharingStarted.WhileSubscribed(5_000),
+			initialValue = UiState(),
+		)
 
 	init {
 		val enabledSetting = packageManager.getComponentEnabledSetting(componentName)
@@ -71,6 +81,12 @@ class SettingsScreenViewModel(
 			},
 			PackageManager.DONT_KILL_APP,
 		)
+	}
+
+	fun onActionAfterCleanClick(actionAfterClean: ActionAfterClean) {
+		viewModelScope.launch {
+			appDataStoreManager.setActionAfterClean(actionAfterClean)
+		}
 	}
 
 	private val packageManager: PackageManager

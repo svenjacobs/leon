@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,16 +24,14 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.AppContext
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /**
  * Manages [Sanitizer] specific preferences stored via [DataStore].
  */
-@Singleton
 class SanitizerDataStoreManager(
 	private val context: Context = AppContext,
 ) {

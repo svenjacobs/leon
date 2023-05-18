@@ -36,4 +36,8 @@
     <string name="reset">Wyzeruj</string>
     <string name="extract_url">Wyodrębnij tylko URL</string>
     <string name="register_as_browser">Zarejestruj Léona jako przeglądarkę</string>
+    <string name="action_after_clean">Action after clean</string> <!-- TODO: translate -->
+    <string name="do_nothing">Do nothing</string> <!-- TODO: translate -->
+    <string name="open_share_menu">Open share menu</string> <!-- TODO: translate -->
+    <string name="copy_to_clipboard">Copy to clipboard</string> <!-- TODO: translate -->
 </resources>

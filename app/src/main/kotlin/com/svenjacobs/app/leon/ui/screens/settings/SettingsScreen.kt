@@ -24,13 +24,21 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExposedDropdownMenuDefaults
+import androidx.compose.material.TextField
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -40,6 +48,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsScreenViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
@@ -54,25 +63,32 @@ fun SettingsScreen(
 
 	Content(
 		modifier = modifier,
+		isLoading = uiState.isLoading,
 		browserEnabled = uiState.browserEnabled,
+		actionAfterClean = uiState.actionAfterClean,
 		onSanitizersClick = onNavigateToSettingsSanitizers,
 		onLicensesClick = onNavigateToSettingsLicenses,
 		onBrowserSwitchCheckedChange = viewModel::onBrowserSwitchCheckedChange,
+		onActionAfterCleanClick = viewModel::onActionAfterCleanClick,
 	)
 }
 
 @Composable
+@OptIn(ExperimentalMaterialApi::class)
 private fun Content(
-	browserEnabled: Boolean?,
+	isLoading: Boolean,
+	browserEnabled: Boolean,
+	actionAfterClean: ActionAfterClean,
 	onSanitizersClick: () -> Unit,
 	onLicensesClick: () -> Unit,
 	onBrowserSwitchCheckedChange: (Boolean) -> Unit,
+	onActionAfterCleanClick: (ActionAfterClean) -> Unit,
 	modifier: Modifier = Modifier,
 ) {
 	Box(
 		modifier = modifier.fillMaxSize(),
 	) {
-		if (browserEnabled == null) {
+		if (isLoading) {
 			CircularProgressIndicator(
 				modifier = Modifier.align(Alignment.Center),
 			)
@@ -114,6 +130,63 @@ private fun Content(
 						onCheckedChange = onBrowserSwitchCheckedChange,
 					)
 				}
+
+				Column(
+					modifier = Modifier.padding(top = 8.dp),
+				) {
+					var expanded by rememberSaveable { mutableStateOf(false) }
+
+					Text(stringResource(R.string.action_after_clean))
+
+					ExposedDropdownMenuBox(
+						modifier = Modifier.padding(top = 8.dp),
+						expanded = expanded,
+						onExpandedChange = { expanded = !expanded },
+					) {
+						TextField(
+							modifier = Modifier
+								.fillMaxWidth()
+								.menuAnchor(),
+							value = actionAfterClean.text(),
+							onValueChange = {},
+							readOnly = true,
+							trailingIcon = {
+								ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+							},
+							colors = ExposedDropdownMenuDefaults.textFieldColors(),
+						)
+
+						ExposedDropdownMenu(
+							modifier = Modifier.exposedDropdownSize(),
+							expanded = expanded,
+							onDismissRequest = { expanded = false },
+						) {
+							DropdownMenuItem(
+								text = { Text(stringResource(R.string.do_nothing)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.DoNothing)
+								},
+							)
+
+							DropdownMenuItem(
+								text = { Text(stringResource(R.string.open_share_menu)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.OpenShareMenu)
+								},
+							)
+
+							DropdownMenuItem(
+								text = { Text(stringResource(R.string.copy_to_clipboard)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.CopyToClipboard)
+								},
+							)
+						}
+					}
+				}
 			}
 		}
 
@@ -131,14 +204,24 @@ private fun Content(
 }
 
 @Composable
+private fun ActionAfterClean.text(): String = when (this) {
+	ActionAfterClean.DoNothing -> stringResource(R.string.do_nothing)
+	ActionAfterClean.OpenShareMenu -> stringResource(R.string.open_share_menu)
+	ActionAfterClean.CopyToClipboard -> stringResource(R.string.copy_to_clipboard)
+}
+
+@Composable
 @Preview(showBackground = true)
 private fun ContentPreview() {
 	AppTheme {
 		Content(
+			isLoading = false,
 			browserEnabled = false,
+			actionAfterClean = ActionAfterClean.OpenShareMenu,
 			onSanitizersClick = {},
 			onLicensesClick = {},
 			onBrowserSwitchCheckedChange = {},
+			onActionAfterCleanClick = {},
 		)
 	}
 }
