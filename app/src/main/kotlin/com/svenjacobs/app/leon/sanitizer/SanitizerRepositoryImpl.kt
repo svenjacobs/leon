@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,13 @@
 
 package com.svenjacobs.app.leon.sanitizer
 
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.Sanitizers
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository.SanitizerState
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection
 import com.svenjacobs.app.leon.datastore.SanitizerDataStoreManager
+import com.svenjacobs.app.leon.inject.AppContainer.SanitizerDataStoreManager
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
@@ -31,7 +32,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class SanitizerRepositoryImpl(
-	private val dataStoreManager: SanitizerDataStoreManager = SanitizerDataStoreManager(),
+	private val dataStoreManager: SanitizerDataStoreManager = SanitizerDataStoreManager,
 	private val sanitizers: SanitizersCollection = Sanitizers,
 ) : SanitizerRepository {
 

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,16 +22,16 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
-import javax.inject.Singleton
+import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.AppContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /**
  * Manages app specific preferences stored via [DataStore].
  */
-@Singleton
 class AppDataStoreManager(
 	private val context: Context = AppContext,
 ) {
@@ -43,12 +43,21 @@ class AppDataStoreManager(
 		}
 	}
 
-	val versionCode: Flow<Int> =
+	suspend fun setActionAfterClean(actionAfterClean: ActionAfterClean) {
+		context.dataStore.edit {
+			it[KEY_ACTION_AFTER_CLEAN] = actionAfterClean.name
+		}
+	}
+
+	val actionAfterClean: Flow<ActionAfterClean?> =
 		context.dataStore.data.map { preferences ->
-			preferences[KEY_VERSION_CODE] ?: 0
+			runCatching {
+				preferences[KEY_ACTION_AFTER_CLEAN]?.let(ActionAfterClean::valueOf)
+			}.getOrNull()
 		}
 
 	private companion object {
 		private val KEY_VERSION_CODE = intPreferencesKey("version_code")
+		private val KEY_ACTION_AFTER_CLEAN = stringPreferencesKey("action_after_clean")
 	}
 }

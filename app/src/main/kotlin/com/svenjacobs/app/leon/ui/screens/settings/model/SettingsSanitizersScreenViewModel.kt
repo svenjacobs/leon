@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.AppContext
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.SanitizerRepository
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer.Sanitizers
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.AppContext
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.SanitizerRepository
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection

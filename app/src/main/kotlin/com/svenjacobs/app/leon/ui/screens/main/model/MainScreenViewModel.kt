@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,9 @@ package com.svenjacobs.app.leon.ui.screens.main.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.svenjacobs.app.leon.core.domain.CleanerService
+import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
+import com.svenjacobs.app.leon.datastore.AppDataStoreManager
+import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +32,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
 class MainScreenViewModel(
+	appDataStoreManager: AppDataStoreManager = AppDataStoreManager,
 	private val cleanerService: CleanerService = CleanerService(),
 ) : ViewModel() {
 
@@ -37,6 +41,7 @@ class MainScreenViewModel(
 		val isUrlDecodeEnabled: Boolean = false,
 		val isExtractUrlEnabled: Boolean = false,
 		val result: Result = Result.Empty,
+		val actionAfterClean: ActionAfterClean = ActionAfterClean.DoNothing,
 	) {
 		sealed interface Result {
 
@@ -61,7 +66,8 @@ class MainScreenViewModel(
 			text,
 			urlDecodeEnabled,
 			extractUrlEnabled,
-		) { text, urlDecodeEnabled, extractUrlEnabled ->
+			appDataStoreManager.actionAfterClean,
+		) { text, urlDecodeEnabled, extractUrlEnabled, actionAfterClean ->
 			val result = text?.let {
 				clean(
 					text = text,
@@ -75,6 +81,7 @@ class MainScreenViewModel(
 				isUrlDecodeEnabled = urlDecodeEnabled,
 				isExtractUrlEnabled = extractUrlEnabled,
 				result = result,
+				actionAfterClean = actionAfterClean ?: ActionAfterClean.DoNothing,
 			)
 		}.stateIn(
 			scope = viewModelScope,

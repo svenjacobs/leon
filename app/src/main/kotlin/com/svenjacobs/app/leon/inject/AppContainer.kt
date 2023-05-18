@@ -16,18 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-val catalogs = extensions.getByType<VersionCatalogsExtension>()
-val libs: VersionCatalog = catalogs.named("libs")
+package com.svenjacobs.app.leon.inject
 
-plugins {
-	kotlin("jvm")
-}
+import com.svenjacobs.app.leon.datastore.AppDataStoreManager
+import com.svenjacobs.app.leon.datastore.SanitizerDataStoreManager
 
-dependencies {
-	api(platform(libs.findLibrary("kotlin.bom").get()))
-	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
+object AppContainer {
 
-	testApi(libs.findLibrary("kotest.runner.junit5").get())
-	testApi(libs.findLibrary("kotest.assertions.core").get())
-	testApi(libs.findLibrary("mockk").get())
+	val AppDataStoreManager: AppDataStoreManager by lazy { AppDataStoreManager() }
+	val SanitizerDataStoreManager: SanitizerDataStoreManager by lazy { SanitizerDataStoreManager() }
 }

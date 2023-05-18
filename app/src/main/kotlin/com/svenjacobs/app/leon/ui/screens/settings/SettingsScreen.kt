@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,14 +24,21 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExposedDropdownMenuDefaults
+import androidx.compose.material.TextField
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -39,76 +46,49 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
+import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsScreenViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 @Composable
 fun SettingsScreen(
-	onHideBars: (Boolean) -> Unit,
+	onNavigateToSettingsSanitizers: () -> Unit,
+	onNavigateToSettingsLicenses: () -> Unit,
 	modifier: Modifier = Modifier,
 	viewModel: SettingsScreenViewModel = viewModel(),
 ) {
 	val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-	val navController = rememberNavController()
 
-	NavHost(
+	Content(
 		modifier = modifier,
-		navController = navController,
-		startDestination = SCREEN_SETTINGS,
-	) {
-		composable(
-			route = SCREEN_SETTINGS,
-		) {
-			LaunchedEffect(Unit) { onHideBars(false) }
-
-			Content(
-				browserEnabled = uiState.browserEnabled,
-				onSanitizersClick = { navController.navigate(SCREEN_SANITIZERS) },
-				onLicensesClick = { navController.navigate(SCREEN_LICENSES) },
-				onBrowserSwitchCheckedChange = viewModel::onBrowserSwitchCheckedChange,
-			)
-		}
-
-		composable(
-			route = SCREEN_SANITIZERS,
-		) {
-			LaunchedEffect(Unit) { onHideBars(true) }
-
-			SettingsSanitizersScreen(
-				viewModel = viewModel(),
-				onBackClick = { navController.popBackStack() },
-			)
-		}
-
-		composable(
-			route = SCREEN_LICENSES,
-		) {
-			LaunchedEffect(Unit) { onHideBars(true) }
-
-			SettingsLicensesScreen(
-				onBackClick = { navController.popBackStack() },
-			)
-		}
-	}
+		isLoading = uiState.isLoading,
+		browserEnabled = uiState.browserEnabled,
+		actionAfterClean = uiState.actionAfterClean,
+		onSanitizersClick = onNavigateToSettingsSanitizers,
+		onLicensesClick = onNavigateToSettingsLicenses,
+		onBrowserSwitchCheckedChange = viewModel::onBrowserSwitchCheckedChange,
+		onActionAfterCleanClick = viewModel::onActionAfterCleanClick,
+	)
 }
 
 @Composable
+@OptIn(ExperimentalMaterialApi::class)
 private fun Content(
-	browserEnabled: Boolean?,
+	isLoading: Boolean,
+	browserEnabled: Boolean,
+	actionAfterClean: ActionAfterClean,
 	onSanitizersClick: () -> Unit,
 	onLicensesClick: () -> Unit,
 	onBrowserSwitchCheckedChange: (Boolean) -> Unit,
+	onActionAfterCleanClick: (ActionAfterClean) -> Unit,
 	modifier: Modifier = Modifier,
 ) {
 	Box(
 		modifier = modifier.fillMaxSize(),
 	) {
-		if (browserEnabled == null) {
+		if (isLoading) {
 			CircularProgressIndicator(
 				modifier = Modifier.align(Alignment.Center),
 			)
@@ -150,6 +130,63 @@ private fun Content(
 						onCheckedChange = onBrowserSwitchCheckedChange,
 					)
 				}
+
+				Column(
+					modifier = Modifier.padding(top = 8.dp),
+				) {
+					var expanded by rememberSaveable { mutableStateOf(false) }
+
+					Text(stringResource(R.string.action_after_clean))
+
+					ExposedDropdownMenuBox(
+						modifier = Modifier.padding(top = 8.dp),
+						expanded = expanded,
+						onExpandedChange = { expanded = !expanded },
+					) {
+						TextField(
+							modifier = Modifier
+								.fillMaxWidth()
+								.menuAnchor(),
+							value = actionAfterClean.text(),
+							onValueChange = {},
+							readOnly = true,
+							trailingIcon = {
+								ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+							},
+							colors = ExposedDropdownMenuDefaults.textFieldColors(),
+						)
+
+						ExposedDropdownMenu(
+							modifier = Modifier.exposedDropdownSize(),
+							expanded = expanded,
+							onDismissRequest = { expanded = false },
+						) {
+							DropdownMenuItem(
+								text = { Text(stringResource(R.string.do_nothing)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.DoNothing)
+								},
+							)
+
+							DropdownMenuItem(
+								text = { Text(stringResource(R.string.open_share_menu)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.OpenShareMenu)
+								},
+							)
+
+							DropdownMenuItem(
+								text = { Text(stringResource(R.string.copy_to_clipboard)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.CopyToClipboard)
+								},
+							)
+						}
+					}
+				}
 			}
 		}
 
@@ -167,15 +204,24 @@ private fun Content(
 }
 
 @Composable
-@Preview
-private fun SettingsScreenPreview() {
+private fun ActionAfterClean.text(): String = when (this) {
+	ActionAfterClean.DoNothing -> stringResource(R.string.do_nothing)
+	ActionAfterClean.OpenShareMenu -> stringResource(R.string.open_share_menu)
+	ActionAfterClean.CopyToClipboard -> stringResource(R.string.copy_to_clipboard)
+}
+
+@Composable
+@Preview(showBackground = true)
+private fun ContentPreview() {
 	AppTheme {
-		SettingsScreen(
-			onHideBars = {},
+		Content(
+			isLoading = false,
+			browserEnabled = false,
+			actionAfterClean = ActionAfterClean.OpenShareMenu,
+			onSanitizersClick = {},
+			onLicensesClick = {},
+			onBrowserSwitchCheckedChange = {},
+			onActionAfterCleanClick = {},
 		)
 	}
 }
-
-private const val SCREEN_SETTINGS = "settings"
-private const val SCREEN_SANITIZERS = "sanitizers"
-private const val SCREEN_LICENSES = "licenses"

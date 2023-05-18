@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ package com.svenjacobs.app.leon.startup
 import android.content.Context
 import androidx.startup.Initializer
 import com.svenjacobs.app.leon.BuildConfig
-import com.svenjacobs.app.leon.datastore.AppDataStoreManager
+import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -31,13 +31,12 @@ import kotlinx.coroutines.runBlocking
 class AppInitializer : Initializer<Unit> {
 
 	override fun create(context: Context) {
-		val appDataStoreManager = AppDataStoreManager()
 		val stethoHelper = StethoHelper()
 
 		stethoHelper.initialize(context)
 
 		runBlocking {
-			appDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
+			AppDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
 		}
 	}
 

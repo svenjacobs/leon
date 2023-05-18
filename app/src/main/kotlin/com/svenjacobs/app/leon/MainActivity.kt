@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,15 +23,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsServiceConnection
+import androidx.compose.runtime.mutableStateOf
 import androidx.core.view.WindowCompat
-import com.svenjacobs.app.leon.ui.screens.main.MainScreen
-import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
+import com.svenjacobs.app.leon.ui.MainRouter
 
 class MainActivity : ComponentActivity() {
-	private val mainScreenViewModel: MainScreenViewModel by viewModels()
+
+	private val sourceText = mutableStateOf<String?>(null)
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -41,8 +41,8 @@ class MainActivity : ComponentActivity() {
 		onIntent(intent)
 
 		setContent {
-			MainScreen(
-				viewModel = mainScreenViewModel,
+			MainRouter(
+				sourceText = sourceText,
 			)
 		}
 	}
@@ -69,16 +69,18 @@ class MainActivity : ComponentActivity() {
 					} else {
 						null
 					}
+
 				Intent.ACTION_VIEW -> if (intent.scheme.orEmpty().startsWith("http")) {
 					intent.dataString
 				} else {
 					null
 				}
+
 				else -> null
 			}
 		}
 
-		mainScreenViewModel.setText(text)
+		sourceText.value = text
 	}
 
 	private fun warmupCustomTabsService() {

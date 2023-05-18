@@ -48,7 +48,7 @@ android {
 			return@signingConfigs
 		}
 
-		create("release") {
+		val release by creating {
 			val props = Properties()
 			signingFile.inputStream().use { props.load(it) }
 
@@ -113,6 +113,10 @@ play {
 }
 
 dependencies {
+	val composeBom = platform(libs.androidx.compose.bom)
+	implementation(composeBom)
+	implementation(platform(libs.kotlin.bom))
+
 	implementation(project(":core-common"))
 	implementation(project(":core-domain"))
 
@@ -121,9 +125,6 @@ dependencies {
 	implementation(libs.androidx.appcompat)
 	implementation(libs.androidx.activity.ktx)
 
-	//region Compose
-	val composeBom = platform(libs.androidx.compose.bom)
-	implementation(composeBom)
 	debugImplementation(libs.androidx.compose.ui.tooling)
 	implementation(libs.bundles.androidx.compose)
 	implementation(libs.androidx.compose.material2) // Required by AboutLibraries
@@ -134,8 +135,6 @@ dependencies {
 	implementation(libs.androidx.navigation.compose)
 	implementation(libs.mikepenz.aboutlibraries.compose)
 	implementation(libs.google.accompanist.systemuicontroller)
-	androidTestImplementation(composeBom)
-	//endregion
 
 	implementation(libs.androidx.startup.runtime)
 	implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -147,6 +146,8 @@ dependencies {
 	implementation(libs.jakewharton.timber)
 
 	debugImplementation(libs.facebook.stetho)
+
+	androidTestImplementation(composeBom)
 
 	testImplementation(libs.kotest.runner.junit5)
 	testImplementation(libs.kotest.assertions.core)

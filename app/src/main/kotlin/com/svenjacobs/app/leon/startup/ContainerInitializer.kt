@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.startup
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.domain.inject.AppContainer
+import com.svenjacobs.app.leon.core.domain.inject.DomainContainer
 import com.svenjacobs.app.leon.core.domain.sanitizer.aliexpress.AliexpressSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonProductSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonSanitizer
@@ -54,7 +54,7 @@ import kotlinx.collections.immutable.persistentListOf
 class ContainerInitializer : DistinctInitializer<Unit> {
 
 	override fun create(context: Context) {
-		AppContainer.init(
+		DomainContainer.init(
 			appContext = context,
 			sanitizerRepositoryProvider = { SanitizerRepositoryImpl() },
 			sanitizers = persistentListOf(

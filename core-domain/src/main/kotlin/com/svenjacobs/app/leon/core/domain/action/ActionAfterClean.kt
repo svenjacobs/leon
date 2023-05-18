@@ -16,18 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-val catalogs = extensions.getByType<VersionCatalogsExtension>()
-val libs: VersionCatalog = catalogs.named("libs")
+package com.svenjacobs.app.leon.core.domain.action
 
-plugins {
-	kotlin("jvm")
-}
-
-dependencies {
-	api(platform(libs.findLibrary("kotlin.bom").get()))
-	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
-
-	testApi(libs.findLibrary("kotest.runner.junit5").get())
-	testApi(libs.findLibrary("kotest.assertions.core").get())
-	testApi(libs.findLibrary("mockk").get())
+enum class ActionAfterClean {
+	DoNothing,
+	OpenShareMenu,
+	CopyToClipboard,
 }
