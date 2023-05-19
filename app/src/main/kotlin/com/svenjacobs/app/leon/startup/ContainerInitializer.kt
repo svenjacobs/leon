@@ -36,6 +36,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleAnalyticsSanit
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.instagram.InstagramSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.jdoqocy.JdoqocySanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.lazada.LazadaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.netflix.NetflixSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.newegg.NewEggSanitizer
@@ -64,6 +65,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				AolSearchSanitizer(),
 				ChangeSanitizer(),
 				EbaySanitizer(),
+				ElFinancieroSanitizer(),
 				EmptyParametersSanitizer(),
 				FacebookSanitizer(),
 				FlipkartSanitizer(),
@@ -72,6 +74,8 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				GoogleAnalyticsSanitizer(),
 				GoogleSearchSanitizer(),
 				InstagramSanitizer(),
+				JdoqocySanitizer(),
+				LazadaSanitizer(),
 				LinkSynergySanitizer(),
 				NetflixSanitizer(),
 				NewEggSanitizer(),
@@ -84,8 +88,6 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				YoutubeMusicSanitizer(),
 				YoutubeRedirectSanitizer(),
 				YoutubeShortUrlSanitizer(),
-				JdoqocySanitizer(),
-				ElFinancieroSanitizer(),
 			),
 		)
 	}
