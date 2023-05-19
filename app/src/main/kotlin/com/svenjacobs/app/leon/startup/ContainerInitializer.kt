@@ -41,6 +41,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySani
 import com.svenjacobs.app.leon.core.domain.sanitizer.netflix.NetflixSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.newegg.NewEggSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.sessionids.SessionIdsSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.shopee.ShopeeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spiegel.SpiegelSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spotify.SpotifySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.twitter.TwitterSanitizer
@@ -80,6 +81,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				NetflixSanitizer(),
 				NewEggSanitizer(),
 				SessionIdsSanitizer(),
+				ShopeeSanitizer(),
 				SpiegelSanitizer(),
 				SpotifySanitizer(),
 				TwitterSanitizer(),
