@@ -20,7 +20,6 @@ package com.svenjacobs.app.leon.ui.screens.main
 
 import android.content.Intent
 import android.net.Uri
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -99,6 +98,7 @@ fun MainScreen(
 	val context = LocalContext.current
 	val clipboard = LocalClipboardManager.current
 	val shareTitle = stringResource(R.string.share)
+	val openTitle = stringResource(R.string.open)
 	var didPerformActionAfterClean by remember(uiState.result) { mutableStateOf(false) }
 
 	LaunchedEffect(sourceText.value) {
@@ -124,14 +124,18 @@ fun MainScreen(
 		)
 	}
 
-	fun launchBrowser(result: Result.Success) {
-		result.urls.firstOrNull()?.let { url ->
-			val intent = CustomTabsIntent.Builder()
-				.setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
-				.build()
+	fun openInDefaultApp(result: Result.Success) {
+		val uri = result.urls.firstOrNull()
+			?.let { url -> runCatching { Uri.parse(url) }.getOrNull() } ?: return
 
-			intent.launchUrl(context, Uri.parse(url))
-		}
+		val intent = Intent(Intent.ACTION_VIEW, uri)
+
+		context.startActivity(
+			Intent.createChooser(
+				intent,
+				openTitle,
+			),
+		)
 	}
 
 	fun copyToClipboard(result: Result.Success) {
@@ -183,7 +187,7 @@ fun MainScreen(
 								},
 								onShareClick = ::openShareMenu,
 								onCopyToClipboardClick = ::copyToClipboard,
-								onVerifyClick = ::launchBrowser,
+								onOpenClick = ::openInDefaultApp,
 								onResetClick = viewModel::onResetClick,
 								onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
 								onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,
@@ -211,7 +215,7 @@ private fun Content(
 	onImportFromClipboardClick: () -> Unit,
 	onShareClick: (Result.Success) -> Unit,
 	onCopyToClipboardClick: (Result.Success) -> Unit,
-	onVerifyClick: (Result.Success) -> Unit,
+	onOpenClick: (Result.Success) -> Unit,
 	onResetClick: () -> Unit,
 	onUrlDecodeCheckedChange: (Boolean) -> Unit,
 	onExtractUrlCheckedChange: (Boolean) -> Unit,
@@ -243,7 +247,7 @@ private fun Content(
 						isExtractUrlEnabled = isExtractUrlEnabled,
 						onShareClick = onShareClick,
 						onCopyToClipboardClick = onCopyToClipboardClick,
-						onVerifyClick = onVerifyClick,
+						onOpenClick = onOpenClick,
 						onResetClick = onResetClick,
 						onUrlDecodeCheckedChange = onUrlDecodeCheckedChange,
 						onExtractUrlCheckedChange = onExtractUrlCheckedChange,
@@ -265,7 +269,7 @@ private fun SuccessBody(
 	isExtractUrlEnabled: Boolean,
 	onShareClick: (Result.Success) -> Unit,
 	onCopyToClipboardClick: (Result.Success) -> Unit,
-	onVerifyClick: (Result.Success) -> Unit,
+	onOpenClick: (Result.Success) -> Unit,
 	onResetClick: () -> Unit,
 	onUrlDecodeCheckedChange: (Boolean) -> Unit,
 	onExtractUrlCheckedChange: (Boolean) -> Unit,
@@ -340,10 +344,10 @@ private fun SuccessBody(
 				) {
 					OutlinedButton(
 						modifier = buttonModifier,
-						onClick = { onVerifyClick(result) },
+						onClick = { onOpenClick(result) },
 					) {
 						Text(
-							text = stringResource(R.string.verify),
+							text = stringResource(R.string.open),
 							style = MaterialTheme.typography.bodyMedium,
 						)
 					}
@@ -461,7 +465,7 @@ private fun SuccessBodyPreview() {
 			isExtractUrlEnabled = false,
 			onShareClick = {},
 			onCopyToClipboardClick = {},
-			onVerifyClick = {},
+			onOpenClick = {},
 			onResetClick = {},
 			onUrlDecodeCheckedChange = {},
 			onExtractUrlCheckedChange = {},

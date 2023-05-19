@@ -18,13 +18,10 @@
 
 package com.svenjacobs.app.leon
 
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.browser.customtabs.CustomTabsClient
-import androidx.browser.customtabs.CustomTabsServiceConnection
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.view.WindowCompat
 import com.svenjacobs.app.leon.ui.MainRouter
@@ -45,11 +42,6 @@ class MainActivity : ComponentActivity() {
 				sourceText = sourceText,
 			)
 		}
-	}
-
-	override fun onStart() {
-		super.onStart()
-		warmupCustomTabsService()
 	}
 
 	override fun onNewIntent(intent: Intent?) {
@@ -83,21 +75,7 @@ class MainActivity : ComponentActivity() {
 		sourceText.value = text
 	}
 
-	private fun warmupCustomTabsService() {
-		val connection = object : CustomTabsServiceConnection() {
-			override fun onCustomTabsServiceConnected(name: ComponentName, client: CustomTabsClient) {
-				client.warmup(0)
-			}
-
-			override fun onServiceDisconnected(name: ComponentName?) {
-			}
-		}
-
-		CustomTabsClient.bindCustomTabsService(this, CHROME_PACKAGE_NAME, connection)
-	}
-
 	private companion object {
 		private const val MIME_TYPE_TEXT_PLAIN = "text/plain"
-		private const val CHROME_PACKAGE_NAME = "com.android.chrome"
 	}
 }

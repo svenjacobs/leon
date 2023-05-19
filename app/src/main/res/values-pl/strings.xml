@@ -21,7 +21,7 @@
     <string name="screen_settings">Ustawienia</string>
     <string name="scaffold_title">Léon – Oczyszczacz URL</string>
     <string name="share">Udostępnij</string>
-    <string name="verify">Weryfikuj</string>
+    <string name="open">Open</string>> <!-- TODO: translate -->
     <string name="copy">Kopiuj</string>
     <string name="clipboard_message">Link skopiowany do schowka</string>
     <string name="how_to_title">Jak wykonać</string>

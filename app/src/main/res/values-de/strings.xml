@@ -21,7 +21,7 @@
     <string name="screen_settings">Einstellungen</string>
     <string name="scaffold_title">Léon – Der URL Cleaner</string>
     <string name="share">Teilen</string>
-    <string name="verify">Überprüfen</string>
+    <string name="open">Öffnen</string>
     <string name="copy">Kopieren</string>
     <string name="clipboard_message">Link in Zwischenablage kopiert</string>
     <string name="how_to_title">Anleitung</string>
