@@ -21,7 +21,7 @@
     <string name="screen_settings">Настройки</string>
     <string name="scaffold_title">Léon – The URL Cleaner</string>
     <string name="share">Поделиться</string>
-    <string name="verify">Проверить</string>
+    <string name="open">Open</string>> <!-- TODO: translate -->
     <string name="copy">Копировать</string>
     <string name="clipboard_message">Ссылка скопирована в буфер обмена</string>
     <string name="how_to_title">Инструкция</string>
