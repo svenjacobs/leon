@@ -40,6 +40,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.lazada.LazadaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.netflix.NetflixSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.newegg.NewEggSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.pearl.PearlSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.sessionids.SessionIdsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.shopee.ShopeeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spiegel.SpiegelSanitizer
@@ -80,6 +81,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				LinkSynergySanitizer(),
 				NetflixSanitizer(),
 				NewEggSanitizer(),
+				PearlSanitizer(),
 				SessionIdsSanitizer(),
 				ShopeeSanitizer(),
 				SpiegelSanitizer(),
