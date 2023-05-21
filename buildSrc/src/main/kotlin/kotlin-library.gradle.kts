@@ -31,3 +31,7 @@ dependencies {
 	testApi(libs.findLibrary("kotest.assertions.core").get())
 	testApi(libs.findLibrary("mockk").get())
 }
+
+tasks.test {
+	useJUnitPlatform()
+}

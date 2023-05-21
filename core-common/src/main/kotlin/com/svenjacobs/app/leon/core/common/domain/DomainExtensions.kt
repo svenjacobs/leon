@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-fun latestTagName(): String {
-	val tag = execute("git", "describe", "--tags", "--abbrev=0", "--match", "v*")
-	if (tag.isBlank()) throw IllegalArgumentException("Could not determine tag")
-	return tag.substring(1)
-}
+package com.svenjacobs.app.leon.core.common.domain
 
-private fun execute(vararg cmd: String): String {
-	var output: String
-	val process = ProcessBuilder(*cmd).start()
-	process.inputStream.reader(Charsets.UTF_8).use {
-		output = it.readText()
-	}
-	process.waitFor()
-	return output.trim()
+fun String.matchesDomain(domain: String, isRegex: Boolean = false): Boolean {
+	val regexDomain = if (!isRegex) domain.replace(".", "\\.") else domain
+	return Regex("^(?:https?://)?(?:www\\.)?$regexDomain.*").matches(this)
 }

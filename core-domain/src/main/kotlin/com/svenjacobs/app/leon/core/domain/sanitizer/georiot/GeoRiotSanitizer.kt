@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.georiot
 
 import android.content.Context
+import com.svenjacobs.app.leon.core.common.domain.matchesDomain
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
@@ -35,9 +36,6 @@ class GeoRiotSanitizer : SearchResultSanitizer(
 		name = context.getString(R.string.sanitizer_georiot_name),
 	)
 
-	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
-
-	private companion object {
-		private val DOMAIN_REGEX = Regex("target.georiot\\.[^/]+/Proxy.ashx")
-	}
+	override fun matchesDomain(input: String) =
+		input.matchesDomain("target.georiot\\.[^/]+/Proxy.ashx", isRegex = true)
 }

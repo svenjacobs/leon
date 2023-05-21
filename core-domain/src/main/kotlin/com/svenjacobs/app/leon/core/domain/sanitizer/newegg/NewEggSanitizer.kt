@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,6 +40,6 @@ class NewEggSanitizer : Sanitizer {
 	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
 	private companion object {
-		val DOMAIN_REGEX = Regex("^(?:https?://)?(?:www\\.)?newegg\\..+(/.+)/p/[0-9A-Z]+")
+		private val DOMAIN_REGEX = Regex("^(?:https?://)?(?:www\\.)?newegg\\..+(/.+)/p/[0-9A-Z]+")
 	}
 }
