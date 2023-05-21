@@ -36,6 +36,5 @@ class EbaySanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_ebay_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("ebay\\..+/itm/", isRegex = true)
+	override fun matchesDomain(input: String) = input.matchesDomain("ebay\\..+/itm/", isRegex = true)
 }
