@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain.sanitizer.flipkart
+package com.svenjacobs.app.leon.core.domain.sanitizer.pearl
 
 import android.content.Context
 import com.svenjacobs.app.leon.core.common.domain.matchesDomain
@@ -26,15 +26,15 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class FlipkartSanitizer : RegexSanitizer(
+class PearlSanitizer : RegexSanitizer(
 	regex = RegexFactory.AllParameters,
 ) {
 
-	override val id = SanitizerId("flipkart")
+	override val id = SanitizerId("pearl")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_flipkart_name),
+		name = context.getString(R.string.sanitizer_pearl),
 	)
 
-	override fun matchesDomain(input: String) = input.matchesDomain("flipkart.com")
+	override fun matchesDomain(input: String) = input.matchesDomain("pearl.de")
 }

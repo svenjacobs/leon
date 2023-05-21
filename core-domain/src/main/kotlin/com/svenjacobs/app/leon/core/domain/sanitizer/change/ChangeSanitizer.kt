@@ -19,6 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.change
 
 import android.content.Context
+import com.svenjacobs.app.leon.core.common.domain.matchesDomain
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
@@ -35,11 +36,5 @@ class ChangeSanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_change_name),
 	)
 
-	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(
-		input,
-	)
-
-	private companion object {
-		private val DOMAIN_REGEX = Regex("change\\.org.+")
-	}
+	override fun matchesDomain(input: String) = input.matchesDomain("change.org")
 }

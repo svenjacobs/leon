@@ -16,22 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-val catalogs = extensions.getByType<VersionCatalogsExtension>()
-val libs: VersionCatalog = catalogs.named("libs")
+package com.svenjacobs.app.leon.core.domain.sanitizer.pearl
 
-plugins {
-	kotlin("jvm")
-}
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-dependencies {
-	api(platform(libs.findLibrary("kotlin.bom").get()))
-	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
+class PearlSanitizerTest : WordSpec(
+	{
+		val sanitizer = PearlSanitizer()
 
-	testApi(libs.findLibrary("kotest.runner.junit5").get())
-	testApi(libs.findLibrary("kotest.assertions.core").get())
-	testApi(libs.findLibrary("mockk").get())
-}
+		"invoke" should {
 
-tasks.test {
-	useJUnitPlatform()
-}
+			"remove all parameters" {
+
+				val result = sanitizer(
+					"https://www.pearl.de/m/10884/?vid=985&curr=DEM&wa_id=995&wa_num=10884&" +
+						"mt=bWsqHZ2EOdIMxzpUi7oRsjVMLsC2%2Fyc65JwkwDStD1WiEu3REqi2%2Fw%3D%3D&utm_" +
+						"source=10884&utm_medium=onlineversion_D",
+				)
+
+				result shouldBe "https://www.pearl.de/m/10884/"
+			}
+		}
+
+		"matchesDomain" should {
+
+			"match for pearl.de" {
+				sanitizer.matchesDomain("https://www.pearl.de") shouldBe true
+			}
+		}
+	},
+)

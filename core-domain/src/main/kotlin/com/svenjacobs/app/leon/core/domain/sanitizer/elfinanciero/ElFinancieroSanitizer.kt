@@ -19,6 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.elfinanciero
 
 import android.content.Context
+import com.svenjacobs.app.leon.core.common.domain.matchesDomain
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
@@ -35,9 +36,5 @@ class ElFinancieroSanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_elfinanciero_name),
 	)
 
-	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
-
-	private companion object {
-		private val DOMAIN_REGEX = Regex("elfinanciero\\.com\\.mx")
-	}
+	override fun matchesDomain(input: String) = input.matchesDomain("elfinanciero.com.mx")
 }

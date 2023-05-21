@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.aliexpress
 
 import android.content.Context
+import com.svenjacobs.app.leon.core.common.domain.matchesDomain
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
@@ -35,11 +36,6 @@ class AliexpressSanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_aliexpress_name),
 	)
 
-	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(
-		input,
-	)
-
-	private companion object {
-		private val DOMAIN_REGEX = Regex("aliexpress\\..+/item/")
-	}
+	override fun matchesDomain(input: String) =
+		input.matchesDomain("aliexpress\\..+/item/", isRegex = true)
 }
