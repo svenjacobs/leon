@@ -19,15 +19,12 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.amazon
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
-import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class AmazonProductSanitizer : RegexSanitizer(
-	regex = Regex("ref=[^?&]+|[?&][^=]+=.[^&]*"),
-) {
+class AmazonProductSanitizer : Sanitizer {
 
 	override val id = SanitizerId("amazon")
 
@@ -35,6 +32,20 @@ class AmazonProductSanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_amazon_product_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("amazon\\..+/dp/[0-9A-Z]+", isRegex = true)
+	override fun matchesDomain(input: String) = REGEX.containsMatchIn(input)
+
+	override fun invoke(input: String): String {
+		val result = REGEX.find(input)
+		// First group contains everything between top level domain and /dp/ argument
+		val group = result?.groups?.get(1) ?: return input
+
+		return RegexFactory.AllParameters.replace(
+			input = input.removeRange(group.range),
+			replacement = "",
+		)
+	}
+
+	private companion object {
+		private val REGEX = Regex("amazon\\..+?(/.*)?/dp/[^/]+")
+	}
 }
