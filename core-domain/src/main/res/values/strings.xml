@@ -48,4 +48,5 @@
     <string name="sanitizer_lazada" translatable="false">Lazada</string>
     <string name="sanitizer_shopee" translatable="false">Shopee</string>
     <string name="sanitizer_pearl" translatable="false">Pearl</string>
+    <string name="sanitizer_theguardian" translatable="false">The Guardian</string>
 </resources>
