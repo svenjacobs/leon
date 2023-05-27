@@ -24,16 +24,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ExposedDropdownMenuDefaults
-import androidx.compose.material.TextField
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,7 +41,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -51,6 +49,7 @@ import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsScreenViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
+import com.svenjacobs.app.leon.ui.tooling.DayNightPreviews
 
 @Composable
 fun SettingsScreen(
@@ -74,7 +73,6 @@ fun SettingsScreen(
 }
 
 @Composable
-@OptIn(ExperimentalMaterialApi::class)
 private fun Content(
 	isLoading: Boolean,
 	browserEnabled: Boolean,
@@ -211,7 +209,7 @@ private fun ActionAfterClean.text(): String = when (this) {
 }
 
 @Composable
-@Preview(showBackground = true)
+@DayNightPreviews
 private fun ContentPreview() {
 	AppTheme {
 		Content(
