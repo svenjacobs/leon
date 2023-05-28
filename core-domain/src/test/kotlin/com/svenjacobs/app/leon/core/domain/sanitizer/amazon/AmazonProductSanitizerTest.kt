@@ -27,7 +27,7 @@ class AmazonProductSanitizerTest : WordSpec(
 
 		"invoke" should {
 
-			"remove everything except /dp/* path argument" {
+			"clean Amazon product link" {
 				var result = sanitizer(
 					"https://www.amazon.de/Xiaomi-Aktivit%C3%A4tstracker-Trainings-Puls%C3%" +
 						"BCberwachung-Akkulaufzeit/dp/B091G3FLL7/?_encoding=UTF8&pd_rd_w=xDcJP&pf" +
@@ -49,6 +49,13 @@ class AmazonProductSanitizerTest : WordSpec(
 				result shouldBe "https://www.amazon.co.uk/dp/B091G3FLL7/"
 			}
 
+			"clean Amazon cart product link" {
+				sanitizer(
+					"https://www.amazon.com/gp/aw/d/B009EEZYE0/ref=ox_sc_act_image_1?smid=A" +
+						"TVPDKIKX0DER&psc=1",
+				) shouldBe "https://www.amazon.com/dp/B009EEZYE0/"
+			}
+
 			"keep already cleaned Amazon URL" {
 				sanitizer("https://www.amazon.com/dp/B091G3FLL7/") shouldBe
 					"https://www.amazon.com/dp/B091G3FLL7/"
@@ -57,7 +64,7 @@ class AmazonProductSanitizerTest : WordSpec(
 
 		"matchesDomain" should {
 
-			"match for Amazon product domain" {
+			"match for Amazon product link" {
 				sanitizer.matchesDomain(
 					"https://www.amazon.de/Xiaomi-Aktivit%C3%A4tstracke" +
 						"r-Trainings-Puls%C3%BCberwachung-Akkulaufzeit/dp/B091G3FLL7/",
@@ -66,6 +73,13 @@ class AmazonProductSanitizerTest : WordSpec(
 				sanitizer.matchesDomain(
 					"https://www.amazon.co.uk/Xiaomi-Aktivit%C3%A4tstracke" +
 						"r-Trainings-Puls%C3%BCberwachung-Akkulaufzeit/dp/B091G3FLL7/",
+				) shouldBe true
+			}
+
+			"match for Amazon cart product link" {
+				sanitizer.matchesDomain(
+					"www.amazon.com/gp/aw/d/B009EEZYE0/ref=ox_sc_act_image_1?smid=ATVPDKIKX" +
+						"0DER&psc=1",
 				) shouldBe true
 			}
 		}

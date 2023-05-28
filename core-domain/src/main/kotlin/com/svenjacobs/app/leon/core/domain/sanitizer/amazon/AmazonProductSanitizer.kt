@@ -19,7 +19,6 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.amazon
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
@@ -36,16 +35,15 @@ class AmazonProductSanitizer : Sanitizer {
 
 	override fun invoke(input: String): String {
 		val result = REGEX.find(input)
-		// First group contains everything between top level domain and /dp/ argument
-		val group = result?.groups?.get(1) ?: return input
+		// First group contains domain and protocol like https://www.amazon.com
+		val domainGroup = result?.groups?.get(1) ?: return input
+		// Second group contains product id
+		val productIdGroup = result.groups[2] ?: return input
 
-		return RegexFactory.AllParameters.replace(
-			input = input.removeRange(group.range),
-			replacement = "",
-		)
+		return "${domainGroup.value}/dp/${productIdGroup.value}/"
 	}
 
 	private companion object {
-		private val REGEX = Regex("amazon\\..+?(/.*)?/dp/[^/]+")
+		private val REGEX = Regex("((?:https?://)?(?:www\\.)?amazon\\.[^/]*).*/dp?/([^/]*)")
 	}
 }
