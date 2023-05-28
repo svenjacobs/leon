@@ -37,6 +37,28 @@ jobs:
         with:
           configurationJson: |
             {
+              "categories": [
+                {
+                  "title": "## 🚀 Features",
+                  "labels": ["feature"]
+                },
+                {
+                  "title": "## 🐛 Fixes",
+                  "labels": ["bug", "fix"]
+                },
+                {
+                  "title": "## 🔧 Maintenance",
+                  "labels": ["chore", "maintenance"]
+                },
+                {
+                  "title": "## 📚 Documentation",
+                  "labels": ["documentation"]
+                },
+                {
+                  "title": "## 🧪 Tests",
+                  "labels": ["test"]
+                }
+              ],
               "tag_resolver": {
                 "method": "sort"
               }
