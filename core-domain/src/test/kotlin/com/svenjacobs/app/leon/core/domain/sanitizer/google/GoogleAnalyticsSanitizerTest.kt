@@ -26,11 +26,11 @@ class GoogleAnalyticsSanitizerTest : WordSpec(
 
 		"invoke" should {
 
-			"remove \"ga_*\" and \"utm_*\" parameters" {
+			"remove \"ga_*\", \"utm_*\", and "gclid" parameters" {
 				val sanitizer = GoogleAnalyticsSanitizer()
 
 				val result = sanitizer(
-					"https://www.example.com?ga_abc=123&utm_def=456",
+					"https://www.example.com?ga_abc=123&utm_def=456&gclid=789",
 				)
 
 				result shouldBe "https://www.example.com"
