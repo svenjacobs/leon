@@ -16,22 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain.sanitizer
+package com.svenjacobs.app.leon.core.common.url
 
-import com.svenjacobs.app.leon.core.common.url.decodeUrl
+import java.net.URLDecoder
 
-/**
- * Base class for sanitizers that extract URLs from search engine result links.
- *
- * @param regex Regular expression which must return the URL in the first group
- */
-abstract class SearchResultSanitizer(
-	private val regex: Regex,
-) : Sanitizer {
-
-	override fun invoke(input: String): String {
-		val result = regex.find(input) ?: return input
-		val group = result.groups[1] ?: return input
-		return decodeUrl(group.value)
-	}
-}
+fun decodeUrl(encoded: String): String = URLDecoder.decode(encoded, "UTF-8")
