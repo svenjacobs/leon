@@ -18,12 +18,12 @@
 
 package com.svenjacobs.app.leon.core.domain
 
+import com.svenjacobs.app.leon.core.common.url.decodeUrl
 import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.inject.DomainContainer.Sanitizers
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerRepository
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizersCollection
-import java.net.URLDecoder
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +43,6 @@ class CleanerService(
 		val urls: ImmutableList<String>,
 	)
 
-	@Suppress("BlockingMethodInNonBlockingContext")
 	suspend fun clean(text: String?, decodeUrl: Boolean = false): Result {
 		if (text.isNullOrEmpty()) throw IllegalArgumentException()
 
@@ -65,10 +64,7 @@ class CleanerService(
 			.let { (cleaned, urls) ->
 				val decoded = if (decodeUrl) {
 					withContext(Dispatchers.Default) {
-						URLDecoder.decode(
-							cleaned,
-							"UTF-8",
-						)
+						decodeUrl(cleaned)
 					}
 				} else {
 					cleaned
