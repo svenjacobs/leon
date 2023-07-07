@@ -27,7 +27,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class TwitterSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofParameter("s|t"),
+	regex = RegexFactory.AllParameters,
 ) {
 
 	override val id = SanitizerId("twitter")
