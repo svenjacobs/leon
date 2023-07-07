@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,14 +26,25 @@ class TwitterSanitizerTest : WordSpec(
 
 		"invoke" should {
 
-			"remove the \"s\" and \"t\" parameters" {
+			"remove all parameters" {
 				val sanitizer = TwitterSanitizer()
 
-				val result = sanitizer(
+				var result = sanitizer(
 					"https://twitter.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
 				)
 
 				result shouldBe "https://twitter.com/AndroidDev/status/1453763770334027781"
+
+				result =
+					sanitizer(
+						"https://twitter.com/fantasm_finance/status/1501569232881995785?ref" +
+							"_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E150156923288199578" +
+							"5%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fwww.coindesk.com%2Ft" +
+							"ech%2F2022%2F03%2F10%2Ffantom-based-algo-protocol-fantasm-exploited-" +
+							"for-26m%2F",
+					)
+
+				result shouldBe "https://twitter.com/fantasm_finance/status/1501569232881995785"
 			}
 		}
 	},
