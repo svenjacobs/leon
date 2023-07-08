@@ -53,6 +53,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.webtrekk.WebtrekkSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.yahoo.YahooSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeMusicSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeRedirectSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeShortUrlSanitizer
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
 import kotlinx.collections.immutable.persistentListOf
@@ -97,6 +98,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				YahooSearchSanitizer(),
 				YoutubeMusicSanitizer(),
 				YoutubeRedirectSanitizer(),
+				YoutubeSanitizer(),
 				YoutubeShortUrlSanitizer(),
 			),
 		)
