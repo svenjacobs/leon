@@ -45,6 +45,7 @@
     <string name="sanitizer_spiegel_name" translatable="false">Spiegel</string>
     <string name="sanitizer_spotify_name" translatable="false">Spotify</string>
     <string name="sanitizer_theguardian" translatable="false">The Guardian</string>
+    <string name="sanitizer_threads" translatable="false">Threads.net</string>
     <string name="sanitizer_twitter_name" translatable="false">Twitter</string>
     <string name="sanitizer_webtrekk_name" translatable="false">Webtrekk</string>
     <string name="sanitizer_yahoo_search_name">Yahoo Search</string>
