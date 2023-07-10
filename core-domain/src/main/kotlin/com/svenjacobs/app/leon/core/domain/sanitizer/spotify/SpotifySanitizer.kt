@@ -27,7 +27,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class SpotifySanitizer : RegexSanitizer(
-	regex = RegexFactory.ofParameter("si|dl_branch"),
+	regex = RegexFactory.AllParameters,
 ) {
 
 	override val id = SanitizerId("spotify")
@@ -36,5 +36,6 @@ class SpotifySanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_spotify_name),
 	)
 
-	override fun matchesDomain(input: String) = input.matchesDomain("spotify.com")
+	override fun matchesDomain(input: String) =
+		input.matchesDomain("(open\\.)?spotify\\.com", isRegex = true)
 }
