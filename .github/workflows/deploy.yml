@@ -51,6 +51,10 @@ jobs:
                   "labels": ["chore", "maintenance"]
                 },
                 {
+                  "title": "## ⬆️ Dependencies",
+                  "labels": ["dependencies"]
+                },
+                {
                   "title": "## 📚 Documentation",
                   "labels": ["documentation"]
                 },
