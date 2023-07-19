@@ -72,6 +72,7 @@ fun SettingsSanitizersScreen(
 
 			Card {
 				LazyColumn {
+					//noinspection NewApi
 					uiState.sanitizers.forEach { sanitizer ->
 						item(key = sanitizer.id.value) {
 							Item(
