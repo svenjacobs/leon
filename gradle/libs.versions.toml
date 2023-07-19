@@ -46,7 +46,7 @@ mikepenz-aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compos
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
 mockk = "io.mockk:mockk:1.13.5"
 slack-compose-lint-checks = "com.slack.lint.compose:compose-lint-checks:1.2.0"
-square-moshi = "com.squareup.moshi:moshi:1.13.0"
+square-moshi = "com.squareup.moshi:moshi:1.15.0"
 
 [bundles]
 androidx-compose = [
