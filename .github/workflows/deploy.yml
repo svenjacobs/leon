@@ -29,7 +29,7 @@ jobs:
         run: git secret reveal -f
 
       - name: Deploy production version
-        run: ./gradlew assembleRelease publishReleaseBundle --track production --release-status completed
+        run: ./gradlew assembleRelease publishReleaseBundle --track internal --release-status completed
 
       - name: Build changelog
         id: github_release
