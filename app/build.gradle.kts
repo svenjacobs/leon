@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.*
+import java.util.Properties
 
 plugins {
 	id("com.android.application")
@@ -29,7 +29,6 @@ plugins {
 android {
 	namespace = "com.svenjacobs.app.leon"
 	compileSdk = Android.compileSdk
-	buildToolsVersion = Android.buildToolsVersion
 
 	defaultConfig {
 		applicationId = "com.svenjacobs.app.leon"
