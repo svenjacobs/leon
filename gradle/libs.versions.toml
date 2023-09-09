@@ -57,6 +57,6 @@ androidx-compose = [
 
 [plugins]
 adarshr-test-logger = "com.adarshr.test-logger:3.2.0"
-ben-manes-versions = "com.github.ben-manes.versions:0.47.0"
+ben-manes-versions = "com.github.ben-manes.versions:0.48.0"
 kotlinter = "org.jmailen.kotlinter:3.16.0"
 triplet-play = "com.github.triplet.play:3.8.4"
