@@ -49,8 +49,8 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.spiegel.SpiegelSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spotify.SpotifySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.theguardian.TheGuardianSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.threads.ThreadsSanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.twitter.TwitterSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.webtrekk.WebtrekkSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.x.XSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.yahoo.YahooSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeMusicSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeRedirectSanitizer
@@ -95,8 +95,8 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				SpotifySanitizer(),
 				TheGuardianSanitizer(),
 				ThreadsSanitizer(),
-				TwitterSanitizer(),
 				WebtrekkSanitizer(),
+				XSanitizer(),
 				YahooSearchSanitizer(),
 				YoutubeMusicSanitizer(),
 				YoutubeRedirectSanitizer(),
