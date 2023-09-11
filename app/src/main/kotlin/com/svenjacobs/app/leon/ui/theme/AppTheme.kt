@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-private val LightColors = lightColorScheme(
+private val lightColors = lightColorScheme(
 	primary = LightPrimary,
 	onPrimary = LightOnPrimary,
 	primaryContainer = LightPrimaryContainer,
@@ -57,7 +57,7 @@ private val LightColors = lightColorScheme(
 	inversePrimary = LightInversePrimary,
 )
 
-private val DarkColors = darkColorScheme(
+private val darkColors = darkColorScheme(
 	primary = DarkPrimary,
 	onPrimary = DarkOnPrimary,
 	primaryContainer = DarkPrimaryContainer,
@@ -93,7 +93,8 @@ fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable ()
 			val context = LocalContext.current
 			if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
 		}
-		else -> if (darkTheme) DarkColors else LightColors
+
+		else -> if (darkTheme) darkColors else lightColors
 	}
 
 	MaterialTheme(
