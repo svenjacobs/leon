@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -74,7 +73,6 @@ import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState
 import com.svenjacobs.app.leon.ui.screens.main.model.Screen
 import com.svenjacobs.app.leon.ui.screens.main.views.BackgroundImage
 import com.svenjacobs.app.leon.ui.screens.main.views.BottomBar
-import com.svenjacobs.app.leon.ui.screens.main.views.BroomIcon
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 import kotlinx.collections.immutable.persistentListOf
@@ -231,15 +229,6 @@ private fun Content(
 				modifier = Modifier.fillMaxWidth(),
 				horizontalAlignment = Alignment.CenterHorizontally,
 			) {
-				BroomIcon(
-					modifier = Modifier
-						.size(128.dp)
-						.padding(
-							top = 16.dp,
-							bottom = 32.dp,
-						),
-				)
-
 				when (result) {
 					is Result.Success -> SuccessBody(
 						result = result,
@@ -414,8 +403,21 @@ private fun HowToBody(modifier: Modifier = Modifier, onImportFromClipboardClick:
 		Column(
 			modifier = Modifier.padding(16.dp),
 		) {
+			OutlinedButton(
+				modifier = Modifier.fillMaxWidth(),
+				onClick = onImportFromClipboardClick,
+			) {
+				Text(
+					text = stringResource(R.string.import_from_clipboard),
+					style = MaterialTheme.typography.bodyMedium,
+				)
+			}
+
 			Text(
-				modifier = Modifier.padding(bottom = 8.dp),
+				modifier = Modifier.padding(
+					top = 16.dp,
+					bottom = 8.dp,
+				),
 				text = stringResource(R.string.how_to_title),
 				style = MaterialTheme.typography.headlineSmall,
 			)
@@ -433,18 +435,6 @@ private fun HowToBody(modifier: Modifier = Modifier, onImportFromClipboardClick:
 					modifier = Modifier,
 					textAlign = TextAlign.Justify,
 					text = stringResource(R.string.how_to_text),
-				)
-			}
-
-			OutlinedButton(
-				modifier = Modifier
-					.fillMaxWidth()
-					.padding(top = 16.dp),
-				onClick = onImportFromClipboardClick,
-			) {
-				Text(
-					text = stringResource(R.string.import_from_clipboard),
-					style = MaterialTheme.typography.bodyMedium,
 				)
 			}
 		}
@@ -475,7 +465,7 @@ private fun SuccessBodyPreview() {
 
 @Preview(showBackground = true)
 @Composable
-private fun FailureBodyPreview() {
+private fun HowToBodyPreview() {
 	AppTheme {
 		HowToBody(
 			onImportFromClipboardClick = {},

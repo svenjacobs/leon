@@ -25,7 +25,7 @@
     <string name="copy">Kopiuj</string>
     <string name="clipboard_message">Link skopiowany do schowka</string>
     <string name="how_to_title">Jak wykonać</string>
-    <string name="how_to_text">Podczas udostępniania tekstu wybierz opcję "Oczyszczacz URL". Następnie dotknij opcji "Udostępnij" w tej aplikacji, aby wysłać tekst do aplikacji docelowej. Możesz również kliknąć poniższy przycisk, aby zaimportować zawartość ze schowka.</string>
+    <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app. Alternatively, click the button above to import contents from the clipboard.</string>
     <string name="cleaned_url">URL Oczyszczony</string>
     <string name="original_url">URL Źródłowy</string>
     <string name="sanitizers">Sanityzatory</string>

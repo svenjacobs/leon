@@ -26,7 +26,7 @@
     <string name="copy">Copy</string>
     <string name="clipboard_message">Link copied to clipboard</string>
     <string name="how_to_title">How-to</string>
-    <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app. Alternatively, click the button below to import contents from the clipboard.</string>
+    <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app. Alternatively, click the button above to import contents from the clipboard.</string>
     <string name="cleaned_url">Cleaned URL</string>
     <string name="original_url">Original URL</string>
     <string name="sanitizers">Sanitizers</string>

@@ -25,7 +25,7 @@
     <string name="copy">Копировать</string>
     <string name="clipboard_message">Ссылка скопирована в буфер обмена</string>
     <string name="how_to_title">Инструкция</string>
-    <string name="how_to_text">При передаче текста выберите \"Очистка URL\". Затем нажмите \"Поделиться\" в этом приложении, чтобы отправить текст в целевое приложение.</string>
+    <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app. Alternatively, click the button above to import contents from the clipboard.</string>
     <string name="cleaned_url">Очищенный URL-адрес</string>
     <string name="original_url">Оригинальный URL-адрес</string>
     <string name="sanitizers">Очистка</string>
