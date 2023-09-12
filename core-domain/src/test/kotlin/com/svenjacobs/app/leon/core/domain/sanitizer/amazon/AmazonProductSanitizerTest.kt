@@ -27,7 +27,7 @@ class AmazonProductSanitizerTest : WordSpec(
 
 		"invoke" should {
 
-			"clean Amazon product link" {
+			"clean Amazon product link (dp)" {
 				var result = sanitizer(
 					"https://www.amazon.de/Xiaomi-Aktivit%C3%A4tstracker-Trainings-Puls%C3%" +
 						"BCberwachung-Akkulaufzeit/dp/B091G3FLL7/?_encoding=UTF8&pd_rd_w=xDcJP&pf" +
@@ -49,10 +49,17 @@ class AmazonProductSanitizerTest : WordSpec(
 				result shouldBe "https://www.amazon.co.uk/dp/B091G3FLL7/"
 			}
 
+			"clean Amazon product link (gp/product)" {
+				val result = sanitizer(
+					"https://www.amazon.fr/gp/product/B0C9JKKL7N?tag=egcdealabs08-21&ascsubtag=1498016995",
+				)
+
+				result shouldBe "https://www.amazon.fr/dp/B0C9JKKL7N/"
+			}
+
 			"clean Amazon cart product link" {
 				sanitizer(
-					"https://www.amazon.com/gp/aw/d/B009EEZYE0/ref=ox_sc_act_image_1?smid=A" +
-						"TVPDKIKX0DER&psc=1",
+					"https://www.amazon.com/gp/aw/d/B009EEZYE0/ref=ox_sc_act_image_1?smid=ATVPDKIKX0DER&psc=1",
 				) shouldBe "https://www.amazon.com/dp/B009EEZYE0/"
 			}
 
