@@ -19,22 +19,19 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.facebook
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class FacebookSanitizer : RegexSanitizer(
-	regex = RegexFactory.AllParameters,
+class FacebookAnalyticsSanitizer : RegexSanitizer(
+	regex = RegexFactory.ofWildcardParameter("fb_|fbclid"),
 ) {
 
-	override val id = SanitizerId("facebook_com")
+	override val id = SanitizerId("facebook")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_facebook_name),
+		name = context.getString(R.string.sanitizer_facebook_analytics_name),
 	)
-
-	override fun matchesDomain(input: String) = input.matchesDomain("facebook.com")
 }
