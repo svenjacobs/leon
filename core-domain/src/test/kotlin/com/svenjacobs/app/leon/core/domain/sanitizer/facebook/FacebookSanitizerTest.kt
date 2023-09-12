@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,20 @@ import io.kotest.matchers.shouldBe
 
 class FacebookSanitizerTest : WordSpec(
 	{
+		val sanitizer = FacebookSanitizer()
 
 		"invoke" should {
 
-			"remove \"fb_*\" and \"fbclid\" parameters" {
-				val sanitizer = FacebookSanitizer()
+			"clean facebook.com URLs" {
+				sanitizer("https://www.facebook.com/reel/1242384407160280?sfnsn=scwspmo") shouldBe
+					"https://www.facebook.com/reel/1242384407160280"
+			}
+		}
 
-				val result = sanitizer(
-					"https://www.example.com?fb_abc=123&fbclid=12345",
-				)
+		"matchesDomain" should {
 
-				result shouldBe "https://www.example.com"
+			"match facebook.com" {
+				sanitizer.matchesDomain("https://facebook.com") shouldBe true
 			}
 		}
 	},

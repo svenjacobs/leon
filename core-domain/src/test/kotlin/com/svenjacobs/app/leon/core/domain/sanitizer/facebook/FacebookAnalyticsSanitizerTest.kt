@@ -18,23 +18,23 @@
 
 package com.svenjacobs.app.leon.core.domain.sanitizer.facebook
 
-import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
-import com.svenjacobs.app.leon.core.common.regex.RegexFactory
-import com.svenjacobs.app.leon.core.domain.R
-import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldBe
 
-class FacebookSanitizer : RegexSanitizer(
-	regex = RegexFactory.AllParameters,
-) {
+class FacebookAnalyticsSanitizerTest : WordSpec(
+	{
 
-	override val id = SanitizerId("facebook_com")
+		"invoke" should {
 
-	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_facebook_name),
-	)
+			"remove \"fb_*\" and \"fbclid\" parameters" {
+				val sanitizer = FacebookAnalyticsSanitizer()
 
-	override fun matchesDomain(input: String) = input.matchesDomain("facebook.com")
-}
+				val result = sanitizer(
+					"https://www.example.com?fb_abc=123&fbclid=12345",
+				)
+
+				result shouldBe "https://www.example.com"
+			}
+		}
+	},
+)

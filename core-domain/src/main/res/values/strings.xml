@@ -26,7 +26,8 @@
     <string name="sanitizer_ebay_name" translatable="false">eBay</string>
     <string name="sanitizer_elfinanciero_name" translatable="false">ElFinanciero</string>
     <string name="sanitizer_empty_parameters_name">Empty Parameters</string>
-    <string name="sanitizer_facebook_name" translatable="false">Facebook</string>
+    <string name="sanitizer_facebook_analytics_name" translatable="false">Facebook Analytics</string>
+    <string name="sanitizer_facebook_name" translatable="false">Facebook.com</string>
     <string name="sanitizer_flipkart_name" translatable="false">Flipkart</string>
     <string name="sanitizer_ga_name" translatable="false">Google Analytics</string>
     <string name="sanitizer_georiot_name" translatable="false">GeoRiot</string>
