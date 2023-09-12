@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,35 @@ import io.kotest.matchers.shouldBe
 
 class NetflixSanitizerTest : WordSpec(
 	{
+		val sanitizer = NetflixSanitizer()
 
 		"invoke" should {
 
 			"remove various Netflix parameters" {
-				val sanitizer = NetflixSanitizer()
-
 				val result = sanitizer(
 					"https://www.netflix.com/de/title/81040344?s=a&trkid=13747225&t=more&vlang=de&clip=81499054",
 				)
 
 				result shouldBe "https://www.netflix.com/de/title/81040344"
+			}
+
+			"remove parameters from help.netflix.com URL" {
+				val result = sanitizer(
+					"https://help.netflix.com/en/titlerequest?netflixsource=android&fromApp=true",
+				)
+
+				result shouldBe "https://help.netflix.com/en/titlerequest"
+			}
+		}
+
+		"matchesDomain" should {
+
+			"match netflix.com" {
+				sanitizer.matchesDomain("https://netflix.com") shouldBe true
+			}
+
+			"match help.netflix.com" {
+				sanitizer.matchesDomain("https://help.netflix.com") shouldBe true
 			}
 		}
 	},

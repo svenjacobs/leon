@@ -27,7 +27,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class NetflixSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofParameter("s|t|trkid|vlang|clip"),
+	regex = RegexFactory.ofParameter("s|t|trkid|vlang|clip|netflixsource|fromApp"),
 ) {
 
 	override val id = SanitizerId("netflix")
@@ -36,5 +36,8 @@ class NetflixSanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_netflix_name),
 	)
 
-	override fun matchesDomain(input: String) = input.matchesDomain("netflix.com")
+	override fun matchesDomain(input: String) = input.matchesDomain(
+		domain = "(help\\.)?netflix.com",
+		isRegex = true,
+	)
 }
