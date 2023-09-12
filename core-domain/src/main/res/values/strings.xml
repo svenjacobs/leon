@@ -41,6 +41,7 @@
     <string name="sanitizer_netflix_name" translatable="false">Netflix</string>
     <string name="sanitizer_newegg_name" translatable="false">NewEgg</string>
     <string name="sanitizer_pearl" translatable="false">Pearl</string>
+    <string name="sanitizer_reddit" translatable="false">Reddit</string>
     <string name="sanitizer_reddit_mail" translatable="false">Reddit (click.redditmail.com)</string>
     <string name="sanitizer_reddit_out" translatable="false">Reddit (out.reddit.com)</string>
     <string name="sanitizer_session_ids_name" translatable="false">Session IDs</string>
