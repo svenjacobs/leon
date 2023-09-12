@@ -38,6 +38,6 @@ class YoutubeSanitizer : Sanitizer {
 	override fun invoke(input: String) = PARAMS_REGEX.replace(input, "")
 
 	private companion object {
-		private val PARAMS_REGEX = Regex("[?&](?!v=)[^&]+")
+		private val PARAMS_REGEX = Regex("[?&](?!(v|search_query)=)[^&]+")
 	}
 }
