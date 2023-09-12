@@ -24,6 +24,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.aliexpress.AliexpressSaniti
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonProductSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.aol.AolSearchSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.at.AtAnalyticsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.change.ChangeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.cx.CxAnalyticsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.ebay.EbaySanitizer
@@ -71,6 +72,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				AmazonProductSanitizer(),
 				AmazonSanitizer(),
 				AolSearchSanitizer(),
+				AtAnalyticsSanitizer(),
 				ChangeSanitizer(),
 				CxAnalyticsSanitizer(),
 				EbaySanitizer(),
