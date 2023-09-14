@@ -45,7 +45,7 @@ class MainScreenViewModel(
 	) {
 		sealed interface Result {
 
-			object Empty : Result
+			data object Empty : Result
 
 			data class Success(
 				val originalText: String,
@@ -53,7 +53,7 @@ class MainScreenViewModel(
 				val urls: ImmutableList<String>,
 			) : Result
 
-			object Error : Result
+			data object Error : Result
 		}
 	}
 

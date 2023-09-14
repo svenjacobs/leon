@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,14 +31,14 @@ sealed class Screen(
 	@StringRes val label: Int,
 	@StringRes val iconContentDescription: Int,
 ) {
-	object Main : Screen(
+	data object Main : Screen(
 		route = "main",
 		icon = Icons.Filled.Home,
 		label = R.string.screen_main,
 		iconContentDescription = R.string.screen_main,
 	)
 
-	object Settings : Screen(
+	data object Settings : Screen(
 		route = "settings",
 		icon = Icons.Filled.Settings,
 		label = R.string.screen_settings,
