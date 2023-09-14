@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ object RegexFactory {
 	val AllParameters = Regex("\\?.*")
 
 	/**
-	 * Returns a regex string which matches a certain parameter.
+	 * Returns a Regex which matches a certain parameter.
 	 *
 	 * For example `ofParameter("abc")` returns a regex string which matches `?abc=` or `&abc=`.
 	 *
@@ -36,7 +36,7 @@ object RegexFactory {
 	fun ofParameter(parameter: String): Regex = Regex("[?&](?:$parameter)=([^&#]*)")
 
 	/**
-	 * Returns a regex string which matches a certain parameter prefix.
+	 * Returns a Regex which matches a certain parameter prefix.
 	 *
 	 * For example `ofWildcardParameter("abc_")` returns a regex string which matches `?abc_x=`,
 	 * `&abc_y=`, `&abc_zzz=` et cetera.
@@ -45,4 +45,14 @@ object RegexFactory {
 	 */
 	@Suppress("RegExpUnnecessaryNonCapturingGroup")
 	fun ofWildcardParameter(parameter: String): Regex = Regex("[?&](?:$parameter)[^=]*=([^&#]*)")
+
+	/**
+	 * Returns a Regex which removes all parameters except the specified one.
+	 *
+	 * Use regular expression group and OR (`|`) to include several parameters, for example
+	 * `(a|b)`.
+	 *
+	 * @param parameter Parameter to exclude
+	 */
+	fun exceptParameter(parameter: String): Regex = Regex("[?&](?!$parameter=)[^&]+")
 }

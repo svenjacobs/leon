@@ -18,7 +18,7 @@
 
 package com.svenjacobs.app.leon.core.common.domain
 
-fun String.matchesDomain(domain: String, isRegex: Boolean = false): Boolean {
-	val regexDomain = if (!isRegex) domain.replace(".", "\\.") else domain
-	return Regex("^(?:https?://)?(?:www\\.)?$regexDomain.*").matches(this)
-}
+fun String.matchesDomainRegex(domain: String): Boolean =
+	Regex("^(?:https?://)?(?:www\\.)?$domain.*").matches(this)
+
+fun String.matchesDomain(domain: String): Boolean = matchesDomainRegex(domain.replace(".", "\\."))

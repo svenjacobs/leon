@@ -19,12 +19,16 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.youtube
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
+import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
+import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class YoutubeSanitizer : Sanitizer {
+class YoutubeSanitizer : RegexSanitizer(
+	RegexFactory.exceptParameter("(v|search_query)"),
+) {
 
 	override val id = SanitizerId("youtube")
 
@@ -32,12 +36,5 @@ class YoutubeSanitizer : Sanitizer {
 		name = context.getString(R.string.sanitizer_youtube_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("(m\\.)?youtube\\.com", isRegex = true)
-
-	override fun invoke(input: String) = PARAMS_REGEX.replace(input, "")
-
-	private companion object {
-		private val PARAMS_REGEX = Regex("[?&](?!(v|search_query)=)[^&]+")
-	}
+	override fun matchesDomain(input: String) = input.matchesDomainRegex("(m\\.)?youtube\\.com")
 }

@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.facebook
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
@@ -27,7 +27,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class FacebookSanitizer : RegexSanitizer(
-	regex = RegexFactory.AllParameters,
+	regex = RegexFactory.exceptParameter("(id|story_fbid)"),
 ) {
 
 	override val id = SanitizerId("facebook_com")
@@ -36,5 +36,7 @@ class FacebookSanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_facebook_name),
 	)
 
-	override fun matchesDomain(input: String) = input.matchesDomain("facebook.com")
+	override fun matchesDomain(input: String) = input.matchesDomainRegex(
+		domain = "(m\\.)?facebook.com",
+	)
 }
