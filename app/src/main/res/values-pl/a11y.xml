@@ -17,7 +17,6 @@
   -->
 
 <resources>
-    <string name="a11y_broom_icon">Rysunek miotły</string>
     <string name="a11y_howto">Obraz aplikacji wyjaśniającej na smartfonie</string>
     <string name="a11y_back_navigation">Ikona do nawigacji wstecz</string>
 </resources>
