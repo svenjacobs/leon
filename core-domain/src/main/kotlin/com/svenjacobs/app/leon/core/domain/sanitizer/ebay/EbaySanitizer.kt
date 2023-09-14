@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.ebay
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
@@ -36,5 +36,5 @@ class EbaySanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_ebay_name),
 	)
 
-	override fun matchesDomain(input: String) = input.matchesDomain("ebay\\..+/itm/", isRegex = true)
+	override fun matchesDomain(input: String) = input.matchesDomainRegex("ebay\\..+/itm/")
 }

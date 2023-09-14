@@ -27,9 +27,18 @@ class FacebookSanitizerTest : WordSpec(
 
 		"invoke" should {
 
-			"clean facebook.com URLs" {
+			"clean facebook.com reel URLs" {
 				sanitizer("https://www.facebook.com/reel/1242384407160280?sfnsn=scwspmo") shouldBe
 					"https://www.facebook.com/reel/1242384407160280"
+			}
+
+			"clean m.facebook.com story URLs" {
+				sanitizer(
+					"https://m.facebook.com/story.php?story_fbid=pfbid0HqS6zLZvNrQt6ACvjv3h" +
+						"Kq6khpVse437nWSq2jBifKRD5sVH2XRLC3zz8aA7TKkWl&id=4&sfnsn=wiwspmo&mibext" +
+						"id=XzsMCV",
+				) shouldBe "https://m.facebook.com/story.php?story_fbid=pfbid0HqS6zLZvNrQt6ACvjv" +
+					"3hKq6khpVse437nWSq2jBifKRD5sVH2XRLC3zz8aA7TKkWl&id=4"
 			}
 		}
 
@@ -37,6 +46,10 @@ class FacebookSanitizerTest : WordSpec(
 
 			"match facebook.com" {
 				sanitizer.matchesDomain("https://facebook.com") shouldBe true
+			}
+
+			"match m.facebook.com" {
+				sanitizer.matchesDomain("https://m.facebook.com") shouldBe true
 			}
 		}
 	},

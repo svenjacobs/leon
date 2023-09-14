@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.spotify
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
@@ -36,6 +36,5 @@ class SpotifySanitizer : RegexSanitizer(
 		name = context.getString(R.string.sanitizer_spotify_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("(open\\.)?spotify\\.com", isRegex = true)
+	override fun matchesDomain(input: String) = input.matchesDomainRegex("(open\\.)?spotify\\.com")
 }

@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
@@ -36,6 +36,5 @@ class LinkSynergySanitizer : SearchResultSanitizer(
 		name = context.getString(R.string.sanitizer_linksynergy_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("linksynergy\\.[^/]+/link", isRegex = true)
+	override fun matchesDomain(input: String) = input.matchesDomainRegex("linksynergy\\.[^/]+/link")
 }

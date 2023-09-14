@@ -44,9 +44,8 @@ class DomainExtensionsTest : WordSpec(
 			}
 
 			"match domain with regular expression values" {
-				"https://aliexpress.com/item/32948511896".matchesDomain(
+				"https://aliexpress.com/item/32948511896".matchesDomainRegex(
 					domain = "aliexpress\\..+/item/",
-					isRegex = true,
 				) shouldBe true
 			}
 

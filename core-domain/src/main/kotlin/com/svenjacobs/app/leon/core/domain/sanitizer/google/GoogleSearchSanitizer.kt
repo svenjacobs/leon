@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.google
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
@@ -36,6 +36,5 @@ class GoogleSearchSanitizer : SearchResultSanitizer(
 		name = context.getString(R.string.sanitizer_google_search_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("google\\.[^/]+/url", isRegex = true)
+	override fun matchesDomain(input: String) = input.matchesDomainRegex("google\\.[^/]+/url")
 }

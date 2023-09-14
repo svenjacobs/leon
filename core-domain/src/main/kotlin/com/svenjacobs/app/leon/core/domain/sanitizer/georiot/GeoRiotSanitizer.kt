@@ -19,7 +19,7 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.georiot
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
@@ -37,5 +37,5 @@ class GeoRiotSanitizer : SearchResultSanitizer(
 	)
 
 	override fun matchesDomain(input: String) =
-		input.matchesDomain("target.georiot\\.[^/]+/Proxy.ashx", isRegex = true)
+		input.matchesDomainRegex("target.georiot\\.[^/]+/Proxy.ashx")
 }
