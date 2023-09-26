@@ -206,6 +206,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "gavanore",
+      "name": "gavanore",
+      "avatar_url": "https://avatars.githubusercontent.com/u/117471800?v=4",
+      "profile": "https://github.com/gavanore",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -213,5 +222,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs"
+  "projectOwner": "svenjacobs",
+  "commitType": "docs"
 }
