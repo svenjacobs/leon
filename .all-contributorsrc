@@ -206,6 +206,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "codeinabox",
+      "name": "Mathew Attlee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2069958?v=4",
+      "profile": "http://www.codeinabox.com",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -213,5 +222,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs"
+  "projectOwner": "svenjacobs",
+  "commitType": "docs"
 }
