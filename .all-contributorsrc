@@ -206,6 +206,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "felixschndr",
+      "name": "Felix Schneider",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45742226?v=4",
+      "profile": "https://info.fschneider.me/",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -213,5 +222,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs"
+  "projectOwner": "svenjacobs",
+  "commitType": "docs"
 }
