@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -79,6 +79,9 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/osjasmine"><img src="https://avatars.githubusercontent.com/u/86544869?v=4?s=100" width="100px;" alt="osjasmine"/><br /><sub><b>osjasmine</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Aosjasmine" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/guerda"><img src="https://avatars.githubusercontent.com/u/230782?v=4?s=100" width="100px;" alt="Philip Gillißen"/><br /><sub><b>Philip Gillißen</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Aguerda" title="Bug reports">🐛</a> <a href="#ideas-guerda" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/svenjacobs/leon/commits?author=guerda" title="Code">💻</a> <a href="https://github.com/svenjacobs/leon/commits?author=guerda" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/aleksandarzekovic"><img src="https://avatars.githubusercontent.com/u/47242383?v=4?s=100" width="100px;" alt="Aleksandar Zekovic"/><br /><sub><b>Aleksandar Zekovic</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=aleksandarzekovic" title="Code">💻</a> <a href="https://github.com/svenjacobs/leon/commits?author=aleksandarzekovic" title="Tests">⚠️</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://qwerty-fr.org"><img src="https://avatars.githubusercontent.com/u/2824100?v=4?s=100" width="100px;" alt="Paul"/><br /><sub><b>Paul</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Adevnoname120" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
