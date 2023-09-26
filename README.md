@@ -81,7 +81,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/aleksandarzekovic"><img src="https://avatars.githubusercontent.com/u/47242383?v=4?s=100" width="100px;" alt="Aleksandar Zekovic"/><br /><sub><b>Aleksandar Zekovic</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=aleksandarzekovic" title="Code">💻</a> <a href="https://github.com/svenjacobs/leon/commits?author=aleksandarzekovic" title="Tests">⚠️</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Glitchy-Tozier"><img src="https://avatars.githubusercontent.com/u/59611881?v=4?s=100" width="100px;" alt="Glitchy-Tozier"/><br /><sub><b>Glitchy-Tozier</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3AGlitchy-Tozier" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Glitchy-Tozier"><img src="https://avatars.githubusercontent.com/u/59611881?v=4?s=100" width="100px;" alt="Glitchy-Tozier"/><br /><sub><b>Glitchy-Tozier</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3AGlitchy-Tozier" title="Bug reports">🐛</a> <a href="#ideas-Glitchy-Tozier" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
