@@ -69,7 +69,7 @@ subprojects {
 }
 
 tasks.create<Delete>("clean") {
-	delete = setOf(rootProject.buildDir)
+	delete = setOf(rootProject.layout.buildDirectory)
 }
 
 tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
