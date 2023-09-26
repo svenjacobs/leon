@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@ package com.svenjacobs.app.leon.ui.screens.settings
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
+import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 
 @Composable
@@ -40,6 +42,12 @@ fun SettingsLicensesScreen(modifier: Modifier = Modifier, onBackClick: () -> Uni
 			modifier = Modifier
 				.padding(contentPadding)
 				.fillMaxSize(),
+			colors = LibraryDefaults.libraryColors(
+				backgroundColor = MaterialTheme.colorScheme.background,
+				contentColor = MaterialTheme.colorScheme.onBackground,
+				badgeBackgroundColor = MaterialTheme.colorScheme.primary,
+				badgeContentColor = MaterialTheme.colorScheme.onPrimary,
+			),
 		)
 	}
 }

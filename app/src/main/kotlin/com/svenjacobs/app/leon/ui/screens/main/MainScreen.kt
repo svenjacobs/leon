@@ -143,66 +143,64 @@ fun MainScreen(
 		}
 	}
 
-	AppTheme {
-		Scaffold(
-			modifier = modifier,
-			topBar = { TopAppBar() },
-			bottomBar = { BottomBar(navController = navController) },
-			snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-			content = { padding ->
-				Box(
-					modifier = Modifier.padding(padding),
+	Scaffold(
+		modifier = modifier,
+		topBar = { TopAppBar() },
+		bottomBar = { BottomBar(navController = navController) },
+		snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+		content = { padding ->
+			Box(
+				modifier = Modifier.padding(padding),
+			) {
+				BackgroundImage()
+
+				NavHost(
+					navController = navController,
+					startDestination = Screen.Main.route,
 				) {
-					BackgroundImage()
+					composable(Screen.Main.route) {
+						LaunchedEffect(uiState.result, uiState.actionAfterClean) {
+							if (didPerformActionAfterClean) return@LaunchedEffect
 
-					NavHost(
-						navController = navController,
-						startDestination = Screen.Main.route,
-					) {
-						composable(Screen.Main.route) {
-							LaunchedEffect(uiState.result, uiState.actionAfterClean) {
-								if (didPerformActionAfterClean) return@LaunchedEffect
-
-								(uiState.result as? Result.Success)?.let { result ->
-									when (uiState.actionAfterClean) {
-										ActionAfterClean.OpenShareMenu -> openShareMenu(result)
-										ActionAfterClean.CopyToClipboard -> copyToClipboard(result)
-										ActionAfterClean.DoNothing -> {}
-									}
-
-									didPerformActionAfterClean = true
+							(uiState.result as? Result.Success)?.let { result ->
+								when (uiState.actionAfterClean) {
+									ActionAfterClean.OpenShareMenu -> openShareMenu(result)
+									ActionAfterClean.CopyToClipboard -> copyToClipboard(result)
+									ActionAfterClean.DoNothing -> {}
 								}
+
+								didPerformActionAfterClean = true
 							}
-
-							Content(
-								result = uiState.result,
-								isUrlDecodeEnabled = uiState.isUrlDecodeEnabled,
-								isExtractUrlEnabled = uiState.isExtractUrlEnabled,
-								onImportFromClipboardClick = {
-									viewModel.setText(
-										clipboard.getText()?.toString(),
-									)
-								},
-								onShareClick = ::openShareMenu,
-								onCopyToClipboardClick = ::copyToClipboard,
-								onOpenClick = ::openInDefaultApp,
-								onResetClick = viewModel::onResetClick,
-								onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
-								onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,
-							)
 						}
 
-						composable(Screen.Settings.route) {
-							SettingsScreen(
-								onNavigateToSettingsSanitizers = onNavigateToSettingsSanitizers,
-								onNavigateToSettingsLicenses = onNavigateToSettingsLicenses,
-							)
-						}
+						Content(
+							result = uiState.result,
+							isUrlDecodeEnabled = uiState.isUrlDecodeEnabled,
+							isExtractUrlEnabled = uiState.isExtractUrlEnabled,
+							onImportFromClipboardClick = {
+								viewModel.setText(
+									clipboard.getText()?.toString(),
+								)
+							},
+							onShareClick = ::openShareMenu,
+							onCopyToClipboardClick = ::copyToClipboard,
+							onOpenClick = ::openInDefaultApp,
+							onResetClick = viewModel::onResetClick,
+							onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
+							onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,
+						)
+					}
+
+					composable(Screen.Settings.route) {
+						SettingsScreen(
+							onNavigateToSettingsSanitizers = onNavigateToSettingsSanitizers,
+							onNavigateToSettingsLicenses = onNavigateToSettingsLicenses,
+						)
 					}
 				}
-			},
-		)
-	}
+			}
+		},
+	)
 }
 
 @Composable
