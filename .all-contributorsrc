@@ -206,6 +206,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "ma651851384",
+      "name": "Matthias",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36804279?v=4",
+      "profile": "https://github.com/ma651851384",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -213,5 +222,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs"
+  "projectOwner": "svenjacobs",
+  "commitType": "docs"
 }
