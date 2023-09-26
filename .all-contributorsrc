@@ -206,6 +206,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "Gojikovi",
+      "name": "Annie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/96128712?v=4",
+      "profile": "https://github.com/Gojikovi",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -213,5 +222,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs"
+  "projectOwner": "svenjacobs",
+  "commitType": "docs"
 }
