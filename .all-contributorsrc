@@ -206,6 +206,16 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "xanoni",
+      "name": "Linus Xanoni",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77220130?v=4",
+      "profile": "https://anonpaste.org/?eb066acd6e42709f#9MpdEzRdzJ5ntQcizLjN4mFMaKLi8ArdbQMLhwaFQ5ji",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -213,5 +223,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs"
+  "projectOwner": "svenjacobs",
+  "commitType": "docs"
 }
