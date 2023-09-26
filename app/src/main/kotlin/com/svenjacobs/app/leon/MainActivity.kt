@@ -25,6 +25,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.view.WindowCompat
 import com.svenjacobs.app.leon.ui.MainRouter
+import com.svenjacobs.app.leon.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -38,9 +39,11 @@ class MainActivity : ComponentActivity() {
 		onIntent(intent)
 
 		setContent {
-			MainRouter(
-				sourceText = sourceText,
-			)
+			AppTheme {
+				MainRouter(
+					sourceText = sourceText,
+				)
+			}
 		}
 	}
 
