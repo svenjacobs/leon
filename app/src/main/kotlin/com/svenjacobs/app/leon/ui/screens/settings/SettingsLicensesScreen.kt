@@ -47,6 +47,7 @@ fun SettingsLicensesScreen(modifier: Modifier = Modifier, onBackClick: () -> Uni
 				contentColor = MaterialTheme.colorScheme.onBackground,
 				badgeBackgroundColor = MaterialTheme.colorScheme.primary,
 				badgeContentColor = MaterialTheme.colorScheme.onPrimary,
+				dialogConfirmButtonColor = MaterialTheme.colorScheme.primary,
 			),
 		)
 	}
