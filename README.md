@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-40-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -82,6 +82,28 @@ recommended and cutting-edge technologies, patterns and libraries such as:
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ratatouille100"><img src="https://avatars.githubusercontent.com/u/146064808?v=4?s=100" width="100px;" alt="George Kalinin"/><br /><sub><b>George Kalinin</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Aratatouille100" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Gojikovi"><img src="https://avatars.githubusercontent.com/u/96128712?v=4?s=100" width="100px;" alt="Annie"/><br /><sub><b>Annie</b></sub></a><br /><a href="#ideas-Gojikovi" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/vjrj"><img src="https://avatars.githubusercontent.com/u/180085?v=4?s=100" width="100px;" alt="vjrj"/><br /><sub><b>vjrj</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Avjrj" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ThiccOwl"><img src="https://avatars.githubusercontent.com/u/105682582?v=4?s=100" width="100px;" alt="ThiccOwl"/><br /><sub><b>ThiccOwl</b></sub></a><br /><a href="#ideas-ThiccOwl" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/devnoname120"><img src="https://avatars.githubusercontent.com/u/2824100?v=4?s=100" width="100px;" alt="Paul"/><br /><sub><b>Paul</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Adevnoname120" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Glitchy-Tozier"><img src="https://avatars.githubusercontent.com/u/59611881?v=4?s=100" width="100px;" alt="Glitchy-Tozier"/><br /><sub><b>Glitchy-Tozier</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3AGlitchy-Tozier" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/serrq"><img src="https://avatars.githubusercontent.com/u/113377431?v=4?s=100" width="100px;" alt="serrq"/><br /><sub><b>serrq</b></sub></a><br /><a href="#ideas-serrq" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://amay.bio.link/"><img src="https://avatars.githubusercontent.com/u/50140643?v=4?s=100" width="100px;" alt="Amay"/><br /><sub><b>Amay</b></sub></a><br /><a href="#ideas-vrndavn" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gavanore"><img src="https://avatars.githubusercontent.com/u/117471800?v=4?s=100" width="100px;" alt="gavanore"/><br /><sub><b>gavanore</b></sub></a><br /><a href="#ideas-gavanore" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ma651851384"><img src="https://avatars.githubusercontent.com/u/36804279?v=4?s=100" width="100px;" alt="Matthias"/><br /><sub><b>Matthias</b></sub></a><br /><a href="#ideas-ma651851384" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://info.fschneider.me/"><img src="https://avatars.githubusercontent.com/u/45742226?v=4?s=100" width="100px;" alt="Felix Schneider"/><br /><sub><b>Felix Schneider</b></sub></a><br /><a href="#ideas-felixschndr" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gl-dev"><img src="https://avatars.githubusercontent.com/u/44951272?v=4?s=100" width="100px;" alt="gl-dev"/><br /><sub><b>gl-dev</b></sub></a><br /><a href="#ideas-gl-dev" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/esemismo22"><img src="https://avatars.githubusercontent.com/u/123868868?v=4?s=100" width="100px;" alt="esemismo22"/><br /><sub><b>esemismo22</b></sub></a><br /><a href="#ideas-esemismo22" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.codeinabox.com/"><img src="https://avatars.githubusercontent.com/u/2069958?v=4?s=100" width="100px;" alt="Mathew Attlee"/><br /><sub><b>Mathew Attlee</b></sub></a><br /><a href="#ideas-codeinabox" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/alex-mayorga"><img src="https://avatars.githubusercontent.com/u/649262?v=4?s=100" width="100px;" alt="alex-mayorga"/><br /><sub><b>alex-mayorga</b></sub></a><br /><a href="#ideas-alex-mayorga" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ixanza"><img src="https://avatars.githubusercontent.com/u/5535758?v=4?s=100" width="100px;" alt="ixanza"/><br /><sub><b>ixanza</b></sub></a><br /><a href="#ideas-ixanza" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://anonpaste.org/?eb066acd6e42709f#9MpdEzRdzJ5ntQcizLjN4mFMaKLi8ArdbQMLhwaFQ5ji"><img src="https://avatars.githubusercontent.com/u/77220130?v=4?s=100" width="100px;" alt="Linus Xanoni"/><br /><sub><b>Linus Xanoni</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Axanoni" title="Bug reports">🐛</a> <a href="#ideas-xanoni" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rehork"><img src="https://avatars.githubusercontent.com/u/67607997?v=4?s=100" width="100px;" alt="rehork"/><br /><sub><b>rehork</b></sub></a><br /><a href="#translation-rehork" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://dev.jakedot.net/"><img src="https://avatars.githubusercontent.com/u/12250212?v=4?s=100" width="100px;" alt="JakeDot"/><br /><sub><b>JakeDot</b></sub></a><br /><a href="#ideas-jakedot" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
