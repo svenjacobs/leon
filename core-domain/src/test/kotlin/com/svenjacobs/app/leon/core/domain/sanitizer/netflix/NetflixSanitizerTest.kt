@@ -29,7 +29,8 @@ class NetflixSanitizerTest : WordSpec(
 
 			"remove various Netflix parameters" {
 				val result = sanitizer(
-					"https://www.netflix.com/de/title/81040344?s=a&trkid=13747225&t=more&vlang=de&clip=81499054",
+					"https://www.netflix.com/de/title/81040344?s=a&trkid=13747225&t=more&vl" +
+						"ang=de&clip=81499054&trg=trg",
 				)
 
 				result shouldBe "https://www.netflix.com/de/title/81040344"
