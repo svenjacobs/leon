@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ import io.kotest.matchers.shouldBe
 
 class AliexpressSanitizerTest : WordSpec(
 	{
+		val sanitizer = AliexpressSanitizer()
 
 		"invoke" should {
 
 			"remove all parameters from AliExpress article URL" {
-				val sanitizer = AliexpressSanitizer()
 				val result = sanitizer(
 					"https://m.de.aliexpress.com/item/32948511896.html?ug_edm_item_id=32948" +
 						"511896&pdp_npi=2%40dis%21EUR%21%E2%82%AC%2024%2C58%21%E2%82%AC%2014%2C" +
@@ -39,6 +39,16 @@ class AliexpressSanitizerTest : WordSpec(
 				)
 
 				result shouldBe "https://m.de.aliexpress.com/item/32948511896.html"
+			}
+		}
+
+		"matchesDomain" should {
+
+			"match aliexpress.com domains" {
+				sanitizer.matchesDomain("aliexpress.com/item/12345") shouldBe true
+				sanitizer.matchesDomain("m.de.aliexpress.com/item/12345") shouldBe true
+				sanitizer.matchesDomain("de.aliexpress.com/item/12345") shouldBe true
+				sanitizer.matchesDomain("es.aliexpress.com/item/12345") shouldBe true
 			}
 		}
 	},
