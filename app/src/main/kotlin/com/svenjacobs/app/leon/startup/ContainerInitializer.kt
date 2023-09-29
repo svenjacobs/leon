@@ -57,6 +57,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.threads.ThreadsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.webtrekk.WebtrekkSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.x.XSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.yahoo.YahooSearchSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.yandex.YandexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeMusicSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeRedirectSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeSanitizer
@@ -108,6 +109,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				WebtrekkSanitizer(),
 				XSanitizer(),
 				YahooSearchSanitizer(),
+				YandexSanitizer(),
 				YoutubeMusicSanitizer(),
 				YoutubeRedirectSanitizer(),
 				YoutubeSanitizer(),
