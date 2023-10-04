@@ -35,6 +35,7 @@
     <string name="sanitizer_georiot_name" translatable="false">GeoRiot</string>
     <string name="sanitizer_google_ads_name" translatable="false">Google Ads</string>
     <string name="sanitizer_google_search_name">Google Search</string>
+    <string name="sanitizer_heise" translatable="false">heise online</string>
     <string name="sanitizer_instagram_name" translatable="false">Instagram</string>
     <string name="sanitizer_jdoqocy_name" translatable="false">Jdoqocy</string>
     <string name="sanitizer_lazada" translatable="false">Lazada</string>
