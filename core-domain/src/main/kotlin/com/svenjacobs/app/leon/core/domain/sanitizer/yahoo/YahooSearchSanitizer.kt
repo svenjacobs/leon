@@ -20,14 +20,13 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.yahoo
 
 import android.content.Context
 import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
-import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.extractSearchResultValue
 
-class YahooSearchSanitizer : SearchResultSanitizer(
-	Regex("RU=([^/]+)"),
-) {
+class YahooSearchSanitizer : Sanitizer {
 
 	override val id = SanitizerId("yahoo_search")
 
@@ -36,4 +35,14 @@ class YahooSearchSanitizer : SearchResultSanitizer(
 	)
 
 	override fun matchesDomain(input: String) = input.matchesDomain("search.yahoo.com")
+
+	override fun invoke(input: String): String = if (input.contains("/search")) {
+		RegexFactory.exceptParameter("p").replace(input, "")
+	} else {
+		extractSearchResultValue(REGEX_SEARCH_RESULT, input)
+	}
+
+	companion object {
+		private val REGEX_SEARCH_RESULT = Regex("RU=([^/]+)")
+	}
 }
