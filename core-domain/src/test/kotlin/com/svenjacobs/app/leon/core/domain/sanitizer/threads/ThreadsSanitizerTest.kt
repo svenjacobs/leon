@@ -21,24 +21,25 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.threads
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class ThreadsSanitizerTest : WordSpec(
-	{
-		val sanitizer = ThreadsSanitizer()
+class ThreadsSanitizerTest :
+	WordSpec(
+		{
+			val sanitizer = ThreadsSanitizer()
 
-		"invoke" should {
+			"invoke" should {
 
-			"remove all parameters" {
-				sanitizer(
-					"https://www.threads.net/t/CufR4M8yNdJ/?igshid=NTc4MTIwNjQ2YQ==",
-				) shouldBe "https://www.threads.net/t/CufR4M8yNdJ/"
+				"remove all parameters" {
+					sanitizer(
+						"https://www.threads.net/t/CufR4M8yNdJ/?igshid=NTc4MTIwNjQ2YQ==",
+					) shouldBe "https://www.threads.net/t/CufR4M8yNdJ/"
+				}
 			}
-		}
 
-		"matchesDomain" should {
+			"matchesDomain" should {
 
-			"match threads.net" {
-				sanitizer.matchesDomain("https://threads.net") shouldBe true
+				"match threads.net" {
+					sanitizer.matchesDomain("https://threads.net") shouldBe true
+				}
 			}
-		}
-	},
-)
+		},
+	)

@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
-class GoogleSearchSanitizer : SearchResultSanitizer(
-	RegexFactory.ofParameter("url|q"),
-) {
+class GoogleSearchSanitizer :
+	SearchResultSanitizer(
+		RegexFactory.ofParameter("url|q"),
+	) {
 
 	override val id = SanitizerId("google_search")
 

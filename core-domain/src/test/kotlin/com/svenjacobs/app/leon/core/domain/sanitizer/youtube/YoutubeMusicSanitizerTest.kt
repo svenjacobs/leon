@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,30 +21,31 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.youtube
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class YoutubeMusicSanitizerTest : WordSpec(
-	{
-		val sanitizer = YoutubeMusicSanitizer()
+class YoutubeMusicSanitizerTest :
+	WordSpec(
+		{
+			val sanitizer = YoutubeMusicSanitizer()
 
-		"matchesDomain" should {
+			"matchesDomain" should {
 
-			"match music.youtube.com domain" {
-				sanitizer.matchesDomain("https://music.youtube.com/") shouldBe true
+				"match music.youtube.com domain" {
+					sanitizer.matchesDomain("https://music.youtube.com/") shouldBe true
+				}
+
+				"not match regular youtube.com domain" {
+					sanitizer.matchesDomain("https://youtube.com/") shouldBe false
+				}
 			}
 
-			"not match regular youtube.com domain" {
-				sanitizer.matchesDomain("https://youtube.com/") shouldBe false
-			}
-		}
+			"invoke" should {
 
-		"invoke" should {
-
-			"convert music.youtube.com domain to youtube.com" {
-				sanitizer(
-					"https://music.youtube.com/playlist?list=RDCLAK5uy_mPolD_J22gS1SKxufARW" +
-						"cTZd1UrAH_0ZI",
-				) shouldBe "https://youtube.com/playlist?list=RDCLAK5uy_mPolD_J22gS1SKxufARWcTZd1" +
-					"UrAH_0ZI"
+				"convert music.youtube.com domain to youtube.com" {
+					sanitizer(
+						"https://music.youtube.com/playlist?list=RDCLAK5uy_mPolD_J22gS1SKxufARW" +
+							"cTZd1UrAH_0ZI",
+					) shouldBe "https://youtube.com/playlist?list=RDCLAK5uy_mPolD_J22gS1SKxufARWcTZd1" +
+						"UrAH_0ZI"
+				}
 			}
-		}
-	},
-)
+		},
+	)

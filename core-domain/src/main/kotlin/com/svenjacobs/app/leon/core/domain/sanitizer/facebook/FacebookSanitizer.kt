@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class FacebookSanitizer : RegexSanitizer(
-	regex = RegexFactory.exceptParameter("(id|story_fbid)"),
-) {
+class FacebookSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.exceptParameter("(id|story_fbid)"),
+	) {
 
 	override val id = SanitizerId("facebook_com")
 

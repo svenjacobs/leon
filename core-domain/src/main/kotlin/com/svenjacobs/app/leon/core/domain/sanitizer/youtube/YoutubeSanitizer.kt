@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class YoutubeSanitizer : RegexSanitizer(
-	RegexFactory.exceptParameter("(v|search_query)"),
-) {
+class YoutubeSanitizer :
+	RegexSanitizer(
+		RegexFactory.exceptParameter("(v|search_query)"),
+	) {
 
 	override val id = SanitizerId("youtube")
 

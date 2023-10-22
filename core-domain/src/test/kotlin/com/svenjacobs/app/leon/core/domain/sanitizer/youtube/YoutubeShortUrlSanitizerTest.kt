@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +21,17 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.youtube
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class YoutubeShortUrlSanitizerTest : WordSpec(
-	{
+class YoutubeShortUrlSanitizerTest :
+	WordSpec(
+		{
 
-		"invoke" should {
+			"invoke" should {
 
-			"convert youtu.be short URL into long youtube.com URL" {
-				val sanitizer = YoutubeShortUrlSanitizer()
-				val result = sanitizer("https://youtu.be/5HaUOgW5BlA")
-				result shouldBe "https://www.youtube.com/watch?v=5HaUOgW5BlA"
+				"convert youtu.be short URL into long youtube.com URL" {
+					val sanitizer = YoutubeShortUrlSanitizer()
+					val result = sanitizer("https://youtu.be/5HaUOgW5BlA")
+					result shouldBe "https://www.youtube.com/watch?v=5HaUOgW5BlA"
+				}
 			}
-		}
-	},
-)
+		},
+	)

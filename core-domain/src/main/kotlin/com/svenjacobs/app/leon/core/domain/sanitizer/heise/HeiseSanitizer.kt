@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class HeiseSanitizer : RegexSanitizer(
-	RegexFactory.AllParameters,
-) {
+class HeiseSanitizer :
+	RegexSanitizer(
+		RegexFactory.AllParameters,
+	) {
 	override val id = SanitizerId("heise")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(

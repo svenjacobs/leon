@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class EbaySanitizer : RegexSanitizer(
-	regex = RegexFactory.AllParameters,
-) {
+class EbaySanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.AllParameters,
+	) {
 
 	override val id = SanitizerId("ebay")
 

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,21 +21,22 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.ebay
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class EbaySanitizerTest : WordSpec(
-	{
+class EbaySanitizerTest :
+	WordSpec(
+		{
 
-		"invoke" should {
+			"invoke" should {
 
-			"remove all parameters from eBay article URL" {
-				val sanitizer = EbaySanitizer()
-				val result = sanitizer(
-					"https://www.ebay.de/itm/271784973135?mkcid=16&mkevt=1&mkrid=707-127654" +
-						"-2357-0&ssspo=rMbbkKXARCW&sssrc=2348624&ssuid=Bw-3_LUXSsm&widget_ver=art" +
-						"emis&media=MORE",
-				)
+				"remove all parameters from eBay article URL" {
+					val sanitizer = EbaySanitizer()
+					val result = sanitizer(
+						"https://www.ebay.de/itm/271784973135?mkcid=16&mkevt=1&mkrid=707-127654" +
+							"-2357-0&ssspo=rMbbkKXARCW&sssrc=2348624&ssuid=Bw-3_LUXSsm&widget_ver=art" +
+							"emis&media=MORE",
+					)
 
-				result shouldBe "https://www.ebay.de/itm/271784973135"
+					result shouldBe "https://www.ebay.de/itm/271784973135"
+				}
 			}
-		}
-	},
-)
+		},
+	)

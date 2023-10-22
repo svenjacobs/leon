@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,10 +26,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface SanitizerRepository {
 
-	data class SanitizerState(
-		val id: SanitizerId,
-		val enabled: Boolean,
-	)
+	data class SanitizerState(val id: SanitizerId, val enabled: Boolean)
 
 	val state: Flow<ImmutableList<SanitizerState>>
 

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class WebtrekkSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofWildcardParameter("wt_"),
-) {
+class WebtrekkSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.ofWildcardParameter("wt_"),
+	) {
 
 	override val id = SanitizerId("webtrekk")
 

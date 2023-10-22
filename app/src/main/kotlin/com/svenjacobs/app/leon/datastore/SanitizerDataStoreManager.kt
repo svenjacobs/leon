@@ -32,9 +32,7 @@ import kotlinx.coroutines.flow.map
 /**
  * Manages [Sanitizer] specific preferences stored via [DataStore].
  */
-class SanitizerDataStoreManager(
-	private val context: Context = AppContext,
-) {
+class SanitizerDataStoreManager(private val context: Context = AppContext) {
 	private val Context.dataStore by preferencesDataStore(name = "sanitizers")
 
 	internal fun preferencesKey(id: String) = booleanPreferencesKey(name = "sanitizer_$id")

@@ -25,9 +25,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
-class AolSearchSanitizer : SearchResultSanitizer(
-	Regex("RU=([^/]+)"),
-) {
+class AolSearchSanitizer :
+	SearchResultSanitizer(
+		Regex("RU=([^/]+)"),
+	) {
 
 	override val id = SanitizerId("aol_search")
 
