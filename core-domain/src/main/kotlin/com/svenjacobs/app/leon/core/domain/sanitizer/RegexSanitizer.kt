@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,7 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
  *
  * @param regex Regular expression whose matches are removed from the input string
  */
-abstract class RegexSanitizer(
-	private val regex: Regex,
-) : Sanitizer {
+abstract class RegexSanitizer(private val regex: Regex) : Sanitizer {
 
 	/**
 	 * Removes all matches of supplied [regex].

@@ -45,14 +45,8 @@ class SettingsSanitizersScreenViewModel(
 	private val repository: SanitizerRepository = SanitizerRepository,
 ) : ViewModel() {
 
-	data class UiState(
-		val sanitizers: ImmutableList<Sanitizer> = persistentListOf(),
-	) {
-		data class Sanitizer(
-			val id: SanitizerId,
-			val name: String,
-			val enabled: Boolean,
-		)
+	data class UiState(val sanitizers: ImmutableList<Sanitizer> = persistentListOf()) {
+		data class Sanitizer(val id: SanitizerId, val name: String, val enabled: Boolean)
 	}
 
 	val uiState: StateFlow<UiState> =

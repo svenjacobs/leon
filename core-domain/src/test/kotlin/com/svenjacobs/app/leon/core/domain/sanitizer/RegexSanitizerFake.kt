@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,8 @@ package com.svenjacobs.app.leon.core.domain.sanitizer
 
 import android.content.Context
 
-class RegexSanitizerFake(
-	override val id: SanitizerId,
-	private val name: String,
-	regex: Regex,
-) : RegexSanitizer(regex) {
+class RegexSanitizerFake(override val id: SanitizerId, private val name: String, regex: Regex) :
+	RegexSanitizer(regex) {
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
 		name = name,

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,10 +28,7 @@ import androidx.compose.runtime.Composable
  */
 interface Sanitizer {
 
-	data class Metadata(
-		val name: String,
-		val hasSettingsScreen: Boolean = false,
-	)
+	data class Metadata(val name: String, val hasSettingsScreen: Boolean = false)
 
 	val id: SanitizerId
 

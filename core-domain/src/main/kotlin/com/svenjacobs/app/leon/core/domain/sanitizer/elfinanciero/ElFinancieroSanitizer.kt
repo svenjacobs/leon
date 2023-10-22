@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class ElFinancieroSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofParameter("outputType"),
-) {
+class ElFinancieroSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.ofParameter("outputType"),
+	) {
 
 	override val id = SanitizerId("elfinanciero")
 

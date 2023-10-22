@@ -32,9 +32,7 @@ import kotlinx.coroutines.flow.map
 /**
  * Manages app specific preferences stored via [DataStore].
  */
-class AppDataStoreManager(
-	private val context: Context = AppContext,
-) {
+class AppDataStoreManager(private val context: Context = AppContext) {
 	private val Context.dataStore by preferencesDataStore(name = "settings")
 
 	suspend fun setVersionCode(versionCode: Int) {

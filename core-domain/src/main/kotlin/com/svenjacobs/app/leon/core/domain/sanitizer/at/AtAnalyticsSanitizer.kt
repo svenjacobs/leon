@@ -25,9 +25,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class AtAnalyticsSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofWildcardParameter("at_"),
-) {
+class AtAnalyticsSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.ofWildcardParameter("at_"),
+	) {
 
 	override val id = SanitizerId("at_analytics")
 

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,20 +21,21 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.webtrekk
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class WebtrekkSanitizerTest : WordSpec(
-	{
+class WebtrekkSanitizerTest :
+	WordSpec(
+		{
 
-		"invoke" should {
+			"invoke" should {
 
-			"remove \"wt_*\" parameters" {
-				val sanitizer = WebtrekkSanitizer()
+				"remove \"wt_*\" parameters" {
+					val sanitizer = WebtrekkSanitizer()
 
-				val result = sanitizer(
-					"https://www.example.com?wt_abc=123&wt_efg=456",
-				)
+					val result = sanitizer(
+						"https://www.example.com?wt_abc=123&wt_efg=456",
+					)
 
-				result shouldBe "https://www.example.com"
+					result shouldBe "https://www.example.com"
+				}
 			}
-		}
-	},
-)
+		},
+	)

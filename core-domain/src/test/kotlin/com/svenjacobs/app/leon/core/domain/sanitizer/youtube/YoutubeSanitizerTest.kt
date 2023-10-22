@@ -21,33 +21,34 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.youtube
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class YoutubeSanitizerTest : WordSpec(
-	{
-		val sanitizer = YoutubeSanitizer()
+class YoutubeSanitizerTest :
+	WordSpec(
+		{
+			val sanitizer = YoutubeSanitizer()
 
-		"invoke" should {
+			"invoke" should {
 
-			"remove all parameters except v= from video URLs" {
-				sanitizer(
-					"https://m.youtube.com/watch?v=CvFH_6DNRCY&pp=ygUHZGVidXNzeQ%3D%3D",
-				) shouldBe "https://m.youtube.com/watch?v=CvFH_6DNRCY"
+				"remove all parameters except v= from video URLs" {
+					sanitizer(
+						"https://m.youtube.com/watch?v=CvFH_6DNRCY&pp=ygUHZGVidXNzeQ%3D%3D",
+					) shouldBe "https://m.youtube.com/watch?v=CvFH_6DNRCY"
+				}
+
+				"remove all parameters except search_query= from search URLs" {
+					sanitizer("https://m.youtube.com/results?sp=mAEA&search_query=funny+dog+video") shouldBe
+						"https://m.youtube.com/results&search_query=funny+dog+video"
+				}
 			}
 
-			"remove all parameters except search_query= from search URLs" {
-				sanitizer("https://m.youtube.com/results?sp=mAEA&search_query=funny+dog+video") shouldBe
-					"https://m.youtube.com/results&search_query=funny+dog+video"
-			}
-		}
+			"matchesDomain" should {
 
-		"matchesDomain" should {
+				"match youtube.com domain" {
+					sanitizer.matchesDomain("https://youtube.com/") shouldBe true
+				}
 
-			"match youtube.com domain" {
-				sanitizer.matchesDomain("https://youtube.com/") shouldBe true
+				"match m.youtube.com domain" {
+					sanitizer.matchesDomain("https://m.youtube.com/") shouldBe true
+				}
 			}
-
-			"match m.youtube.com domain" {
-				sanitizer.matchesDomain("https://m.youtube.com/") shouldBe true
-			}
-		}
-	},
-)
+		},
+	)

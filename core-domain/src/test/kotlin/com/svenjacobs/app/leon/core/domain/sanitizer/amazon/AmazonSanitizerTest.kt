@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,19 +21,20 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.amazon
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class AmazonSanitizerTest : WordSpec(
-	{
+class AmazonSanitizerTest :
+	WordSpec(
+		{
 
-		"invoke" should {
+			"invoke" should {
 
-			"remove ref_ parameter" {
-				val sanitizer = AmazonSanitizer()
-				val result = sanitizer(
-					"https://www.amazon.de/gp/css/homepage.html?ref_=nav_AccountFlyout_ya",
-				)
+				"remove ref_ parameter" {
+					val sanitizer = AmazonSanitizer()
+					val result = sanitizer(
+						"https://www.amazon.de/gp/css/homepage.html?ref_=nav_AccountFlyout_ya",
+					)
 
-				result shouldBe "https://www.amazon.de/gp/css/homepage.html"
+					result shouldBe "https://www.amazon.de/gp/css/homepage.html"
+				}
 			}
-		}
-	},
-)
+		},
+	)

@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class AmazonSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofParameter("ref_?"),
-) {
+class AmazonSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.ofParameter("ref_?"),
+	) {
 
 	/**
 	 * Since [AmazonProductSanitizer] already uses "amazon" and IDs should not be changed

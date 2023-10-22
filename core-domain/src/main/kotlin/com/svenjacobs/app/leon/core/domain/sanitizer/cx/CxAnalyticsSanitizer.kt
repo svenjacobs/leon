@@ -25,9 +25,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class CxAnalyticsSanitizer : RegexSanitizer(
-	regex = RegexFactory.ofWildcardParameter("cx_|cxrecs_s|mibextid"),
-) {
+class CxAnalyticsSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.ofWildcardParameter("cx_|cxrecs_s|mibextid"),
+	) {
 
 	override val id = SanitizerId("cx_analytics")
 

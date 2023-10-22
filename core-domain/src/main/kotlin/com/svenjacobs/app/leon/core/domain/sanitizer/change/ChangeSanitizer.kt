@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class ChangeSanitizer : RegexSanitizer(
-	regex = RegexFactory.AllParameters,
-) {
+class ChangeSanitizer :
+	RegexSanitizer(
+		regex = RegexFactory.AllParameters,
+	) {
 
 	override val id = SanitizerId("change")
 

@@ -21,60 +21,61 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.x
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class XSanitizerTest : WordSpec(
-	{
-		val sanitizer = XSanitizer()
+class XSanitizerTest :
+	WordSpec(
+		{
+			val sanitizer = XSanitizer()
 
-		"invoke" should {
+			"invoke" should {
 
-			"remove all parameters (Twitter)" {
-				var result = sanitizer(
-					"https://twitter.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
-				)
-
-				result shouldBe "https://twitter.com/AndroidDev/status/1453763770334027781"
-
-				result =
-					sanitizer(
-						"https://twitter.com/fantasm_finance/status/1501569232881995785?ref" +
-							"_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E150156923288199578" +
-							"5%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fwww.coindesk.com%2Ft" +
-							"ech%2F2022%2F03%2F10%2Ffantom-based-algo-protocol-fantasm-exploited-" +
-							"for-26m%2F",
+				"remove all parameters (Twitter)" {
+					var result = sanitizer(
+						"https://twitter.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
 					)
 
-				result shouldBe "https://twitter.com/fantasm_finance/status/1501569232881995785"
-			}
+					result shouldBe "https://twitter.com/AndroidDev/status/1453763770334027781"
 
-			"remove all parameters (X.com)" {
-				var result = sanitizer(
-					"https://x.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
-				)
+					result =
+						sanitizer(
+							"https://twitter.com/fantasm_finance/status/1501569232881995785?ref" +
+								"_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E150156923288199578" +
+								"5%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fwww.coindesk.com%2Ft" +
+								"ech%2F2022%2F03%2F10%2Ffantom-based-algo-protocol-fantasm-exploited-" +
+								"for-26m%2F",
+						)
 
-				result shouldBe "https://x.com/AndroidDev/status/1453763770334027781"
+					result shouldBe "https://twitter.com/fantasm_finance/status/1501569232881995785"
+				}
 
-				result =
-					sanitizer(
-						"https://x.com/fantasm_finance/status/1501569232881995785?ref" +
-							"_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E150156923288199578" +
-							"5%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fwww.coindesk.com%2Ft" +
-							"ech%2F2022%2F03%2F10%2Ffantom-based-algo-protocol-fantasm-exploited-" +
-							"for-26m%2F",
+				"remove all parameters (X.com)" {
+					var result = sanitizer(
+						"https://x.com/AndroidDev/status/1453763770334027781?t=QEv2BUR2LOumjgK18S72bA&s=09",
 					)
 
-				result shouldBe "https://x.com/fantasm_finance/status/1501569232881995785"
-			}
-		}
+					result shouldBe "https://x.com/AndroidDev/status/1453763770334027781"
 
-		"matchesDomain" should {
+					result =
+						sanitizer(
+							"https://x.com/fantasm_finance/status/1501569232881995785?ref" +
+								"_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E150156923288199578" +
+								"5%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fwww.coindesk.com%2Ft" +
+								"ech%2F2022%2F03%2F10%2Ffantom-based-algo-protocol-fantasm-exploited-" +
+								"for-26m%2F",
+						)
 
-			"match twitter.com" {
-				sanitizer.matchesDomain("https://twitter.com") shouldBe true
+					result shouldBe "https://x.com/fantasm_finance/status/1501569232881995785"
+				}
 			}
 
-			"match x.com" {
-				sanitizer.matchesDomain("https://x.com") shouldBe true
+			"matchesDomain" should {
+
+				"match twitter.com" {
+					sanitizer.matchesDomain("https://twitter.com") shouldBe true
+				}
+
+				"match x.com" {
+					sanitizer.matchesDomain("https://x.com") shouldBe true
+				}
 			}
-		}
-	},
-)
+		},
+	)

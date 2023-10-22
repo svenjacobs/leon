@@ -25,9 +25,7 @@ import com.svenjacobs.app.leon.core.common.url.decodeUrl
  *
  * @param regex Regular expression which must return the URL in the first group
  */
-abstract class SearchResultSanitizer(
-	private val regex: Regex,
-) : Sanitizer {
+abstract class SearchResultSanitizer(private val regex: Regex) : Sanitizer {
 
 	override fun invoke(input: String): String = extractSearchResultValue(regex, input)
 }

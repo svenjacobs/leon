@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2023 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,23 +21,24 @@ package com.svenjacobs.app.leon.core.domain.sanitizer.youtube
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class YoutubeRedirectSanitizerTest : WordSpec(
-	{
+class YoutubeRedirectSanitizerTest :
+	WordSpec(
+		{
 
-		"invoke" should {
+			"invoke" should {
 
-			"extract URL from YouTube redirect link" {
-				val sanitizer = YoutubeRedirectSanitizer()
-				val result = sanitizer(
-					"https://www.youtube.com/redirect?event=channel_description&redir_token" +
-						"=QUFFLUhqa1JoZzZUczlhMWJCaTBoc1lqa3ZtX2Rpd0ZPUXxBQ3Jtc0tsYVhpenF1czV5Vjl" +
-						"wZm5pemZGdm4zNHVXSldEUlR6dHNhZzI0UkFvLXo0cEVyUk0yaHR5LVhGWEFCLVdzdmlZWGU" +
-						"3eUY5ZWdUZTBUbEw3MVg4UDZCRzdkXzdaaGczT25Ka3Q5bjUzTmxWVHF3Tll6MA&q=http%3" +
-						"A%2F%2Fwww.google.com%2Fabout%2F&html_redirect=1",
-				)
+				"extract URL from YouTube redirect link" {
+					val sanitizer = YoutubeRedirectSanitizer()
+					val result = sanitizer(
+						"https://www.youtube.com/redirect?event=channel_description&redir_token" +
+							"=QUFFLUhqa1JoZzZUczlhMWJCaTBoc1lqa3ZtX2Rpd0ZPUXxBQ3Jtc0tsYVhpenF1czV5Vjl" +
+							"wZm5pemZGdm4zNHVXSldEUlR6dHNhZzI0UkFvLXo0cEVyUk0yaHR5LVhGWEFCLVdzdmlZWGU" +
+							"3eUY5ZWdUZTBUbEw3MVg4UDZCRzdkXzdaaGczT25Ka3Q5bjUzTmxWVHF3Tll6MA&q=http%3" +
+							"A%2F%2Fwww.google.com%2Fabout%2F&html_redirect=1",
+					)
 
-				result shouldBe "http://www.google.com/about/"
+					result shouldBe "http://www.google.com/about/"
+				}
 			}
-		}
-	},
-)
+		},
+	)

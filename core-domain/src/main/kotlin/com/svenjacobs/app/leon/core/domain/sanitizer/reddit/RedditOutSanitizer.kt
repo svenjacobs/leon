@@ -26,9 +26,10 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import com.svenjacobs.app.leon.core.domain.sanitizer.SearchResultSanitizer
 
-class RedditOutSanitizer : SearchResultSanitizer(
-	RegexFactory.ofParameter("url"),
-) {
+class RedditOutSanitizer :
+	SearchResultSanitizer(
+		RegexFactory.ofParameter("url"),
+	) {
 
 	override val id = SanitizerId("reddit_out")
 
