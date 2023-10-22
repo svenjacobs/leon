@@ -1,7 +1,7 @@
 [versions]
 android-gradle-plugin = "8.1.2"
 androidx-activity = "1.8.0"
-androidx-compose-bom = "2023.10.00" # https://developer.android.com/jetpack/compose/bom/bom-mapping
+androidx-compose-bom = "2023.10.01" # https://developer.android.com/jetpack/compose/bom/bom-mapping
 androidx-compose-compiler = "1.5.3" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 androidx-lifecycle = "2.6.2"
 google-accompanist = "0.32.0"
@@ -57,6 +57,6 @@ androidx-compose = [
 
 [plugins]
 adarshr-test-logger = "com.adarshr.test-logger:4.0.0"
-ben-manes-versions = "com.github.ben-manes.versions:0.48.0"
+ben-manes-versions = "com.github.ben-manes.versions:0.49.0"
 kotlinter = "org.jmailen.kotlinter:3.16.0"
 triplet-play = "com.github.triplet.play:3.8.4"
