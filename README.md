@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-40-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -104,6 +104,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center" valign="top" width="14.28%"><a href="https://anonpaste.org/?eb066acd6e42709f#9MpdEzRdzJ5ntQcizLjN4mFMaKLi8ArdbQMLhwaFQ5ji"><img src="https://avatars.githubusercontent.com/u/77220130?v=4?s=100" width="100px;" alt="Linus Xanoni"/><br /><sub><b>Linus Xanoni</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Axanoni" title="Bug reports">🐛</a> <a href="#ideas-xanoni" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rehork"><img src="https://avatars.githubusercontent.com/u/67607997?v=4?s=100" width="100px;" alt="rehork"/><br /><sub><b>rehork</b></sub></a><br /><a href="#translation-rehork" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://dev.jakedot.net/"><img src="https://avatars.githubusercontent.com/u/12250212?v=4?s=100" width="100px;" alt="JakeDot"/><br /><sub><b>JakeDot</b></sub></a><br /><a href="#ideas-jakedot" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/yedayak"><img src="https://avatars.githubusercontent.com/u/43016107?v=4?s=100" width="100px;" alt="yedayak"/><br /><sub><b>yedayak</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=yedayak" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
