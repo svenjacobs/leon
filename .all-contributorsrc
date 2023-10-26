@@ -378,6 +378,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "yedayak",
+      "name": "yedayak",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43016107?v=4",
+      "profile": "https://github.com/yedayak",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
