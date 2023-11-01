@@ -39,5 +39,6 @@
     <string name="action_after_clean">Aktion nach Reinigung</string>
     <string name="do_nothing">Nichts unternehmen</string>
     <string name="open_share_menu">Teilenmenü öffnen</string>
+    <string name="open_url">URL öffnen</string>
     <string name="copy_to_clipboard">In Zwischenablage kopieren</string>
 </resources>

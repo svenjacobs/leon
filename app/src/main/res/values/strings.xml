@@ -40,5 +40,6 @@
     <string name="action_after_clean">Action after clean</string>
     <string name="do_nothing">Do nothing</string>
     <string name="open_share_menu">Open share menu</string>
+    <string name="open_url">Open URL</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
 </resources>

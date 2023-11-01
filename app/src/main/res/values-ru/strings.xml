@@ -39,5 +39,6 @@
     <string name="action_after_clean">Action after clean</string> <!-- TODO: translate -->
     <string name="do_nothing">Do nothing</string> <!-- TODO: translate -->
     <string name="open_share_menu">Open share menu</string> <!-- TODO: translate -->
+    <string name="open_url">Open URL</string>
     <string name="copy_to_clipboard">Copy to clipboard</string> <!-- TODO: translate -->
 </resources>
