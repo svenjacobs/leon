@@ -22,4 +22,5 @@ enum class ActionAfterClean {
 	DoNothing,
 	OpenShareMenu,
 	CopyToClipboard,
+	OpenUrl,
 }

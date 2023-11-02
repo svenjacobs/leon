@@ -176,6 +176,14 @@ private fun Content(
 							)
 
 							DropdownMenuItem(
+								text = { Text(stringResource(R.string.open_url)) },
+								onClick = {
+									expanded = false
+									onActionAfterCleanClick(ActionAfterClean.OpenUrl)
+								},
+							)
+
+							DropdownMenuItem(
 								text = { Text(stringResource(R.string.copy_to_clipboard)) },
 								onClick = {
 									expanded = false
@@ -205,6 +213,7 @@ private fun Content(
 private fun ActionAfterClean.text(): String = when (this) {
 	ActionAfterClean.DoNothing -> stringResource(R.string.do_nothing)
 	ActionAfterClean.OpenShareMenu -> stringResource(R.string.open_share_menu)
+	ActionAfterClean.OpenUrl -> stringResource(R.string.open_url)
 	ActionAfterClean.CopyToClipboard -> stringResource(R.string.copy_to_clipboard)
 }
 

@@ -165,6 +165,7 @@ fun MainScreen(
 							(uiState.result as? Result.Success)?.let { result ->
 								when (uiState.actionAfterClean) {
 									ActionAfterClean.OpenShareMenu -> openShareMenu(result)
+									ActionAfterClean.OpenUrl -> openInDefaultApp(result)
 									ActionAfterClean.CopyToClipboard -> copyToClipboard(result)
 									ActionAfterClean.DoNothing -> {}
 								}
