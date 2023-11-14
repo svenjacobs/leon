@@ -1,0 +1,45 @@
+<!--
+  ~ Léon - The URL Cleaner
+  ~ Copyright (C) 2023 Sven Jacobs
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name" translatable="false">URL Cleaner</string>
+    <string name="screen_main">Trang chủ</string>
+    <string name="screen_settings">Thiết đặt</string>
+    <string name="scaffold_title">Léon – Trình dọn dẹp URL</string>
+    <string name="share">Chia sẻ</string>
+    <string name="open">Mở</string>
+    <string name="copy">Sao chép</string>
+    <string name="clipboard_message">Đã chép liên kết vào clipboard</string>
+    <string name="how_to_title">Cách-để</string>
+    <string name="how_to_text">Khi chia sẻ văn bản, chọn \"URL Cleaner\". Sau đó nhấp vào \"Chia sẻ\" trong ứng dụng này để gửi văn bản đến ứng dụng mục tiêu. Ngoài ra, hãy nhấp vào nút bên trên để nhập nội dung từ clipboard.</string>
+    <string name="cleaned_url">URL đã làm sạch</string>
+    <string name="original_url">URL gốc</string>
+    <string name="sanitizers">Chất khử trùng</string>
+    <string name="licenses">Giấy phép</string>
+    <string name="sanitizers_description">Bật hoặc tắt chất khử trùng</string>
+    <string name="decode_url">Giải mã URL</string>
+    <string name="import_from_clipboard">Nhập từ clipboard</string>
+    <string name="reset">Đặt lại</string>
+    <string name="extract_url">Chỉ trích xuất URL</string>
+    <string name="register_as_browser">Đăng ký Léon làm trình duyệt</string>
+    <string name="action_after_clean">Hành động sau khi làm sạch</string>
+    <string name="do_nothing">Không làm gì cả</string>
+    <string name="open_share_menu">Mở menu chia sẻ</string>
+    <string name="open_url">Mở URL</string>
+    <string name="copy_to_clipboard">Sao chép vào clipboard</string>
+</resources>
