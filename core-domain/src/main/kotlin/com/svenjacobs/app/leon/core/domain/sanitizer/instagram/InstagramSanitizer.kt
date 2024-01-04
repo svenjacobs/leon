@@ -28,7 +28,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class InstagramSanitizer :
 	RegexSanitizer(
-		regex = RegexFactory.ofParameter("igshid"),
+		regex = RegexFactory.ofParameter("igsh"),
 	) {
 
 	override val id = SanitizerId("instagram")

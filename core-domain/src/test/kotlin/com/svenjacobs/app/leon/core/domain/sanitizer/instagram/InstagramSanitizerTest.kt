@@ -31,10 +31,10 @@ class InstagramSanitizerTest :
 					val sanitizer = InstagramSanitizer()
 
 					val result = sanitizer(
-						"https://www.instagram.com/p/Ceeg-VgI4yF/?igshid=YmMyMTA2M2Y=",
+						"https://www.instagram.com/reel/Ceeg-VgI4yF/?igsh=YmMyMTA2M2Y=",
 					)
 
-					result shouldBe "https://www.instagram.com/p/Ceeg-VgI4yF/"
+					result shouldBe "https://www.instagram.com/reel/Ceeg-VgI4yF/"
 				}
 			}
 		},
