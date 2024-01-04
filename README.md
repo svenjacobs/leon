@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-42-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-43-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -106,6 +106,9 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center" valign="top" width="14.28%"><a href="https://dev.jakedot.net/"><img src="https://avatars.githubusercontent.com/u/12250212?v=4?s=100" width="100px;" alt="JakeDot"/><br /><sub><b>JakeDot</b></sub></a><br /><a href="#ideas-jakedot" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/yedayak"><img src="https://avatars.githubusercontent.com/u/43016107?v=4?s=100" width="100px;" alt="yedayak"/><br /><sub><b>yedayak</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=yedayak" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ngocanhtve"><img src="https://avatars.githubusercontent.com/u/125894401?v=4?s=100" width="100px;" alt="ngocanhtve"/><br /><sub><b>ngocanhtve</b></sub></a><br /><a href="#translation-ngocanhtve" title="Translation">🌍</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/BluePixel4k"><img src="https://avatars.githubusercontent.com/u/77979781?v=4?s=100" width="100px;" alt="BluePixel4k"/><br /><sub><b>BluePixel4k</b></sub></a><br /><a href="#ideas-BluePixel4k" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
