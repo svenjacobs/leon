@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,15 +28,23 @@ class YoutubeSanitizerTest :
 
 			"invoke" should {
 
-				"remove all parameters except v= from video URLs" {
+				"remove all parameters except \"v\" from video URLs" {
 					sanitizer(
 						"https://m.youtube.com/watch?v=CvFH_6DNRCY&pp=ygUHZGVidXNzeQ%3D%3D",
 					) shouldBe "https://m.youtube.com/watch?v=CvFH_6DNRCY"
 				}
 
-				"remove all parameters except search_query= from search URLs" {
+				"remove all parameters except \"search_query\" from search URLs" {
 					sanitizer("https://m.youtube.com/results?sp=mAEA&search_query=funny+dog+video") shouldBe
 						"https://m.youtube.com/results&search_query=funny+dog+video"
+				}
+
+				"remove all parameters except \"list\" from playlist URLs" {
+					sanitizer(
+						"https://youtube.com/playlist?list=PLkqz3S84Tw-QYEdfTLBzxJ1FAprtqeE" +
+							"pJ&si=2tDDmSKejG2GTtj5",
+					) shouldBe
+						"https://youtube.com/playlist?list=PLkqz3S84Tw-QYEdfTLBzxJ1FAprtqeEpJ"
 				}
 			}
 
