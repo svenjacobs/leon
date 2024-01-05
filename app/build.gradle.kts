@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@file:Suppress("UnstableApiUsage")
+
 import java.util.Properties
 
 plugins {
@@ -103,6 +105,10 @@ android {
 
 	lint {
 		disable.add("EnsureInitializerMetadata")
+	}
+
+	androidResources {
+		generateLocaleConfig = true
 	}
 }
 
