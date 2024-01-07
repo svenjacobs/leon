@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -277,11 +278,13 @@ private fun SuccessBody(
 					color = MaterialTheme.colorScheme.primary,
 				)
 
-				Text(
-					modifier = Modifier.padding(16.dp),
-					text = result.originalText,
-					style = MaterialTheme.typography.bodyMedium,
-				)
+				SelectionContainer {
+					Text(
+						modifier = Modifier.padding(16.dp),
+						text = result.originalText,
+						style = MaterialTheme.typography.bodyMedium,
+					)
+				}
 
 				Text(
 					text = stringResource(R.string.cleaned_url),
@@ -289,11 +292,13 @@ private fun SuccessBody(
 					color = MaterialTheme.colorScheme.primary,
 				)
 
-				Text(
-					modifier = Modifier.padding(16.dp),
-					text = result.cleanedText,
-					style = MaterialTheme.typography.bodyMedium,
-				)
+				SelectionContainer {
+					Text(
+						modifier = Modifier.padding(16.dp),
+						text = result.cleanedText,
+						style = MaterialTheme.typography.bodyMedium,
+					)
+				}
 
 				val buttonModifier = Modifier.widthIn(min = 120.dp)
 
