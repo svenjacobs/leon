@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ package com.svenjacobs.app.leon.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -54,8 +55,32 @@ class AppDataStoreManager(private val context: Context = AppContext) {
 			}.getOrNull()
 		}
 
+	suspend fun setUrlDecodeEnabled(enabled: Boolean) {
+		context.dataStore.edit {
+			it[KEY_URL_DECODE] = enabled
+		}
+	}
+
+	val urlDecodeEnabled: Flow<Boolean> =
+		context.dataStore.data.map { preferences ->
+			preferences[KEY_URL_DECODE] ?: false
+		}
+
+	suspend fun setExtractUrlEnabled(enabled: Boolean) {
+		context.dataStore.edit {
+			it[KEY_EXTRACT_URL] = enabled
+		}
+	}
+
+	val extractUrlEnabled: Flow<Boolean> =
+		context.dataStore.data.map { preferences ->
+			preferences[KEY_EXTRACT_URL] ?: false
+		}
+
 	private companion object {
 		private val KEY_VERSION_CODE = intPreferencesKey("version_code")
 		private val KEY_ACTION_AFTER_CLEAN = stringPreferencesKey("action_after_clean")
+		private val KEY_URL_DECODE = booleanPreferencesKey("url_decode")
+		private val KEY_EXTRACT_URL = booleanPreferencesKey("extract_url")
 	}
 }
