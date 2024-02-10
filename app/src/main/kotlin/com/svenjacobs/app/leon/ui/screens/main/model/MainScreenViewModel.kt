@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +30,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class MainScreenViewModel(
-	appDataStoreManager: AppDataStoreManager = AppDataStoreManager,
+	private val appDataStoreManager: AppDataStoreManager = AppDataStoreManager,
 	private val cleanerService: CleanerService = CleanerService(),
 ) : ViewModel() {
 
@@ -58,14 +59,12 @@ class MainScreenViewModel(
 	}
 
 	private val text = MutableStateFlow<String?>(null)
-	private val urlDecodeEnabled = MutableStateFlow(false)
-	private val extractUrlEnabled = MutableStateFlow(false)
 
 	val uiState =
 		combine(
 			text,
-			urlDecodeEnabled,
-			extractUrlEnabled,
+			appDataStoreManager.urlDecodeEnabled,
+			appDataStoreManager.extractUrlEnabled,
 			appDataStoreManager.actionAfterClean,
 		) { text, urlDecodeEnabled, extractUrlEnabled, actionAfterClean ->
 			val result = text?.let {
@@ -99,11 +98,15 @@ class MainScreenViewModel(
 	}
 
 	fun onUrlDecodeCheckedChange(enabled: Boolean) {
-		urlDecodeEnabled.value = enabled
+		viewModelScope.launch {
+			appDataStoreManager.setUrlDecodeEnabled(enabled)
+		}
 	}
 
 	fun onExtractUrlCheckedChange(enabled: Boolean) {
-		extractUrlEnabled.value = enabled
+		viewModelScope.launch {
+			appDataStoreManager.setExtractUrlEnabled(enabled)
+		}
 	}
 
 	private suspend fun clean(text: String, decodeUrl: Boolean, extractUrl: Boolean): Result = try {

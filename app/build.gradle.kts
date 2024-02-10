@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+@file:Suppress("UnstableApiUsage")
 
 import java.util.Properties
 
@@ -34,8 +36,8 @@ android {
 		applicationId = "com.svenjacobs.app.leon"
 		minSdk = Android.minSdk
 		targetSdk = Android.targetSdk
-		versionCode = 258
-		versionName = "37"
+		versionCode = 260
+		versionName = "39"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
@@ -104,6 +106,10 @@ android {
 	lint {
 		disable.add("EnsureInitializerMetadata")
 	}
+
+	androidResources {
+		generateLocaleConfig = true
+	}
 }
 
 play {
@@ -126,13 +132,12 @@ dependencies {
 
 	debugImplementation(libs.androidx.compose.ui.tooling)
 	implementation(libs.bundles.androidx.compose)
-	implementation(libs.androidx.compose.material2) // Required by AboutLibraries
 	implementation(libs.androidx.compose.material3)
 	implementation(libs.androidx.compose.material3.window.size)
 	implementation(libs.androidx.activity.compose)
 	implementation(libs.androidx.lifecycle.viewmodel.compose)
 	implementation(libs.androidx.navigation.compose)
-	implementation(libs.mikepenz.aboutlibraries.compose)
+	implementation(libs.mikepenz.aboutlibraries.compose.m3)
 	implementation(libs.google.accompanist.systemuicontroller)
 
 	implementation(libs.androidx.startup.runtime)

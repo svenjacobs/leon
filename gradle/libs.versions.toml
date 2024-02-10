@@ -1,14 +1,14 @@
 [versions]
-android-gradle-plugin = "8.2.0"
+android-gradle-plugin = "8.2.1"
 androidx-activity = "1.8.2"
 androidx-compose-bom = "2023.10.01" # https://developer.android.com/jetpack/compose/bom/bom-mapping
 androidx-compose-compiler = "1.5.8" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
-androidx-lifecycle = "2.6.2"
+androidx-lifecycle = "2.7.0"
 google-accompanist = "0.32.0"
 kotest = "5.8.0"
 kotlin = "1.9.22"
 kotlinx-coroutines = "1.7.3"
-mikepenz-aboutlibraries = "10.9.1"
+mikepenz-aboutlibraries = "10.10.0"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
@@ -16,7 +16,6 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
-androidx-compose-material2 = { module = "androidx.compose.material:material" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class" }
 androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
@@ -42,9 +41,9 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
 kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7"
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
-mikepenz-aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "mikepenz-aboutlibraries" }
+mikepenz-aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "mikepenz-aboutlibraries" }
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
-mockk = "io.mockk:mockk:1.13.8"
+mockk = "io.mockk:mockk:1.13.9"
 slack-compose-lint-checks = "com.slack.lint.compose:compose-lint-checks:1.2.0"
 square-moshi = "com.squareup.moshi:moshi:1.15.0"
 
@@ -58,5 +57,5 @@ androidx-compose = [
 [plugins]
 adarshr-test-logger = "com.adarshr.test-logger:4.0.0"
 ben-manes-versions = "com.github.ben-manes.versions:0.50.0"
-kotlinter = "org.jmailen.kotlinter:4.1.1"
+kotlinter = "org.jmailen.kotlinter:4.2.0"
 triplet-play = "com.github.triplet.play:3.8.6"
