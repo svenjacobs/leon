@@ -15,6 +15,10 @@ The benefits of removing tracking parameters are:
 - Improves readability of links
 - Saves characters (in Tweets for example)
 
+<img src="etc/painting_mondstern.jpg" width="400" />
+
+_Painting by [Mondstern](https://mastodon.green/@mondstern/111993655182793928) (CC BY-SA)_
+
 ## Installation
 
 - [F-Droid](https://www.f-droid.org/packages/com.svenjacobs.app.leon/)
