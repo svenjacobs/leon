@@ -43,7 +43,7 @@ kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immut
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 mikepenz-aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "mikepenz-aboutlibraries" }
 mikepenz-aboutlibraries-gradle-plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "mikepenz-aboutlibraries" }
-mockk = "io.mockk:mockk:1.13.9"
+mockk = "io.mockk:mockk:1.13.10"
 slack-compose-lint-checks = "com.slack.lint.compose:compose-lint-checks:1.3.1"
 square-moshi = "com.squareup.moshi:moshi:1.15.1"
 
