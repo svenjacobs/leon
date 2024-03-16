@@ -46,6 +46,13 @@ class YoutubeSanitizerTest :
 					) shouldBe
 						"https://youtube.com/playlist?list=PLkqz3S84Tw-QYEdfTLBzxJ1FAprtqeEpJ"
 				}
+
+				"remove all parameters except \"v\" from YouTube Music URLs" {
+					sanitizer(
+						"https://music.youtube.com/watch?v=KGFkMD2zotU&si=JrZ7QzX4VeMrfzp8",
+					) shouldBe
+						"https://music.youtube.com/watch?v=KGFkMD2zotU"
+				}
 			}
 
 			"matchesDomain" should {
@@ -56,6 +63,10 @@ class YoutubeSanitizerTest :
 
 				"match m.youtube.com domain" {
 					sanitizer.matchesDomain("https://m.youtube.com/") shouldBe true
+				}
+
+				"match music.youtube.com domain" {
+					sanitizer.matchesDomain("https://music.youtube.com/") shouldBe true
 				}
 			}
 		},
