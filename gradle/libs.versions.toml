@@ -1,7 +1,7 @@
 [versions]
 android-gradle-plugin = "8.3.1"
 androidx-activity = "1.8.2"
-androidx-compose-bom = "2024.02.02" # https://developer.android.com/jetpack/compose/bom/bom-mapping
+androidx-compose-bom = "2024.03.00" # https://developer.android.com/jetpack/compose/bom/bom-mapping
 androidx-compose-compiler = "1.5.9" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 androidx-lifecycle = "2.7.0"
 google-accompanist = "0.34.0"
