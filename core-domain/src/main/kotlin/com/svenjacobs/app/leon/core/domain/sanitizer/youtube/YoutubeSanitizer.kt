@@ -37,5 +37,6 @@ class YoutubeSanitizer :
 		name = context.getString(R.string.sanitizer_youtube_name),
 	)
 
-	override fun matchesDomain(input: String) = input.matchesDomainRegex("(m\\.)?youtube\\.com")
+	override fun matchesDomain(input: String) =
+		input.matchesDomainRegex("(?:m(?:usic)?\\.)?youtube\\.com")
 }
