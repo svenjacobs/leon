@@ -50,6 +50,16 @@ recommended and cutting-edge technologies, patterns and libraries such as:
 - Dependency Injection pattern with custom implementation
 - several other Jetpack & AndroidX libraries
 
+## Alternatives
+
+- [Untracker](https://github.com/zhanghai/Untracker) (Android)
+- [Tarnhelm](https://github.com/lz233/Tarnhelm) (Android)
+- [URLCheck](https://github.com/TrianguloY/UrlChecker) (Android)
+- [LinkSheet](https://github.com/LinkSheet/LinkSheet) (Android)
+- [ClearURLs](https://github.com/ClearURLs/Addon) (Browser)
+- [Link Cleaner](https://linkcleaner.app/) (Web, PWA)
+- [AmputatorBot](https://github.com/KilledMufasa/AmputatorBot) (Removes AMP from URLs)
+
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
