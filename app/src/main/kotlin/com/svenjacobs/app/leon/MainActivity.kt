@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,35 +47,29 @@ class MainActivity : ComponentActivity() {
 		}
 	}
 
-	override fun onNewIntent(intent: Intent?) {
+	override fun onNewIntent(intent: Intent) {
 		super.onNewIntent(intent)
 		onIntent(intent)
 	}
 
 	// TODO: Pass all Intent extras
-	private fun onIntent(intent: Intent?) {
-		val text = if (intent == null) {
-			null
-		} else {
-			when (intent.action) {
-				Intent.ACTION_SEND ->
-					if (intent.type == MIME_TYPE_TEXT_PLAIN) {
-						intent.getStringExtra(Intent.EXTRA_TEXT)
-					} else {
-						null
-					}
-
-				Intent.ACTION_VIEW -> if (intent.scheme.orEmpty().startsWith("http")) {
-					intent.dataString
+	private fun onIntent(intent: Intent) {
+		sourceText.value = when (intent.action) {
+			Intent.ACTION_SEND ->
+				if (intent.type == MIME_TYPE_TEXT_PLAIN) {
+					intent.getStringExtra(Intent.EXTRA_TEXT)
 				} else {
 					null
 				}
 
-				else -> null
+			Intent.ACTION_VIEW -> if (intent.scheme.orEmpty().startsWith("http")) {
+				intent.dataString
+			} else {
+				null
 			}
-		}
 
-		sourceText.value = text
+			else -> null
+		}
 	}
 
 	private companion object {
