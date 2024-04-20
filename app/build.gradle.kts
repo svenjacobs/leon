@@ -128,7 +128,6 @@ dependencies {
 	implementation(libs.kotlin.stdlib.jdk8)
 	implementation(libs.androidx.core.ktx)
 	implementation(libs.androidx.appcompat)
-	implementation(libs.androidx.activity.ktx)
 
 	debugImplementation(libs.androidx.compose.ui.tooling)
 	implementation(libs.bundles.androidx.compose)
