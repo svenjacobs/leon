@@ -41,8 +41,12 @@ fun MainRouter(sourceText: State<String?>, modifier: Modifier = Modifier) {
 		composable(Routes.MAIN) {
 			MainScreen(
 				sourceText = sourceText,
-				onNavigateToSettingsSanitizers = dropUnlessResumed { navController.navigate(Routes.SETTINGS_SANITIZER) },
-				onNavigateToSettingsLicenses = dropUnlessResumed { navController.navigate(Routes.SETTINGS_LICENSES) },
+				onNavigateToSettingsSanitizers = dropUnlessResumed {
+					navController.navigate(Routes.SETTINGS_SANITIZER)
+				},
+				onNavigateToSettingsLicenses = dropUnlessResumed {
+					navController.navigate(Routes.SETTINGS_LICENSES)
+				},
 			)
 		}
 
