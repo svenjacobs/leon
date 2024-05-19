@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.dropUnlessResumed
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -56,7 +57,7 @@ internal fun BottomBar(navController: NavHostController, modifier: Modifier = Mo
 				},
 				label = { Text(stringResource(screen.label)) },
 				selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-				onClick = {
+				onClick = dropUnlessResumed {
 					navController.navigate(screen.route) {
 						popUpTo(navController.graph.findStartDestination().id) {
 							saveState = true

@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ package com.svenjacobs.app.leon.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.dropUnlessResumed
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -35,32 +36,36 @@ fun MainRouter(sourceText: State<String?>, modifier: Modifier = Modifier) {
 	NavHost(
 		modifier = modifier,
 		navController = navController,
-		startDestination = Routes.Main,
+		startDestination = Routes.MAIN,
 	) {
-		composable(Routes.Main) {
+		composable(Routes.MAIN) {
 			MainScreen(
 				sourceText = sourceText,
-				onNavigateToSettingsSanitizers = { navController.navigate(Routes.SettingsSanitizers) },
-				onNavigateToSettingsLicenses = { navController.navigate(Routes.SettingsLicenses) },
+				onNavigateToSettingsSanitizers = dropUnlessResumed {
+					navController.navigate(Routes.SETTINGS_SANITIZER)
+				},
+				onNavigateToSettingsLicenses = dropUnlessResumed {
+					navController.navigate(Routes.SETTINGS_LICENSES)
+				},
 			)
 		}
 
-		composable(Routes.SettingsSanitizers) {
+		composable(Routes.SETTINGS_SANITIZER) {
 			SettingsSanitizersScreen(
-				onBackClick = { navController.popBackStack() },
+				onBackClick = dropUnlessResumed { navController.popBackStack() },
 			)
 		}
 
-		composable(Routes.SettingsLicenses) {
+		composable(Routes.SETTINGS_LICENSES) {
 			SettingsLicensesScreen(
-				onBackClick = { navController.popBackStack() },
+				onBackClick = dropUnlessResumed { navController.popBackStack() },
 			)
 		}
 	}
 }
 
 private object Routes {
-	const val Main = "main"
-	const val SettingsSanitizers = "settings_sanitizers"
-	const val SettingsLicenses = "settings_licenses"
+	const val MAIN = "main"
+	const val SETTINGS_SANITIZER = "settings_sanitizers"
+	const val SETTINGS_LICENSES = "settings_licenses"
 }

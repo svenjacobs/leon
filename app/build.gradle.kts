@@ -118,7 +118,7 @@ play {
 }
 
 dependencies {
-	val composeBom = platform(libs.androidx.compose.bom)
+	val composeBom = platform(libs.chrisbanes.compose.bom.alpha)
 	implementation(composeBom)
 	implementation(platform(libs.kotlin.bom))
 
