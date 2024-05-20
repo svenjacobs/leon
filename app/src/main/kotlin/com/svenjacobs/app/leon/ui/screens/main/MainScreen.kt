@@ -18,8 +18,12 @@
 
 package com.svenjacobs.app.leon.ui.screens.main
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
+import android.view.Window
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -51,21 +55,21 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
@@ -92,20 +96,22 @@ fun MainScreen(
 	val navController = rememberNavController()
 	val snackbarHostState = remember { SnackbarHostState() }
 	val coroutineScope = rememberCoroutineScope()
-	val systemUiController = rememberSystemUiController()
 	val isDarkTheme = isSystemInDarkTheme()
 	val context = LocalContext.current
 	val clipboard = LocalClipboardManager.current
 	val shareTitle = stringResource(R.string.share)
 	val openTitle = stringResource(R.string.open)
 	var didPerformActionAfterClean by remember(uiState.result) { mutableStateOf(false) }
+	val view = LocalView.current
 
 	LaunchedEffect(sourceText.value) {
 		viewModel.setText(sourceText.value)
 	}
 
 	LaunchedEffect(Unit) {
-		systemUiController.setStatusBarColor(Color.Transparent, darkIcons = !isDarkTheme)
+		val window = view.context.findWindow() ?: return@LaunchedEffect
+		val insetsController = WindowCompat.getInsetsController(window, view)
+		insetsController.isAppearanceLightStatusBars = !isDarkTheme
 	}
 
 	fun openShareMenu(result: Result.Success) {
@@ -443,6 +449,12 @@ private fun HowToBody(modifier: Modifier = Modifier, onImportFromClipboardClick:
 			}
 		}
 	}
+}
+
+private tailrec fun Context.findWindow(): Window? = when (this) {
+	is Activity -> window
+	is ContextWrapper -> baseContext.findWindow()
+	else -> null
 }
 
 @Preview(showBackground = true)

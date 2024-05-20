@@ -138,7 +138,6 @@ dependencies {
 	implementation(libs.androidx.lifecycle.viewmodel.compose)
 	implementation(libs.androidx.navigation.compose)
 	implementation(libs.mikepenz.aboutlibraries.compose.m3)
-	implementation(libs.google.accompanist.systemuicontroller)
 
 	implementation(libs.androidx.startup.runtime)
 	implementation(libs.androidx.lifecycle.runtime.ktx)
