@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ package com.svenjacobs.app.leon.ui.common.views
 
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -53,7 +53,7 @@ private fun NavigationIcon(modifier: Modifier = Modifier, onClick: () -> Unit) {
 		onClick = onClick,
 	) {
 		Icon(
-			Icons.Filled.ArrowBack,
+			Icons.AutoMirrored.Filled.ArrowBack,
 			contentDescription = stringResource(R.string.a11y_back_navigation),
 		)
 	}

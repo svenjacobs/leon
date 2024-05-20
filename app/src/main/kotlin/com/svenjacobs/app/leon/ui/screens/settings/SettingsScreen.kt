@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -144,7 +145,7 @@ private fun Content(
 						TextField(
 							modifier = Modifier
 								.fillMaxWidth()
-								.menuAnchor(),
+								.menuAnchor(MenuAnchorType.PrimaryNotEditable),
 							value = actionAfterClean.text(),
 							onValueChange = {},
 							readOnly = true,

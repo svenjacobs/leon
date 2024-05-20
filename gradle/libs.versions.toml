@@ -3,7 +3,6 @@ android-gradle-plugin = "8.4.0"
 androidx-activity = "1.9.0"
 androidx-compose-bom = "2024.05.00" # https://developer.android.com/jetpack/compose/bom/bom-mapping
 androidx-lifecycle = "2.8.0"
-google-accompanist = "0.34.0"
 kotest = "5.9.0"
 kotlin = "2.0.0-RC3"
 kotlinx-coroutines = "1.8.1"
@@ -30,7 +29,6 @@ androidx-navigation-compose = "androidx.navigation:navigation-compose:2.8.0-beta
 androidx-startup-runtime = "androidx.startup:startup-runtime:1.1.1"
 chrisbanes-compose-bom-alpha = "dev.chrisbanes.compose:compose-bom:2024.05.00-alpha02"
 facebook-stetho = "com.facebook.stetho:stetho:1.6.0"
-google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "google-accompanist" }
 jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-framework-api-jvm = { module = "io.kotest:kotest-framework-api-jvm", version.ref = "kotest" }
