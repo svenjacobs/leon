@@ -24,6 +24,7 @@ plugins {
 	id("com.android.application")
 	kotlin("android")
 	kotlin("plugin.parcelize")
+	id("org.jetbrains.kotlin.plugin.compose")
 	id("com.mikepenz.aboutlibraries.plugin")
 	alias(libs.plugins.triplet.play)
 }
@@ -93,10 +94,6 @@ android {
 		buildConfig = true
 	}
 
-	composeOptions {
-		kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
-	}
-
 	testOptions {
 		unitTests.all {
 			it.useJUnitPlatform()
@@ -110,6 +107,10 @@ android {
 	androidResources {
 		generateLocaleConfig = true
 	}
+}
+
+composeCompiler {
+	enableStrongSkippingMode = true
 }
 
 play {

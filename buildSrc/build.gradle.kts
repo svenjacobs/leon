@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2022 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,4 +28,5 @@ repositories {
 dependencies {
 	implementation(libs.kotlin.gradle.plugin)
 	implementation(libs.android.gradle.plugin)
+	implementation(libs.compose.gradle.plugin)
 }

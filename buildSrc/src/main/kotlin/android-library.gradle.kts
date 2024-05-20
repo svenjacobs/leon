@@ -24,6 +24,7 @@ val libs: VersionCatalog = catalogs.named("libs")
 plugins {
 	id("com.android.library")
 	kotlin("android")
+	id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -47,16 +48,15 @@ android {
 		compose = true
 	}
 
-	composeOptions {
-		kotlinCompilerExtensionVersion =
-			libs.findVersion("androidx.compose.compiler").get().requiredVersion
-	}
-
 	testOptions {
 		unitTests.all {
 			it.useJUnitPlatform()
 		}
 	}
+}
+
+composeCompiler {
+	enableStrongSkippingMode = true
 }
 
 dependencies {
