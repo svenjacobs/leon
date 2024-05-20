@@ -2,11 +2,10 @@
 android-gradle-plugin = "8.4.0"
 androidx-activity = "1.9.0"
 androidx-compose-bom = "2024.05.00" # https://developer.android.com/jetpack/compose/bom/bom-mapping
-androidx-compose-compiler = "1.5.14" # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 androidx-lifecycle = "2.8.0"
 google-accompanist = "0.34.0"
 kotest = "5.9.0"
-kotlin = "1.9.24"
+kotlin = "2.0.0-RC3"
 kotlinx-coroutines = "1.8.1"
 mikepenz-aboutlibraries = "11.1.4"
 
@@ -38,6 +37,7 @@ kotest-framework-api-jvm = { module = "io.kotest:kotest-framework-api-jvm", vers
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin", version.ref = "kotlin" }
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
 kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7"
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }

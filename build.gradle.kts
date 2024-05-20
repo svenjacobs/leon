@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ buildscript {
 	dependencies {
 		classpath(libs.android.gradle.plugin)
 		classpath(libs.kotlin.gradle.plugin)
+		classpath(libs.compose.gradle.plugin)
 		classpath(libs.mikepenz.aboutlibraries.gradle.plugin)
 	}
 }
@@ -58,8 +59,8 @@ subprojects {
 	}
 
 	tasks.withType<KotlinCompile>().configureEach {
-		kotlinOptions {
-			freeCompilerArgs = freeCompilerArgs + listOf(
+		compilerOptions {
+			freeCompilerArgs.addAll(
 				"-opt-in=kotlin.RequiresOptIn",
 				"-opt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
 				"-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
