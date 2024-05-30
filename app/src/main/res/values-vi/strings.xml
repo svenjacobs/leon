@@ -37,6 +37,7 @@
     <string name="reset">Đặt lại</string>
     <string name="extract_url">Chỉ trích xuất URL</string>
     <string name="register_as_browser">Đăng ký Léon làm trình duyệt</string>
+    <string name="open_in_custom_tabs">Open URLs in browser custom tabs</string> <!-- TODO: translate -->
     <string name="action_after_clean">Hành động sau khi làm sạch</string>
     <string name="do_nothing">Không làm gì cả</string>
     <string name="open_share_menu">Mở menu chia sẻ</string>

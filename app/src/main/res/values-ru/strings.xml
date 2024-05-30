@@ -1,6 +1,6 @@
 <!--
   ~ Léon - The URL Cleaner
-  ~ Copyright (C) 2023 Sven Jacobs
+  ~ Copyright (C) 2024 Sven Jacobs
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
     <string name="reset">Сброс</string>
     <string name="extract_url">Извлечение только URL-адреса</string>
     <string name="register_as_browser">Register Léon as browser</string>  <!-- TODO: translate -->
+    <string name="open_in_custom_tabs">Open URLs in browser custom tabs</string> <!-- TODO: translate -->
     <string name="action_after_clean">Action after clean</string> <!-- TODO: translate -->
     <string name="do_nothing">Do nothing</string> <!-- TODO: translate -->
     <string name="open_share_menu">Open share menu</string> <!-- TODO: translate -->

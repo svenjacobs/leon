@@ -145,6 +145,7 @@ dependencies {
 	implementation(libs.androidx.lifecycle.viewmodel.ktx)
 	implementation(libs.androidx.datastore.preferences)
 	implementation(libs.kotlinx.coroutines.android)
+	implementation(libs.androidx.browser)
 	implementation(libs.jakewharton.timber)
 
 	debugImplementation(libs.facebook.stetho)
