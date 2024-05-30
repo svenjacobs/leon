@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ class SettingsScreenViewModel(
 	data class UiState(
 		val isLoading: Boolean = true,
 		val browserEnabled: Boolean = false,
+		val customTabsEnabled: Boolean = false,
 		val actionAfterClean: ActionAfterClean = ActionAfterClean.DoNothing,
 	)
 
@@ -52,11 +53,13 @@ class SettingsScreenViewModel(
 	val uiState: StateFlow<UiState> =
 		combine(
 			browserEnabled,
+			appDataStoreManager.customTabsEnabled,
 			appDataStoreManager.actionAfterClean,
-		) { browserEnabled, actionAfterClean ->
+		) { browserEnabled, customTabsEnabled, actionAfterClean ->
 			UiState(
 				isLoading = false,
 				browserEnabled = browserEnabled,
+				customTabsEnabled = customTabsEnabled,
 				actionAfterClean = actionAfterClean ?: ActionAfterClean.DoNothing,
 			)
 		}.stateIn(
@@ -81,6 +84,12 @@ class SettingsScreenViewModel(
 			},
 			PackageManager.DONT_KILL_APP,
 		)
+	}
+
+	fun onCustomTabsSwitchCheckedChange(checked: Boolean) {
+		viewModelScope.launch {
+			appDataStoreManager.setCustomTabsEnabled(checked)
+		}
 	}
 
 	fun onActionAfterCleanClick(actionAfterClean: ActionAfterClean) {

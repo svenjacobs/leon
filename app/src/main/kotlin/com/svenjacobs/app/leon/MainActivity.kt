@@ -18,18 +18,27 @@
 
 package com.svenjacobs.app.leon
 
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.browser.customtabs.CustomTabsClient
+import androidx.browser.customtabs.CustomTabsServiceConnection
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
 import com.svenjacobs.app.leon.ui.MainRouter
 import com.svenjacobs.app.leon.ui.theme.AppTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
 	private val sourceText = mutableStateOf<String?>(null)
+	private var customTabsInitialized = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -43,6 +52,16 @@ class MainActivity : ComponentActivity() {
 				MainRouter(
 					sourceText = sourceText,
 				)
+			}
+		}
+
+		lifecycleScope.launch {
+			repeatOnLifecycle(Lifecycle.State.STARTED) {
+				AppDataStoreManager.customTabsEnabled.collect { customTabsEnabled ->
+					if (customTabsEnabled) {
+						setupCustomTabsService()
+					}
+				}
 			}
 		}
 	}
@@ -70,6 +89,24 @@ class MainActivity : ComponentActivity() {
 
 			else -> null
 		}
+	}
+
+	private fun setupCustomTabsService() {
+		if (customTabsInitialized) return
+
+		val connection = object : CustomTabsServiceConnection() {
+			override fun onCustomTabsServiceConnected(name: ComponentName, client: CustomTabsClient) {
+				client.warmup(0)
+			}
+
+			override fun onServiceDisconnected(name: ComponentName?) {
+			}
+		}
+
+		val packageName = CustomTabsClient.getPackageName(this, null)
+		CustomTabsClient.bindCustomTabsService(this, packageName, connection)
+
+		customTabsInitialized = true
 	}
 
 	private companion object {

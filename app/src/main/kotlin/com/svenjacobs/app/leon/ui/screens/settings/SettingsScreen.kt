@@ -65,10 +65,12 @@ fun SettingsScreen(
 		modifier = modifier,
 		isLoading = uiState.isLoading,
 		browserEnabled = uiState.browserEnabled,
+		customTabsEnabled = uiState.customTabsEnabled,
 		actionAfterClean = uiState.actionAfterClean,
 		onSanitizersClick = onNavigateToSettingsSanitizers,
 		onLicensesClick = onNavigateToSettingsLicenses,
 		onBrowserSwitchCheckedChange = viewModel::onBrowserSwitchCheckedChange,
+		onCustomTabsSwitchCheckedChange = viewModel::onCustomTabsSwitchCheckedChange,
 		onActionAfterCleanClick = viewModel::onActionAfterCleanClick,
 	)
 }
@@ -77,10 +79,12 @@ fun SettingsScreen(
 private fun Content(
 	isLoading: Boolean,
 	browserEnabled: Boolean,
+	customTabsEnabled: Boolean,
 	actionAfterClean: ActionAfterClean,
 	onSanitizersClick: () -> Unit,
 	onLicensesClick: () -> Unit,
 	onBrowserSwitchCheckedChange: (Boolean) -> Unit,
+	onCustomTabsSwitchCheckedChange: (Boolean) -> Unit,
 	onActionAfterCleanClick: (ActionAfterClean) -> Unit,
 	modifier: Modifier = Modifier,
 ) {
@@ -111,24 +115,19 @@ private fun Content(
 					Text(stringResource(R.string.licenses))
 				}
 
-				Row(
-					modifier = Modifier
-						.fillMaxWidth()
-						.padding(top = 16.dp),
-					verticalAlignment = Alignment.CenterVertically,
-				) {
-					Text(
-						modifier = Modifier
-							.padding(end = 8.dp)
-							.weight(1f),
-						text = stringResource(R.string.register_as_browser),
-					)
+				SwitchRow(
+					modifier = Modifier.padding(top = 16.dp),
+					text = stringResource(R.string.register_as_browser),
+					checked = browserEnabled,
+					onCheckedChange = onBrowserSwitchCheckedChange,
+				)
 
-					Switch(
-						checked = browserEnabled,
-						onCheckedChange = onBrowserSwitchCheckedChange,
-					)
-				}
+				SwitchRow(
+					modifier = Modifier.padding(top = 16.dp),
+					text = stringResource(R.string.open_in_custom_tabs),
+					checked = customTabsEnabled,
+					onCheckedChange = onCustomTabsSwitchCheckedChange,
+				)
 
 				Column(
 					modifier = Modifier.padding(top = 8.dp),
@@ -211,6 +210,31 @@ private fun Content(
 }
 
 @Composable
+private fun SwitchRow(
+	text: String,
+	checked: Boolean,
+	onCheckedChange: (Boolean) -> Unit,
+	modifier: Modifier = Modifier,
+) {
+	Row(
+		modifier = modifier.fillMaxWidth(),
+		verticalAlignment = Alignment.CenterVertically,
+	) {
+		Text(
+			modifier = Modifier
+				.padding(end = 8.dp)
+				.weight(1f),
+			text = text,
+		)
+
+		Switch(
+			checked = checked,
+			onCheckedChange = onCheckedChange,
+		)
+	}
+}
+
+@Composable
 private fun ActionAfterClean.text(): String = when (this) {
 	ActionAfterClean.DoNothing -> stringResource(R.string.do_nothing)
 	ActionAfterClean.OpenShareMenu -> stringResource(R.string.open_share_menu)
@@ -225,10 +249,12 @@ private fun ContentPreview() {
 		Content(
 			isLoading = false,
 			browserEnabled = false,
+			customTabsEnabled = false,
 			actionAfterClean = ActionAfterClean.OpenShareMenu,
 			onSanitizersClick = {},
 			onLicensesClick = {},
 			onBrowserSwitchCheckedChange = {},
+			onCustomTabsSwitchCheckedChange = {},
 			onActionAfterCleanClick = {},
 		)
 	}

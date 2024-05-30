@@ -24,6 +24,7 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.view.Window
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -143,6 +144,24 @@ fun MainScreen(
 		)
 	}
 
+	fun openInCustomTabs(result: Result.Success) {
+		result.urls.firstOrNull()?.let { url ->
+			val intent = CustomTabsIntent.Builder()
+				.setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
+				.build()
+
+			intent.launchUrl(context, Uri.parse(url))
+		}
+	}
+
+	fun openUrl(result: Result.Success) {
+		if (uiState.isCustomTabsEnabled) {
+			openInCustomTabs(result)
+		} else {
+			openInDefaultApp(result)
+		}
+	}
+
 	fun copyToClipboard(result: Result.Success) {
 		clipboard.setText(AnnotatedString(result.cleanedText))
 		coroutineScope.launch {
@@ -172,7 +191,7 @@ fun MainScreen(
 							(uiState.result as? Result.Success)?.let { result ->
 								when (uiState.actionAfterClean) {
 									ActionAfterClean.OpenShareMenu -> openShareMenu(result)
-									ActionAfterClean.OpenUrl -> openInDefaultApp(result)
+									ActionAfterClean.OpenUrl -> openUrl(result)
 									ActionAfterClean.CopyToClipboard -> copyToClipboard(result)
 									ActionAfterClean.DoNothing -> {}
 								}
@@ -192,7 +211,7 @@ fun MainScreen(
 							},
 							onShareClick = ::openShareMenu,
 							onCopyToClipboardClick = ::copyToClipboard,
-							onOpenClick = ::openInDefaultApp,
+							onOpenClick = ::openUrl,
 							onResetClick = viewModel::onResetClick,
 							onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
 							onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,

@@ -41,6 +41,7 @@ class MainScreenViewModel(
 		val isLoading: Boolean = true,
 		val isUrlDecodeEnabled: Boolean = false,
 		val isExtractUrlEnabled: Boolean = false,
+		val isCustomTabsEnabled: Boolean = false,
 		val result: Result = Result.Empty,
 		val actionAfterClean: ActionAfterClean = ActionAfterClean.DoNothing,
 	) {
@@ -65,8 +66,9 @@ class MainScreenViewModel(
 			text,
 			appDataStoreManager.urlDecodeEnabled,
 			appDataStoreManager.extractUrlEnabled,
+			appDataStoreManager.customTabsEnabled,
 			appDataStoreManager.actionAfterClean,
-		) { text, urlDecodeEnabled, extractUrlEnabled, actionAfterClean ->
+		) { text, urlDecodeEnabled, extractUrlEnabled, isCustomTabsEnabled, actionAfterClean ->
 			val result = text?.let {
 				clean(
 					text = text,
@@ -79,6 +81,7 @@ class MainScreenViewModel(
 				isLoading = text == null,
 				isUrlDecodeEnabled = urlDecodeEnabled,
 				isExtractUrlEnabled = extractUrlEnabled,
+				isCustomTabsEnabled = isCustomTabsEnabled,
 				result = result,
 				actionAfterClean = actionAfterClean ?: ActionAfterClean.DoNothing,
 			)
