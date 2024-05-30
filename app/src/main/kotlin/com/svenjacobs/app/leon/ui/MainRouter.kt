@@ -30,7 +30,11 @@ import com.svenjacobs.app.leon.ui.screens.settings.SettingsLicensesScreen
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsSanitizersScreen
 
 @Composable
-fun MainRouter(sourceText: State<String?>, modifier: Modifier = Modifier) {
+fun MainRouter(
+	sourceText: State<String?>,
+	onResetClick: () -> Unit,
+	modifier: Modifier = Modifier,
+) {
 	val navController = rememberNavController()
 
 	NavHost(
@@ -47,6 +51,7 @@ fun MainRouter(sourceText: State<String?>, modifier: Modifier = Modifier) {
 				onNavigateToSettingsLicenses = dropUnlessResumed {
 					navController.navigate(Routes.SETTINGS_LICENSES)
 				},
+				onResetClick = onResetClick,
 			)
 		}
 

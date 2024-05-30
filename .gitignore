@@ -17,3 +17,4 @@ local.properties
 upload-keystore.jks
 signing.properties
 google-play-service-account.json
+.kotlin
