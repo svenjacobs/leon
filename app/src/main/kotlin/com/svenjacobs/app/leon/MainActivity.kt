@@ -51,6 +51,7 @@ class MainActivity : ComponentActivity() {
 			AppTheme {
 				MainRouter(
 					sourceText = sourceText,
+					onResetClick = { sourceText.value = null },
 				)
 			}
 		}

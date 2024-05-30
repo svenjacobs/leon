@@ -89,6 +89,7 @@ fun MainScreen(
 	sourceText: State<String?>,
 	onNavigateToSettingsSanitizers: () -> Unit,
 	onNavigateToSettingsLicenses: () -> Unit,
+	onResetClick: () -> Unit,
 	modifier: Modifier = Modifier,
 	viewModel: MainScreenViewModel = viewModel(),
 ) {
@@ -212,7 +213,10 @@ fun MainScreen(
 							onShareClick = ::openShareMenu,
 							onCopyToClipboardClick = ::copyToClipboard,
 							onOpenClick = ::openUrl,
-							onResetClick = viewModel::onResetClick,
+							onResetClick = {
+								viewModel.onResetClick()
+								onResetClick()
+							},
 							onUrlDecodeCheckedChange = viewModel::onUrlDecodeCheckedChange,
 							onExtractUrlCheckedChange = viewModel::onExtractUrlCheckedChange,
 						)
