@@ -29,6 +29,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.App"
         tools:targetApi="tiramisu">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -39,6 +40,17 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ProcessTextActivity"
+            android:exported="true"
+            android:label="@string/process_text_action_name">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>

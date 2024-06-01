@@ -44,4 +44,5 @@
     <string name="open_share_menu">Mở menu chia sẻ</string>
     <string name="open_url">Mở URL</string>
     <string name="copy_to_clipboard">Sao chép vào clipboard</string>
+    <string name="process_text_action_name">Clean URL (Léon)</string> <!-- TODO: translate -->
 </resources>
