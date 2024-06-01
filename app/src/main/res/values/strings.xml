@@ -44,4 +44,5 @@
     <string name="open_share_menu">Open share menu</string>
     <string name="open_url">Open URL</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="process_text_action_name">Clean URL (Léon)</string>
 </resources>
