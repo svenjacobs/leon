@@ -434,6 +434,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "Mikaela",
+      "name": "Aminda Suomalainen ⚧",
+      "avatar_url": "https://avatars.githubusercontent.com/u/831184?v=4",
+      "profile": "https://aminda.eu",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
