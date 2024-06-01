@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-47-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-48-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -127,6 +127,7 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/JonathanBaby"><img src="https://avatars.githubusercontent.com/u/7895197?v=4?s=100" width="100px;" alt="Jonathan Baby"/><br /><sub><b>Jonathan Baby</b></sub></a><br /><a href="#ideas-JonathanBaby" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/NikunjKhangwal"><img src="https://avatars.githubusercontent.com/u/99175083?v=4?s=100" width="100px;" alt="NikunjKhangwal"/><br /><sub><b>NikunjKhangwal</b></sub></a><br /><a href="#ideas-NikunjKhangwal" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://aminda.eu"><img src="https://avatars.githubusercontent.com/u/831184?v=4?s=100" width="100px;" alt="Aminda Suomalainen ⚧"/><br /><sub><b>Aminda Suomalainen ⚧</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3AMikaela" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rhubarbzed"><img src="https://avatars.githubusercontent.com/u/62303568?v=4?s=100" width="100px;" alt="rhubarb"/><br /><sub><b>rhubarb</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Arhubarbzed" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
