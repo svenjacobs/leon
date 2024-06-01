@@ -103,6 +103,8 @@ fun MainScreen(
 	val clipboard = LocalClipboardManager.current
 	val shareTitle = stringResource(R.string.share)
 	val openTitle = stringResource(R.string.open)
+	val copiedToClipboardMessage = stringResource(R.string.clipboard_message)
+	val clipboardEmptyMessage = stringResource(R.string.clipboard_empty_message)
 	var didPerformActionAfterClean by remember(uiState.result) { mutableStateOf(false) }
 	val view = LocalView.current
 
@@ -166,7 +168,7 @@ fun MainScreen(
 	fun copyToClipboard(result: Result.Success) {
 		clipboard.setText(AnnotatedString(result.cleanedText))
 		coroutineScope.launch {
-			snackbarHostState.showSnackbar(context.getString(R.string.clipboard_message))
+			snackbarHostState.showSnackbar(copiedToClipboardMessage)
 		}
 	}
 
@@ -206,9 +208,15 @@ fun MainScreen(
 							isUrlDecodeEnabled = uiState.isUrlDecodeEnabled,
 							isExtractUrlEnabled = uiState.isExtractUrlEnabled,
 							onImportFromClipboardClick = {
-								viewModel.setText(
-									clipboard.getText()?.toString(),
-								)
+								val text = clipboard.getText()?.toString()
+
+								if (text.isNullOrBlank()) {
+									coroutineScope.launch {
+										snackbarHostState.showSnackbar(clipboardEmptyMessage)
+									}
+								} else {
+									viewModel.setText(text)
+								}
 							},
 							onShareClick = ::openShareMenu,
 							onCopyToClipboardClick = ::copyToClipboard,

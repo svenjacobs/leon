@@ -24,6 +24,7 @@
     <string name="open">Open</string>> <!-- TODO: translate -->
     <string name="copy">Копировать</string>
     <string name="clipboard_message">Ссылка скопирована в буфер обмена</string>
+    <string name="clipboard_empty_message">Clipboard is empty</string> <!-- TODO: translate -->
     <string name="how_to_title">Инструкция</string>
     <string name="how_to_text">When sharing text, choose \"URL Cleaner\". Then click on \"Share\" in this app to send text to target app. Alternatively, click the button above to import contents from the clipboard.</string>
     <string name="cleaned_url">Очищенный URL-адрес</string>
@@ -40,6 +41,6 @@
     <string name="action_after_clean">Action after clean</string> <!-- TODO: translate -->
     <string name="do_nothing">Do nothing</string> <!-- TODO: translate -->
     <string name="open_share_menu">Open share menu</string> <!-- TODO: translate -->
-    <string name="open_url">Open URL</string>
+    <string name="open_url">Open URL</string> <!-- TODO: translate -->
     <string name="copy_to_clipboard">Copy to clipboard</string> <!-- TODO: translate -->
 </resources>
