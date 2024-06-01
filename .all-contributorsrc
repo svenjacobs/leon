@@ -407,6 +407,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "JohnReedLOL",
+      "name": "John-Michael Reed",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5510392?v=4",
+      "profile": "https://beacons.ai/johnreed",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
