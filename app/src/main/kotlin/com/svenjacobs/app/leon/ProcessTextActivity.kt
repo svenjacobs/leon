@@ -24,6 +24,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresApi
 import com.svenjacobs.app.leon.core.domain.CleanerService
+import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 
 @RequiresApi(Build.VERSION_CODES.M)
@@ -32,10 +34,31 @@ class ProcessTextActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
+		when (intent.action) {
+			ACTION_CLEAN -> actionClean()
+			Intent.ACTION_PROCESS_TEXT -> actionProcessText()
+			else -> cancel()
+		}
+
+		finish()
+	}
+
+	private fun actionClean() {
+		val text = intent.getStringExtra(Intent.EXTRA_TEXT)
+
+		when {
+			text.isNullOrBlank() -> cancel()
+			else -> result(text, Intent.EXTRA_TEXT)
+		}
+	}
+
+	private fun actionProcessText() {
 		val text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)?.toString()
 		val readonly = intent.getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false)
 
 		when {
+			text.isNullOrBlank() -> cancel()
+
 			// If readonly, delegate to MainActivity
 			readonly -> startActivity(
 				Intent(this, MainActivity::class.java).apply {
@@ -45,21 +68,33 @@ class ProcessTextActivity : ComponentActivity() {
 				},
 			)
 
-			text.isNullOrBlank() -> setResult(RESULT_CANCELED)
-
-			// Needs to run with runBlocking or else setResult() won't work
-			else -> runBlocking {
-				val result = CleanerService().clean(text)
-
-				setResult(
-					RESULT_OK,
-					Intent().apply {
-						putExtra(Intent.EXTRA_PROCESS_TEXT, result.cleanedText)
-					},
-				)
-			}
+			else -> result(text, Intent.EXTRA_PROCESS_TEXT)
 		}
+	}
 
-		finish()
+	private fun result(text: String, key: String) {
+		// Needs to run with runBlocking or else setResult() won't work
+		runBlocking {
+			val decodeUrl = AppDataStoreManager.urlDecodeEnabled.firstOrNull() ?: false
+			val result = CleanerService().clean(
+				text = text,
+				decodeUrl = decodeUrl,
+			)
+
+			setResult(
+				RESULT_OK,
+				Intent().apply {
+					putExtra(key, result.cleanedText)
+				},
+			)
+		}
+	}
+
+	private fun cancel() {
+		setResult(RESULT_CANCELED)
+	}
+
+	private companion object {
+		private const val ACTION_CLEAN = "com.svenjacobs.app.leon.CLEAN"
 	}
 }

@@ -54,6 +54,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
+
+            <!-- For programmatic use from other applications -->
+            <intent-filter>
+                <action android:name="com.svenjacobs.app.leon.CLEAN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <!-- Handle browser intents. -->
