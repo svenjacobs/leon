@@ -18,7 +18,6 @@
 
 package com.svenjacobs.app.leon.ui.screens.main.views
 
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -42,7 +41,7 @@ internal fun BottomBar(navController: NavHostController, modifier: Modifier = Mo
 	)
 
 	NavigationBar(
-		modifier = modifier.navigationBarsPadding(),
+		modifier = modifier,
 	) {
 		val navBackStackEntry by navController.currentBackStackEntryAsState()
 		val currentDestination = navBackStackEntry?.destination

@@ -37,6 +37,11 @@ Did you find a bug or have an idea of how the app could be improved? Please repo
 [bugs](https://github.com/svenjacobs/leon/issues) or give
 [feedback](https://github.com/svenjacobs/leon/discussions).
 
+## API
+
+It is possible to call Léon programmatically from other applications.  
+See [API.md](API) for details.
+
 ## Technical implementation
 
 This app is also meant as a blueprint for modern Android development, presenting and evaluating
