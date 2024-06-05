@@ -40,7 +40,7 @@ Did you find a bug or have an idea of how the app could be improved? Please repo
 ## API
 
 It is possible to call Léon programmatically from other applications.  
-See [API.md](API) for details.
+See [API](./API.md) for details.
 
 ## Technical implementation
 
