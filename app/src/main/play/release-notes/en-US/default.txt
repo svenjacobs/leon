@@ -1,2 +1,2 @@
 This updates improves the app.
-For more details please visit the project website at https://github.com/svenjacobs/leon/releases.
+For more details please visit the project website at https://github.com/svenjacobs/leon/releases
