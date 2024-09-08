@@ -110,7 +110,6 @@ android {
 }
 
 composeCompiler {
-	enableStrongSkippingMode = true
 }
 
 play {
@@ -119,7 +118,7 @@ play {
 }
 
 dependencies {
-	val composeBom = platform(libs.chrisbanes.compose.bom.alpha)
+	val composeBom = platform(libs.androidx.compose.bom)
 	implementation(composeBom)
 	implementation(platform(libs.kotlin.bom))
 

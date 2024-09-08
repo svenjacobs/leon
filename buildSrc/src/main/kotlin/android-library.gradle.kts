@@ -56,13 +56,12 @@ android {
 }
 
 composeCompiler {
-	enableStrongSkippingMode = true
 }
 
 dependencies {
 	api(project(":core-common"))
 
-	val composeBom = platform(libs.findLibrary("chrisbanes.compose.bom.alpha").get())
+	val composeBom = platform(libs.findLibrary("androidx.compose.bom").get())
 	api(composeBom)
 	api(platform(libs.findLibrary("kotlin.bom").get()))
 
