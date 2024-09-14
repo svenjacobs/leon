@@ -5,7 +5,7 @@ androidx-compose-bom = "2024.09.00" # https://developer.android.com/jetpack/comp
 androidx-lifecycle = "2.8.5"
 kotest = "5.9.1"
 kotlin = "2.0.20"
-kotlinx-coroutines = "1.8.1"
+kotlinx-coroutines = "1.9.0"
 mikepenz-aboutlibraries = "11.2.1"
 
 [libraries]
