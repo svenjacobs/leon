@@ -33,6 +33,12 @@ class YoutubeSanitizerTest :
 						"https://m.youtube.com/watch?v=CvFH_6DNRCY&pp=ygUHZGVidXNzeQ%3D%3D",
 					) shouldBe "https://m.youtube.com/watch?v=CvFH_6DNRCY"
 				}
+				
+				"remove all parameters except \"t\" from video URLs" {
+					sanitizer(
+						"https://m.youtube.com/watch?v=CvFH_6DNRCY&t=125",
+					) shouldBe "https://m.youtube.com/watch?v=CvFH_6DNRCY&t=125"
+				}
 
 				"remove all parameters except \"search_query\" from search URLs" {
 					sanitizer("https://m.youtube.com/results?sp=mAEA&search_query=funny+dog+video") shouldBe
