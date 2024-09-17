@@ -1,12 +1,12 @@
 package com.svenjacobs.app.leon.core.domain.sanitizer.jodel
 
 import android.content.Context
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
 import com.svenjacobs.app.leon.core.common.url.decodeUrl
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 import org.json.JSONObject
 
 class JodelSanitizer : Sanitizer {
