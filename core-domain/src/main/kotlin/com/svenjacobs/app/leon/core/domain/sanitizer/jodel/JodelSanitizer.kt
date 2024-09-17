@@ -7,7 +7,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
-import org.json.JSONObject
+import kotlinx.serialization.json.Json
 
 class JodelSanitizer : Sanitizer {
 	override val id = SanitizerId("jodel")
@@ -21,9 +21,9 @@ class JodelSanitizer : Sanitizer {
 		val encoded = URL_REGEX.find(input)?.groupValues?.getOrNull(1) ?: return input
 		val base64Data = decodeUrl(encoded)
 		val jsonString = Base64.Default.decode(base64Data)
-		val jsonObject = JSONObject(jsonString.decodeToString())
-		val url = jsonObject.getString("\$android_url")
-		return url
+		val jsonMap = Json.decodeFromString<Map<String, String>>(jsonString.decodeToString())
+
+		return jsonMap["\$android_url"] ?: input
 	}
 
 	override fun matchesDomain(input: String) = URL_REGEX.containsMatchIn(input)
