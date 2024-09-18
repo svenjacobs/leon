@@ -41,6 +41,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleSearchSanitize
 import com.svenjacobs.app.leon.core.domain.sanitizer.heise.HeiseSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.instagram.InstagramSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.jdoqocy.JdoqocySanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.jodel.JodelSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.lazada.LazadaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.netflix.NetflixSanitizer
@@ -95,6 +96,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				HeiseSanitizer(),
 				InstagramSanitizer(),
 				JdoqocySanitizer(),
+				JodelSanitizer(),
 				LazadaSanitizer(),
 				LinkSynergySanitizer(),
 				NetflixSanitizer(),
