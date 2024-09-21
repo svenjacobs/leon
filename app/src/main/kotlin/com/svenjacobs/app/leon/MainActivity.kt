@@ -105,7 +105,9 @@ class MainActivity : ComponentActivity() {
 		}
 
 		val packageName = CustomTabsClient.getPackageName(this, null)
-		CustomTabsClient.bindCustomTabsService(this, packageName, connection)
+		if (packageName != null) {
+			CustomTabsClient.bindCustomTabsService(this, packageName, connection)
+		}
 
 		customTabsInitialized = true
 	}
