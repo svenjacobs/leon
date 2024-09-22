@@ -27,6 +27,12 @@ plugins {
 	id("org.jetbrains.kotlin.plugin.compose")
 }
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
 android {
 	compileSdk = Android.compileSdk
 

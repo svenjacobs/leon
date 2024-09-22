@@ -29,6 +29,12 @@ plugins {
 	alias(libs.plugins.triplet.play)
 }
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
 android {
 	namespace = "com.svenjacobs.app.leon"
 	compileSdk = Android.compileSdk

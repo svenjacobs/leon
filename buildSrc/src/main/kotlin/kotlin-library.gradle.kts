@@ -23,6 +23,12 @@ plugins {
 	kotlin("jvm")
 }
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
 dependencies {
 	api(platform(libs.findLibrary("kotlin.bom").get()))
 	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
