@@ -17,7 +17,6 @@
   -->
 
 <resources>
-    <string name="app_name" translatable="false">URL Cleaner</string>
     <string name="screen_main">Trang chủ</string>
     <string name="screen_settings">Thiết đặt</string>
     <string name="scaffold_title">Léon – Trình dọn dẹp URL</string>
