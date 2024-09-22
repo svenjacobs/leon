@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Import GPG key for git-secret
         run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch --yes
