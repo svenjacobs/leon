@@ -25,7 +25,7 @@ plugins {
 	kotlin("android")
 	kotlin("plugin.parcelize")
 	id("org.jetbrains.kotlin.plugin.compose")
-	id("com.mikepenz.aboutlibraries.plugin")
+	alias(libs.plugins.aboutlibraries)
 	alias(libs.plugins.triplet.play)
 }
 

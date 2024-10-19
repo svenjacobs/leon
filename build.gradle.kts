@@ -31,7 +31,6 @@ buildscript {
 		classpath(libs.android.gradle.plugin)
 		classpath(libs.kotlin.gradle.plugin)
 		classpath(libs.compose.gradle.plugin)
-		classpath(libs.mikepenz.aboutlibraries.gradle.plugin)
 	}
 }
 
@@ -39,6 +38,7 @@ plugins {
 	alias(libs.plugins.ben.manes.versions)
 	alias(libs.plugins.kotlinter)
 	alias(libs.plugins.adarshr.test.logger)
+	alias(libs.plugins.aboutlibraries) apply false
 }
 
 subprojects {
