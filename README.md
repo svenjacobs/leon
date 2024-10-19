@@ -15,7 +15,7 @@ The benefits of removing tracking parameters are:
 - Improves readability of links
 - Saves characters (in Tweets for example)
 
-<img src="etc/painting_mondstern.jpg" width="400" />
+<img src="./etc/painting_mondstern.jpg" width="400" />
 
 _Painting by [Mondstern](https://mastodon.green/@mondstern/111993655182793928) (CC BY-SA)_
 
@@ -31,6 +31,11 @@ Cleaner share the cleaned URL to the actual target application.
 
 <img src="./app/src/main/res/drawable-nodpi/howto_pixel_5.webp" width="250" />
 
+It's also possible to select editable text in any application which supports it, then in the
+context menu choose Léon to sanitize text in place.
+
+<img src="./etc/context_menu.png" />
+
 ## Issues & feedback
 
 Did you find a bug or have an idea of how the app could be improved? Please report
@@ -39,7 +44,8 @@ Did you find a bug or have an idea of how the app could be improved? Please repo
 
 ## API
 
-It is possible to call Léon programmatically from other applications. See [API.md](./API.md) for details.
+It is possible to call Léon programmatically from other applications. See [API.md](./API.md) for
+details.
 
 ## Technical implementation
 
