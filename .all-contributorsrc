@@ -462,6 +462,16 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "jmbreuer",
+      "name": "Joe Breuer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1792037?v=4",
+      "profile": "https://github.com/jmbreuer",
+      "contributions": [
+        "code",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
