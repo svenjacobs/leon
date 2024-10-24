@@ -59,6 +59,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.theguardian.TheGuardianSani
 import com.svenjacobs.app.leon.core.domain.sanitizer.threads.ThreadsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.tiktok.TiktokSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.webtrekk.WebtrekkSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.wikipedia.WikipediaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.x.XSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.yahoo.YahooSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.yandex.YandexSanitizer
@@ -115,6 +116,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				ThreadsSanitizer(),
 				TiktokSanitizer(),
 				WebtrekkSanitizer(),
+				WikipediaSanitizer(),
 				XSanitizer(),
 				YahooSearchSanitizer(),
 				YandexSanitizer(),
