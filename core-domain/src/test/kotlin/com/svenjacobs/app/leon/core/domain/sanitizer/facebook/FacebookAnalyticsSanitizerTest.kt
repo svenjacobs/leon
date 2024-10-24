@@ -31,7 +31,7 @@ class FacebookAnalyticsSanitizerTest :
 					val sanitizer = FacebookAnalyticsSanitizer()
 
 					val result = sanitizer(
-						"https://www.example.com?fb_abc=123&fbclid=12345",
+						"https://www.example.com?fb_abc=123&fbclid=12345&sfnsn=scwspmo",
 					)
 
 					result shouldBe "https://www.example.com"
