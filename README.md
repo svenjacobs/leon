@@ -1,5 +1,5 @@
 [![Build & Verify](https://github.com/svenjacobs/leon/actions/workflows/build.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/build.yml) [![Deploy](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml/badge.svg)](https://github.com/svenjacobs/leon/actions/workflows/deploy.yml) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Léon - The URL Cleaner** is an Android application which removes tracking and other obsolete
@@ -139,6 +139,9 @@ recommended and cutting-edge technologies, patterns and libraries such as:
       <td align="center" valign="top" width="14.28%"><a href="https://aminda.eu"><img src="https://avatars.githubusercontent.com/u/831184?v=4?s=100" width="100px;" alt="Aminda Suomalainen ⚧"/><br /><sub><b>Aminda Suomalainen ⚧</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3AMikaela" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rhubarbzed"><img src="https://avatars.githubusercontent.com/u/62303568?v=4?s=100" width="100px;" alt="rhubarb"/><br /><sub><b>rhubarb</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/issues?q=author%3Arhubarbzed" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/xyrolaith"><img src="https://avatars.githubusercontent.com/u/18216850?v=4?s=100" width="100px;" alt="xyrolaith"/><br /><sub><b>xyrolaith</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=xyrolaith" title="Code">💻</a> <a href="#ideas-xyrolaith" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jmbreuer"><img src="https://avatars.githubusercontent.com/u/1792037?v=4?s=100" width="100px;" alt="Joe Breuer"/><br /><sub><b>Joe Breuer</b></sub></a><br /><a href="https://github.com/svenjacobs/leon/commits?author=jmbreuer" title="Code">💻</a> <a href="https://github.com/svenjacobs/leon/issues?q=author%3Ajmbreuer" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
