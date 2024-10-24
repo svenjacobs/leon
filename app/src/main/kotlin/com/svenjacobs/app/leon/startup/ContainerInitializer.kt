@@ -38,6 +38,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.georiot.GeoRiotSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleAdsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleAnalyticsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleSearchSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleStoreSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.heise.HeiseSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.instagram.InstagramSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.jdoqocy.JdoqocySanitizer
@@ -93,6 +94,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				GoogleAdsSanitizer(),
 				GoogleAnalyticsSanitizer(),
 				GoogleSearchSanitizer(),
+				GoogleStoreSanitizer(),
 				HeiseSanitizer(),
 				InstagramSanitizer(),
 				JdoqocySanitizer(),
