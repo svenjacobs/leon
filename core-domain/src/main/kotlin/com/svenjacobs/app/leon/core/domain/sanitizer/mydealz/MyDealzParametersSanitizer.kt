@@ -33,7 +33,7 @@ class MyDealzParametersSanitizer :
 	override val id = SanitizerId("mydealz_parameters")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_mydealz_paremeters_name),
+		name = context.getString(R.string.sanitizer_mydealz_parameters_name),
 	)
 
 	override fun matchesDomain(input: String) = MyDealzDomains.DOMAINS_REGEX.containsMatchIn(input)
