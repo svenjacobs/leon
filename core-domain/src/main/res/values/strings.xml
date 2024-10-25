@@ -42,6 +42,8 @@
     <string name="sanitizer_jodel_name" translatable="false">Jodel</string>
     <string name="sanitizer_lazada" translatable="false">Lazada</string>
     <string name="sanitizer_linksynergy_name" translatable="false">LinkSynergy</string>
+    <string name="sanitizer_mydealz_paremeters_name" translatable="false">MyDealz Parameters</string>
+    <string name="sanitizer_mydealz_redirects_name" translatable="false">MyDealz Redirects</string>
     <string name="sanitizer_netflix_name" translatable="false">Netflix</string>
     <string name="sanitizer_newegg_name" translatable="false">NewEgg</string>
     <string name="sanitizer_pearl" translatable="false">Pearl</string>
