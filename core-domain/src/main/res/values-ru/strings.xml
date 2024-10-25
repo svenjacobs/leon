@@ -21,6 +21,8 @@
     <string name="sanitizer_aol_search_name">AOL Search</string> <!-- TODO: translate -->
     <string name="sanitizer_empty_parameters_name">Пустые параметры</string>
     <string name="sanitizer_google_search_name">Google Search</string> <!-- TODO: translate -->
+    <string name="sanitizer_mydealz_parameters_name">MyDealz Parameters</string>
+    <string name="sanitizer_mydealz_redirects_name">MyDealz Redirects</string> <!-- TODO: translate -->
     <string name="sanitizer_yahoo_search_name">Yahoo Search</string> <!-- TODO: translate -->
-    <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string> <!-- TODO: translate -->
+    <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string>
 </resources>

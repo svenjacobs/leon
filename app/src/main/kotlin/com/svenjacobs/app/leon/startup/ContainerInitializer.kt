@@ -45,6 +45,8 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.jdoqocy.JdoqocySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.jodel.JodelSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.lazada.LazadaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.mydealz.MyDealzParametersSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.mydealz.MyDealzRedirectsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.netflix.NetflixSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.newegg.NewEggSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.pearl.PearlSanitizer
@@ -102,6 +104,8 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				JodelSanitizer(),
 				LazadaSanitizer(),
 				LinkSynergySanitizer(),
+				MyDealzParametersSanitizer(),
+				MyDealzRedirectsSanitizer(),
 				NetflixSanitizer(),
 				NewEggSanitizer(),
 				PearlSanitizer(),
