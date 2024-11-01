@@ -73,6 +73,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
+import com.svenjacobs.app.leon.ui.common.isDefaultBrowser
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
@@ -158,6 +159,10 @@ fun MainScreen(
 	}
 
 	fun openUrl(result: Result.Success) {
+		// When Leon is the system default browser we neither can open the URL in custom tabs nor
+		// in the default browser because this would just open Leon again.
+		if (isDefaultBrowser(context)) return
+
 		if (uiState.isCustomTabsEnabled) {
 			openInCustomTabs(result)
 		} else {
@@ -375,6 +380,7 @@ private fun SuccessBody(
 					OutlinedButton(
 						modifier = buttonModifier,
 						onClick = { onOpenClick(result) },
+						enabled = !isDefaultBrowser(LocalContext.current),
 					) {
 						Text(
 							text = stringResource(R.string.open),

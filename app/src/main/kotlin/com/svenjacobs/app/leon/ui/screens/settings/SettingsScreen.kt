@@ -41,6 +41,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -48,6 +49,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
+import com.svenjacobs.app.leon.ui.common.isDefaultBrowser
 import com.svenjacobs.app.leon.ui.screens.settings.model.SettingsScreenViewModel
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 import com.svenjacobs.app.leon.ui.tooling.DayNightPreviews
@@ -127,6 +129,7 @@ private fun Content(
 					text = stringResource(R.string.open_in_custom_tabs),
 					checked = customTabsEnabled,
 					onCheckedChange = onCustomTabsSwitchCheckedChange,
+					enabled = !isDefaultBrowser(LocalContext.current),
 				)
 
 				Column(
@@ -215,6 +218,7 @@ private fun SwitchRow(
 	checked: Boolean,
 	onCheckedChange: (Boolean) -> Unit,
 	modifier: Modifier = Modifier,
+	enabled: Boolean = true,
 ) {
 	Row(
 		modifier = modifier.fillMaxWidth(),
@@ -230,6 +234,7 @@ private fun SwitchRow(
 		Switch(
 			checked = checked,
 			onCheckedChange = onCheckedChange,
+			enabled = enabled,
 		)
 	}
 }
