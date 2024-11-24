@@ -28,10 +28,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 class SalesforceParametersSanitizer :
 	RegexSanitizer(
 		// see https://help.salesforce.com/s/articleView?id=sf.mc_gai_utm_parameters.htm&type=5
-		RegexFactory.ofParameter(
-			"utm_source|utm_medium|utm_campaign|utm_term|utm_content|utm_id|" +
-				"sfmc_id|sfmc_activityid",
-		),
+		RegexFactory.ofWildcardParameter("utm_|sfmc_"),
 	) {
 
 	override val id = SanitizerId("salesforce")
