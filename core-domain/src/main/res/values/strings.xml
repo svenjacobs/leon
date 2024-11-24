@@ -50,6 +50,7 @@
     <string name="sanitizer_reddit" translatable="false">Reddit</string>
     <string name="sanitizer_reddit_mail" translatable="false">Reddit (click.redditmail.com)</string>
     <string name="sanitizer_reddit_out" translatable="false">Reddit (out.reddit.com)</string>
+    <string name="sanitizer_salesforce_name" translatable="false">Salesforce</string>
     <string name="sanitizer_session_ids_name" translatable="false">Session IDs</string>
     <string name="sanitizer_shopee" translatable="false">Shopee</string>
     <string name="sanitizer_spiegel_name" translatable="false">Spiegel</string>

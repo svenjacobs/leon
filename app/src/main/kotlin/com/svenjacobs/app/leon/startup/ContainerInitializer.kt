@@ -53,6 +53,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.pearl.PearlSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.reddit.RedditMailSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.reddit.RedditOutSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.reddit.RedditSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.salesforce.SalesforceParametersSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.sessionids.SessionIdsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.shopee.ShopeeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spiegel.SpiegelSanitizer
@@ -112,6 +113,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				RedditMailSanitizer(),
 				RedditOutSanitizer(),
 				RedditSanitizer(),
+				SalesforceParametersSanitizer(),
 				SessionIdsSanitizer(),
 				ShopeeSanitizer(),
 				SpiegelSanitizer(),
