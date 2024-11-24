@@ -33,7 +33,7 @@ class YoutubeSanitizerTest :
 						"https://m.youtube.com/watch?v=CvFH_6DNRCY&pp=ygUHZGVidXNzeQ%3D%3D",
 					) shouldBe "https://m.youtube.com/watch?v=CvFH_6DNRCY"
 				}
-				
+
 				"remove all parameters except \"t\" from video URLs" {
 					sanitizer(
 						"https://m.youtube.com/watch?v=CvFH_6DNRCY&t=125",
@@ -59,6 +59,12 @@ class YoutubeSanitizerTest :
 					) shouldBe
 						"https://music.youtube.com/watch?v=KGFkMD2zotU"
 				}
+
+				"remove parameters from youtu.be domain" {
+					sanitizer(
+						"https://youtu.be/RvRhUHTV_8k?si=OXYBmGTMXib1jlA2?si=UA0UVnrmPbK612Lu",
+					) shouldBe "https://youtu.be/RvRhUHTV_8k"
+				}
 			}
 
 			"matchesDomain" should {
@@ -73,6 +79,10 @@ class YoutubeSanitizerTest :
 
 				"match music.youtube.com domain" {
 					sanitizer.matchesDomain("https://music.youtube.com/") shouldBe true
+				}
+
+				"match youtu.be domain" {
+					sanitizer.matchesDomain("https://youtu.be/") shouldBe true
 				}
 			}
 		},
