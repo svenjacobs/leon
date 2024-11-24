@@ -38,5 +38,5 @@ class YoutubeSanitizer :
 	)
 
 	override fun matchesDomain(input: String) =
-		input.matchesDomainRegex("(?:m(?:usic)?\\.)?youtube\\.com")
+		input.matchesDomainRegex("(?:(?:(?:m(?:usic)?\\.)?youtube\\.com)|youtu\\.be)")
 }
