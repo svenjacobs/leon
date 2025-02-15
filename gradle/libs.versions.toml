@@ -6,7 +6,7 @@ androidx-lifecycle = "2.8.7"
 kotest = "5.9.1"
 kotlin = "2.1.10"
 kotlinx-coroutines = "1.10.1"
-mikepenz-aboutlibraries = "11.5.0"
+mikepenz-aboutlibraries = "11.6.0"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
